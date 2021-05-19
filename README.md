@@ -1,2 +1,3 @@
 # europe-car-meesterproef
-Collaboration with HvA and q42, for EuropeCar
+
+Collaboration with HvA and q42, for EuropeCar.
