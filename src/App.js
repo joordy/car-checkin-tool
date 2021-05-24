@@ -12,6 +12,7 @@ function App() {
             <Switch>
                 <Route path="/" exact component={PageOne} />
                 <Route path="/Two" exact component={PageTwo} />
+                <Route path="/reservations" exact component={PageTwo} />
             </Switch>
         </>
     )
