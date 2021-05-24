@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Card = styled.section`
     position: relative;
@@ -29,21 +30,22 @@ export const Card = styled.section`
         position: absolute;
         top: 1.125em;
         right: 1.125em;
-        font-size: 1em;
         margin: 0;
     }
     article {
-        color: black;
+        color: ${colors.primaryText};
         position: relative;
         top: 3em;
         background-color: white;
         width: 100%;
         border-radius: 1.25em;
-        padding: 2em 1.125em 1.75em 1.125em;
+        padding: 2em 1.125em 1.125em 1.125em;
         box-shadow: 0px 0px 1em rgba(0, 0, 0, 0.2);
-
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         ul {
-            margin: 0;
+            margin: 0 0 0 0.5rem;
             padding: 0;
             list-style-type: none;
             li {
@@ -52,13 +54,20 @@ export const Card = styled.section`
                     padding: 0;
                 }
                 h4 {
-                    margin-bottom: 0.3125em;
+                    line-height: 1.4rem;
+                    margin-bottom: 0.125em;
+                    height: 1rem;
                 }
                 h5 {
+                    height: 0.875rem;
                     font-weight: 300;
-                    margin-bottom: 0.875em;
+                    margin-bottom: 0.875rem;
                 }
             }
+        }
+        div {
+            width: 100%;
+            margin-top: 1.25rem;
         }
     }
 `

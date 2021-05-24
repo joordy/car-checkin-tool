@@ -9,7 +9,7 @@ const Reservations = () => {
             <ReservationHeader />
 
             <Styles.Main>
-                <h2>Mijn reserveringen</h2>
+                <h2>Mijn Reserveringen</h2>
                 <ReservationCard />
                 <ReservationCard />
                 <ReservationCard />

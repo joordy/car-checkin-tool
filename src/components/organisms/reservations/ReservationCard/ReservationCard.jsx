@@ -20,6 +20,19 @@ const ReservationCard = () => {
                 <img src={imageSrc} alt="Car image" />
                 <h3>{type}</h3>
                 <article>
+                    <span>
+                        <svg
+                            width="14"
+                            height="57"
+                            viewBox="0 0 14 57"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <ellipse cx="7.16413" cy="6" rx="6.83284" ry="6" fill="#CCCCD6" />
+                            <ellipse cx="7.16413" cy="51" rx="6.83284" ry="6" fill="#CCCCD6" />
+                            <line x1="7.66406" y1="14" x2="7.66406" y2="43" stroke="#CCCCD6" />
+                        </svg>
+                    </span>
                     <ul>
                         <li>
                             <h4>{pickupLocation}</h4>

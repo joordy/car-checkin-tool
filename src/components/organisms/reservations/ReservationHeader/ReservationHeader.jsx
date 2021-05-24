@@ -8,16 +8,16 @@ const ReservationHeader = () => {
 
     return (
         <>
-            <header>
+            <Styles.Header>
                 <h1>Welkom {userName}!</h1>
                 <p>
                     Je kunt hier vanaf 7 dagen voorafgaand aan je reservering alvast online
                     inchecken.
                 </p>
                 <div>
-                    <span></span>
+                    <div></div>
                 </div>
-            </header>{' '}
+            </Styles.Header>
         </>
     )
 }
