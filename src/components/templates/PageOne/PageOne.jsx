@@ -7,7 +7,7 @@ import { HeadingOne } from 'components/atoms/index'
 const PageOne = () => {
     return (
         <Styles.Main>
-            <HeadingOne text="Page One of the" link="EuropCar project" linkTo="#" />
+            <HeadingOne text="Page One of the" link="EuropCar project" linkTo="/two" />
         </Styles.Main>
     )
 }
