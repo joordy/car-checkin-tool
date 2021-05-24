@@ -3,16 +3,15 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import { Header } from 'components/organisms/index'
-import { PageOne, PageTwo } from 'components/templates/index'
+import { PageOne, PageTwo, Reservations } from 'components/templates/index'
 
 function App() {
     return (
         <>
-            <Header />
             <Switch>
                 <Route path="/" exact component={PageOne} />
                 <Route path="/Two" exact component={PageTwo} />
-                <Route path="/reservations" exact component={PageTwo} />
+                <Route path="/reservations" exact component={Reservations} />
             </Switch>
         </>
     )
