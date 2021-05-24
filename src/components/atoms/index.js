@@ -17,4 +17,3 @@ export { default as ButtonPrimarySmall } from './ButtonPrimarySmall/ButtonPrimar
 export { default as ButtonSecondaryLarge } from './ButtonSecondaryLarge/ButtonSecondaryLarge.jsx'
 export { default as ButtonSecondarySmall } from './ButtonSecondarySmall/ButtonSecondarySmall.jsx'
 export { default as InlineButton } from './InlineButton/InlineButton.jsx'
-export { default as ButtonTertiaryMore } from './ButtonTertiaryMore/ButtonTertiaryMore.jsx'
