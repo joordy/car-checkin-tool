@@ -7,7 +7,6 @@ export const Header = styled.header`
     position: relative;
     h1 {
         height: 2.25rem;
-        line-height: 200%;
         vertical-align: middle;
     }
     p {

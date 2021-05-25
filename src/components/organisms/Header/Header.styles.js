@@ -13,7 +13,6 @@ export const Header = styled.header`
         width: calc(100% - 10em);
     }
     h1 {
-        line-height: 38px;
         margin: 0;
         padding: 0;
     }
