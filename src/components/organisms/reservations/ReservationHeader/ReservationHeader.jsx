@@ -3,13 +3,13 @@ import React from 'react'
 import * as Styles from './ReservationHeader.styles.js'
 
 // React component
-const ReservationHeader = () => {
-    const userName = 'Lars'
+const ReservationHeader = (props) => {
+    const user = props.user
 
     return (
         <>
             <Styles.Header>
-                <h1>Welkom {userName}!</h1>
+                <h1>Welkom {user.firstName}!</h1>
                 <p>
                     Je kunt hier vanaf 7 dagen voorafgaand aan je reservering alvast online
                     inchecken.

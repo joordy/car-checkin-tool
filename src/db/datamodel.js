@@ -8,14 +8,16 @@ const user = {
     email: 'kellydejong@gmail.com',
     phone: '+31 6 1234 5678',
     birthDate: '01-02-1997',
-    reservations: [
+    cars: [
         {
             reservation: 202100002,
             carImage:
                 'https://user-images.githubusercontent.com/48051912/119339694-c8330a00-bc91-11eb-9af5-3cde4338756e.png',
             checkedIn: false,
+            pickUpLocation: 'Overtoom, Amsterdam',
             pickUpDate: '28-05-2021',
             pickUpTime: '10:30',
+            handInLocation: 'Overtoom, Amsterdam',
             handInDate: '30-05-2021',
             handInTime: '17:00',
             class: 'A',
@@ -36,8 +38,10 @@ const user = {
             carImage:
                 'https://user-images.githubusercontent.com/48051912/119339694-c8330a00-bc91-11eb-9af5-3cde4338756e.png',
             checkedIn: false,
+            pickUpLocation: 'Overtoom, Amsterdam',
             pickUpDate: '20-05-2021',
             pickUpTime: '10:30',
+            handInLocation: 'Zuid-Oost, Amsterdam',
             handInDate: '22-05-2021',
             handInTime: '17:00',
             class: 'Electric',
@@ -56,9 +60,9 @@ const user = {
     ],
 }
 
-// const insertDB = async () => {
-//     const { data, error } = await supabase.from('users').insert([user])
-//     console.log(data)
-//     console.log(error)
-// }
-// insertDB()
+const insertDB = async () => {
+    const { data, error } = await supabase.from('users').insert([user])
+    console.log(data)
+    console.log(error)
+}
+insertDB()
