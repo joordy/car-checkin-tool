@@ -54,7 +54,6 @@ export const Card = styled.section`
                     padding: 0;
                 }
                 h4 {
-                    line-height: 1.4rem;
                     margin-bottom: 0.125em;
                     height: 1rem;
                 }
@@ -66,6 +65,8 @@ export const Card = styled.section`
             }
         }
         div {
+            display: flex;
+            justify-content: space-evenly;
             width: 100%;
             margin-top: 1.25rem;
         }
