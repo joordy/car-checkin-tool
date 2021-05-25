@@ -28,7 +28,7 @@ export const Card = styled.section`
     }
     h3 {
         position: absolute;
-        top: 1.125em;
+        top: 0.825em;
         right: 1.125em;
         margin: 0;
     }
@@ -44,31 +44,10 @@ export const Card = styled.section`
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        ul {
-            margin: 0 0 0 0.5rem;
-            padding: 0;
-            list-style-type: none;
-            li {
-                > * {
-                    margin: 0;
-                    padding: 0;
-                }
-                h4 {
-                    margin-bottom: 0.125em;
-                    height: 1rem;
-                }
-                h5 {
-                    height: 0.875rem;
-                    font-weight: 300;
-                    margin-bottom: 0.875rem;
-                }
+        span {
+            svg {
+                margin-top: 0.25rem;
             }
-        }
-        div {
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-            margin-top: 1.25rem;
         }
     }
 `
