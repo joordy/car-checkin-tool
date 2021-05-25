@@ -54,7 +54,6 @@ export const Card = styled.section`
                     padding: 0;
                 }
                 h4 {
-                    line-height: 1.4rem;
                     margin-bottom: 0.125em;
                     height: 1rem;
                 }
