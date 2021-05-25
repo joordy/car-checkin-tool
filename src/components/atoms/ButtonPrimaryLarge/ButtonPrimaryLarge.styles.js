@@ -4,8 +4,6 @@ export const Button = styled.a`
     width: 284px;
     max-height: 48px;
     border-radius: 8px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-        'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
     font-size: 1em;
     text-align: center;
