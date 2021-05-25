@@ -1,22 +1,22 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Button = styled.a`
+    display: block;
     width: 284px;
     max-height: 48px;
     border-radius: 8px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-        'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 700;
     font-size: 1em;
     text-align: center;
-    padding: 1.5em 0;
+    padding: 1.2em 0;
     background-color: #ffffff;
-    border: 0.15em solid #009900;
-    color: #009900;
+    border: 0.15em solid ${colors.secondary};
+    color: ${colors.secondary};
     text-decoration: none;
     &:hover {
         cursor: pointer;
-        background-color: #009900;
+        background-color: ${colors.secondary};
         color: #ffffff;
     }
 `

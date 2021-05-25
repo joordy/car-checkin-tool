@@ -1,19 +1,21 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Button = styled.a`
-    width: 284px;
+    display: block;
+    width: ${(props) => props.width || '284px'};
     max-height: 48px;
     border-radius: 8px;
     font-weight: 700;
     font-size: 1em;
     text-align: center;
-    padding: 1.5em 0;
-    background-color: #ffe800;
-    border: 0.15em solid #ffe800;
-    color: #000333;
+    padding: 1.2em 0;
+    background-color: ${colors.primary};
+    border: 0.15em solid ${colors.primary};
+    color: ${colors.primaryText};
     text-decoration: none;
     &:hover {
         cursor: pointer;
-        border: 0.15em solid #000333;
+        border: 0.15em solid ${colors.primaryText};
     }
 `

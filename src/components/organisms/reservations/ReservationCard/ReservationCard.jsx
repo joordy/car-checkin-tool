@@ -1,6 +1,7 @@
 // React imports
 import React from 'react'
 import * as Styles from './ReservationCard.styles.js'
+import { ButtonPrimaryLarge, ButtonTertiaryMore } from 'components/atoms/index'
 
 // React component
 const ReservationCard = () => {
@@ -48,8 +49,8 @@ const ReservationCard = () => {
                         </li>
                     </ul>
                     <div>
-                        <button>Inchecken</button>
-                        <button>X</button>
+                        <ButtonPrimaryLarge text="Inchecken" linkTo="#" width="230px" />
+                        <ButtonTertiaryMore linkTo="#" />
                     </div>
                 </article>
             </Styles.Card>

@@ -19,6 +19,7 @@ import {
     ButtonPrimarySmall,
     ButtonSecondaryLarge,
     ButtonSecondarySmall,
+    ButtonTertiaryMore,
     InlineButton,
 } from 'components/atoms/index'
 
@@ -45,6 +46,7 @@ const PageOne = () => {
             <ButtonPrimarySmall text="Volgende" linkTo="/two" />
             <ButtonSecondarySmall text="Terug" linkTo="/two" />
             <InlineButton text="Wachtwoord vergeten?" linkText="Herstellen" linkTo="/two" />
+            <ButtonSecondarySmall text="Terug" linkTo="/two" /> <ButtonTertiaryMore />
         </Styles.Main>
     )
 }

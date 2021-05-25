@@ -31,13 +31,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'gotham';
+    font-family: 'gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1em;
     color: ${colors.primaryText}
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'gotham';
+    font-family: 'gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
     align-items: center;
     margin: 0;
