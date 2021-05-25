@@ -7,7 +7,7 @@ const LoginPage = () => {
     return (
         <>
             <LoginLanding />
-            {/* <Login /> */}
+            <Login />
         </>
     )
 }
