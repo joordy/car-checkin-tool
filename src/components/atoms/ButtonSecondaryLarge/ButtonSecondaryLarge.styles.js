@@ -10,13 +10,13 @@ export const Button = styled.a`
     font-size: 1em;
     text-align: center;
     padding: 1.2em 0;
-    background-color: #ffffff;
+    background-color: ${colors.white};
     border: 0.15em solid ${colors.secondary};
     color: ${colors.secondary};
     text-decoration: none;
     &:hover {
         cursor: pointer;
         background-color: ${colors.secondary};
-        color: #ffffff;
+        color: ${colors.white};
     }
 `

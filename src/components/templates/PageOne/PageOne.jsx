@@ -21,6 +21,9 @@ import {
     ButtonSecondarySmall,
     ButtonTertiaryMore,
     InlineButton,
+    Label,
+    TextInput,
+    PasswordInput,
 } from 'components/atoms/index'
 
 // React component
@@ -45,8 +48,11 @@ const PageOne = () => {
             <ButtonPrimaryLarge text="Start verificatie" linkTo="/two" />
             <ButtonPrimarySmall text="Volgende" linkTo="/two" />
             <ButtonSecondarySmall text="Terug" linkTo="/two" />
-            <InlineButton text="Wachtwoord vergeten?" linkText="Herstellen" linkTo="/two" />
             <ButtonSecondarySmall text="Terug" linkTo="/two" /> <ButtonTertiaryMore />
+            <Label text="E-mailadres" forId="test" />
+            <TextInput type="text" id="test" name="test" placeholder="John Doe" />
+            <PasswordInput />
+            <InlineButton text="Wachtwoord vergeten?" linkText="Herstellen" linkTo="/two" />
         </Styles.Main>
     )
 }

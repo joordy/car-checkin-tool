@@ -18,3 +18,6 @@ export { default as ButtonSecondaryLarge } from './ButtonSecondaryLarge/ButtonSe
 export { default as ButtonSecondarySmall } from './ButtonSecondarySmall/ButtonSecondarySmall.jsx'
 export { default as ButtonTertiaryMore } from './ButtonTertiaryMore/ButtonTertiaryMore.jsx'
 export { default as InlineButton } from './InlineButton/InlineButton.jsx'
+export { default as Label } from './Label/Label.jsx'
+export { default as TextInput } from './TextInput/TextInput.jsx'
+export { default as PasswordInput } from './PasswordInput/PasswordInput.jsx'

@@ -2,7 +2,7 @@
 import * as Styles from './EyeIcon.styles.js'
 
 // Component
-const EyeIcon = ({ width, height, opacity, fill }) => {
+const EyeIcon = ({ width, height, opacity, fill, onClick }) => {
     return (
         <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
             <svg
@@ -11,6 +11,7 @@ const EyeIcon = ({ width, height, opacity, fill }) => {
                 viewBox="0 0 24 18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                onClick={onClick}
             >
                 <path
                     d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z"
