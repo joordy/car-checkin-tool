@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Icon = styled.span`
     svg {
@@ -6,7 +7,7 @@ export const Icon = styled.span`
         height: ${(props) => props.height || '100%'};
         opacity: ${(props) => props.opacity || '1'};
         path {
-            fill: ${(props) => props.fill || '#009900'};
+            fill: ${(props) => props.fill || colors.secondary};
         }
     }
 `
