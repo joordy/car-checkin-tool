@@ -7,6 +7,7 @@ import { Header } from 'components/organisms/index'
 import { PageOne, PageTwo, Reservations } from 'components/templates/index'
 
 function App() {
+    console.log(`ENV: ${process.env.REACT_APP_TEST}`)
     return (
         <>
             <Switch>
