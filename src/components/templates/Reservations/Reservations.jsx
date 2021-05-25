@@ -6,7 +6,6 @@ import { ReservationCard, ReservationHeader } from 'components/organisms/index'
 
 // React component
 const Reservations = () => {
-    let component
     const [reservations, setReservations] = useState([])
 
     const readDB = async () => {
@@ -27,6 +26,7 @@ const Reservations = () => {
                     return <ReservationHeader user={{ firstName: 'Lars' }} />
                 }
             })()}
+
             <Styles.Main>
                 <h2>Mijn Reserveringen</h2>
                 {(() => {

@@ -3,9 +3,9 @@ import * as Styles from './ButtonTertiaryMore.styles.js'
 import { MoreIcon } from 'components/atoms/index'
 
 // Component
-const ButtonTertiaryMore = ({ linkTo }) => {
+const ButtonTertiaryMore = ({ linkTo, height }) => {
     return (
-        <Styles.Button href={linkTo}>
+        <Styles.Button href={linkTo} height={height}>
             <MoreIcon width="23px" height="23px" />
         </Styles.Button>
     )
