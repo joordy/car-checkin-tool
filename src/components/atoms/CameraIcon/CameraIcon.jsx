@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './CameraIcon.styles.js'
+import * as Styles from './cameraIcon.styles.js'
 
 // Component
 const CameraIcon = ({ width, height, opacity, fill }) => {

@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './ButtonPrimaryLarge.styles.js'
+import * as Styles from './buttonPrimaryLarge.styles.js'
 
 // Component
 const ButtonPrimaryLarge = ({ text, linkTo, width, height }) => {

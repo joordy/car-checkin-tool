@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './EyeIcon.styles.js'
+import * as Styles from './eyeIcon.styles.js'
 
 // Component
 const EyeIcon = ({ width, height, opacity, fill, onClick }) => {

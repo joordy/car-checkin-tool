@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './EditIcon.styles.js'
+import * as Styles from './editIcon.styles.js'
 
 // Component
 const EditIcon = ({ width, height, opacity, fill }) => {

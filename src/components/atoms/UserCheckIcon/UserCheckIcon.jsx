@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './UserCheckIcon.styles.js'
+import * as Styles from './userCheckIcon.styles.js'
 
 // Component
 const UserCheckIcon = ({ width, height, opacity, fill }) => {

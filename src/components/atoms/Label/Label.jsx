@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './Label.styles.js'
+import * as Styles from './label.styles.js'
 
 // Component
 const Label = ({ text, forId }) => {

@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './CreditcardIcon.styles.js'
+import * as Styles from './creditcardIcon.styles.js'
 
 // Component
 const CreditcardIcon = ({ width, height, opacity, fill }) => {

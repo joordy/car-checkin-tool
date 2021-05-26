@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './MoreIcon.styles.js'
+import * as Styles from './moreIcon.styles.js'
 
 // Component
 const MoreIcon = ({ width, height, opacity, fill }) => {

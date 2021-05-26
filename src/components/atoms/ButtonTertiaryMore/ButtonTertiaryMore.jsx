@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './ButtonTertiaryMore.styles.js'
+import * as Styles from './buttonTertiaryMore.styles.js'
 import { MoreIcon } from 'components/atoms/index'
 
 // Component

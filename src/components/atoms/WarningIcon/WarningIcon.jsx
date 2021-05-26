@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './WarningIcon.styles.js'
+import * as Styles from './warningIcon.styles.js'
 
 // Component
 const WarningIcon = ({ width, height, opacity, fill }) => {

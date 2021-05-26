@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './SuccessIcon.styles.js'
+import * as Styles from './successIcon.styles.js'
 
 // Component
 const SuccessIcon = ({ width, height, opacity, fill }) => {
