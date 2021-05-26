@@ -9,7 +9,7 @@ export const Button = styled.a`
     font-weight: 700;
     font-size: 1em;
     text-align: center;
-    padding: 1.2em 0;
+    padding: 0.75em 0;
     background-color: ${colors.white};
     border: 0.15em solid ${colors.secondary};
     color: ${colors.secondary};

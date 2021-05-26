@@ -2,9 +2,9 @@
 import * as Styles from './ButtonPrimaryLarge.styles.js'
 
 // Component
-const ButtonPrimaryLarge = ({ text, linkTo, width, _callback }) => {
+const ButtonPrimaryLarge = ({ text, linkTo, width, _callback, height }) => {
     return (
-        <Styles.Button width={width} href={linkTo} onClick={_callback}>
+        <Styles.Button width={width} href={linkTo} onClick={_callback} height={height}>
             {text}
         </Styles.Button>
     )

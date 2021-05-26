@@ -1,25 +1,16 @@
 // React imports
 import React from 'react'
 import * as Styles from './ReservationCard.styles.js'
-import { ButtonPrimaryLarge, ButtonTertiaryMore } from 'components/atoms/index'
+import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
 // React component
-const ReservationCard = () => {
-    const imageSrc =
-        'https://user-images.githubusercontent.com/48051912/119339694-c8330a00-bc91-11eb-9af5-3cde4338756e.png'
-    const type = 'Elektrisch'
-    const pickupLocation = 'Overtoom, Amsterdam'
-    const deliverLocation = 'Stadshart, Amstelveen'
-    const pickupDate = 'vrijdag 28 mei 2021'
-    const pickupTime = '10:30'
-    const deliverDate = 'vrijdag 28 mei 2021'
-    const deliverTime = '17:30'
-
+const ReservationCard = ({ ...props }) => {
+    const reservation = { ...props }
     return (
         <>
             <Styles.Card>
-                <img src={imageSrc} alt="Car image" />
-                <h3>{type}</h3>
+                <img src={reservation.carImage} alt="Car image" />
+                <h3>{reservation.class}</h3>
                 <article>
                     <span>
                         <svg
@@ -34,24 +25,10 @@ const ReservationCard = () => {
                             <line x1="7.66406" y1="14" x2="7.66406" y2="43" stroke="#CCCCD6" />
                         </svg>
                     </span>
-                    <ul>
-                        <li>
-                            <h4>{pickupLocation}</h4>
-                            <h5>
-                                {pickupDate} <span>X</span> {pickupTime}
-                            </h5>
-                        </li>
-                        <li>
-                            <h4>{deliverLocation}</h4>
-                            <h5>
-                                {deliverDate} <span>X</span> {deliverTime}
-                            </h5>
-                        </li>
-                    </ul>
-                    <div>
-                        <ButtonPrimaryLarge text="Inchecken" linkTo="#" width="230px" />
-                        <ButtonTertiaryMore linkTo="#" />
-                    </div>
+
+                    <DealerLocations {...props} />
+
+                    <CheckinButtons {...props} />
                 </article>
             </Styles.Card>
         </>
