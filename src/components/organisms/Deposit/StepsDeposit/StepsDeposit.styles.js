@@ -6,7 +6,7 @@ export const Section = styled.section`
         text-align: center;
         color: ${colors.white};
         padding-top: 2em;
-        width: 7em;
+        width: 10em;
         margin: 0 auto;
     }
     ul {
