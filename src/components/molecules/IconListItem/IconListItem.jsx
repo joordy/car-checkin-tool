@@ -3,7 +3,7 @@ import * as Styles from './IconListItem.styles.js'
 import { UserCheckIcon, CreditcardIcon, QRCodeIcon } from 'components/atoms/index'
 
 // Component
-const IconListItem = ({ iconName, opacity, title, text, complete }) => {
+const IconListItem = ({ iconName, opacity, title, text, completed }) => {
     let icon
     if (iconName == 'UserCheckIcon') {
         icon = <UserCheckIcon width="30px" height="30px" opacity={opacity} />
@@ -14,7 +14,7 @@ const IconListItem = ({ iconName, opacity, title, text, complete }) => {
     }
 
     return (
-        <Styles.Wrapper complete={complete}>
+        <Styles.Wrapper completed={completed}>
             <div>{icon}</div>
             <div>
                 <h3>{title}</h3>

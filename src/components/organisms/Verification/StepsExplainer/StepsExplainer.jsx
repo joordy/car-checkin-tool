@@ -1,12 +1,13 @@
 // React imports
 import React from 'react'
 import * as Styles from './StepsExplainer.styles.js'
+import { ButtonPrimaryLarge, ButtonSecondaryLarge } from 'components/atoms/index'
 import { IconListItem } from 'components/molecules/index'
 
 // React component
 const StepsExplainer = () => {
     return (
-        <Styles.Main>
+        <Styles.Section>
             <h1>Inchecken in 3 stappen</h1>
             <ul>
                 <IconListItem
@@ -27,7 +28,11 @@ const StepsExplainer = () => {
                     text="Je ontvangt een QR-code waarmee je op de Europcar locatie je sleutels kunt ophalen."
                 />
             </ul>
-        </Styles.Main>
+            <div className="buttons">
+                <ButtonPrimaryLarge text="Start verificatie" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="#" />
+            </div>
+        </Styles.Section>
     )
 }
 
