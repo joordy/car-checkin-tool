@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './ButtonPrimarySmall.styles.js'
+import * as Styles from './buttonPrimarySmall.styles.js'
 
 // Component
 const ButtonPrimarySmall = ({ text, linkTo }) => {

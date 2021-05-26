@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './FormButtonPrimaryLarge.styles.js'
+import * as Styles from './formButtonPrimaryLarge.styles.js'
 
 // Component
 const FormButtonPrimaryLarge = ({ text, width, type }) => {
