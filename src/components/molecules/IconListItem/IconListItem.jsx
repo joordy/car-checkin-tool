@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './IconListItem.styles.js'
+import * as Styles from './iconListItem.styles.js'
 import { UserCheckIcon, CreditcardIcon, QRCodeIcon } from 'components/atoms/index'
 
 // Component

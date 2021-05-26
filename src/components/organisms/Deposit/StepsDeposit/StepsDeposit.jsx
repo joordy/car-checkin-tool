@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './StepsDeposit.styles.js'
+import * as Styles from './stepsDeposit.styles.js'
 import { ButtonPrimaryLarge, ButtonSecondaryLarge } from 'components/atoms/index'
 import { IconListItem } from 'components/molecules/index'
 

@@ -1,7 +1,7 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './Deposit.styles.js'
+import * as Styles from './deposit.styles.js'
 import { StepsDeposit } from 'components/organisms/index'
 
 // React component

@@ -1,16 +1,16 @@
 // Organism will be a large element on the page, such as the complete contact form.
-export { default as Header } from './Header/Header'
-export { default as LoginLanding } from './login/LoginLanding/LoginLanding'
-export { default as Login } from './login/Login/Login'
+export { default as Header } from './header/header'
+export { default as LoginLanding } from './login/loginLanding/LoginLanding'
+export { default as Login } from './login/login/login'
 
 // User reservations
-export { default as ReservationCard } from './Reservations/ReservationCard/ReservationCard'
-export { default as ReservationHeader } from './Reservations/ReservationHeader/ReservationHeader'
+export { default as ReservationCard } from './reservations/reservationCard/reservationCard'
+export { default as ReservationHeader } from './reservations/reservationHeader/ReservationHeader'
 
 // Verification steps
-export { default as StepsExplainer } from './Verification/StepsExplainer/StepsExplainer'
-export { default as CheckFacial } from './Verification/CheckFacial/CheckFacial'
-export { default as CheckBookingInfo } from './Verification/CheckBookingInfo/CheckBookingInfo'
-export { default as CheckUserInfo } from './Verification/CheckUserInfo/CheckUserInfo'
-export { default as CheckIdentity } from './Verification/CheckIdentity/CheckIdentity'
-export { default as StepsDeposit } from './Deposit/StepsDeposit/StepsDeposit'
+export { default as StepsExplainer } from './verification/stepsExplainer/stepsExplainer'
+export { default as CheckFacial } from './verification/checkFacial/checkFacial'
+export { default as CheckBookingInfo } from './verification/checkBookingInfo/checkBookingInfo'
+export { default as CheckUserInfo } from './verification/checkUserInfo/checkUserInfo'
+export { default as CheckIdentity } from './verification/checkIdentity/checkIdentity'
+export { default as StepsDeposit } from './deposit/stepsDeposit/stepsDeposit'

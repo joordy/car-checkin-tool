@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './CheckIdentity.styles.js'
+import * as Styles from './checkIdentity.styles.js'
 import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/atoms/index'
 
 // React component

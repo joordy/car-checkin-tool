@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './CheckinButtons.styles.js'
+import * as Styles from './checkinButtons.styles.js'
 import { ButtonPrimaryLarge, ButtonTertiaryMore } from 'components/atoms/index'
 
 // React component

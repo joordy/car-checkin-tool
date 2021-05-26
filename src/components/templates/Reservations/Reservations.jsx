@@ -1,7 +1,7 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './Reservations.styles.js'
+import * as Styles from './reservations.styles.js'
 import { ReservationCard, ReservationHeader } from 'components/organisms/index'
 
 // React component

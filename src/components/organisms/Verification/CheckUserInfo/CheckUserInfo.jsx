@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './CheckUserInfo.styles.js'
+import * as Styles from './checkUserInfo.styles.js'
 
 // React component
 const CheckUserInfo = () => {

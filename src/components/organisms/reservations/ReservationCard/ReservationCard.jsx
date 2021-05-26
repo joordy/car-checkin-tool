@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './ReservationCard.styles.js'
+import * as Styles from './reservationCard.styles.js'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
 // React component
