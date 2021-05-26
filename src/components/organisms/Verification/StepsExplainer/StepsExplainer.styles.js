@@ -47,13 +47,10 @@ export const Section = styled.section`
     div.buttons {
         padding: 0 0 1em;
     }
-<<<<<<< HEAD
-=======
     width: 100vw;
     height: 65vh;
     min-height: 33em;
     margin-bottom: 8em;
->>>>>>> 12de4361e3e9134c445b9d39ed8be0b6c58c2d49
     border-radius: 0 0 50px 50px;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
 `
