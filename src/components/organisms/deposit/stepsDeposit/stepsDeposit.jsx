@@ -32,7 +32,7 @@ const StepsExplainer = () => {
                 </ul>
             </article>
             <Styles.BtnWrapper>
-                <ButtonPrimaryLarge text="Start verificatie" linkTo="#" />
+                <ButtonPrimaryLarge text="Regel je borg" linkTo="#" />
                 <ButtonSecondaryLarge text="Terug" linkTo="/reservations" />
             </Styles.BtnWrapper>
         </Styles.Section>
