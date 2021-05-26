@@ -41,7 +41,10 @@ export const LoginLanding = styled.section`
     }
 
     header > a {
-        margin: 20vh auto;
+        position: absolute;
+        bottom: 10vh;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .slideOut {
