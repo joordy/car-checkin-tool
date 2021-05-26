@@ -28,8 +28,10 @@ const StepsExplainer = () => {
                     text="Je ontvangt een QR-code waarmee je op de Europcar locatie je sleutels kunt ophalen."
                 />
             </ul>
-            <ButtonPrimaryLarge text="Start verificatie" linkTo="#" />
-            <ButtonSecondaryLarge text="Terug" linkTo="#" />
+            <div className="buttons">
+                <ButtonPrimaryLarge text="Start verificatie" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="#" />
+            </div>
         </Styles.Section>
     )
 }

@@ -31,7 +31,7 @@ export const Wrapper = styled.li`
         width: 188px;
         h3 {
             font-size: 1em;
-            margin: 0.7em 0 0.5em 0;
+            margin: 0em 0 0.5em 0;
         }
         p {
             font-size: 0.95em;
