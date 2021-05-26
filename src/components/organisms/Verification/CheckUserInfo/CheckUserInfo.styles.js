@@ -5,10 +5,21 @@ export const Section = styled.section`
     width: calc(100vw - 3rem);
     padding: 4.5rem 1.5rem 1.5rem;
 
-    > span > svg {
-        position: absolute;
-        top: 4.5rem;
-        left: 44rem;
+    header {
+        &:nth-of-type(1) {
+            position: relative;
+            h1 {
+                width: 70%;
+            }
+            p {
+                width: 100%;
+            }
+            span {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
     }
 
     article > p {

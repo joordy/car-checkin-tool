@@ -12,9 +12,11 @@ import {
 const CheckUserInfo = () => {
     return (
         <Styles.Section>
-            <h1>Controleer je gegevens </h1>
-            <p>Dit is een overzicht van je gegevens zoals die nu bij ons bekend zijn. </p>
-            <CloseIcon width="19px" height="19px" />
+            <header>
+                <h1>Controleer je gegevens </h1>
+                <p>Dit is een overzicht van je gegevens zoals die nu bij ons bekend zijn. </p>
+                <CloseIcon width="19px" height="19px" />
+            </header>
 
             <article>
                 <p>Algemene gegevens</p>
