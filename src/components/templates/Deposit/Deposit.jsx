@@ -1,8 +1,8 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './Checkin.styles.js'
-import { StepsExplainer } from 'components/organisms/index'
+import * as Styles from './Deposit.styles.js'
+import { StepsDeposit } from 'components/organisms/index'
 
 // React component
 const PageOne = () => {
@@ -19,8 +19,9 @@ const PageOne = () => {
 
     return (
         <Styles.Main>
-            <StepsExplainer />
-            {/*<VerificationOne />
+            <StepsDeposit />
+            {/*
+            <VerificationOne />
             <VerificationTwo />
             <VerificationThree />
             <VerificationFour />
