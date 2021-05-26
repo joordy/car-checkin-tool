@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './HeadingOne.styles.js'
+import * as Styles from './headingOne.styles.js'
 
 // Component
 const HeadingOne = ({ text, link, linkTo }) => {

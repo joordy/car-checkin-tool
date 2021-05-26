@@ -1,7 +1,7 @@
 // Imports
 // Source: https://reactjs.org/docs/conditional-rendering.html
 import { useState } from 'react'
-import * as Styles from './PasswordInput.styles.js'
+import * as Styles from './passwordInput.styles.js'
 import { EyeIcon, EyeOffIcon } from 'components/atoms/index'
 
 // Component

@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './EyeOffIcon.styles.js'
+import * as Styles from './eyeOffIcon.styles.js'
 
 // Component
 const EyeOffIcon = ({ width, height, opacity, fill, onClick }) => {

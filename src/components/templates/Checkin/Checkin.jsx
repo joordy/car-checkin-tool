@@ -1,7 +1,7 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './checkin.styles.js'
+import * as Styles from './Checkin.styles.js'
 import {
     StepsExplainer,
     CheckUserInfo,

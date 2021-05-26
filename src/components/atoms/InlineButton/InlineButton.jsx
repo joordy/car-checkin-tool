@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './InlineButton.styles.js'
+import * as Styles from './inlineButton.styles.js'
 
 // Component
 const InlineButton = ({ text, linkText, linkTo }) => {

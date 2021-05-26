@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './QRCodeIcon.styles.js'
+import * as Styles from './qrCodeIcon.styles.js'
 
 // Component
 const QRCodeIcon = ({ width, height, opacity, fill }) => {

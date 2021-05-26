@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './UserIcon.styles.js'
+import * as Styles from './userIcon.styles.js'
 
 // Component
 const UserIcon = ({ width, height, opacity, fill }) => {

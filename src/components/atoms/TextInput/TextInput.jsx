@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './TextInput.styles.js'
+import * as Styles from './textInput.styles.js'
 
 // Component
 const Input = ({ type, id, name, placeholder }) => {

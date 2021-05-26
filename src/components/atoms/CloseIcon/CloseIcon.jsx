@@ -1,5 +1,5 @@
 // Imports
-import * as Styles from './CloseIcon.styles.js'
+import * as Styles from './closeIcon.styles.js'
 
 // Component
 const CloseIcon = ({ width, height, opacity, fill }) => {
