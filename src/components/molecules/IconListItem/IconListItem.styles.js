@@ -15,7 +15,7 @@ export const Wrapper = styled.li`
         background-color: rgba(255, 255, 255, 0.75);
         margin-right: 1.5em;
         ${(props) => {
-            if (props.complete === true)
+            if (props.completed === true)
                 return `
                 background-color: ${colors.primary};
                 svg {
@@ -28,13 +28,13 @@ export const Wrapper = styled.li`
         }
     }
     div:last-of-type {
-        width: 12em;
+        width: 188px;
         h3 {
-            font-size: 1.15em;
-            margin: 0.7em 0 0.5em 0;
+            font-size: 1em;
+            margin: 0em 0 0.5em 0;
         }
         p {
-            font-size: 1em;
+            font-size: 0.95em;
             margin: 0;
         }
     }

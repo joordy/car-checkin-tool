@@ -1,6 +1,7 @@
 // React imports
 import React from 'react'
 import * as Styles from './StepsExplainer.styles.js'
+import { ButtonPrimaryLarge, ButtonSecondaryLarge } from 'components/atoms/index'
 import { IconListItem } from 'components/molecules/index'
 
 // React component
@@ -27,6 +28,10 @@ const StepsExplainer = () => {
                     text="Je ontvangt een QR-code waarmee je op de Europcar locatie je sleutels kunt ophalen."
                 />
             </ul>
+            <div className="buttons">
+                <ButtonPrimaryLarge text="Start verificatie" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="#" />
+            </div>
         </Styles.Section>
     )
 }
