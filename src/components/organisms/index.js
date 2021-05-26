@@ -4,8 +4,8 @@ export { default as LoginLanding } from './login/LoginLanding/LoginLanding'
 export { default as Login } from './login/Login/Login'
 
 // User reservations
-export { default as ReservationCard } from './Reservations/ReservationCard/ReservationCard'
-export { default as ReservationHeader } from './Reservations/ReservationHeader/ReservationHeader'
+export { default as ReservationCard } from './reservations/ReservationCard/ReservationCard'
+export { default as ReservationHeader } from './reservations/ReservationHeader/ReservationHeader'
 
 // Verification steps
 export { default as StepsExplainer } from './Verification/StepsExplainer/StepsExplainer'
