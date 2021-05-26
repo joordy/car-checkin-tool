@@ -26,7 +26,7 @@ const CheckinButtons = ({ ...props }) => {
                         <div className="buttonWrapper">
                             <ButtonPrimaryLarge
                                 text="Inchecken"
-                                linkTo="#"
+                                linkTo="/checkin"
                                 width="100%"
                                 height="48px"
                             />
