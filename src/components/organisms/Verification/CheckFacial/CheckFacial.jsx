@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './CheckFacial.styles.js'
+import * as Styles from './checkFacial.styles.js'
 import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/atoms/index'
 
 // React component

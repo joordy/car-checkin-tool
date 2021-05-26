@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './StepsExplainer.styles.js'
+import * as Styles from './stepsExplainer.styles.js'
 import { ButtonPrimaryLarge, ButtonSecondaryLarge } from 'components/atoms/index'
 import { IconListItem } from 'components/molecules/index'
 

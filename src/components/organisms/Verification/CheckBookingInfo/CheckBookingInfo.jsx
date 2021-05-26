@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './CheckBookingInfo.styles.js'
+import * as Styles from './checkBookingInfo.styles.js'
 
 // React component
 const CheckBookingInfo = () => {

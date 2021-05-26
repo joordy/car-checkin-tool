@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './PageOne.styles.js'
+import * as Styles from './pageOne.styles.js'
 import {
     HeadingOne,
     UserCheckIcon,

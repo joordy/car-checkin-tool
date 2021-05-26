@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './Login.styles.js'
+import * as Styles from './login.styles.js'
 import {
     TextInput,
     PasswordInput,

@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './PageTwo.styles.js'
+import * as Styles from './pageTwo.styles.js'
 import { HeadingOne } from 'components/atoms/index'
 
 // React component

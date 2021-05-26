@@ -1,7 +1,7 @@
 // Templates will be like pages: home, about, etc
-export { default as PageOne } from './PageOne/PageOne.jsx'
-export { default as PageTwo } from './PageTwo/PageTwo.jsx'
-export { default as Reservations } from './Reservations/Reservations.jsx'
-export { default as Login } from './Login/Login.jsx'
-export { default as Checkin } from './Checkin/Checkin.jsx'
-export { default as Deposit } from './Deposit/Deposit.jsx'
+export { default as PageOne } from './pageOne/pageOne.jsx'
+export { default as PageTwo } from './pageTwo/pageTwo.jsx'
+export { default as Reservations } from './reservations/reservations.jsx'
+export { default as Login } from './login/login.jsx'
+export { default as Checkin } from './checkin/checkin.jsx'
+export { default as Deposit } from './deposit/deposit.jsx'

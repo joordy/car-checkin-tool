@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './DealerLocations.styles.js'
+import * as Styles from './dealerLocations.styles.js'
 
 // React component
 const DealerLocations = ({ ...props }) => {

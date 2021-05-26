@@ -1,7 +1,7 @@
 // React imports
 import React from 'react'
 import { Link } from 'react-router-dom'
-import * as Styles from './Header.styles.js'
+import * as Styles from './header.styles.js'
 
 // React component
 const Header = () => {
