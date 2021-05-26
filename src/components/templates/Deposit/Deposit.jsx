@@ -19,7 +19,7 @@ const PageOne = () => {
 
     return (
         <Styles.Main>
-            <h1>Fixed</h1>
+            <h1>Fixed 2</h1>
             <StepsDeposit />
             {/*
             <VerificationOne />
