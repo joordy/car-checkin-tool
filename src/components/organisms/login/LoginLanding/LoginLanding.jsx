@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './LoginLanding.styles.js'
+import * as Styles from './loginLanding.styles.js'
 import { ButtonPrimaryLarge } from 'components/atoms/index.js'
 
 // React component

@@ -1,6 +1,6 @@
 // React imports
 import React from 'react'
-import * as Styles from './ReservationHeader.styles.js'
+import * as Styles from './reservationHeader.styles.js'
 
 // React component
 const ReservationHeader = (props) => {
