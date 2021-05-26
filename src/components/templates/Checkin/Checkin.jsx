@@ -2,8 +2,13 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './Checkin.styles.js'
-import { IconListItem } from 'components/molecules/index'
-import { StepsExplainer } from 'components/organisms/index'
+import {
+    StepsExplainer,
+    CheckUserInfo,
+    CheckBookingInfo,
+    CheckIdentity,
+    CheckFacial,
+} from 'components/organisms/index'
 
 // React component
 const PageOne = () => {
@@ -21,12 +26,10 @@ const PageOne = () => {
     return (
         <Styles.Main>
             <StepsExplainer />
-            {/*<VerificationOne />
-            <VerificationTwo />
-            <VerificationThree />
-            <VerificationFour />
-            <StepsBorg />
-            <BorgPayments /> */}
+            <CheckUserInfo />
+            <CheckBookingInfo />
+            <CheckIdentity />
+            <CheckFacial />
         </Styles.Main>
     )
 }

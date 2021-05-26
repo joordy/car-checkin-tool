@@ -6,7 +6,7 @@ import { IconListItem } from 'components/molecules/index'
 // React component
 const StepsExplainer = () => {
     return (
-        <Styles.Main>
+        <Styles.Section>
             <h1>Inchecken in 3 stappen</h1>
             <ul>
                 <IconListItem
@@ -27,7 +27,7 @@ const StepsExplainer = () => {
                     text="Je ontvangt een QR-code waarmee je op de Europcar locatie je sleutels kunt ophalen."
                 />
             </ul>
-        </Styles.Main>
+        </Styles.Section>
     )
 }
 
