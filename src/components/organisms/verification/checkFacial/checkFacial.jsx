@@ -5,6 +5,16 @@ import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/
 
 // React component
 const CheckFacial = () => {
+    const moveRight = () => {
+        const moveel = document.querySelector('.stepsWrapper')
+        moveel.style.transform = 'translateX(-100vw)'
+    }
+
+    const moveLeft = () => {
+        const moveel = document.querySelector('.stepsWrapper')
+        moveel.style.transform = 'translateX(100vw)'
+    }
+
     return (
         <Styles.Section>
             <article>
@@ -20,8 +30,8 @@ const CheckFacial = () => {
             <Styles.IdentityChecker></Styles.IdentityChecker>
 
             <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" />
-                <ButtonPrimaryLarge text="Volgende" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveLeft} />
+                <ButtonPrimaryLarge text="Volgende" linkTo="#" _callback={moveRight} />
             </Styles.BtnWrapper>
 
             {/*  Test*/}

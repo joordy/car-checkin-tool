@@ -9,12 +9,12 @@ function App() {
     return (
         <>
             <Switch>
-                <Route path="/" exact component={PageOne} />
-                <Route path="/Two" exact component={PageTwo} />
+                <Route path="/" exact component={Login} />
                 <Route path="/reservations" exact component={Reservations} />
-                <Route path="/login" exact component={Login} />
                 <Route path="/checkin" exact component={Checkin} />
                 <Route path="/deposit" exact component={Deposit} />
+                <Route path="/One" exact component={PageOne} />
+                <Route path="/Two" exact component={PageTwo} />
             </Switch>
             <GlobalStyle />
         </>

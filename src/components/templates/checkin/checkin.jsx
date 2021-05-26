@@ -25,11 +25,15 @@ const PageOne = () => {
 
     return (
         <Styles.Main>
-            <StepsExplainer />
-            <CheckUserInfo />
-            <CheckBookingInfo />
-            <CheckIdentity />
-            <CheckFacial />
+            <div className="stepsWrapper">
+                <StepsExplainer />
+                <CheckIdentity />
+                <CheckFacial />
+                {/*<CheckUserInfo />
+              <CheckBookingInfo />
+              
+            */}
+            </div>
         </Styles.Main>
     )
 }
