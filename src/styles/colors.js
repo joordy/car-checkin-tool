@@ -7,6 +7,8 @@ export const inputBorder = '#CCCCD6'
 export const inputHover = '#999AAD'
 export const error = '#FF0000'
 export const errorFill = 'rgba(255, 0, 0, 0.15)'
+export const gradientLight = '#9FCE19'
+export const gradientDark = '#008500'
 export const white = '#FFFFFF'
 
 export default {
@@ -19,5 +21,7 @@ export default {
     inputHover,
     error,
     errorFill,
+    gradientLight,
+    gradientDark,
     white,
 }
