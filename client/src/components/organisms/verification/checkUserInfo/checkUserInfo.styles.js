@@ -41,10 +41,6 @@ export const Section = styled.section`
         font-weight: 600;
     }
 
-    article:first-of-type > p:last-child {
-        color: ${colors.accent};
-    }
-
     article:nth-of-type(2) > p:nth-child(even) {
         color: ${colors.secondaryText};
     }

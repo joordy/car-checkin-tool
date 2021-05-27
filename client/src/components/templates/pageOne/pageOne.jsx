@@ -13,6 +13,7 @@ import {
     UserIcon,
     MoreIcon,
     CloseIcon,
+    EditButton,
     EditIcon,
     CameraIcon,
     ButtonPrimaryLarge,
@@ -43,6 +44,7 @@ const PageOne = () => {
             <MoreIcon width="2em" height="2em" />
             <ButtonSecondaryLarge text="Terug" linkTo="/two" />
             <CloseIcon width="2em" height="2em" />
+            <EditButton width="2em" height="2em" />
             <EditIcon width="2em" height="2em" />
             <CameraIcon width="2em" height="2em" fill="grey" />
             <ButtonPrimaryLarge text="Start verificatie" linkTo="/two" />
