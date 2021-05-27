@@ -27,12 +27,10 @@ const PageOne = () => {
         <Styles.Main>
             <div className="stepsWrapper">
                 <StepsExplainer />
+                <CheckUserInfo />
+                <CheckBookingInfo />
                 <CheckIdentity />
                 <CheckFacial />
-                {/*<CheckUserInfo />
-              <CheckBookingInfo />
-              
-            */}
             </div>
         </Styles.Main>
     )

@@ -34,7 +34,7 @@ const StepsExplainer = () => {
             </article>
             <Styles.BtnWrapper>
                 <ButtonPrimaryLarge text="Regel je borg" linkTo="#" />
-                <ButtonSecondaryLarge text="Terug" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="/reservations" />
             </Styles.BtnWrapper>
         </Styles.Section>
     )
