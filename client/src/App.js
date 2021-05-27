@@ -6,6 +6,8 @@ import {
     Checkin,
     Deposit,
     QR,
+    AdressData,
+    UserVerification,
 } from 'components/templates/index'
 import React from 'react'
 // import ReactDOM from 'react-dom';
@@ -19,7 +21,9 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Login} />
                 <Route path="/reservations" exact component={Reservations} />
-                <Route path="/checkin" exact component={Checkin} />
+                <Route path="/addressdata" exact component={AdressData} />
+                <Route path="/verification" exact component={UserVerification} />
+                {/*<Route path="/checkin" exact component={Checkin} />*/}
                 <Route path="/deposit" exact component={Deposit} />
                 <Route path="/qr" exact component={QR} />
                 <Route path="/One" exact component={PageOne} />
