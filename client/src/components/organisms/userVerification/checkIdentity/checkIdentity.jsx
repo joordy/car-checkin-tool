@@ -6,18 +6,18 @@ import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/
 // React component
 const CheckIdentity = () => {
     const moveRight = () => {
-        const moveel = document.querySelector('.stepsWrapper')
-        moveel.style.transform = 'translateX(-300vw)'
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = 'translateX(0)'
     }
 
     const moveLeft = () => {
-        const moveel = document.querySelector('.stepsWrapper')
-        moveel.style.transform = 'translateX(100vw)'
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = 'translateX(-200vw)'
     }
 
     return (
-        <Styles.Section>
-            <article>
+        <Styles.Section id="identity">
+            <header>
                 <h1>Maak een foto van je rijbewijs</h1>
                 <p>
                     We beschermen je gegevens en gebruiken de foto uitsluitend om te verifiëren of
@@ -25,7 +25,7 @@ const CheckIdentity = () => {
                     dit onmiddelijk.
                 </p>
                 <CloseIcon width="1.5rem" height="1.5em" />
-            </article>
+            </header>
 
             <Styles.IdentityChecker></Styles.IdentityChecker>
 

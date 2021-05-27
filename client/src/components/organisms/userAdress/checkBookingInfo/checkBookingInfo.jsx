@@ -10,6 +10,11 @@ import {
 
 // React component
 const CheckBookingInfo = () => {
+    const moveRight = () => {
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = 'translateX(-100vw)'
+    }
+
     return (
         <Styles.Section>
             <header>
@@ -55,7 +60,7 @@ const CheckBookingInfo = () => {
             </article>
 
             <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveRight} />
                 <ButtonPrimaryLarge text="Volgende" linkTo="/verification" />
             </Styles.BtnWrapper>
         </Styles.Section>

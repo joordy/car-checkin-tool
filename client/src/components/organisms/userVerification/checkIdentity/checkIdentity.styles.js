@@ -5,20 +5,19 @@ export const Section = styled.section`
     height: 100%;
     padding: 4.5rem 1.5rem 1.5rem;
     position: relative;
-    article {
-        &:nth-of-type(1) {
-            position: relative;
-            h1 {
-                width: 70%;
-            }
-            p {
-                width: 100%;
-            }
-            span {
-                position: absolute;
-                top: 0;
-                right: 0;
-            }
+    overflow: hidden;
+    header {
+        position: relative;
+        h1 {
+            width: 70%;
+        }
+        p {
+            width: 100%;
+        }
+        span {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 `

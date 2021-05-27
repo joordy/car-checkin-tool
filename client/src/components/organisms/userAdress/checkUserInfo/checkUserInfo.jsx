@@ -11,6 +11,16 @@ import {
 
 // React component
 const CheckUserInfo = () => {
+    const moveRight = () => {
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = 'translateX(0)'
+    }
+
+    const moveLeft = () => {
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = 'translateX(-200vw)'
+    }
+
     return (
         <Styles.Section>
             <header>
@@ -38,8 +48,8 @@ const CheckUserInfo = () => {
             </article>
 
             <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" />
-                <ButtonPrimaryLarge text="Volgende" linkTo="#" />
+                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveRight} />
+                <ButtonPrimaryLarge text="Volgende" linkTo="#" _callback={moveLeft} />
             </Styles.BtnWrapper>
         </Styles.Section>
     )

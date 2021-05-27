@@ -7,16 +7,12 @@ import { IconListItem } from 'components/molecules/index'
 // React component
 const StepsExplainer = () => {
     const moveRight = () => {
-        const moveel = document.querySelector('.stepsWrapper')
-        moveel.style.transform = 'translateX(-100vw)'
-    }
-    const moveLeft = () => {
-        const moveel = document.querySelector('.stepsWrapper')
-        moveel.style.transform = 'translateX(0)'
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = 'translateX(-100vw)'
     }
 
     return (
-        <Styles.Section>
+        <Styles.Section id="introduction">
             <article>
                 <h1>Inchecken in 3 stappen</h1>
                 <ul>

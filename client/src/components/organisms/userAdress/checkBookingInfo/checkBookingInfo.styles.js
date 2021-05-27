@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const Section = styled.section`
-    min-width: calc(100vw - 3rem);
+    width: calc(100vw - 3rem);
+    padding: 4.5rem 1.5rem 1.5rem;
+    height: 100%;
     position: relative;
     overflow: hidden;
-    padding: 4.5rem 1.5rem 1.5rem;
-
     header {
         &:nth-of-type(1) {
             position: relative;
