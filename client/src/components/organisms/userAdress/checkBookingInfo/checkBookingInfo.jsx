@@ -56,7 +56,7 @@ const CheckBookingInfo = () => {
 
             <Styles.BtnWrapper>
                 <ButtonSecondaryLarge text="Terug" linkTo="#" />
-                <ButtonPrimaryLarge text="Volgende" linkTo="#" />
+                <ButtonPrimaryLarge text="Volgende" linkTo="/verification" />
             </Styles.BtnWrapper>
         </Styles.Section>
     )

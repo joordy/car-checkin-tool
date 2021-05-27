@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/checkin', (req, res) => {
+  console.log('testje');
   const str = [
     {
       name: 'Codr Kai',

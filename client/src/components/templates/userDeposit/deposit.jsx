@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './deposit.styles.js'
-import { StepsDeposit } from 'components/organisms/index'
+// import { StepsDeposit } from 'components/organisms/index'
 
 // React component
 const PageOne = () => {
@@ -19,8 +19,9 @@ const PageOne = () => {
 
     return (
         <Styles.Main>
-            <StepsDeposit />
+            <h1>deposit</h1>
             {/*
+            <StepsDeposit />
             <VerificationOne />
             <VerificationTwo />
             <VerificationThree />
