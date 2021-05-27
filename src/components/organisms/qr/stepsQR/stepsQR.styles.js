@@ -2,10 +2,8 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const Section = styled.section`
-    /* background-color: hotpink; */
     min-width: calc(100vw);
     position: relative;
-    overflow: hidden;
     padding-bottom: 7rem;
     article {
         border-radius: 0 0 3.125rem 3.125rem;

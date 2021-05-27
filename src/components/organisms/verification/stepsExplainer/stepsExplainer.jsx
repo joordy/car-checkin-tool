@@ -28,6 +28,7 @@ const StepsExplainer = () => {
                     />
                     <IconListItem
                         iconName="CreditcardIcon"
+                        opacity="0.75"
                         title="Borg"
                         text="Geef een garantie op je creditcard of betaal contant."
                     />

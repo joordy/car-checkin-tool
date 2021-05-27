@@ -13,7 +13,7 @@ const StepsQR = () => {
                 <ul>
                     <IconListItem
                         iconName="UserCheckIcon"
-                        opacity="0.75"
+                        opacity="1"
                         title="Verificatie"
                         text="We controleren of je een geldig rijbewijs hebt en of je minimaal 23 jaar bent."
                         completed
@@ -22,6 +22,7 @@ const StepsQR = () => {
                         iconName="CreditcardIcon"
                         title="Borg"
                         text="Geef een garantie op je creditcard of betaal contant."
+                        opacity="1"
                         completed
                     />
                     <IconListItem
