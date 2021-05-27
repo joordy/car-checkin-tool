@@ -6,6 +6,7 @@ import {
     EditIcon,
     ButtonSecondaryLarge,
     ButtonPrimaryLarge,
+    EditButton,
 } from 'components/atoms/index.js'
 
 // React component
@@ -20,9 +21,7 @@ const CheckUserInfo = () => {
 
             <article>
                 <p>Algemene gegevens</p>
-                <p>
-                    <EditIcon width="16px" height="16px" /> Bewerken
-                </p>
+                <EditButton />
             </article>
             <hr />
             <article>
