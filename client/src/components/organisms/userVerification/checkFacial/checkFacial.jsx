@@ -31,7 +31,7 @@ const CheckFacial = () => {
 
             <Styles.BtnWrapper>
                 <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveLeft} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="#" _callback={moveRight} />
+                <ButtonPrimaryLarge text="Volgende" linkTo="/deposit" _callback={moveRight} />
             </Styles.BtnWrapper>
 
             {/*  Test*/}
