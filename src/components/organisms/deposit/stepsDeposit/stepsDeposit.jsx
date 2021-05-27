@@ -8,31 +8,33 @@ import { IconListItem } from 'components/molecules/index'
 const StepsExplainer = () => {
     return (
         <Styles.Section>
-            <h1>Gelukt! Je kunt verder naar stap 2</h1>
-            <ul>
-                <IconListItem
-                    iconName="UserCheckIcon"
-                    opacity="0.75"
-                    title="Verificatie"
-                    text="We controleren of je een geldig rijbewijs hebt en of je minimaal 23 jaar bent."
-                    completed
-                />
-                <IconListItem
-                    iconName="CreditcardIcon"
-                    title="Borg"
-                    text="Geef een garantie op je creditcard of betaal contant."
-                />
-                <IconListItem
-                    iconName="QRCodeIcon"
-                    opacity="0.75"
-                    title="Klaar!"
-                    text="Je ontvangt een QR-code waarmee je op de Europcar locatie je sleutels kunt ophalen."
-                />
-            </ul>
-            <div className="buttons">
+            <article>
+                <h1>Gelukt! Je kunt verder naar stap 2</h1>
+                <ul>
+                    <IconListItem
+                        iconName="UserCheckIcon"
+                        opacity="0.75"
+                        title="Verificatie"
+                        text="We controleren of je een geldig rijbewijs hebt en of je minimaal 23 jaar bent."
+                        completed
+                    />
+                    <IconListItem
+                        iconName="CreditcardIcon"
+                        title="Borg"
+                        text="Geef een garantie op je creditcard of betaal contant."
+                    />
+                    <IconListItem
+                        iconName="QRCodeIcon"
+                        opacity="0.75"
+                        title="Klaar!"
+                        text="Je ontvangt een QR-code waarmee je op de Europcar locatie je sleutels kunt ophalen."
+                    />
+                </ul>
+            </article>
+            <Styles.BtnWrapper>
                 <ButtonPrimaryLarge text="Regel je borg" linkTo="#" />
-                <ButtonSecondaryLarge text="Terug" linkTo="#" />
-            </div>
+                <ButtonSecondaryLarge text="Terug" linkTo="/reservations" />
+            </Styles.BtnWrapper>
         </Styles.Section>
     )
 }
