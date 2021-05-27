@@ -17,6 +17,8 @@ const Reservations = () => {
         readDB()
     }, [])
 
+    console.log(reservations)
+
     return (
         <>
             {(() => {

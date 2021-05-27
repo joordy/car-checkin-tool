@@ -6,6 +6,7 @@ import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 // React component
 const ReservationCard = ({ ...props }) => {
     const reservation = { ...props }
+
     return (
         <>
             <Styles.Card>
