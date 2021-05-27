@@ -13,15 +13,26 @@ import {
 // React component
 const PageOne = () => {
     const [reservations, setReservations] = useState([])
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        readDB()
+        fetchItems()
+    }, [])
 
     const readDB = async () => {
         const { data, error } = await supabase.from('users').select()
         setReservations(data)
     }
 
-    useEffect(() => {
-        readDB()
-    }, [])
+    const fetchItems = async () => {
+        const data = await fetch('/checkin')
+        const items = await data.json()
+        setItems(items)
+    }
+
+    console.log('reservations', reservations)
+    console.log('items', items)
 
     return (
         <Styles.Main>
