@@ -14,3 +14,6 @@ export { default as CheckBookingInfo } from './verification/checkBookingInfo/che
 export { default as CheckUserInfo } from './verification/checkUserInfo/checkUserInfo'
 export { default as CheckIdentity } from './verification/checkIdentity/checkIdentity'
 export { default as StepsDeposit } from './deposit/stepsDeposit/stepsDeposit'
+
+// QR code
+export { default as StepsQR } from './qr/stepsQR/stepsQR'

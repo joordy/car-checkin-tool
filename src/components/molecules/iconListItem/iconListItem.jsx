@@ -8,7 +8,7 @@ const IconListItem = ({ iconName, opacity, title, text, completed }) => {
     if (iconName == 'UserCheckIcon') {
         icon = <UserCheckIcon width="30px" height="30px" opacity={opacity} />
     } else if (iconName == 'CreditcardIcon') {
-        icon = <CreditcardIcon width="30px" height="30px" />
+        icon = <CreditcardIcon width="30px" height="30px" opacity={opacity} />
     } else if (iconName == 'QRCodeIcon') {
         icon = <QRCodeIcon width="27px" height="27px" opacity={opacity} />
     }
