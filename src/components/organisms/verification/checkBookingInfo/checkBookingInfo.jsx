@@ -3,7 +3,7 @@ import React from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
 import {
     CloseIcon,
-    EditIcon,
+    EditButton,
     ButtonSecondaryLarge,
     ButtonPrimaryLarge,
 } from 'components/atoms/index.js'
@@ -20,9 +20,7 @@ const CheckBookingInfo = () => {
 
             <article>
                 <p>Auto gegevens</p>
-                <p>
-                    <EditIcon width="16px" height="16px" /> Bewerken
-                </p>
+                <EditButton />
             </article>
             <hr />
             <article>
@@ -42,9 +40,7 @@ const CheckBookingInfo = () => {
 
             <article>
                 <p>Overige informatie</p>
-                <p>
-                    <EditIcon width="16px" height="16px" /> Bewerken
-                </p>
+                <EditButton />
             </article>
             <hr />
             <article>
