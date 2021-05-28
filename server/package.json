@@ -10,6 +10,7 @@
     "client": "npm run start --prefix ../client",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
+  "proxy": "http://localhost:7000/",
   "keywords": [],
   "author": "",
   "license": "ISC",
