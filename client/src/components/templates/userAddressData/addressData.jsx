@@ -20,7 +20,7 @@ const AdressData = () => {
     return (
         <Styles.Main>
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/reservations" />
+                <StepsExplainer backLink="/reservations" step="0" />
                 <CheckUserInfo />
                 <CheckBookingInfo />
             </div>

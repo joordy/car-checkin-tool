@@ -31,7 +31,7 @@ const UserVerification = () => {
     return (
         <Styles.Main>
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/addressdata" />
+                <StepsExplainer backLink="/addressdata" step="1" />
                 <CheckIdentity />
                 <CheckFacial />
             </div>

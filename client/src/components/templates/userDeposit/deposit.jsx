@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './deposit.styles.js'
-// import { StepsDeposit } from 'components/organisms/index'
+import { StepsExplainer } from 'components/organisms/index'
 
 // React component
 const PageOne = () => {
@@ -19,9 +19,8 @@ const PageOne = () => {
 
     return (
         <Styles.Main>
-            <h1>deposit</h1>
+            <StepsExplainer backLink="/verification" step="2" />
             {/*
-            <StepsDeposit />
             <VerificationOne />
             <VerificationTwo />
             <VerificationThree />

@@ -2,6 +2,7 @@
 export { default as HeadingOne } from './headingOne/headingOne.jsx'
 export { default as UserCheckIcon } from './userCheckIcon/userCheckIcon.jsx'
 export { default as CreditcardIcon } from './creditcardIcon/creditcardIcon.jsx'
+export { default as DataIcon } from './dataIcon/dataIcon.jsx'
 export { default as QRCodeIcon } from './qrCodeIcon/qrCodeIcon.jsx'
 export { default as EyeIcon } from './eyeIcon/eyeIcon.jsx'
 export { default as EyeOffIcon } from './eyeOffIcon/eyeOffIcon.jsx'
