@@ -2,7 +2,7 @@
 import * as Styles from './dataIcon.styles.js'
 
 // Component
-const dataIcon = ({ width, height, opacity, fill }) => {
+const DataIcon = ({ width, height, opacity, fill }) => {
     return (
         <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
             <svg
@@ -31,4 +31,4 @@ const dataIcon = ({ width, height, opacity, fill }) => {
     )
 }
 
-export default dataIcon
+export default DataIcon
