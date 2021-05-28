@@ -7,7 +7,7 @@ import { StepsExplainer, CheckIdentity, CheckFacial } from 'components/organisms
 // React component
 const UserVerification = () => {
     const [reservations, setReservations] = useState([])
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState('')
 
     useEffect(() => {
         readDB()
@@ -20,7 +20,7 @@ const UserVerification = () => {
     }
 
     const fetchItems = async () => {
-        const data = await fetch('/verification')
+        const data = await fetch('/create-verification-session')
         const items = await data.json()
         setItems(items)
     }
