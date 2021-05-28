@@ -22,7 +22,7 @@ const UserVerification = () => {
     return (
         <Styles.Main>
             <div className="stepsWrapper">
-                <StepsExplainer />
+                <StepsExplainer backLink="/addressdata" />
                 <CheckIdentity />
                 <CheckFacial />
             </div>

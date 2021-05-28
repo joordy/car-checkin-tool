@@ -1,13 +1,8 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkUserInfo.styles.js'
-import {
-    CloseIcon,
-    EditIcon,
-    ButtonSecondaryLarge,
-    ButtonPrimaryLarge,
-    EditButton,
-} from 'components/atoms/index.js'
+import { CloseIcon, EditButton } from 'components/atoms/index.js'
+import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckUserInfo = () => {
@@ -47,10 +42,14 @@ const CheckUserInfo = () => {
                 <p>23 februari 1997</p>
             </article>
 
-            <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveRight} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="#" _callback={moveLeft} />
-            </Styles.BtnWrapper>
+            <VerificationButtons
+                textPrimary="Volgende"
+                textSecondary="Terug"
+                linkPrimary="#"
+                linkSecondary="#"
+                callbackSecondary={moveRight}
+                callbackPrimary={moveLeft}
+            />
         </Styles.Section>
     )
 }

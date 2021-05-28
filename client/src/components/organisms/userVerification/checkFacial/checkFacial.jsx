@@ -1,7 +1,8 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkFacial.styles.js'
-import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/atoms/index'
+import { CloseIcon } from 'components/atoms/index'
+import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckFacial = () => {
@@ -24,10 +25,13 @@ const CheckFacial = () => {
 
             <Styles.IdentityChecker></Styles.IdentityChecker>
 
-            <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveLeft} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="/deposit" />
-            </Styles.BtnWrapper>
+            <VerificationButtons
+                textPrimary="Volgende"
+                textSecondary="Terug"
+                linkPrimary="/deposit"
+                linkSecondary="#"
+                callbackSecondary={moveLeft}
+            />
         </Styles.Section>
     )
 }
