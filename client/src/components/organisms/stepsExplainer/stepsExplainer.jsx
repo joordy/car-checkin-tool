@@ -13,9 +13,11 @@ const StepsExplainer = ({ backLink, step }) => {
     let title
     let completed = [false, false, false]
     let buttonText = 'Volgende'
+    let time
     if (step == 0) {
         title = 'Inchecken in 3 stappen'
         buttonText = 'Check gegevens'
+        time = <p className="time">Dit proces neemt ongeveer 5 minuten van jouw tijd in beslag.</p>
     } else if (step == 1) {
         title = 'Gelukt! Je kunt verder naar stap 2'
         completed[0] = true
@@ -60,6 +62,7 @@ const StepsExplainer = ({ backLink, step }) => {
                         completed={completed[2]}
                     />
                 </ul>
+                {time}
             </article>
 
             <VerificationButtons

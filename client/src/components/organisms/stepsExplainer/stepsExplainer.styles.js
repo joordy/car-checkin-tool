@@ -49,6 +49,12 @@ export const Section = styled.section`
                 }
             }
         }
+        p.time {
+            text-align: center;
+            color: ${colors.white};
+            width: 20em;
+            margin: 0 auto 1em auto;
+        }
     }
     > div {
         margin-left: 0;
