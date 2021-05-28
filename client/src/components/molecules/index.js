@@ -3,3 +3,4 @@ export { default as DealerLocations } from './reservations/dealerLocations/deale
 export { default as CheckinButtons } from './reservations/checkinButtons/checkinButtons.jsx'
 export { default as IconListItem } from './iconListItem/iconListItem.jsx'
 export { default as VerificationButtons } from './verificationButtons/verificationButtons.jsx'
+export { default as RadioInput } from './radioInput/radioInput.jsx'
