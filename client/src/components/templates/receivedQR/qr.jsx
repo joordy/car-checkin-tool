@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './qr.styles.js'
-import { StepsQR } from 'components/organisms/index'
+import { StepsExplainer } from 'components/organisms/index'
 
 // React component
 const PageOne = () => {
@@ -19,7 +19,7 @@ const PageOne = () => {
 
     return (
         <Styles.Main>
-            <StepsQR />
+            <StepsExplainer backLink="/deposit" step="3" />
             {/*
             <VerificationOne />
             <VerificationTwo />
