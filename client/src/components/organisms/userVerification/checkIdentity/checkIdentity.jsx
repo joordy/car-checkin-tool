@@ -1,7 +1,8 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkIdentity.styles.js'
-import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/atoms/index'
+import { CloseIcon } from 'components/atoms/index'
+import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckIdentity = () => {
@@ -29,10 +30,14 @@ const CheckIdentity = () => {
 
             <Styles.IdentityChecker></Styles.IdentityChecker>
 
-            <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveRight} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="#" _callback={moveLeft} />
-            </Styles.BtnWrapper>
+            <VerificationButtons
+                textPrimary="Volgende"
+                textSecondary="Terug"
+                linkPrimary="#"
+                linkSecondary="#"
+                callbackSecondary={moveRight}
+                callbackPrimary={moveLeft}
+            />
         </Styles.Section>
     )
 }

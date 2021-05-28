@@ -1,12 +1,8 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
-import {
-    CloseIcon,
-    EditButton,
-    ButtonSecondaryLarge,
-    ButtonPrimaryLarge,
-} from 'components/atoms/index.js'
+import { CloseIcon, EditButton } from 'components/atoms/index.js'
+import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckBookingInfo = () => {
@@ -59,10 +55,13 @@ const CheckBookingInfo = () => {
                 <p>€ 0,30</p>
             </article>
 
-            <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveRight} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="/verification" />
-            </Styles.BtnWrapper>
+            <VerificationButtons
+                textPrimary="Volgende"
+                textSecondary="Terug"
+                linkPrimary="/verification"
+                linkSecondary="#"
+                callbackSecondary={moveRight}
+            />
         </Styles.Section>
     )
 }

@@ -1,11 +1,10 @@
 // React imports
 import React from 'react'
 import * as Styles from './stepsExplainer.styles.js'
-import { ButtonPrimaryLarge, ButtonSecondaryLarge } from 'components/atoms/index'
-import { IconListItem } from 'components/molecules/index'
+import { VerificationButtons, IconListItem } from 'components/molecules/index'
 
 // React component
-const StepsExplainer = () => {
+const StepsExplainer = ({ backLink }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -36,10 +35,14 @@ const StepsExplainer = () => {
                     />
                 </ul>
             </article>
-            <Styles.BtnWrapper>
-                <ButtonPrimaryLarge text="Start verificatie" linkTo="#" _callback={moveRight} />
-                <ButtonSecondaryLarge text="Terug" linkTo="/reservations" />
-            </Styles.BtnWrapper>
+
+            <VerificationButtons
+                textPrimary="Start verificatie"
+                textSecondary="Terug"
+                linkPrimary="#"
+                linkSecondary={backLink}
+                callbackPrimary={moveRight}
+            />
         </Styles.Section>
     )
 }

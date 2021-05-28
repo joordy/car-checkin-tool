@@ -2,11 +2,10 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const Section = styled.section`
-    /* background-color: hotpink; */
     min-width: calc(100vw);
     position: relative;
     overflow: hidden;
-    padding-bottom: 7rem;
+    height: 100vh;
     article {
         border-radius: 0 0 3.125rem 3.125rem;
         background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
@@ -46,15 +45,7 @@ export const Section = styled.section`
             }
         }
     }
-`
-
-export const BtnWrapper = styled.div`
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    a {
-        margin-bottom: 0.5rem;
+    > div {
+        margin-left: 0;
     }
 `
