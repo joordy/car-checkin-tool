@@ -21,6 +21,3 @@ export { default as CheckIdentity } from './userVerification/checkIdentity/check
 // User deposit steps
 // export { default as XXX } from './deposit/xxx/xxx'
 // export { default as XXX } from './deposit/xxx/xxx'
-
-// QR code
-export { default as StepsQR } from './qr/stepsQR/stepsQR'
