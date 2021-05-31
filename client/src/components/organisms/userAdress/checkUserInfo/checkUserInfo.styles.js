@@ -38,28 +38,33 @@ export const Section = styled.section`
             margin: 0.4em 0;
         }
     }
+    article {
+        &:first-of-type {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            margin-top: 5vh;
 
-    article > p {
-    }
+            p:first-child {
+                font-weight: 600;
+            }
+        }
 
-    article:first-of-type {
-    }
+        &:nth-of-type(2) {
+            display: grid;
+            grid-template-columns: 40% 60%;
 
-    article:nth-of-type(2) {
-        display: grid;
-        grid-template-columns: 40% 60%;
-    }
+            p:nth-child(even) {
+                color: ${colors.secondaryText};
+            }
+        }
 
-    article:first-of-type > p:first-child {
-        font-weight: 600;
-    }
+        p {
+            margin: 0.4em 0;
 
-    article:nth-of-type(2) > p:nth-child(even) {
-        color: ${colors.secondaryText};
-    }
-
-    article > p:nth-child(even) {
-        text-align: right;
+            &:nth-child(even) {
+                text-align: right;
+            }
+        }
     }
 `
 

@@ -25,54 +25,42 @@ export const Section = styled.section`
     }
 
     article {
-        svg {
-            path {
-                stroke: ${colors.accent};
+        p {
+            margin: 0.4em 0;
+
+            &:nth-child(even) {
+                text-align: right;
             }
         }
-    }
 
-    article > p {
-        margin: 0.4em 0;
-    }
+        &:nth-of-type(1) {
+            margin-top: 5vh;
+        }
 
-    article:nth-of-type(1),
-    article:nth-of-type(3) {
-        display: grid;
-        grid-template-columns: 60% 40%;
-    }
+        &:nth-of-type(3) {
+            margin-top: 1vh;
+        }
 
-    article:nth-of-type(1) {
-        margin-top: 5vh;
-    }
+        &:nth-of-type(1),
+        &:nth-of-type(3) {
+            display: grid;
+            grid-template-columns: 60% 40%;
 
-    article:nth-of-type(3) {
-        margin-top: 1vh;
-    }
+            p:first-child {
+                font-weight: 600;
+            }
+        }
 
-    article:nth-of-type(2),
-    article:nth-of-type(4) {
-        display: grid;
-        grid-template-columns: 40% 60%;
-    }
+        &:nth-of-type(2),
+        &:nth-of-type(4) {
+            display: grid;
+            grid-template-columns: 40% 60%;
 
-    article:nth-of-type(1) > p:first-child,
-    article:nth-of-type(3) > p:first-child {
-        font-weight: 600;
-    }
-
-    article:nth-of-type(1) > p:last-child,
-    article:nth-of-type(3) > p:last-child {
-        color: ${colors.accent};
-    }
-
-    article:nth-of-type(2) > p:nth-child(even),
-    article:nth-of-type(4) > p:nth-child(even) {
-        color: ${colors.secondaryText};
-    }
-
-    article > p:nth-child(even) {
-        text-align: right;
+            p:nth-child(even),
+            p:nth-child(even) {
+                color: ${colors.secondaryText};
+            }
+        }
     }
 `
 
