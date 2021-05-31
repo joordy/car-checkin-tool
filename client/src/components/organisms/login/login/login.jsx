@@ -27,7 +27,7 @@ const Login = () => {
                 <main>
                     <h1>Log in met je EuropAuto account</h1>
                     <p>Dit is hetzelfde account waarmee je je reservering hebt gemaakt.</p>
-                    <form action="POST">
+                    <form action="/reservations">
                         <Label text="E-mailadres" forId="email" />
                         <TextInput
                             type="email"
