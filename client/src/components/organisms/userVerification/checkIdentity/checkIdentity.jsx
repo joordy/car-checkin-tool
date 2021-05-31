@@ -14,12 +14,12 @@ const stripePromise = loadStripe(
 const CheckIdentity = () => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(0)'
+        moveElement.style.transform = 'translateX(-100vw)'
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
+        moveElement.style.transform = 'translateX(-300vw)'
     }
 
     const handleClick = async (event) => {

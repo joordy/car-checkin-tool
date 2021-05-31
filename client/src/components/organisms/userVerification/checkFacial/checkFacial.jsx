@@ -8,7 +8,7 @@ import { VerificationButtons } from 'components/molecules/index'
 const CheckFacial = () => {
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-100vw)'
+        moveElement.style.transform = 'translateX(-200vw)'
     }
 
     return (
