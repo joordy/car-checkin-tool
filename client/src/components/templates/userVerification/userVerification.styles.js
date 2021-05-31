@@ -4,6 +4,9 @@ export const Main = styled.main`
     height: calc(100vh);
     width: 100vw;
     overflow: hidden;
+    label {
+        margin-top: 1em;
+    }
     div.stepsWrapper {
         max-height: 100%;
         display: flex;

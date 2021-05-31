@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './userVerification.styles.js'
-import { StepsExplainer, CheckIdentity, CheckFacial } from 'components/organisms/index'
+import { StepsExplainer, UserChoice, CheckIdentity, CheckFacial } from 'components/organisms/index'
 
 // React component
 const UserVerification = () => {
@@ -32,6 +32,11 @@ const UserVerification = () => {
         <Styles.Main>
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/addressdata" step="1" />
+                <UserChoice
+                    title="Verifieer je eigen rijbewijs"
+                    text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                    labelText="Wanneer wil je je rijbewijs laten verifieren?"
+                />
                 <CheckIdentity />
                 <CheckFacial />
             </div>
