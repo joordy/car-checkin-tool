@@ -1,7 +1,7 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
-import { CloseIcon, EditButton } from 'components/atoms/index.js'
+import { Icons, EditButton } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
@@ -16,12 +16,11 @@ const CheckBookingInfo = () => {
             <header>
                 <h1>Controleer je gegevens </h1>
                 <p>Dit is een overzicht van je gegevens zoals die nu bij ons bekend zijn. </p>
-                <CloseIcon width="1.5rem" height="1.5em" />
+                <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
             <article>
                 <p>Auto gegevens</p>
-                <EditButton />
             </article>
             <hr />
             <article>
