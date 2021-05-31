@@ -24,10 +24,10 @@ const CheckIdentity = () => {
 
     const handleClick = async (event) => {
         const stripe = await stripePromise
-        //     // Call your backend to create the VerificationSession.
+        // Connect to backend to fetch the verification session
         const response = await fetch('/create-verification-session', { method: 'POST' })
         const client_secret = await response.json()
-        //     // Show the verification modal.
+        // Opens verification modal
         const result = await stripe.verifyIdentity(client_secret)
 
         console.log('result', result)
