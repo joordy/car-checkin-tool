@@ -24,6 +24,14 @@ export const Section = styled.section`
         }
     }
 
+    article {
+        svg {
+            path {
+                stroke: ${colors.accent};
+            }
+        }
+    }
+
     article > p {
         margin: 0.4em 0;
     }

@@ -30,7 +30,7 @@ const CheckinButtons = ({ ...props }) => {
                                 width="100%"
                                 height="48px"
                             />
-                            <ButtonTertiaryMore linkTo="#" height="48px" />
+                            {/*<ButtonTertiaryMore linkTo="#" height="48px" />*/}
                         </div>
                     )
                 } else {
