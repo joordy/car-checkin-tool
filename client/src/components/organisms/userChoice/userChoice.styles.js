@@ -8,7 +8,7 @@ export const Section = styled.section`
     position: relative;
     overflow: hidden;
     header {
-        margin-bottom: 3em;
+        margin-bottom: 2em;
         &:nth-of-type(1) {
             position: relative;
             h1 {
@@ -23,5 +23,23 @@ export const Section = styled.section`
                 right: 0;
             }
         }
+    }
+    article {
+        section {
+            p {
+                margin-bottom: 2em;
+            }
+        }
+    }
+    form {
+        margin-bottom: 4em;
+        label {
+            &:first-of-type {
+                margin-bottom: 1.5em;
+            }
+        }
+    }
+    .progress {
+        text-align: center;
     }
 `

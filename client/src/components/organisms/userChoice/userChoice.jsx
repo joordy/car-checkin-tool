@@ -5,7 +5,20 @@ import { Label, CloseIcon } from 'components/atoms/index'
 import { VerificationButtons, RadioInput } from 'components/molecules/index'
 
 // React component
-const UserChoice = ({ backLink, title, text, labelText }) => {
+const UserChoice = ({
+    backLink,
+    title,
+    text,
+    labelText,
+    oneTitle,
+    oneText,
+    twoTitle,
+    twoText,
+    threeTitle,
+    threeText,
+    progressText,
+    deposit,
+}) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(0)'
@@ -16,6 +29,16 @@ const UserChoice = ({ backLink, title, text, labelText }) => {
         moveElement.style.transform = 'translateX(-200vw)'
     }
 
+    let depositAmount
+    if (deposit) {
+        depositAmount = (
+            <section>
+                <Label text="Borg" />
+                <p>€ {deposit}</p>
+            </section>
+        )
+    }
+
     return (
         <Styles.Section>
             <header>
@@ -24,31 +47,33 @@ const UserChoice = ({ backLink, title, text, labelText }) => {
                 <CloseIcon width="1.5rem" height="1.5em" />
             </header>
             <article>
+                {depositAmount}
                 <form>
                     <Label text={labelText} />
                     <RadioInput
-                        title="Nu, online"
-                        text="Dit is de snelste optie"
+                        title={oneTitle}
+                        text={oneText}
                         name="choose"
                         value="now"
                         id="now"
                         checked
                     />
                     <RadioInput
-                        title="Ter plekke"
-                        text="Bij de Europcar locatie"
+                        title={twoTitle}
+                        text={twoText}
                         name="choose"
                         value="location"
                         id="location"
                     />
                     <RadioInput
-                        title="Stap voor nu overslaan"
-                        text="Je kunt later alsnog een keuze maken."
+                        title={threeTitle}
+                        text={threeText}
                         name="choose"
                         value="skip"
                         id="skip"
                     />
                 </form>
+                <p className="progress">{progressText}</p>
             </article>
 
             <VerificationButtons
