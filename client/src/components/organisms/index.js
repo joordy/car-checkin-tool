@@ -22,5 +22,3 @@ export { default as CheckIdentity } from './userVerification/checkIdentity/check
 // export { default as XXX } from './deposit/xxx/xxx'
 // export { default as XXX } from './deposit/xxx/xxx'
 
-// User choice
-export { default as UserChoice } from './userChoice/userChoice'

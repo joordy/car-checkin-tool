@@ -7,15 +7,24 @@ import { StepsExplainer, UserChoice, CheckIdentity, CheckFacial } from 'componen
 // React component
 const UserVerification = () => {
     const [reservations, setReservations] = useState([])
+    const [items, setItems] = useState('')
 
     useEffect(() => {
         readDB()
+        fetchItems()
     }, [])
 
     const readDB = async () => {
         const { data, error } = await supabase.from('users').select()
         setReservations(data)
     }
+
+    const fetchItems = async () => {
+        const data = await fetch('/create-verification-session')
+        const items = await data.json()
+        setItems(items)
+    }
+    console.log('items', items)
 
     console.log('reservations', reservations)
 
