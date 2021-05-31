@@ -131,6 +131,30 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                     >
                         <path
                             d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z"
+                            // stroke="#CCCCD6"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
+                            // stroke="#CCCCD6"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+
+                    {/*}                    <svg
+                        width="24"
+                        height="18"
+                        viewBox="0 0 24 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        onClick={onClick}
+                    >
+                        <path
+                            d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -141,7 +165,7 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                         />
-                    </svg>
+            </svg>*/}
                 </Styles.Icon>
             )
         case 'eyeOff':
@@ -315,6 +339,25 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                         <path
                             d="M11 15H11.01"
                             strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </Styles.Icon>
+            )
+        case 'edit':
+            return (
+                <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
+                    <svg
+                        width="15"
+                        height="16"
+                        viewBox="0 0 15 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M11.8945 1.18143C12.026 1.04122 12.1794 0.932766 12.3446 0.859754C12.5097 0.786807 12.6848 0.75 12.8603 0.75C13.0359 0.75 13.2109 0.786807 13.376 0.859754C13.5413 0.932766 13.6947 1.04122 13.8262 1.18143C13.9577 1.32175 14.0644 1.49091 14.138 1.68041C14.2116 1.86995 14.25 2.07461 14.25 2.28232C14.25 2.49003 14.2116 2.69469 14.138 2.88423C14.0644 3.07373 13.9577 3.24289 13.8262 3.38321L3.754 14.1268L1.05209 14.9128L1.81364 11.9343L11.8945 1.18143Z"
+                            strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
                         />

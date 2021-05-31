@@ -30,6 +30,12 @@ export const Section = styled.section`
             li {
                 position: relative;
                 margin-bottom: 2em;
+                svg {
+                    path {
+                        fill: transparent;
+                        stroke: ${colors.secondary};
+                    }
+                }
                 &:first-of-type,
                 &:nth-of-type(2) {
                     &::after {
