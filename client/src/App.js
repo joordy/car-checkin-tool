@@ -26,8 +26,8 @@ function App() {
                 {/*<Route path="/checkin" exact component={Checkin} />*/}
                 <Route path="/deposit" exact component={Deposit} />
                 <Route path="/qr" exact component={QR} />
-                <Route path="/One" exact component={PageOne} />
-                <Route path="/Two" exact component={PageTwo} />
+                {/*<Route path="/One" exact component={PageOne} />
+                <Route path="/Two" exact component={PageTwo} />*/}
             </Switch>
             <GlobalStyle />
         </>

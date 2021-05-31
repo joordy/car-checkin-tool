@@ -6,10 +6,10 @@ export const Wrapper = styled.section`
     width: 100%;
     div {
         &.buttonWrapper {
-            display: grid;
+            /* display: grid; */
             width: 100%;
-            grid-template-columns: auto 45px;
-            grid-gap: 0.875rem;
+            /* grid-template-columns: auto 45px; */
+            /* grid-gap: 0.875rem; */
         }
     }
     p {

@@ -1,7 +1,7 @@
 // React imports
 import React from 'react'
 import * as Styles from './userChoice.styles.js'
-import { Label, CloseIcon } from 'components/atoms/index'
+import { Label, Icons } from 'components/atoms/index'
 import { VerificationButtons, RadioInput } from 'components/molecules/index'
 
 // React component
@@ -44,7 +44,7 @@ const UserChoice = ({
             <header>
                 <h1>{title}</h1>
                 <p>{text}</p>
-                <CloseIcon width="1.5rem" height="1.5em" />
+                <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
             <article>
                 {depositAmount}

@@ -2,7 +2,7 @@
 // Source: https://reactjs.org/docs/conditional-rendering.html
 import { useState } from 'react'
 import * as Styles from './passwordInput.styles.js'
-import { EyeIcon, EyeOffIcon } from 'components/atoms/index'
+import { Icons } from 'components/atoms/index'
 
 // Component
 const Input = ({}) => {
@@ -13,9 +13,9 @@ const Input = ({}) => {
 
     let icon
     if (passwordShown) {
-        icon = <EyeOffIcon width="25px" height="25px" onClick={togglePasswordVisiblity} />
+        icon = <Icons type="eyeOff" width="25px" height="25px" onClick={togglePasswordVisiblity} />
     } else {
-        icon = <EyeIcon width="25px" height="25px" onClick={togglePasswordVisiblity} />
+        icon = <Icons type="eye" width="25px" height="25px" onClick={togglePasswordVisiblity} />
     }
 
     return (
