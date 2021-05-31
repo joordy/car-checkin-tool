@@ -7,16 +7,25 @@ import { ReservationCard, ReservationHeader } from 'components/organisms/index'
 // React component
 const Reservations = () => {
     const [reservations, setReservations] = useState([])
+    const [items, setItems] = useState('')
 
     const readDB = async () => {
         const { data, error } = await supabase.from('users').select()
         setReservations(data)
     }
 
+    const fetchItems = async () => {
+        const data = await fetch('/reservations')
+        const items = await data.json()
+        setItems(items)
+    }
+
     useEffect(() => {
         readDB()
+        fetchItems()
     }, [])
 
+    console.log('items', items)
     console.log(reservations)
 
     return (
