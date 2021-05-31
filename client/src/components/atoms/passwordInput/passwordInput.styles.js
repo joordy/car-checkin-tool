@@ -31,4 +31,10 @@ export const Wrapper = styled.div`
     ::placeholder {
         color: ${colors.secondaryText};
     }
+    svg {
+        path {
+            stroke: ${colors.inputBorder};
+            fill: transparent;
+        }
+    }
 `

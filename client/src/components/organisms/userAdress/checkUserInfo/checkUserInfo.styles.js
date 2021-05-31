@@ -23,15 +23,26 @@ export const Section = styled.section`
             }
         }
     }
+    article {
+        svg {
+            path {
+                stroke: ${colors.accent};
+            }
+        }
+        &:first-of-type {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            margin-top: 5vh;
+        }
+        p {
+            margin: 0.4em 0;
+        }
+    }
 
     article > p {
-        margin: 0.4em 0;
     }
 
     article:first-of-type {
-        display: grid;
-        grid-template-columns: 60% 40%;
-        margin-top: 5vh;
     }
 
     article:nth-of-type(2) {
