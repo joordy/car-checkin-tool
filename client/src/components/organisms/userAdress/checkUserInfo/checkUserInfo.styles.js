@@ -24,31 +24,33 @@ export const Section = styled.section`
         }
     }
 
-    article > p {
-        margin: 0.4em 0;
-    }
+    article {
+        &:first-of-type {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            margin-top: 5vh;
 
-    article:first-of-type {
-        display: grid;
-        grid-template-columns: 60% 40%;
-        margin-top: 5vh;
-    }
+            p:first-child {
+                font-weight: 600;
+            }
+        }
 
-    article:nth-of-type(2) {
-        display: grid;
-        grid-template-columns: 40% 60%;
-    }
+        &:nth-of-type(2) {
+            display: grid;
+            grid-template-columns: 40% 60%;
 
-    article:first-of-type > p:first-child {
-        font-weight: 600;
-    }
+            p:nth-child(even) {
+                color: ${colors.secondaryText};
+            }
+        }
 
-    article:nth-of-type(2) > p:nth-child(even) {
-        color: ${colors.secondaryText};
-    }
+        p {
+            margin: 0.4em 0;
 
-    article > p:nth-child(even) {
-        text-align: right;
+            &:nth-child(even) {
+                text-align: right;
+            }
+        }
     }
 `
 

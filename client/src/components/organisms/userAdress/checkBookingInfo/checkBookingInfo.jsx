@@ -40,7 +40,6 @@ const CheckBookingInfo = () => {
 
             <article>
                 <p>Overige informatie</p>
-                <EditButton />
             </article>
             <hr />
             <article>
