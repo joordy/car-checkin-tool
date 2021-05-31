@@ -29,6 +29,16 @@ export const IdentityChecker = styled.article`
     height: min(300px, 60vh);
     margin: 1.5rem 0 2rem;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
+    button {
+        padding: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.3);
+        margin: 3rem 3rem;
+        width: calc(100% - 6rem);
+        height: calc(100% - 6rem);
+        border-radius: 1rem;
+        border: 2px solid white;
+        color: white;
+    }
 `
 
 export const BtnWrapper = styled.article`
