@@ -4,7 +4,7 @@ import * as Styles from './checkIdentity.styles.js'
 import { loadStripe } from '@stripe/stripe-js'
 
 // Components
-import { CloseIcon, Icons } from 'components/atoms/index'
+import { Icons } from 'components/atoms/index'
 import { VerificationButtons } from 'components/molecules/index'
 
 const stripePromise = loadStripe(
@@ -47,8 +47,7 @@ const CheckIdentity = () => {
                     je in het bezit bent van een geldig rijbewijs. Na de huurperiode verwijderen we
                     dit onmiddelijk.
                 </p>
-                <CloseIcon width="1.5rem" height="1.5em" />
-                <Icons type="close" />
+                <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
             <Styles.IdentityChecker>
