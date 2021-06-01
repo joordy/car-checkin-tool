@@ -7,7 +7,7 @@ export const Icon = styled.span`
         height: ${(props) => props.height || '100%'};
         opacity: ${(props) => props.opacity || '1'};
         path {
-            fill: ${(props) => props.fill || colors.secondary};
+            fill: ${(props) => props.fill};
         }
     }
 `

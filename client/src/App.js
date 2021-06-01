@@ -2,7 +2,7 @@ import {
     Reservations,
     Login,
     Deposit,
-    QR,
+    QRCode,
     AdressData,
     UserVerification,
 } from 'components/templates/index'
@@ -20,7 +20,7 @@ function App() {
                 <Route path="/addressdata" exact component={AdressData} />
                 <Route path="/verification" exact component={UserVerification} />
                 <Route path="/deposit" exact component={Deposit} />
-                <Route path="/qr" exact component={QR} />
+                <Route path="/qr" exact component={QRCode} />
                 {/*<Route path="/One" exact component={PageOne} />
                 <Route path="/Two" exact component={PageTwo} />*/}
             </Switch>

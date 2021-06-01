@@ -1,7 +1,7 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './checkFacial.styles.js'
-import { Icons, ButtonPrimary, ButtonTertiaryMore } from 'components/atoms/index'
+import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
@@ -60,7 +60,7 @@ const CheckFacial = () => {
                         <video muted autoPlay id="videoWrapper"></video>
                         {playing ? (
                             <div>
-                                <ButtonTertiaryMore text="Maak foto" _callback={makeImage} />
+                                <ButtonTertiary text="Maak foto" _callback={makeImage} />
                             </div>
                         ) : (
                             <ButtonPrimary type="btn" text="Open camera" _callback={startVideo} />
