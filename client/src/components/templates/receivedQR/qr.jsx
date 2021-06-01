@@ -15,16 +15,6 @@ const PageOne = () => {
 
     useEffect(() => {
         readDB()
-        // postData('https://api.passslot.com/v1/templates/5119469477953536/pass', {
-        //     reservationId: '123456789',
-        //     pickLocation: 'Overtoom',
-        //     name: 'Kelly van Tester',
-        //     dropLocation: 'Overtoom',
-        //     dropDate: '19-06-2021',
-        //     pickDate: '20-06-201',
-        // }).then((data) => {
-        //     console.log(data) // JSON data parsed by `data.json()` call
-        // })
     }, [])
 
     return (
