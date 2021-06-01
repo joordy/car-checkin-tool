@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Section = styled.section`
     width: calc(100vw - 3rem);
     height: 100%;
-    padding: 4.5rem 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     position: relative;
     overflow: hidden;
     header {

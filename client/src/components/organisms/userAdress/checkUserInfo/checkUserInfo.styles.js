@@ -3,7 +3,7 @@ import * as colors from 'styles/colors'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
-    padding: 4.5rem 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     height: 100%;
     position: relative;
     overflow: hidden;

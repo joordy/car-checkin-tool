@@ -1,16 +1,45 @@
 // React imports
-import React from 'react'
+import React, { useState } from 'react'
 import * as Styles from './checkFacial.styles.js'
 import { Icons } from 'components/atoms/index'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckFacial = () => {
+    const [playing, setPlaying] = useState(false)
+
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-200vw)'
     }
 
+    const startVideo = () => {
+        setPlaying(true)
+        navigator.getUserMedia(
+            {
+                video: true,
+            },
+            (stream) => {
+                let video = document.querySelector('#videoWrapper')
+                if (video) {
+                    video.srcObject = stream
+                }
+            },
+            (err) => console.error(err),
+        )
+    }
+
+    const stopVideo = () => {
+        setPlaying(false)
+        let video = document.querySelector('#videoWrapper')
+        video.srcObject.getTracks()[0].stop()
+    }
+
+    const makeImage = () => {
+        console.log('image joejoe')
+    }
+
+    console.log(playing)
     return (
         <Styles.Section id="facial">
             <header>
@@ -23,7 +52,23 @@ const CheckFacial = () => {
                 <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
-            <Styles.IdentityChecker></Styles.IdentityChecker>
+            <Styles.IdentityChecker>
+                {navigator.getUserMedia ? (
+                    <>
+                        <video muted autoPlay id="videoWrapper"></video>
+                        {playing ? (
+                            <div>
+                                <button onClick={stopVideo}>Sluit camera</button>
+                                <button onClick={makeImage}>Maak foto</button>
+                            </div>
+                        ) : (
+                            <button onClick={startVideo}>Open camera</button>
+                        )}
+                    </>
+                ) : (
+                    <input type="file" accept="image/*" />
+                )}
+            </Styles.IdentityChecker>
 
             <VerificationButtons
                 textPrimary="Volgende"
