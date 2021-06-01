@@ -36,6 +36,12 @@ const UserVerification = () => {
                     title="Verifieer je eigen rijbewijs"
                     text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
                     labelText="Wanneer wil je je rijbewijs laten verifieren?"
+                    oneTitle="Nu, online"
+                    oneText="Dit is de snelste optie"
+                    twoTitle="Ter plekke"
+                    twoText="Bij de Europcar locatie"
+                    threeTitle="Stap voor nu overslaan"
+                    threeText="Je kunt later alsnog een keuze maken."
                 />
                 <CheckIdentity />
                 <CheckFacial />
