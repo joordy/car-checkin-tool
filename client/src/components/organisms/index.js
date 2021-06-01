@@ -19,6 +19,9 @@ export { default as CheckUserInfo } from './userAdress/checkUserInfo/checkUserIn
 export { default as CheckFacial } from './userVerification/checkFacial/checkFacial'
 export { default as CheckIdentity } from './userVerification/checkIdentity/checkIdentity'
 
+// User QR code
+export { default as ShowQRCode } from './showQRCode/showQRCode'
+
 // User deposit steps
 // export { default as XXX } from './deposit/xxx/xxx'
 // export { default as XXX } from './deposit/xxx/xxx'
