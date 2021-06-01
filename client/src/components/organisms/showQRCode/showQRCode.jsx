@@ -69,7 +69,7 @@ const ShowQRCode = ({ title }) => {
         <Styles.Section>
             <header>
                 <h1>Incheckbewijs</h1>
-                <Icons type="close" width="1.5rem" height="1.5em" />
+                <p>Toon onderstaande QR-code bij de Express-balie</p>
             </header>
             <article>
                 <section>
