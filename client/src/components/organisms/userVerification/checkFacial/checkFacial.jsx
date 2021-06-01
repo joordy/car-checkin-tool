@@ -1,12 +1,13 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './checkFacial.styles.js'
-import { Icons } from 'components/atoms/index'
+import { Icons, ButtonTertiaryMore } from 'components/atoms/index'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckFacial = () => {
     const [playing, setPlaying] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
@@ -32,14 +33,15 @@ const CheckFacial = () => {
     const stopVideo = () => {
         setPlaying(false)
         let video = document.querySelector('#videoWrapper')
-        video.srcObject.getTracks()[0].stop()
+        video.pause()
     }
 
     const makeImage = () => {
-        console.log('image joejoe')
+        setShowModal((prev) => !prev)
+        let video = document.querySelector('#videoWrapper')
+        video.pause()
     }
 
-    console.log(playing)
     return (
         <Styles.Section id="facial">
             <header>
@@ -58,11 +60,10 @@ const CheckFacial = () => {
                         <video muted autoPlay id="videoWrapper"></video>
                         {playing ? (
                             <div>
-                                <button onClick={stopVideo}>Sluit camera</button>
-                                <button onClick={makeImage}>Maak foto</button>
+                                <ButtonTertiaryMore text="Maak foto" _callback={makeImage} />
                             </div>
                         ) : (
-                            <button onClick={startVideo}>Open camera</button>
+                            <ButtonTertiaryMore text="Open camera" _callback={startVideo} />
                         )}
                     </>
                 ) : (

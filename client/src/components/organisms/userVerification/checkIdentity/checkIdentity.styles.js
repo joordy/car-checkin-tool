@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
@@ -38,6 +39,12 @@ export const IdentityChecker = styled.article`
         border-radius: 1rem;
         border: 2px solid white;
         color: white;
+        svg {
+            path {
+                fill: transparent;
+                stroke: white;
+            }
+        }
     }
 `
 

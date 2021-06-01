@@ -3,10 +3,10 @@ import * as Styles from './buttonTertiaryMore.styles.js'
 import { Icons } from 'components/atoms/index'
 
 // Component
-const ButtonTertiaryMore = ({ linkTo, height }) => {
+const ButtonTertiaryMore = ({ text, linkTo, height, _callback }) => {
     return (
-        <Styles.Button href={linkTo} height={height}>
-            <Icons type="more" width="23px" height="23px" />
+        <Styles.Button href={linkTo} height={height} onClick={_callback}>
+            {text}
         </Styles.Button>
     )
 }
