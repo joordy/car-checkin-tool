@@ -68,7 +68,7 @@ const ShowQRCode = ({ title }) => {
     return (
         <Styles.Section>
             <header>
-                <h1>{title}</h1>
+                <h1>Incheckbewijs</h1>
                 <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
             <article>
