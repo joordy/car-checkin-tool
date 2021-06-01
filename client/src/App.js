@@ -1,21 +1,17 @@
 import {
-    PageOne,
-    PageTwo,
     Reservations,
     Login,
-    Checkin,
     Deposit,
     QR,
     AdressData,
     UserVerification,
 } from 'components/templates/index'
 import React from 'react'
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 import { Route, Switch } from 'react-router-dom'
 import GlobalStyle from './styles/global'
 
 function App() {
-    console.log(`ENV: ${process.env.REACT_APP_TEST}`)
     return (
         <>
             <Switch>
@@ -23,7 +19,6 @@ function App() {
                 <Route path="/reservations" exact component={Reservations} />
                 <Route path="/addressdata" exact component={AdressData} />
                 <Route path="/verification" exact component={UserVerification} />
-                {/*<Route path="/checkin" exact component={Checkin} />*/}
                 <Route path="/deposit" exact component={Deposit} />
                 <Route path="/qr" exact component={QR} />
                 {/*<Route path="/One" exact component={PageOne} />

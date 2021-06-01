@@ -52,7 +52,7 @@ const CheckIdentity = () => {
 
             <Styles.IdentityChecker>
                 <button role="link" onClick={handleClick}>
-                    Verify
+                    <Icons type="camera" width="2.5rem" />
                 </button>
             </Styles.IdentityChecker>
 

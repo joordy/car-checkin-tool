@@ -1,70 +1,135 @@
-<!-- # Getting Started with Create React App
+# Car Checkin Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Wij ([Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/lars-ruijs) en [Guus Maij](https://github.com/tsjuusmei)) hebben een tool gemaakt om online reserveringen van huurauto's in te kunnen checken. Hierdoor hoeft de gebruiker alleen nog fysiek de sleutels van de desbetreffende auto te halen, en worden wachtrijen voor de balie een stuk korter.
 
-## Available Scripts
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/55750107/120201781-1ada6c00-c226-11eb-803c-5cbe6fd6b6ff.png" width="900px">
+</p>
 
-In the project directory, you can run:
+## Live demo link
 
-### `npm start`
+Upcoming
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Debriefing
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Een gebruiker reserveert vaak ruim van te voren een auto om te huren. Het inchecken van de gebruiker gaat tot op heden altijd fysiek, op locatie bij de verhuurders. Dit kost al gauw zo’n 15 minuten per gebruiker. 
 
-### `npm test`
+Maak een digitaal incheckproces voor de verhuurservice, zodat er weinig tot geen fysieke interactie nodig is voor het ophalen van de huurauto. Het incheckproces bestaat uit het inloggen van de gebruiker, het inchecken van de reservering, bevestigen van de identiteit en rijbewijs, en het reserveren van de borg op de desbetreffende creditcard. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Design Challenge
 
-### `npm run build`
+Hoe kunnen wij ervoor zorgen dat de klanten die een auto hebben gereserveerd bij de verhuurders, zichzelf gemakkelijk online kunnen inchecken, zodat zij hun gereserveerde auto snel kunnen ophalen bij de desbetreffende locatie.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Inloggen van de gebruiker
+- Overzicht van reserveringen
+- Inchecken van een reservering
+- Bevestigen van identiteit en rijbewijs
+- Borg reserveren op een creditcard
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Service
 
-### `npm run eject`
+Voor het controleren van de identiteit en/of rijbewijs van de gebruiker, maken wij gebruik van [Stripe Identity](https://stripe.com/docs/identity). Dit is een externe partij die zowel betalingen als het controleren van identiteit doet.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Dataset
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Voor dit project maken we een eigen database aan, waar wij gebruikers in opslaan en hun reserveringen, met alle bijbehorende informatie hiervoor:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+{
+  "users": {
+    idString: {
+      "firstName": String,
+      "lastName": String,
+      "email": String,
+      "phone": Number,
+      "birthDate": Date,
+      "reservations": [
+        {
+          "reservation": Number,
+          "checkedIn": Boolean,
+          "pickUpDate": Date,
+          "pickUpTime": Time,
+          "handInDate": Date,
+          "handInTime": Time,
+          "class": String,
+          "rentPrice": Number,
+          "extraDriver": Number,
+          "lowerOwnRisk": Boolean,
+          "otherInfo": {
+            "ownRisk": Number,
+            "deposit": Number,
+            "freeKM": Number,
+            "priceExtraKM": Number
+          },
+          "paidDeposit": Boolean,
+          "qrCode": String
+        },
+        {
+          "reservation": ...
+        }
+      ]
+    },
+    idString: {
+      "firstName": ...
+    }
+  }
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Tech-stack
 
-## Learn More
+De applicatie is gebouwd in [React.js](https://reactjs.org/). Dit is een component gebaseerd framework, waardoor we mooi in componenten samen kunnen werken.
+Verder hebben we voor elke nieuwe feature, of aanpassing, samengewerkt in branches en dit vervolgens met pull requests samengevoegd. Elke pull request moet worden gereviewd door een ander persoon dan de maker van de pull request.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Installatie
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*Voer de volgende commands uit in een terminal*
 
-### Code Splitting
+1. Clone de repo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+git clone https://github.com/joordy/car-checkin-tool.git
+```
 
-### Analyzing the Bundle Size
+2. Navigeer naar de client folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+cd ./client
+```
 
-### Making a Progressive Web App
+3. Maak een .env bestand aan (in de `client` folder) met de volgende variabelen voor de database connectie
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+REACT_APP_SUPABASE_URL=INSERT_SUPABASE_URL_HERE
+REACT_APP_SUPABASE_PUBLIC_KEY=INSERT_PUBLIC_KEY_HERE
+```
 
-### Advanced Configuration
+4. Installeer packages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+``` 
+npm install
+```
 
-### Deployment
+5. Navigeer naar de server folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+cd ../server
+```
 
-### `npm run build` fails to minify
+6. Installeer packages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+```
+npm install
+```
+
+7. Run de applicatie (vanuit de `server` folder)
+
+```
+npm run dev
+```
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

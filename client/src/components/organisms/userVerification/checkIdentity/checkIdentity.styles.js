@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
     height: 100%;
-    padding: 4.5rem 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     position: relative;
     overflow: hidden;
     header {
@@ -38,6 +39,12 @@ export const IdentityChecker = styled.article`
         border-radius: 1rem;
         border: 2px solid white;
         color: white;
+        svg {
+            path {
+                fill: transparent;
+                stroke: white;
+            }
+        }
     }
 `
 
