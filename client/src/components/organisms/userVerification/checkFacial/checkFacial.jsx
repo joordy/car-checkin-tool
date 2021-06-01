@@ -1,7 +1,7 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './checkFacial.styles.js'
-import { Icons, ButtonTertiaryMore } from 'components/atoms/index'
+import { Icons, ButtonPrimary, ButtonTertiaryMore } from 'components/atoms/index'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
@@ -63,7 +63,7 @@ const CheckFacial = () => {
                                 <ButtonTertiaryMore text="Maak foto" _callback={makeImage} />
                             </div>
                         ) : (
-                            <ButtonTertiaryMore text="Open camera" _callback={startVideo} />
+                            <ButtonPrimary type="btn" text="Open camera" _callback={startVideo} />
                         )}
                     </>
                 ) : (
@@ -72,6 +72,8 @@ const CheckFacial = () => {
             </Styles.IdentityChecker>
 
             <VerificationButtons
+                typeSecondary="btn"
+                typePrimary="href"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="/deposit"

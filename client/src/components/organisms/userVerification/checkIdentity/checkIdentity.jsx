@@ -57,6 +57,8 @@ const CheckIdentity = () => {
             </Styles.IdentityChecker>
 
             <VerificationButtons
+                typeSecondary="btn"
+                typePrimary="btn"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="#"

@@ -1,11 +1,9 @@
-// React & Components imports
+// React, Redux & Components imports
 import React from 'react'
 import * as Styles from './checkinButtons.styles.js'
-import { ButtonPrimaryLarge, ButtonTertiaryMore } from 'components/atoms/index'
-
-// Redux
 import { useSelector, useDispatch } from 'react-redux'
 import { checkIn } from 'store/actions/index'
+import { ButtonPrimary } from 'components/atoms/index'
 
 // Component
 const CheckinButtons = ({ ...props }) => {
@@ -32,7 +30,8 @@ const CheckinButtons = ({ ...props }) => {
                 if (days > 0 && days < 7) {
                     return (
                         <div className="buttonWrapper">
-                            <ButtonPrimaryLarge
+                            <ButtonPrimary
+                                type="href"
                                 text="Inchecken"
                                 linkTo="/addressdata"
                                 width="100%"

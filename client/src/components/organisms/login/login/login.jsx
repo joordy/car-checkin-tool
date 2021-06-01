@@ -6,6 +6,7 @@ import {
     PasswordInput,
     Label,
     InlineButton,
+    ButtonSecondary,
     ButtonSecondaryLarge,
     FormButtonPrimaryLarge,
 } from 'components/atoms/index.js'
@@ -43,7 +44,8 @@ const Login = () => {
                             linkTo="/two"
                         />
                         <FormButtonPrimaryLarge text="Inloggen" type="submit" />
-                        <ButtonSecondaryLarge
+                        <ButtonSecondary
+                            type="href"
                             text="Registreren"
                             linkTo="https://www.europcar.com/EBE/module/driver/AuthenticateDrivers1000.do?action=7"
                         />

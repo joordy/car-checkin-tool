@@ -54,6 +54,8 @@ const CheckBookingInfo = () => {
             </article>
 
             <VerificationButtons
+                typeSecondary="btn"
+                typePrimary="href"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="/verification"
