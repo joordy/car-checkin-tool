@@ -4,8 +4,9 @@
         "paths": {
             "components/*": ["src/components/*"],
             "firebaseSetup/*": ["src/firebaseSetup/*"],
-            "context/*": ["src/context/*"],
-            "database/*": ["src/db/*"]
+            "store/*": ["src/store/*"],
+            "database/*": ["src/db/*"],
+            "utils/*": ["src/utils/*"]
         }
     },
     "include": ["src"]
