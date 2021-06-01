@@ -1,11 +1,11 @@
 // React & Components imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './addressData.styles.js'
+import * as Styles from './orderDetails.styles.js'
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
 
 // Component
-const AdressData = () => {
+const OrderDetails = () => {
     let currentCarCheckin = JSON.parse(window.localStorage.getItem('CurrentCarCheckin'))
     let currentUserID = JSON.parse(window.localStorage.getItem('CurrentUser'))
     let currentReservation
@@ -56,4 +56,4 @@ const AdressData = () => {
     )
 }
 
-export default AdressData
+export default OrderDetails

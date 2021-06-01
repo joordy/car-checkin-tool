@@ -33,7 +33,7 @@ const CheckinButtons = ({ ...props }) => {
                             <ButtonPrimary
                                 type="href"
                                 text="Inchecken"
-                                linkTo="/addressdata"
+                                linkTo="/order-details"
                                 width="100%"
                                 height="48px"
                                 _callback={() =>

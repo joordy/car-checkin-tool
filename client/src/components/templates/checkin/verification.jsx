@@ -1,11 +1,11 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './userVerification.styles.js'
+import * as Styles from './verification.styles.js'
 import { StepsExplainer, UserChoice, CheckIdentity, CheckFacial } from 'components/organisms/index'
 
 // React component
-const UserVerification = () => {
+const Verification = () => {
     const [reservations, setReservations] = useState([])
     const [items, setItems] = useState('')
 
@@ -50,4 +50,4 @@ const UserVerification = () => {
     )
 }
 
-export default UserVerification
+export default Verification
