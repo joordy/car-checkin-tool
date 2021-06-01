@@ -68,7 +68,7 @@ const ShowQRCode = ({ title }) => {
     return (
         <Styles.Section>
             <header>
-                <h1>{title}</h1>
+                <h1>Incheckbewijs</h1>
                 <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
             <article>
@@ -90,6 +90,7 @@ const ShowQRCode = ({ title }) => {
                         <p>Testen</p>
                     </div>
                 </section>
+                <p className="klasse">Klasse A</p>
                 <img
                     src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$example"
                     alt="qr code met reserveringsinformatie"

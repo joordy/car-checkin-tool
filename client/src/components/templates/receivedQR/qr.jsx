@@ -21,7 +21,7 @@ const PageOne = () => {
         <Styles.Main>
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/deposit" step="3" />
-                <ShowQRCode title="Reservering 1234" />
+                <ShowQRCode title="" />
             </div>
             {/*
             <VerificationOne />
