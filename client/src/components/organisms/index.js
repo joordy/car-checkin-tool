@@ -1,5 +1,4 @@
 // Organism will be a large element on the page, such as the complete contact form.
-export { default as Header } from './_dummy/header/header'
 export { default as LoginLanding } from './loginSteps/loginLanding/loginLanding'
 export { default as Login } from './loginSteps/login/login'
 
