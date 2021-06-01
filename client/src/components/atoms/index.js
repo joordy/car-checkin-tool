@@ -1,11 +1,7 @@
 // A atom will be a specific part, such as button, heading 1, input field, etc.
 export { default as HeadingOne } from './headingOne/headingOne.jsx'
 export { default as EditButton } from './editButton/editButton.jsx'
-export { default as ButtonPrimaryLarge } from './_olds/buttonPrimaryLarge/buttonPrimaryLarge.jsx'
-export { default as ButtonPrimarySmall } from './buttonPrimarySmall/buttonPrimarySmall.jsx'
-export { default as ButtonSecondaryLarge } from './_olds/buttonSecondaryLarge/buttonSecondaryLarge.jsx'
-export { default as ButtonSecondarySmall } from './buttonSecondarySmall/buttonSecondarySmall.jsx'
-export { default as ButtonTertiaryMore } from './_olds/buttonTertiaryMore/buttonTertiaryMore.jsx'
+// export { default as CameraIcon } from './_icons/cameraIcon/cameraIcon.jsx'
 export { default as InlineButton } from './inlineButton/inlineButton.jsx'
 export { default as Label } from './label/label.jsx'
 export { default as TextInput } from './textInput/textInput.jsx'
