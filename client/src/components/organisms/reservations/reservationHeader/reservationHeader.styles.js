@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const Header = styled.header`
-    margin: 4.5rem 1rem 2rem;
+    margin: 3rem 1rem 2rem;
     width: calc(100% - 2rem);
     position: relative;
     h1 {
