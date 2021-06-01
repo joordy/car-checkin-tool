@@ -1,11 +1,12 @@
-// React imports
+// React & Components imports
 import React from 'react'
 import * as Styles from './reservationCard.styles.js'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
-// React component
+// Component
 const ReservationCard = ({ ...props }) => {
     const reservation = { ...props }
+    // console.log(reservation)
 
     return (
         <>

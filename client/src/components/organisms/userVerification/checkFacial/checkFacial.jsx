@@ -1,13 +1,14 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkFacial.styles.js'
-import { ButtonPrimaryLarge, ButtonSecondaryLarge, CloseIcon } from 'components/atoms/index'
+import { Icons } from 'components/atoms/index'
+import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckFacial = () => {
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-100vw)'
+        moveElement.style.transform = 'translateX(-200vw)'
     }
 
     return (
@@ -19,15 +20,18 @@ const CheckFacial = () => {
                     jij de echte eigenaar bent van het rijbewijs. Na de verificatie verwijderen we
                     de foto direct.
                 </p>
-                <CloseIcon width="1.5rem" height="1.5em" />
+                <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
             <Styles.IdentityChecker></Styles.IdentityChecker>
 
-            <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveLeft} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="/deposit" />
-            </Styles.BtnWrapper>
+            <VerificationButtons
+                textPrimary="Volgende"
+                textSecondary="Terug"
+                linkPrimary="/deposit"
+                linkSecondary="#"
+                callbackSecondary={moveLeft}
+            />
         </Styles.Section>
     )
 }

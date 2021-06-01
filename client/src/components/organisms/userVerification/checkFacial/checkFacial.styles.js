@@ -30,18 +30,3 @@ export const IdentityChecker = styled.article`
     margin: 1.5rem 0 2rem;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
 `
-
-export const BtnWrapper = styled.article`
-    width: 100%;
-    margin: 6.425rem 0 0 0;
-    display: flex;
-    justify-content: space-between;
-    a {
-        &:nth-of-type(1) {
-            margin-right: 0.5rem;
-        }
-        :nth-of-type(0) {
-            margin-left: 0.5rem;
-        }
-    }
-`

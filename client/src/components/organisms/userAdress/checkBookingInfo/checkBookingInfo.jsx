@@ -1,12 +1,8 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
-import {
-    CloseIcon,
-    EditButton,
-    ButtonSecondaryLarge,
-    ButtonPrimaryLarge,
-} from 'components/atoms/index.js'
+import { Icons, EditButton } from 'components/atoms/index.js'
+import { VerificationButtons } from 'components/molecules/index'
 
 // React component
 const CheckBookingInfo = () => {
@@ -20,12 +16,11 @@ const CheckBookingInfo = () => {
             <header>
                 <h1>Controleer je gegevens </h1>
                 <p>Dit is een overzicht van je gegevens zoals die nu bij ons bekend zijn. </p>
-                <CloseIcon width="1.5rem" height="1.5em" />
+                <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
             <article>
                 <p>Auto gegevens</p>
-                <EditButton />
             </article>
             <hr />
             <article>
@@ -45,7 +40,6 @@ const CheckBookingInfo = () => {
 
             <article>
                 <p>Overige informatie</p>
-                <EditButton />
             </article>
             <hr />
             <article>
@@ -59,10 +53,13 @@ const CheckBookingInfo = () => {
                 <p>€ 0,30</p>
             </article>
 
-            <Styles.BtnWrapper>
-                <ButtonSecondaryLarge text="Terug" linkTo="#" _callback={moveRight} />
-                <ButtonPrimaryLarge text="Volgende" linkTo="/verification" />
-            </Styles.BtnWrapper>
+            <VerificationButtons
+                textPrimary="Volgende"
+                textSecondary="Terug"
+                linkPrimary="/verification"
+                linkSecondary="#"
+                callbackSecondary={moveRight}
+            />
         </Styles.Section>
     )
 }
