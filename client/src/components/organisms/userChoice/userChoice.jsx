@@ -77,6 +77,8 @@ const UserChoice = ({
             </article>
 
             <VerificationButtons
+                typeSecondary="btn"
+                typePrimary="btn"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="#"

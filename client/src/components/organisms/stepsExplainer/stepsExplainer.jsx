@@ -66,6 +66,8 @@ const StepsExplainer = ({ backLink, step }) => {
             </article>
 
             <VerificationButtons
+                typeSecondary="href"
+                typePrimary="btn"
                 textPrimary={buttonText}
                 textSecondary="Terug"
                 linkPrimary="#"
