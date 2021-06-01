@@ -78,6 +78,11 @@ Voor dit project maken we een eigen database aan, waar wij gebruikers in opslaan
 }
 ```
 
+## Tech-stack
+
+De applicatie is gebouwd in [React.js](https://reactjs.org/). Dit is een component gebaseerd framework, waardoor we mooi in componenten samen kunnen werken.
+Verder hebben we voor elke nieuwe feature, of aanpassing, samengewerkt in branches en dit vervolgens met pull requests samengevoegd. Elke pull request moet worden gereviewd door een ander persoon dan de maker van de pull request.
+
 ## Installatie
 
 *Voer de volgende commands uit in een terminal*
