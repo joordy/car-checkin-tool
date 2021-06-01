@@ -3,8 +3,6 @@ import * as Styles from './icons.styles.js'
 
 // Component
 const Icons = ({ type, width, height, opacity, fill, onClick }) => {
-    console.log(type)
-
     switch (type) {
         case 'close':
             return (

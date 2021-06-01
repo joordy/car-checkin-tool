@@ -1,9 +1,13 @@
-// React imports
+// React & Components imports
 import React from 'react'
 import * as Styles from './checkinButtons.styles.js'
 import { ButtonPrimaryLarge, ButtonTertiaryMore } from 'components/atoms/index'
 
-// React component
+// Redux
+import { useSelector, useDispatch } from 'react-redux'
+import { checkIn } from 'store/actions/index'
+
+// Component
 const CheckinButtons = ({ ...props }) => {
     const reservation = { ...props }
     const day = reservation.pickUpDate.slice(0, 2)
@@ -18,6 +22,10 @@ const CheckinButtons = ({ ...props }) => {
         bday.setFullYear(bday.getFullYear() + 1)
     }
 
+    //
+    // const checkInCar = useSelector((state) => state.checkIn)
+    const dispatch = useDispatch()
+
     return (
         <Styles.Wrapper>
             {(() => {
@@ -29,8 +37,12 @@ const CheckinButtons = ({ ...props }) => {
                                 linkTo="/addressdata"
                                 width="100%"
                                 height="48px"
+                                _callback={() =>
+                                    dispatch(
+                                        checkIn(reservation.reservationID, reservation.user.userID),
+                                    )
+                                }
                             />
-                            {/*<ButtonTertiaryMore linkTo="#" height="48px" />*/}
                         </div>
                     )
                 } else {
