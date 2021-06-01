@@ -3,8 +3,8 @@ import {
     Login,
     Deposit,
     QR,
-    AdressData,
-    UserVerification,
+    OrderDetails,
+    Verification,
 } from 'components/templates/index'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -17,12 +17,10 @@ function App() {
             <Switch>
                 <Route path="/" exact component={Login} />
                 <Route path="/reservations" exact component={Reservations} />
-                <Route path="/addressdata" exact component={AdressData} />
-                <Route path="/verification" exact component={UserVerification} />
+                <Route path="/order-details" exact component={OrderDetails} />
+                <Route path="/verification" exact component={Verification} />
                 <Route path="/deposit" exact component={Deposit} />
                 <Route path="/qr" exact component={QR} />
-                {/*<Route path="/One" exact component={PageOne} />
-                <Route path="/Two" exact component={PageTwo} />*/}
             </Switch>
             <GlobalStyle />
         </>
