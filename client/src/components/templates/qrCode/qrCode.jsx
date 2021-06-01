@@ -1,11 +1,11 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
-import * as Styles from './qr.styles.js'
+import * as Styles from './qrCode.styles.js'
 import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 
 // React component
-const PageOne = () => {
+const QRCode = () => {
     const [reservations, setReservations] = useState([])
 
     const readDB = async () => {
@@ -21,7 +21,7 @@ const PageOne = () => {
         <Styles.Main>
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/deposit" step="3" />
-                <ShowQRCode title="" />
+                <ShowQRCode title="Reservering 1234" />
             </div>
             {/*
             <VerificationOne />
@@ -34,4 +34,4 @@ const PageOne = () => {
     )
 }
 
-export default PageOne
+export default QRCode
