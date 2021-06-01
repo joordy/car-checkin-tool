@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import * as Styles from './showQRCode.styles.js'
 import { Icons } from 'components/atoms/index'
-import { VerificationButtons } from 'components/molecules/index'
+import { SingleButtonWrapper } from 'components/molecules/index'
 
 // React component
 const ShowQRCode = ({ title }) => {
@@ -72,7 +72,29 @@ const ShowQRCode = ({ title }) => {
                 <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
             <article>
-                <p>Teksten in dit stukje</p>
+                <section>
+                    <div>
+                        <h3>Ophaallocatie</h3>
+                        <p>Testen</p>
+                    </div>
+                    <div>
+                        <h3>Afleverlocatie</h3>
+                        <p>Testen</p>
+                    </div>
+                    <div>
+                        <h3>Ophaaldatum</h3>
+                        <p>Testen</p>
+                    </div>
+                    <div>
+                        <h3>Afleverdatum</h3>
+                        <p>Testen</p>
+                    </div>
+                </section>
+                <p className="klasse">Klasse A</p>
+                <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$example"
+                    alt="qr code met reserveringsinformatie"
+                />
                 <a id="wallet" rel="noopener noreferrer">
                     <img
                         src="https://support.apple.com/library/content/dam/edam/applecare/images/nl_NL/iOS/add-to-apple-wallet-logo.png"
@@ -80,17 +102,7 @@ const ShowQRCode = ({ title }) => {
                     />
                 </a>
             </article>
-
-            <VerificationButtons
-                typePrimary="btn"
-                typeSecondary="btn"
-                textPrimary="Volgende"
-                textSecondary="Terug"
-                linkPrimary="#"
-                linkSecondary="#"
-                callbackSecondary={moveRight}
-                callbackPrimary={moveLeft}
-            />
+            <SingleButtonWrapper text="Terug naar account" link="#" callback={moveRight} />
         </Styles.Section>
     )
 }
