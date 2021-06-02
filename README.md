@@ -8,7 +8,7 @@ We ([Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/l
 
 ## Live demo link
 
-Upcoming
+You can visit the project [here[(https://europcar.netlify.app/)]
 
 ## Debrief
 
