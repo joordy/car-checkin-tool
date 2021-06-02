@@ -20,7 +20,3 @@ export { default as CheckIdentity } from './checkinSteps/verification/checkIdent
 
 // User QR code
 export { default as ShowQRCode } from './showQRCode/showQRCode'
-
-// User deposit steps
-// export { default as XXX } from './deposit/xxx/xxx'
-// export { default as XXX } from './deposit/xxx/xxx'
