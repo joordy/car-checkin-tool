@@ -5,6 +5,7 @@ export { default as Login } from './loginSteps/login/login'
 // User reservations
 export { default as ReservationCard } from './reservations/reservationCard/reservationCard'
 export { default as ReservationHeader } from './reservations/reservationHeader/reservationHeader'
+export { default as EmptyReservation } from './reservations/emptyReservation/emptyReservation.jsx'
 
 // Steps explainer
 export { default as StepsExplainer } from './checkinSteps/stepsExplainer/stepsExplainer'

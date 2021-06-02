@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
-import { ReservationCard, ReservationHeader } from 'components/organisms/index'
+import { ReservationCard, ReservationHeader, EmptyReservation } from 'components/organisms/index'
 
 // React component
 const Reservations = () => {
@@ -17,7 +17,9 @@ const Reservations = () => {
         readDB()
     }, [])
 
-    const firstUser = reservations[0]
+    const firstUser = reservations[3]
+
+    console.log(firstUser)
 
     return (
         <>
@@ -30,10 +32,10 @@ const Reservations = () => {
             })()}
 
             <Styles.Main>
-                <h2>Mijn Reserveringen</h2>
-                {(() => {
-                    if (firstUser) {
-                        return firstUser.cars.map((item) => {
+                {firstUser.cars.length > 1 ? (
+                    <>
+                        <h2>Mijn Reserveringen</h2>
+                        {firstUser.cars.map((item) => {
                             return (
                                 <ReservationCard
                                     key={item.reservationID}
@@ -41,11 +43,11 @@ const Reservations = () => {
                                     user={firstUser}
                                 />
                             )
-                        })
-                    } else {
-                        return <p>Undefined</p>
-                    }
-                })()}
+                        })}
+                    </>
+                ) : (
+                    <EmptyReservation />
+                )}
             </Styles.Main>
         </>
     )

@@ -362,6 +362,135 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                     </svg>
                 </Styles.Icon>
             )
+        case 'reservationCard':
+            return (
+                <Styles.Icon>
+                    <svg
+                        width="243"
+                        height="139"
+                        viewBox="0 0 243 139"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <g filter="url(#filter0_d)">
+                            <path
+                                d="M8 27C8 15.9543 16.9543 7 28 7H215C226.046 7 235 15.9543 235 27V86.7317C235 91.15 231.418 94.7317 227 94.7317H16C11.5817 94.7317 8 91.15 8 86.7317V27Z"
+                                fill="#CCCCD6"
+                            />
+                        </g>
+                        <g filter="url(#filter1_d)">
+                            <path
+                                d="M8 56.156C8 45.1103 16.9543 36.156 28 36.156H215C226.046 36.156 235 45.1103 235 56.156V109.177C235 120.223 226.046 129.177 215 129.177H28C16.9543 129.177 8 120.223 8 109.177V56.156Z"
+                                fill="white"
+                            />
+                        </g>
+                        <rect
+                            x="157.945"
+                            y="16.7185"
+                            width="63.1713"
+                            height="13.1896"
+                            fill="#B1B1BA"
+                            fillOpacity="0.6"
+                        />
+                        <rect
+                            x="26.743"
+                            y="56.2876"
+                            width="137.45"
+                            height="13.1896"
+                            fill="#CCCCD6"
+                        />
+                        <rect
+                            x="26.743"
+                            y="72.2537"
+                            width="123.566"
+                            height="7.63609"
+                            fill="#CCCCD6"
+                        />
+                        <rect
+                            x="26.743"
+                            y="103.492"
+                            width="123.566"
+                            height="7.63609"
+                            fill="#CCCCD6"
+                        />
+                        <rect
+                            x="26.743"
+                            y="87.5261"
+                            width="137.45"
+                            height="13.1896"
+                            fill="#CCCCD6"
+                        />
+                        <defs>
+                            <filter
+                                id="filter0_d"
+                                x="0"
+                                y="0"
+                                width="243"
+                                height="103.732"
+                                filterUnits="userSpaceOnUse"
+                                colorInterpolationFilters="sRGB"
+                            >
+                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix
+                                    in="SourceAlpha"
+                                    type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                />
+                                <feOffset dy="1" />
+                                <feGaussianBlur stdDeviation="4" />
+                                <feColorMatrix
+                                    type="matrix"
+                                    values="0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.25 0"
+                                />
+                                <feBlend
+                                    mode="normal"
+                                    in2="BackgroundImageFix"
+                                    result="effect1_dropShadow"
+                                />
+                                <feBlend
+                                    mode="normal"
+                                    in="SourceGraphic"
+                                    in2="effect1_dropShadow"
+                                    result="shape"
+                                />
+                            </filter>
+                            <filter
+                                id="filter1_d"
+                                x="0"
+                                y="29.156"
+                                width="243"
+                                height="109.021"
+                                filterUnits="userSpaceOnUse"
+                                colorInterpolationFilters="sRGB"
+                            >
+                                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                <feColorMatrix
+                                    in="SourceAlpha"
+                                    type="matrix"
+                                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                />
+                                <feOffset dy="1" />
+                                <feGaussianBlur stdDeviation="4" />
+                                <feColorMatrix
+                                    type="matrix"
+                                    values="0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.25 0"
+                                />
+                                <feBlend
+                                    mode="normal"
+                                    in2="BackgroundImageFix"
+                                    result="effect1_dropShadow"
+                                />
+                                <feBlend
+                                    mode="normal"
+                                    in="SourceGraphic"
+                                    in2="effect1_dropShadow"
+                                    result="shape"
+                                />
+                            </filter>
+                        </defs>
+                    </svg>
+                </Styles.Icon>
+            )
     }
 }
 
