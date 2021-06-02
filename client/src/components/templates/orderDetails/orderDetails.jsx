@@ -19,16 +19,14 @@ const OrderDetails = () => {
     }
 
     const readDB = async () => {
-        const { data, error } = await supabase
-            .from('users')
-            .select()
-            .filter('userID', 'eq', `${carReservation.user.userID}`)
+        const { data, error } = await supabase.from('users').select()
+        // .filter('userID', 'eq', `${carReservation.user.userID}`)
         if (!error) {
             // setReservations(data)
         } else {
             console.log(error)
         }
-        console.log(data)
+        // console.log(data)
     }
 
     useEffect(() => {
@@ -36,7 +34,7 @@ const OrderDetails = () => {
         readDB()
     }, [])
 
-    console.log(carReservation)
+    console.log('current reservation:', carReservation)
 
     return (
         <Styles.Main>

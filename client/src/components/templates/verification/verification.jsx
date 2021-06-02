@@ -11,7 +11,7 @@ const Verification = () => {
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
-        const data = await fetch('/order-details')
+        const data = await fetch('/verification')
         const response = await data.json()
         if (response === 'undefined') {
             window.location.href = '/reservations'
@@ -20,7 +20,7 @@ const Verification = () => {
         }
     }
 
-    const fetchItems = async () => {
+    const verifyIdentity = async () => {
         const data = await fetch('/create-verification-session')
         const items = await data.json()
         setItems(items)
@@ -29,7 +29,7 @@ const Verification = () => {
     useEffect(() => {
         getData()
         readDB()
-        fetchItems()
+        verifyIdentity()
     }, [])
 
     const readDB = async () => {
@@ -38,13 +38,12 @@ const Verification = () => {
     }
 
     console.log('items', items)
-
-    console.log('reservations', reservations)
+    console.log('current reservation:', carReservation)
 
     return (
         <Styles.Main>
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/addressdata" step="1" />
+                <StepsExplainer backLink="/order-details" step="1" />
                 <UserChoice
                     title="Verifieer je eigen rijbewijs"
                     text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."

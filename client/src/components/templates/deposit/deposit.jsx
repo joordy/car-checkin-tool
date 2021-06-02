@@ -34,13 +34,6 @@ const PageOne = () => {
                     deposit="500,-"
                 />
             </div>
-            {/*
-            <VerificationOne />
-            <VerificationTwo />
-            <VerificationThree />
-            <VerificationFour />
-            <StepsBorg />
-            <BorgPayments /> */}
         </Styles.Main>
     )
 }
