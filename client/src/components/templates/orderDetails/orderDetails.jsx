@@ -1,23 +1,28 @@
 // React & Components imports
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './orderDetails.styles.js'
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
 
 // Component
 const OrderDetails = () => {
-    let currentCarCheckin = JSON.parse(window.localStorage.getItem('CurrentCarCheckin'))
-    let currentUserID = JSON.parse(window.localStorage.getItem('CurrentUser'))
-    let currentReservation
-    const [reservations, setReservations] = useState([])
+    const [carReservation, setCarReservation] = useState([])
+
+    const getData = async () => {
+        const data = await fetch('/order-details')
+        const response = await data.json()
+        if (response === 'undefined') {
+            window.location.href = '/reservations'
+        } else {
+            setCarReservation(response)
+        }
+    }
 
     const readDB = async () => {
-        const { data, error } = await supabase
-            .from('users')
-            .select()
-            .filter('userID', 'eq', `${currentUserID}`)
+        const { data, error } = await supabase.from('users').select()
+        // .filter('userID', 'eq', `${currentUserID}`)
         if (!error) {
-            setReservations(data)
+            // setReservations(data)
         } else {
             console.log(error)
         }
@@ -25,26 +30,11 @@ const OrderDetails = () => {
 
     useEffect(() => {
         readDB()
+        getData()
     }, [])
 
-    const currentUser = [...reservations]
+    console.log(carReservation)
 
-    function getCurrentReseravation() {
-        if (!currentUser[0]) {
-            console.log('go to reservation')
-        } else {
-            const cars = currentUser[0].cars
-
-            currentReservation = cars.find(function (item) {
-                return item.reservationID == currentCarCheckin
-            })
-
-            console.log(currentUser[0])
-            console.log(currentReservation)
-        }
-    }
-
-    getCurrentReseravation()
     return (
         <Styles.Main>
             <div className="stepsWrapper">
