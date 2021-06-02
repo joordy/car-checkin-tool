@@ -1,5 +1,5 @@
 // React imports
-import React from 'react'
+import React, { useState } from 'react'
 import * as Styles from './login.styles.js'
 import supabase from 'db/supabase.js'
 import {
@@ -16,6 +16,8 @@ import {
 const Login = () => {
     let email = ''
     let loggedIn = false
+
+    const [showWrongEmailText, setshowWrongEmailText] = useState(true)
 
     const readDB = async (email) => {
         const { data, error } = await supabase.from('users').select().filter('email', 'eq', email)
@@ -36,14 +38,6 @@ const Login = () => {
         console.log(window.localStorage)
     }
 
-    function wrongEmail() {
-        const form = document.querySelector('form')
-        let p = document.createElement('p')
-        p.innerHTML = 'Dit is geen bekend e-mailadres bij ons'
-        p.classList.add('error')
-        form.insertBefore(p, form.firstChild)
-    }
-
     async function handleSubmit(event) {
         event.preventDefault()
         email = event.target.email.value
@@ -51,7 +45,7 @@ const Login = () => {
         if (loggedIn) {
             window.location.replace('/reservations')
         } else {
-            wrongEmail()
+            setshowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
         }
     }
 
@@ -61,6 +55,9 @@ const Login = () => {
                 <main>
                     <h1>Log in met je EuropAuto account</h1>
                     <p>Dit is hetzelfde account waarmee je je reservering hebt gemaakt.</p>
+                    {!showWrongEmailText && (
+                        <p className="error">Dit email is niet bekend bij ons</p>
+                    )}
                     <form onSubmit={handleSubmit}>
                         <Label text="E-mailadres" forId="email" />
                         <TextInput
