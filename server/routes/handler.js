@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 router.get('/reservations', (req, res) => {
   console.log('reservation page');
@@ -9,7 +11,7 @@ router.get('/reservations', (req, res) => {
 });
 
 router.post('/create-checkin', (req, res) => {
-  const { fullName, pickUpLocation, handInLocation, pickUpDateTime, handInDateTime, reservationID} = req.body;
+  const { firstName, email, pickUpLocation, pickUpDateTime, reservationID} = req.body;
 
   async function postData(url, data) {
     const response = await fetch(url, {
@@ -27,6 +29,27 @@ router.post('/create-checkin', (req, res) => {
 
     postData(process.env.WALLET_URL, req.body).then((data) => {
       if(!data.errors) {
+        const msg = {
+          to: email,
+          from: 'europauto2021@outlook.com',
+          templateId: 'd-d13520409a12422783f1f2bf35983b45',
+          dynamicTemplateData: {
+            firstName: firstName,
+            pickUpLocation: pickUpLocation,
+            pickUpDateTime: pickUpDateTime,
+            serialNumber: data.serialNumber,
+            reservationID: reservationID
+          },
+          };
+          sgMail
+            .send(msg)
+            .then(() => {
+              console.log('Email sent')
+            })
+            .catch((error) => {
+              console.error(error)
+            })
+
         res.send({
           status: '200',
           serialNumber: data.serialNumber
