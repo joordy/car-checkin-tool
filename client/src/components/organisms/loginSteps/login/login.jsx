@@ -16,7 +16,7 @@ const Login = () => {
     let email = ''
     let loggedIn = false
 
-    const [showWrongEmailText, setshowWrongEmailText] = useState(true)
+    const [showWrongEmailText, setshowWrongEmailText] = useState(false)
 
     const readDB = async (email) => {
         const { data, error } = await supabase.from('users').select().filter('email', 'eq', email)
@@ -54,7 +54,7 @@ const Login = () => {
                 <main>
                     <h1>Log in met je EuropAuto account</h1>
                     <p>Dit is hetzelfde account waarmee je je reservering hebt gemaakt.</p>
-                    {!showWrongEmailText && (
+                    {showWrongEmailText && (
                         <p className="error">Dit email is niet bekend bij ons</p>
                     )}
                     <form onSubmit={handleSubmit}>
