@@ -5,6 +5,7 @@ export { default as Login } from './loginSteps/login/login'
 // User reservations
 export { default as ReservationCard } from './reservations/reservationCard/reservationCard'
 export { default as ReservationHeader } from './reservations/reservationHeader/reservationHeader'
+export { default as EmptyReservation } from './reservations/emptyReservation/emptyReservation.jsx'
 
 // Steps explainer
 export { default as StepsExplainer } from './checkinSteps/stepsExplainer/stepsExplainer'
@@ -20,7 +21,3 @@ export { default as CheckIdentity } from './checkinSteps/verification/checkIdent
 
 // User QR code
 export { default as ShowQRCode } from './showQRCode/showQRCode'
-
-// User deposit steps
-// export { default as XXX } from './deposit/xxx/xxx'
-// export { default as XXX } from './deposit/xxx/xxx'

@@ -1,8 +1,6 @@
 // React, Redux & Components imports
 import React from 'react'
 import * as Styles from './checkinButtons.styles.js'
-import { useSelector, useDispatch } from 'react-redux'
-import { checkIn } from 'store/actions/index'
 import { ButtonPrimary } from 'components/atoms/index'
 
 // Component
@@ -20,9 +18,17 @@ const CheckinButtons = ({ ...props }) => {
         bday.setFullYear(bday.getFullYear() + 1)
     }
 
-    //
-    // const checkInCar = useSelector((state) => state.checkIn)
-    const dispatch = useDispatch()
+    const handleIncheck = async (event) => {
+        console.log('hi')
+        fetch('/order-details', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reservation),
+        })
+    }
 
     return (
         <Styles.Wrapper>
@@ -36,11 +42,7 @@ const CheckinButtons = ({ ...props }) => {
                                 linkTo="/order-details"
                                 width="100%"
                                 height="48px"
-                                _callback={() =>
-                                    dispatch(
-                                        checkIn(reservation.reservationID, reservation.user.userID),
-                                    )
-                                }
+                                _callback={handleIncheck}
                             />
                         </div>
                     )

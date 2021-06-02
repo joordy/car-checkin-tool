@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+let reservation;
 
 router.get('/reservations', (req, res) => {
   console.log('reservation page');
@@ -10,22 +11,40 @@ router.get('/reservations', (req, res) => {
   res.end(JSON.stringify(str));
 });
 
+router.post('/order-details', (req, res) => {
+  reservation = req.body;
+  res.end(JSON.stringify(req.body));
+});
+
+router.get('/order-details', (req, res) => {
+  console.log(reservation);
+  const data = () => {
+    if (!reservation) {
+      return 'undefined';
+    } else {
+      return reservation;
+    }
+  };
+
+  res.end(JSON.stringify(data()));
+});
+
 router.post('/create-checkin', (req, res) => {
-  const { firstName, email, pickUpLocation, pickUpDateTime, reservationID} = req.body;
+  const { fullName, email, pickUpLocation, handInLocation, pickUpDateTime, handInDateTime, reservationID } = req.body;
 
   async function postData(url, data) {
     const response = await fetch(url, {
-        method: 'POST', 
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-            Authorization: `Basic ${process.env.WALLET_SECRET}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data), 
-    })
-    return response.json()
-    }
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'same-origin',
+      headers: {
+        Authorization: `Basic ${process.env.WALLET_SECRET}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
 
     postData(process.env.WALLET_URL, req.body).then((data) => {
       if(!data.errors) {
