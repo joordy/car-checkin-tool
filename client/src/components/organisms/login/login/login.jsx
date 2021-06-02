@@ -1,7 +1,6 @@
 // React imports
 import React from 'react'
 import * as Styles from './login.styles.js'
-import supabase from 'db/supabase.js'
 import {
     TextInput,
     PasswordInput,
@@ -13,45 +12,13 @@ import {
 
 // React component
 const Login = () => {
-    let email = ''
-    let loggedIn = false
+    const carsImgSrc =
+        'https://user-images.githubusercontent.com/55750107/119476215-23c2cd80-bd4e-11eb-9970-9081f852a6ae.png'
+    const logoImgSrc = 'https://svgshare.com/i/XWd.svg'
 
-    const readDB = async (email) => {
-        const { data, error } = await supabase.from('users').select().filter('email', 'eq', email)
-        if (!error) {
-            if (data[0] !== undefined) {
-                setUser(data[0])
-                loggedIn = true
-            } else {
-                loggedIn = false
-            }
-        } else {
-            console.log(error)
-        }
-    }
-
-    function setUser(user) {
-        window.localStorage.setItem('CurrentUser', JSON.stringify(user))
-        console.log(window.localStorage)
-    }
-
-    function wrongEmail() {
-        const form = document.querySelector('form')
-        let p = document.createElement('p')
-        p.innerHTML = 'Dit is geen bekend e-mailadres bij ons'
-        p.classList.add('error')
-        form.insertBefore(p, form.firstChild)
-    }
-
-    async function handleSubmit(event) {
-        event.preventDefault()
-        email = event.target.email.value
-        window.setTimeout(await readDB(email), 2000)
-        if (loggedIn) {
-            window.location.replace('/reservations')
-        } else {
-            wrongEmail()
-        }
+    function asd() {
+        let header = document.querySelector('header')
+        header.classList.add('slideOut')
     }
 
     return (
@@ -60,7 +27,7 @@ const Login = () => {
                 <main>
                     <h1>Log in met je EuropAuto account</h1>
                     <p>Dit is hetzelfde account waarmee je je reservering hebt gemaakt.</p>
-                    <form onSubmit={handleSubmit}>
+                    <form action="/reservations">
                         <Label text="E-mailadres" forId="email" />
                         <TextInput
                             type="email"
