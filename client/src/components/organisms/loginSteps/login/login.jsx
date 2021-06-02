@@ -8,7 +8,6 @@ import {
     Label,
     InlineButton,
     ButtonSecondary,
-    ButtonSecondaryLarge,
     FormButtonPrimaryLarge,
 } from 'components/atoms/index.js'
 
