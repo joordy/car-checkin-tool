@@ -28,71 +28,100 @@ Hoe kunnen wij ervoor zorgen dat de klanten die een auto hebben gereserveerd bij
 - Bevestigen van identiteit en rijbewijs
 - Borg reserveren op een creditcard
 
-## Service
+## API
 
-Voor het controleren van de identiteit en/of rijbewijs van de gebruiker, maken wij gebruik van [Stripe Identity](https://stripe.com/docs/identity). Dit is een externe partij die zowel betalingen als het controleren van identiteit doet.
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Stripe Identity API</summary>
+  
+  Voor het controleren van de identiteit en/of rijbewijs van de gebruiker, maken wij gebruik van [Stripe Identity API](https://stripe.com/docs/identity). Dit is een externe partij die zowel betalingen als het controleren van identiteit doet.
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Stripe API</summary>
+  
+  Voor de betaling van de borg, waar er een bedrag wordt gereserveerd op een creditcard, gebruiken wij [Stripe API](https://stripe.com/docs/api).
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Passslot</summary>
+  
+  Om de ingecheckte reserveringen kunnen toe te voegen aan de gebruiker zijn Wallet, gebruiken wij [Passslot](https://www.passslot.com/developer/api/resources)
+</details>
+
+## Database
+
+Voor de database gebruiken wij [Supabase](https://supabase.io/). Dit leek ons een zeer gemakkelijke database om op te zetten, en er staat ook een simpele documentatie op de website. Zodoende leek het ons een gemakkelijk te gebruiken database, en hebben wij voor deze database gekozen om te gebruiken.
 
 ## Dataset
 
 Voor dit project maken we een eigen database aan, waar wij gebruikers in opslaan en hun reserveringen, met alle bijbehorende informatie hiervoor:
 
-```js
-    user[0]: {
-      "firstName": String,
-      "lastName": String,
-      "email": String,
-      "password": String,
-      "phone": String,
-      "birthDate": Date,
-      "userID”: String,
-      "reservations": [
-        {
-          "reservationID": String,
-          "checkedIn": Boolean,
-          "pickUpLocation": String,
-          "pickUpDate": Date,
-          "pickUpTime": Time,
-          "handInDate": Date,
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Dataset</summary>
+  
+  ```js
+user[0]: {
+  "firstName": String,
+  "lastName": String,
+  "email": String,
+  "password": String,
+  "phone": String,
+  "birthDate": Date,
+  "userID”: String,
+  "reservations": [
+    {
+      "reservationID": String,
+      "checkedIn": Boolean,
+      "pickUpLocation": String,
+      "pickUpDate": Date,
+      "pickUpTime": Time,
+      "handInDate": Date,
 
-       "handInLocation": String,
-          "handInTime": Time,
-          "class": String,
-          "rentPrice": Number,
-          "extraDriver": Number,
-          "lowerOwnRisk": Boolean,
-          "otherInfo": {
-            "ownRisk": Number,
-            "deposit": Number,
-            "freeKM": Number,
-            "priceExtraKM": Number
-          },
-          "orderDetails": Boolean,
-          "verified": {
-             "choice": Boolean,
-             "id": Boolean
-             "image": Boolean
-          },
-          "paidDeposit": {
-             "choice": Boolean,
-             "paid": Boolean
-          },
-         "wallet": {
-             "choice": Boolean,
-             "paid": Boolean
-          },
-          "qrCode": String,
-          "walletSerialNumber": String
-        },
-     ],
-     user[1]: {
-      ...
-     }
+   "handInLocation": String,
+      "handInTime": Time,
+      "class": String,
+      "rentPrice": Number,
+      "extraDriver": Number,
+      "lowerOwnRisk": Boolean,
+      "otherInfo": {
+        "ownRisk": Number,
+        "deposit": Number,
+        "freeKM": Number,
+        "priceExtraKM": Number
+      },
+      "orderDetails": Boolean,
+      "verified": {
+         "choice": Boolean,
+         "id": Boolean
+         "image": Boolean
+      },
+      "paidDeposit": {
+         "choice": Boolean,
+         "paid": Boolean
+      },
+     "wallet": {
+         "choice": Boolean,
+         "paid": Boolean
+      },
+      "qrCode": String,
+      "walletSerialNumber": String
+    },
+ ],
+ user[1]: {
+  ...
+ }
 ```
+
+</details>
 
 ## Tech-stack
 
 De applicatie is gebouwd in [React.js](https://reactjs.org/). Dit is een component gebaseerd framework, waardoor we mooi in componenten samen kunnen werken.
 Verder hebben we voor elke nieuwe feature, of aanpassing, samengewerkt in branches en dit vervolgens met pull requests samengevoegd. Elke pull request moet worden gereviewd door een ander persoon dan de maker van de pull request.
+
+Qua werkwijze hebben we een atomic webdesign aangehouden. Dit houdt in dat we componenten hebben opgesplitst in `atoms`, `molecules`, `organisms` en `templates`. Hiermee kunnen we gemakkelijk componenten hergebruiken, en is er een duidelijk overzicht binnen de componenten qua groottes.
+
+Verder gebruiken wij ook [`prettier`](https://prettier.io/) als code formatter, die samenwerkt met [`eslint`](https://eslint.org/) zodat elk gemaakt bestand dezelfde opmaak heeft. Dit scheelt een hele hoop discussies binnen de code reviews.
 
 ## Installatie
 
