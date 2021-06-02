@@ -88,7 +88,7 @@ const ShowQRCode = ({ title }) => {
 
     async function verifyCheckin() {
         if (currentReservationData && qrCode === true) {
-            setWalletSerial('4eab2de7-05f2-4c70-b229-c8a183d85d03')
+            setWalletSerial(walletSerialNumber)
         } else if (currentReservationData && qrCode === false) {
             const userData = {
                 firstName: user2.firstName,
@@ -156,7 +156,7 @@ const ShowQRCode = ({ title }) => {
                 </section>
                 <p className="klasse">Klasse A</p>
                 <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$example"
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reservationID}`}
                     alt="qr code met reserveringsinformatie"
                 />
                 <a
