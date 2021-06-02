@@ -1,10 +1,43 @@
 const express = require('express');
 const router = express.Router();
+const fetch = require('node-fetch');
 
 router.get('/reservations', (req, res) => {
   console.log('reservation page');
   const str = 'reservation page';
   res.end(JSON.stringify(str));
+});
+
+router.post('/create-checkin', (req, res) => {
+  const { fullName, pickUpLocation, handInLocation, pickUpDateTime, handInDateTime, reservationID} = req.body;
+
+  async function postData(url, data) {
+    const response = await fetch(url, {
+        method: 'POST', 
+        mode: 'cors',
+        credentials: 'same-origin',
+        headers: {
+            Authorization: `Basic ${process.env.WALLET_SECRET}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), 
+    })
+    return response.json()
+    }
+
+    postData(process.env.WALLET_URL, req.body).then((data) => {
+      if(!data.errors) {
+        res.send({
+          status: '200',
+          serialNumber: data.serialNumber
+        });
+      } else {
+        res.send({
+          status: '404',
+          errors: data.errors
+        });
+      }
+    })
 });
 
 router.post('/create-verification-session', async (req, res) => {

@@ -5,6 +5,7 @@ import {
     QRCode,
     OrderDetails,
     Verification,
+    Card,
 } from 'components/templates/index'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/verification" exact component={Verification} />
                 <Route path="/deposit" exact component={Deposit} />
                 <Route path="/qr" exact component={QRCode} />
+                <Route path="/card/:id" exact component={Card} />
             </Switch>
             <GlobalStyle />
         </>
