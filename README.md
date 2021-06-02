@@ -1,6 +1,6 @@
 # Car Checkin Tool
 
-Wij ([Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/lars-ruijs) en [Guus Maij](https://github.com/tsjuusmei)) hebben een tool gemaakt om online reserveringen van huurauto's in te kunnen checken. Hierdoor hoeft de gebruiker alleen nog fysiek de sleutels van de desbetreffende auto te halen, en worden wachtrijen voor de balie een stuk korter.
+We ([Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/lars-ruijs) & [Guus Maij](https://github.com/tsjuusmei)) have made a tool to online check-in reservations for rental cars. Because of this, the user will only have to physically pick-up the keys for the car, and will shorten the queue at the rental place.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/55750107/120201781-1ada6c00-c226-11eb-803c-5cbe6fd6b6ff.png" width="900px">
@@ -10,51 +10,54 @@ Wij ([Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/
 
 Upcoming
 
-## Debriefing
+## Debrief
 
-Een gebruiker reserveert vaak ruim van te voren een auto om te huren. Het inchecken van de gebruiker gaat tot op heden altijd fysiek, op locatie bij de verhuurders. Dit kost al gauw zo’n 15 minuten per gebruiker. 
+A reservation is, most of the time, made well ahead of the rental date. Until now, the user always has to check-in physically at the location of the rental, which easily costs about 15 minutes per user.
 
-Maak een digitaal incheckproces voor de verhuurservice, zodat er weinig tot geen fysieke interactie nodig is voor het ophalen van de huurauto. Het incheckproces bestaat uit het inloggen van de gebruiker, het inchecken van de reservering, bevestigen van de identiteit en rijbewijs, en het reserveren van de borg op de desbetreffende creditcard. 
+Create a digital check-in process for the rental service, so that there is only little time needed to physically pick up the rental car. The check-in process consists of: user login, checking in a reservation, confirm the identity and driver's license and create a reservation for the deposit on a creditcard.
 
 ## Design Challenge
 
-Hoe kunnen wij ervoor zorgen dat de klanten die een auto hebben gereserveerd bij de verhuurders, zichzelf gemakkelijk online kunnen inchecken, zodat zij hun gereserveerde auto snel kunnen ophalen bij de desbetreffende locatie.
+How can we ensure that customers, that reserved a car at the rental, can easily check-in online, so that they can quickly pick up the reserved car at the relevant location.
 
 ## Features
 
-- Inloggen van de gebruiker
-- Overzicht van reserveringen
-- Inchecken van een reservering
-- Bevestigen van identiteit en rijbewijs
-- Borg reserveren op een creditcard
+- User login
+- Overview of reservations
+- Checking in a reservation
+- Confirming identity and driver's license
+- Reserve deposit on a creditcard
 
 ## API
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Stripe Identity API</summary>
-  
-  Voor het controleren van de identiteit en/of rijbewijs van de gebruiker, maken wij gebruik van [Stripe Identity API](https://stripe.com/docs/identity). Dit is een externe partij die zowel betalingen als het controleren van identiteit doet.
+
+To confirm the identity and driver's license of the user(s), we use [Stripe Identity API](https://stripe.com/docs/identity). This service easily can easily the identity and driver's license for us.
+
 </details>
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Stripe API</summary>
-  
-  Voor de betaling van de borg, waar er een bedrag wordt gereserveerd op een creditcard, gebruiken wij [Stripe API](https://stripe.com/docs/api).
+
+To assure the reserve deposit on a creditcard, we use [Stripe API](https://stripe.com/docs/api).
+
 </details>
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Passslot</summary>
-  
-  Om de ingecheckte reserveringen kunnen toe te voegen aan de gebruiker zijn Wallet, gebruiken wij [Passslot](https://www.passslot.com/developer/api/resources)
+
+To add a checked-in reservation to a user's Wallet, we use [Passslot](https://www.passslot.com/developer/api/resources).
+
 </details>
 
 ## Database
 
-Voor de database gebruiken wij [Supabase](https://supabase.io/). Dit leek ons een zeer gemakkelijke database om op te zetten, en er staat ook een simpele documentatie op de website. Zodoende leek het ons een gemakkelijk te gebruiken database, en hebben wij voor deze database gekozen om te gebruiken.
+For the usage of the database, we chose [Supabase](https://supabase.io/). This is a very easy to set up database, which a very nice and easy documentation. Therefore this database seemed really easy to use, and we chose to use this for our project.
 
 ## Dataset
 
-Voor dit project maken we een eigen database aan, waar wij gebruikers in opslaan en hun reserveringen, met alle bijbehorende informatie hiervoor:
+For this project we needed to store the users and their reservations, with all of the associated information:
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Dataset</summary>
@@ -67,7 +70,7 @@ user[0]: {
   "password": String,
   "phone": String,
   "birthDate": Date,
-  "userID”: String,
+  "userID": String,
   "reservations": [
     {
       "reservationID": String,
@@ -76,100 +79,125 @@ user[0]: {
       "pickUpDate": Date,
       "pickUpTime": Time,
       "handInDate": Date,
+  "handInLocation": String,
+  "handInTime": Time,
+  "class": String,
+  "rentPrice": Number,
+  "extraDriver": Number,
+  "lowerOwnRisk": Boolean,
+  "otherInfo": {
+    "ownRisk": Number,
+    "deposit": Number,
+    "freeKM": Number,
+    "priceExtraKM": Number
+  },
+  "orderDetails": Boolean,
+  "verified": {
+    "choice": Boolean,
+    "id": Boolean,
+    "image": Boolean
+  },
+  "paidDeposit": {
+    "choice": Boolean,
+    "paid": Boolean
+  },
+  "wallet": {
+    "choice": Boolean,
+    "paid": Boolean
+  },
+  "qrCode": String,
+  "walletSerialNumber": String
+  },
+],
+user[1]: {
+...
+}
 
-   "handInLocation": String,
-      "handInTime": Time,
-      "class": String,
-      "rentPrice": Number,
-      "extraDriver": Number,
-      "lowerOwnRisk": Boolean,
-      "otherInfo": {
-        "ownRisk": Number,
-        "deposit": Number,
-        "freeKM": Number,
-        "priceExtraKM": Number
-      },
-      "orderDetails": Boolean,
-      "verified": {
-         "choice": Boolean,
-         "id": Boolean
-         "image": Boolean
-      },
-      "paidDeposit": {
-         "choice": Boolean,
-         "paid": Boolean
-      },
-     "wallet": {
-         "choice": Boolean,
-         "paid": Boolean
-      },
-      "qrCode": String,
-      "walletSerialNumber": String
-    },
- ],
- user[1]: {
-  ...
- }
 ```
 
 </details>
 
 ## Tech-stack
 
-De applicatie is gebouwd in [React.js](https://reactjs.org/). Dit is een component gebaseerd framework, waardoor we mooi in componenten samen kunnen werken.
-Verder hebben we voor elke nieuwe feature, of aanpassing, samengewerkt in branches en dit vervolgens met pull requests samengevoegd. Elke pull request moet worden gereviewd door een ander persoon dan de maker van de pull request.
+The application is built in [React.js](https://reactjs.org/). This is a component based framework, where we can easily work in together.
+For every feature or adjustment, we worked in branches and made pull requests of every small change or feature add-on. Every pull request must be reviewed by at least 1 of the other team members before it is able to merge onto the `development` branch.
 
-Qua werkwijze hebben we een atomic webdesign aangehouden. Dit houdt in dat we componenten hebben opgesplitst in `atoms`, `molecules`, `organisms` en `templates`. Hiermee kunnen we gemakkelijk componenten hergebruiken, en is er een duidelijk overzicht binnen de componenten qua groottes.
+We also used a method called [atomic webdesign](https://github.com/danilowoz/react-atomic-design). By using this, we split up every bit of code in `atoms`, `molecules`, `organisms` and `templates`. By doing this we can easily re-use components, and we have a clear overview of the components by size.
 
-Verder gebruiken wij ook [`prettier`](https://prettier.io/) als code formatter, die samenwerkt met [`eslint`](https://eslint.org/) zodat elk gemaakt bestand dezelfde opmaak heeft. Dit scheelt een hele hoop discussies binnen de code reviews.
+We also use [`prettier`](https://prettier.io/) as code formatter, which also uses [`eslint`](https://eslint.org/) to lint the code. This will save a lot of discussion within code reviews, because it creates the same layout for the code on every save the creator makes.
 
-## Installatie
+## Installation
 
-*Voer de volgende commands uit in een terminal*
+*Use the following commands in a terminal*
 
-1. Clone de repo
+1. Clone the repo
 
 ```
+
 git clone https://github.com/joordy/car-checkin-tool.git
-```
-
-2. Navigeer naar de client folder
 
 ```
+
+2. Navigate to the `client` folder
+
+```
+
 cd ./client
-```
-
-3. Maak een .env bestand aan (in de `client` folder) met de volgende variabelen voor de database connectie
 
 ```
+
+3. Create a `.env` file (in the `client` folder) with the following variables for the database and wallet connection:
+
+```
+
 REACT_APP_SUPABASE_URL=INSERT_SUPABASE_URL_HERE
 REACT_APP_SUPABASE_PUBLIC_KEY=INSERT_PUBLIC_KEY_HERE
+REACT_APP_WALLET_SECRET=INSERT_SECRET_WALLET_HERE
+
 ```
 
-4. Installeer packages
+4. Install packages
 
-``` 
+```
+
 npm install
-```
-
-5. Navigeer naar de server folder
 
 ```
+
+5. Navigate to the `server` folder
+
+```
+
 cd ../server
-```
-
-6. Installeer packages
 
 ```
+
+6. Create a `.env` file (in the `server` folder) with the following variables for the wallet connection:
+
+```
+
+WALLET_URL=INSERT_WALLET_URL_HERE
+WALLET_SECRET=INSERT_WALLET_SECRET_HERE
+
+```
+
+7. Install packages
+
+```
+
 npm install
-```
-
-7. Run de applicatie (vanuit de `server` folder)
 
 ```
+
+8. Run the application (from within the `server` folder)
+
+```
+
 npm run dev
+
 ```
 
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+```
