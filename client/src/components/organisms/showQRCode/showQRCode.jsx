@@ -18,9 +18,9 @@ const ShowQRCode = ({ title }) => {
     }
 
     const user2 = {
-        firstName: 'Kelly',
-        lastName: 'de Jong',
-        email: 'kellydejong@gmail.com',
+        firstName: 'Jelly',
+        lastName: 'de Jonger',
+        email: 'soyvvwbcezrullgosg@miucce.com',
         password: 'Welkom123',
         phone: '+31 6 12345678',
         birthDate: '01-01-1997',
@@ -103,8 +103,8 @@ const ShowQRCode = ({ title }) => {
 
             createCheckin(userData).then((data) => {
                 if (data && data.status === '200') {
-                    qrCode = true
-                    walletSerialNumber = data.serialNumber
+                    currentReservationData.qrCode = true
+                    currentReservationData.walletSerialNumber = data.serialNumber
                     setWalletSerial(data.serialNumber)
                 } else {
                     console.error('Kan pas niet aanmaken')

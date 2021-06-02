@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 let reservation;
 
 router.get('/reservations', (req, res) => {
@@ -28,7 +30,7 @@ router.get('/order-details', (req, res) => {
 });
 
 router.post('/create-checkin', (req, res) => {
-  const { fullName, pickUpLocation, handInLocation, pickUpDateTime, handInDateTime, reservationID } = req.body;
+  const { fullName, email, pickUpLocation, handInLocation, pickUpDateTime, handInDateTime, reservationID } = req.body;
 
   async function postData(url, data) {
     const response = await fetch(url, {
@@ -44,19 +46,40 @@ router.post('/create-checkin', (req, res) => {
     return response.json();
   }
 
-  postData(process.env.WALLET_URL, req.body).then((data) => {
-    if (!data.errors) {
-      res.send({
-        status: '200',
-        serialNumber: data.serialNumber,
-      });
-    } else {
-      res.send({
-        status: '404',
-        errors: data.errors,
-      });
-    }
-  });
+    postData(process.env.WALLET_URL, req.body).then((data) => {
+      if(!data.errors) {
+        const msg = {
+          to: email,
+          from: 'europauto2021@outlook.com',
+          templateId: 'd-d13520409a12422783f1f2bf35983b45',
+          dynamicTemplateData: {
+            firstName: firstName,
+            pickUpLocation: pickUpLocation,
+            pickUpDateTime: pickUpDateTime,
+            serialNumber: data.serialNumber,
+            reservationID: reservationID
+          },
+          };
+          sgMail
+            .send(msg)
+            .then(() => {
+              console.log('Email sent')
+            })
+            .catch((error) => {
+              console.error(error)
+            })
+
+        res.send({
+          status: '200',
+          serialNumber: data.serialNumber
+        });
+      } else {
+        res.send({
+          status: '404',
+          errors: data.errors
+        });
+      }
+    })
 });
 
 router.post('/create-verification-session', async (req, res) => {
@@ -75,6 +98,12 @@ router.post('/create-verification-session', async (req, res) => {
 
   console.log('User verification');
   res.end(JSON.stringify(clientSecret));
+});
+
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 // router.get('/addressdata', (req, res) => {
