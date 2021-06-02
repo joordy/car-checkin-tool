@@ -1,8 +1,9 @@
 // React imports
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as Styles from './showQRCode.styles.js'
 import { Icons } from 'components/atoms/index'
 import { SingleButtonWrapper } from 'components/molecules/index'
+import { data } from 'browserslist'
 
 // React component
 const ShowQRCode = ({ title }) => {
@@ -16,54 +17,117 @@ const ShowQRCode = ({ title }) => {
         moveElement.style.transform = 'translateX(-200vw)'
     }
 
-    // async function postData(url = '', data = {}) {
-    //     // Default options are marked with *
-    //     const response = await fetch(url, {
-    //         method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //         mode: 'cors', // no-cors, *cors, same-origin
-    //         credentials: 'same-origin', // include, *same-origin, omit
-    //         headers: {
-    //             Authorization:
-    //                 'Basic QmVoc0pHTGZtWUtjaHl0TWlweE14TElQa1RvWnlwZ0tBbGZLT0h4SUd5T0diZGNwdGFodklyZm1Eem1icGtNWDpCZWhzSkdMZm1ZS2NoeXRNaXB4TXhMSVBrVG9aeXBnS0FsZktPSHhJR3lPR2JkY3B0YWh2SXJmbUR6bWJwa01Y',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data), // body data type must match "Content-Type" header
-    //     })
-    //     return response.json() // parses JSON response into native JavaScript objects
-    // }
+    const user2 = {
+        firstName: 'Kelly',
+        lastName: 'de Jong',
+        email: 'kellydejong@gmail.com',
+        password: 'Welkom123',
+        phone: '+31 6 12345678',
+        birthDate: '01-01-1997',
+        userID: '2e93f955-0632-493c-801f-3c1870fb6cad',
+        reservations: [
+            {
+                reservationID: '2e93f955-0632-493c-801f-3c1870fb6cad',
+                checkedIn: false,
+                pickUpLocation: 'Amsterdam, Overtoom',
+                pickUpDate: '02-06-2021',
+                pickUpTime: '09:00',
+                handInLocation: 'Amsterdam, Overtoom',
+                handInDate: '05-06-2921',
+                handInTime: '17:00',
+                class: 'A',
+                rentPrice: 600,
+                extraDriver: 0,
+                lowerOwnRisk: false,
+                otherInfo: {
+                    ownRisk: 450,
+                    deposit: 500,
+                    freeKM: 600,
+                    priceExtraKM: 0.3,
+                },
+                orderDetails: false,
+                verification: {
+                    method: 'location',
+                    verified: false,
+                },
+                paidDeposit: {
+                    method: 'location',
+                    paid: false,
+                },
+                wallet: {
+                    choice: Boolean,
+                    paid: Boolean,
+                },
+                qrCode: true,
+                walletSerialNumber: '4eab2de7-05f2-4c70-b229-c8a183d85d03',
+            },
+        ],
+    }
 
-    // function getData(serial) {
-    //     fetch(`https://api.passslot.com/v1/passes/pass.slot.generic/${serial}`, {
-    //         headers: {
-    //             Authorization:
-    //                 'Basic QmVoc0pHTGZtWUtjaHl0TWlweE14TElQa1RvWnlwZ0tBbGZLT0h4SUd5T0diZGNwdGFodklyZm1Eem1icGtNWDpCZWhzSkdMZm1ZS2NoeXRNaXB4TXhMSVBrVG9aeXBnS0FsZktPSHhJR3lPR2JkY3B0YWh2SXJmbUR6bWJwa01Y',
-    //         },
-    //     })
-    //         .then((response) => response.blob())
-    //         .then((blob) => {
-    //             var url = window.URL.createObjectURL(blob)
-    //             var a = document.querySelector('a#wallet')
-    //             a.href = url
-    //             a.download = 'europcar.pkpass'
-    //         })
-    //         .catch((error) => console.error('Error with fetch', error))
-    // }
+    const [walletSerial, setWalletSerial] = useState('')
 
-    // //2026fe31-e314-4c10-9318-0b05ccb17881
-    // let walletURL
-    // useEffect(() => {
-    //     postData('https://api.passslot.com/v1/templates/5119469477953536/pass', {
-    //         reservationId: '123456789',
-    //         pickLocation: 'Overtoom',
-    //         name: 'Kelly de Jong',
-    //         dropLocation: 'Overtoom',
-    //         dropDate: '19-06-2021',
-    //         pickDate: '20-06-201',
-    //     }).then((data) => {
-    //         console.log(data) // JSON data parsed by `data.json()` call
-    //         getData(data.serialNumber)
-    //     })
-    // }, [])
+    const currentReservation = '2e93f955-0632-493c-801f-3c1870fb6cad'
+    const currentReservationData =
+        user2.reservations[
+            user2.reservations
+                .map((reservation) => reservation.reservationID)
+                .indexOf(currentReservation)
+        ]
+
+    const {
+        pickUpLocation,
+        handInLocation,
+        pickUpDate,
+        pickUpTime,
+        handInDate,
+        handInTime,
+        reservationID,
+        qrCode,
+        walletSerialNumber,
+    } = currentReservationData
+
+    async function verifyCheckin() {
+        if (currentReservationData && qrCode === true) {
+            setWalletSerial('4eab2de7-05f2-4c70-b229-c8a183d85d03')
+        } else if (currentReservationData && qrCode === false) {
+            const userData = {
+                firstName: user2.firstName,
+                fullName: `${user2.firstName} ${user2.lastName}`,
+                email: user2.email,
+                pickUpLocation: pickUpLocation,
+                handInLocation: handInLocation,
+                pickUpDateTime: `${pickUpDate} ${pickUpTime}`,
+                handInDateTime: `${handInDate} ${handInTime}`,
+                reservationID: reservationID,
+            }
+
+            createCheckin(userData).then((data) => {
+                if (data && data.status === '200') {
+                    qrCode = true
+                    walletSerialNumber = data.serialNumber
+                    setWalletSerial(data.serialNumber)
+                } else {
+                    console.error('Kan pas niet aanmaken')
+                    console.log(data.errors)
+                }
+            })
+        }
+    }
+
+    async function createCheckin(data) {
+        const response = await fetch('/create-checkin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        return response.json()
+    }
+
+    useEffect(() => {
+        verifyCheckin()
+    }, [])
 
     return (
         <Styles.Section>
@@ -75,19 +139,19 @@ const ShowQRCode = ({ title }) => {
                 <section>
                     <div>
                         <h3>Ophaallocatie</h3>
-                        <p>Testen</p>
+                        <p>Amsterdam, Overtoom</p>
                     </div>
                     <div>
                         <h3>Afleverlocatie</h3>
-                        <p>Testen</p>
+                        <p>Amsterdam, Overtoom</p>
                     </div>
                     <div>
                         <h3>Ophaaldatum</h3>
-                        <p>Testen</p>
+                        <p>16 juni 2021 16:00</p>
                     </div>
                     <div>
                         <h3>Afleverdatum</h3>
-                        <p>Testen</p>
+                        <p>18 juni 2021 11:00</p>
                     </div>
                 </section>
                 <p className="klasse">Klasse A</p>
@@ -95,10 +159,15 @@ const ShowQRCode = ({ title }) => {
                     src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$example"
                     alt="qr code met reserveringsinformatie"
                 />
-                <a id="wallet" rel="noopener noreferrer">
+                <a
+                    href={`/card/${walletSerial}`}
+                    target="_blank"
+                    id="wallet"
+                    rel="noopener noreferrer"
+                >
                     <img
                         src="https://support.apple.com/library/content/dam/edam/applecare/images/nl_NL/iOS/add-to-apple-wallet-logo.png"
-                        alt="Flowers in Chania"
+                        alt="Voeg toe aan Apple Wallet"
                     />
                 </a>
             </article>
