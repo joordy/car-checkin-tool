@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 let reservation;
 
 router.get('/reservations', (req, res) => {
@@ -17,6 +17,32 @@ router.post('/order-details', (req, res) => {
 });
 
 router.get('/order-details', (req, res) => {
+  console.log(reservation);
+  const data = () => {
+    if (!reservation) {
+      return 'undefined';
+    } else {
+      return reservation;
+    }
+  };
+
+  res.end(JSON.stringify(data()));
+});
+
+router.get('/verification', (req, res) => {
+  console.log(reservation);
+  const data = () => {
+    if (!reservation) {
+      return 'undefined';
+    } else {
+      return reservation;
+    }
+  };
+
+  res.end(JSON.stringify(data()));
+});
+
+router.get('/deposit', (req, res) => {
   console.log(reservation);
   const data = () => {
     if (!reservation) {
@@ -46,40 +72,40 @@ router.post('/create-checkin', (req, res) => {
     return response.json();
   }
 
-    postData(process.env.WALLET_URL, req.body).then((data) => {
-      if(!data.errors) {
-        const msg = {
-          to: email,
-          from: 'europauto2021@outlook.com',
-          templateId: 'd-d13520409a12422783f1f2bf35983b45',
-          dynamicTemplateData: {
-            firstName: firstName,
-            pickUpLocation: pickUpLocation,
-            pickUpDateTime: pickUpDateTime,
-            serialNumber: data.serialNumber,
-            reservationID: reservationID
-          },
-          };
-          sgMail
-            .send(msg)
-            .then(() => {
-              console.log('Email sent')
-            })
-            .catch((error) => {
-              console.error(error)
-            })
+  postData(process.env.WALLET_URL, req.body).then((data) => {
+    if (!data.errors) {
+      const msg = {
+        to: email,
+        from: 'europauto2021@outlook.com',
+        templateId: 'd-d13520409a12422783f1f2bf35983b45',
+        dynamicTemplateData: {
+          firstName: firstName,
+          pickUpLocation: pickUpLocation,
+          pickUpDateTime: pickUpDateTime,
+          serialNumber: data.serialNumber,
+          reservationID: reservationID,
+        },
+      };
+      sgMail
+        .send(msg)
+        .then(() => {
+          console.log('Email sent');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
 
-        res.send({
-          status: '200',
-          serialNumber: data.serialNumber
-        });
-      } else {
-        res.send({
-          status: '404',
-          errors: data.errors
-        });
-      }
-    })
+      res.send({
+        status: '200',
+        serialNumber: data.serialNumber,
+      });
+    } else {
+      res.send({
+        status: '404',
+        errors: data.errors,
+      });
+    }
+  });
 });
 
 router.post('/create-verification-session', async (req, res) => {
@@ -101,10 +127,10 @@ router.post('/create-verification-session', async (req, res) => {
 });
 
 // All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-  // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-  res.sendFile(path.join(__dirname + '../client/build/index.html'));
-});
+// router.get('*', (req, res) => {
+//   // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+//   res.sendFile(path.join(__dirname + '../client/build/index.html'));
+// });
 
 // router.get('/addressdata', (req, res) => {
 //   console.log('testje');
