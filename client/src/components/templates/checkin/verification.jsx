@@ -8,8 +8,26 @@ import { StepsExplainer, UserChoice, CheckIdentity, CheckFacial } from 'componen
 const Verification = () => {
     const [reservations, setReservations] = useState([])
     const [items, setItems] = useState('')
+    const [carReservation, setCarReservation] = useState([])
+
+    const getData = async () => {
+        const data = await fetch('/order-details')
+        const response = await data.json()
+        if (response === 'undefined') {
+            window.location.href = '/reservations'
+        } else {
+            setCarReservation(response)
+        }
+    }
+
+    const fetchItems = async () => {
+        const data = await fetch('/create-verification-session')
+        const items = await data.json()
+        setItems(items)
+    }
 
     useEffect(() => {
+        getData()
         readDB()
         fetchItems()
     }, [])
@@ -19,11 +37,6 @@ const Verification = () => {
         setReservations(data)
     }
 
-    const fetchItems = async () => {
-        const data = await fetch('/create-verification-session')
-        const items = await data.json()
-        setItems(items)
-    }
     console.log('items', items)
 
     console.log('reservations', reservations)

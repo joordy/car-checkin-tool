@@ -19,18 +19,21 @@ const OrderDetails = () => {
     }
 
     const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        // .filter('userID', 'eq', `${currentUserID}`)
+        const { data, error } = await supabase
+            .from('users')
+            .select()
+            .filter('userID', 'eq', `${carReservation.user.userID}`)
         if (!error) {
             // setReservations(data)
         } else {
             console.log(error)
         }
+        console.log(data)
     }
 
     useEffect(() => {
-        readDB()
         getData()
+        readDB()
     }, [])
 
     console.log(carReservation)
