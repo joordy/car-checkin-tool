@@ -32,21 +32,25 @@ const Reservations = () => {
             })()}
 
             <Styles.Main>
-                {firstUser.cars.length > 1 ? (
+                {firstUser && (
                     <>
-                        <h2>Mijn Reserveringen</h2>
-                        {firstUser.cars.map((item) => {
-                            return (
-                                <ReservationCard
-                                    key={item.reservationID}
-                                    {...item}
-                                    user={firstUser}
-                                />
-                            )
-                        })}
+                        {firstUser.cars.length > 1 ? (
+                            <>
+                                <h2>Mijn Reserveringen</h2>
+                                {firstUser.cars.map((item) => {
+                                    return (
+                                        <ReservationCard
+                                            key={item.reservationID}
+                                            {...item}
+                                            user={firstUser}
+                                        />
+                                    )
+                                })}
+                            </>
+                        ) : (
+                            <EmptyReservation />
+                        )}
                     </>
-                ) : (
-                    <EmptyReservation />
                 )}
             </Styles.Main>
         </>
