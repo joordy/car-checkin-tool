@@ -37,21 +37,24 @@ Voor het controleren van de identiteit en/of rijbewijs van de gebruiker, maken w
 Voor dit project maken we een eigen database aan, waar wij gebruikers in opslaan en hun reserveringen, met alle bijbehorende informatie hiervoor:
 
 ```js
-{
-  "users": {
-    idString: {
+    user[0]: {
       "firstName": String,
       "lastName": String,
       "email": String,
-      "phone": Number,
+      "password": String,
+      "phone": String,
       "birthDate": Date,
+      "userID”: String,
       "reservations": [
         {
-          "reservation": Number,
+          "reservationID": String,
           "checkedIn": Boolean,
+          "pickUpLocation": String,
           "pickUpDate": Date,
           "pickUpTime": Time,
           "handInDate": Date,
+
+       "handInLocation": String,
           "handInTime": Time,
           "class": String,
           "rentPrice": Number,
@@ -63,19 +66,27 @@ Voor dit project maken we een eigen database aan, waar wij gebruikers in opslaan
             "freeKM": Number,
             "priceExtraKM": Number
           },
-          "paidDeposit": Boolean,
-          "qrCode": String
+          "orderDetails": Boolean,
+          "verified": {
+             "choice": Boolean,
+             "id": Boolean
+             "image": Boolean
+          },
+          "paidDeposit": {
+             "choice": Boolean,
+             "paid": Boolean
+          },
+         "wallet": {
+             "choice": Boolean,
+             "paid": Boolean
+          },
+          "qrCode": String,
+          "walletSerialNumber": String
         },
-        {
-          "reservation": ...
-        }
-      ]
-    },
-    idString: {
-      "firstName": ...
-    }
-  }
-}
+     ],
+     user[1]: {
+      ...
+     }
 ```
 
 ## Tech-stack
