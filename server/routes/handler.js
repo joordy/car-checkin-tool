@@ -1,11 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+let reservation;
 
 router.get('/reservations', (req, res) => {
   console.log('reservation page');
   const str = 'reservation page';
   res.end(JSON.stringify(str));
+});
+
+router.post('/order-details', (req, res) => {
+  reservation = req.body;
+  res.end(JSON.stringify(req.body));
+});
+
+router.get('/order-details', (req, res) => {
+  console.log(reservation);
+  const data = () => {
+    if (!reservation) {
+      return 'undefined';
+    } else {
+      return reservation;
+    }
+  };
+
+  res.end(JSON.stringify(data()));
 });
 
 router.post('/create-checkin', (req, res) => {

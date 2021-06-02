@@ -1,18 +1,11 @@
 // React imports
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
 import { ReservationCard, ReservationHeader } from 'components/organisms/index'
-import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from 'store/actions/index'
 
 // React component
 const Reservations = () => {
-    const counter = useSelector((state) => state.counter)
-    const dispatch = useDispatch()
-
-    console.log(counter)
-
     const [reservations, setReservations] = useState([])
 
     const readDB = async () => {
