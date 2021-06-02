@@ -7,6 +7,11 @@ router.get('/reservations', (req, res) => {
   res.end(JSON.stringify(str));
 });
 
+router.post('/order-details', async (req, res) => {
+  console.log(req.body);
+  console.log('fetch');
+});
+
 router.post('/create-verification-session', async (req, res) => {
   const stripe = require('stripe')(
     'sk_test_51IsTukJEAzd2OWuLk3FnSrJQnDxX3VuWZRtUIkCCvEBhK20GOantGHhar8kn1eqtYLtZ1qSX0hvVZ2lwyRWkCl5n002JbZmNr2'

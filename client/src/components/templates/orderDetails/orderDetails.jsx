@@ -1,11 +1,15 @@
 // React & Components imports
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './orderDetails.styles.js'
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
+import { CurrentCarContext } from 'context/carContext'
 
 // Component
 const OrderDetails = () => {
+    const [carReservation, setCarReservation] = useContext(CurrentCarContext)
+    console.log('carReservation', carReservation)
+
     let currentCarCheckin = JSON.parse(window.localStorage.getItem('CurrentCarCheckin'))
     let currentUserID = JSON.parse(window.localStorage.getItem('CurrentUser'))
     let currentReservation

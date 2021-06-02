@@ -1,5 +1,5 @@
 // React imports
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
 import { ReservationCard, ReservationHeader } from 'components/organisms/index'
@@ -38,8 +38,6 @@ const Reservations = () => {
 
             <Styles.Main>
                 <h2>Mijn Reserveringen</h2>
-                {/*<button onClick={() => dispatch(increment())}>+</button>
-                <button onClick={() => dispatch(decrement())}>-</button>*/}
                 {(() => {
                     if (firstUser) {
                         return firstUser.cars.map((item) => {
