@@ -17,7 +17,7 @@ const Reservations = () => {
         readDB()
     }, [])
 
-    const firstUser = reservations[3]
+    const firstUser = reservations[0]
 
     console.log(firstUser)
 

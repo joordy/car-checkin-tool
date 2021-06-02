@@ -77,6 +77,12 @@ router.post('/create-verification-session', async (req, res) => {
   res.end(JSON.stringify(clientSecret));
 });
 
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  // res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
 // router.get('/addressdata', (req, res) => {
 //   console.log('testje');
 //   const str = [
