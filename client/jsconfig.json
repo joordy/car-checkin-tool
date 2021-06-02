@@ -6,7 +6,8 @@
             "firebaseSetup/*": ["src/firebaseSetup/*"],
             "store/*": ["src/store/*"],
             "database/*": ["src/db/*"],
-            "utils/*": ["src/utils/*"]
+            "utils/*": ["src/utils/*"],
+            "context/*": ["src/context/*"]
         }
     },
     "include": ["src"]
