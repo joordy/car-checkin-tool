@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const Login = styled.section`
+    .error {
+        color: ${colors.error};
+    }
+
     main {
         padding: 75px 25px;
     }
