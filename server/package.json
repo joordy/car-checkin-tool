@@ -11,7 +11,7 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd .. && cd client && npm install --only=dev && npm install && npm run build"
   },
-  "proxy": "http://localhost:7000/",
+  "proxy": "https://car-checkin-backend.herokuapp.com/",
   "keywords": [],
   "author": "",
   "license": "ISC",
