@@ -22,7 +22,6 @@ const Card = () => {
                 a.download = 'europcar.pkpass'
                 a.click()
                 a.remove()
-                //window.close()
             })
             .catch((error) => console.error('Error with fetch', error))
     }
