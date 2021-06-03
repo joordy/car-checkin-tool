@@ -12,11 +12,13 @@ router.get('/reservations', (req, res) => {
 });
 
 router.post('/order-details', (req, res) => {
+  console.log('req.body', req.body);
   reservation = req.body;
   res.end(JSON.stringify(req.body));
 });
 
 router.get('/order-details', (req, res) => {
+  console.log('test, server approached');
   console.log(reservation);
   const data = () => {
     if (!reservation) {

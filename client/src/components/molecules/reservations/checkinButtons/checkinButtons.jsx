@@ -20,7 +20,7 @@ const CheckinButtons = ({ ...props }) => {
 
     const handleIncheck = async (event) => {
         console.log('hi')
-        fetch('/order-details', {
+        fetch(`${process.env.REACT_APP_BACKEND}/order-details`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
