@@ -8,13 +8,13 @@ export const Section = styled.section`
     article {
         background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
         width: 100%;
-        height: 100vh;
+        height: 100%;
         h1 {
             text-align: center;
             color: ${colors.white};
-            padding-top: 3em;
             width: 7em;
-            margin: 0 auto 1em auto;
+            margin: 0 auto;
+            padding: 3rem 0 1rem;
             ${(props) => {
                 if (props.step != 0)
                     return `
