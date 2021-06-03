@@ -11,7 +11,7 @@ const CheckFacial = () => {
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
+        moveElement.style.transform = 'translateX(-300vw)'
     }
 
     const startVideo = () => {
@@ -54,13 +54,13 @@ const CheckFacial = () => {
                 <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
-            <Styles.IdentityChecker>
+            <Styles.ImageChecker>
                 {navigator.getUserMedia ? (
                     <>
                         <video muted autoPlay id="videoWrapper"></video>
                         {playing ? (
                             <div>
-                                <ButtonTertiary text="Maak foto" _callback={makeImage} />
+                                <ButtonTertiary type="btn" text="Maak foto" _callback={makeImage} />
                             </div>
                         ) : (
                             <ButtonPrimary type="btn" text="Open camera" _callback={startVideo} />
@@ -69,7 +69,7 @@ const CheckFacial = () => {
                 ) : (
                     <input type="file" accept="image/*" />
                 )}
-            </Styles.IdentityChecker>
+            </Styles.ImageChecker>
 
             <VerificationButtons
                 typeSecondary="btn"

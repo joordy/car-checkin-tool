@@ -20,7 +20,7 @@ const CheckinButtons = ({ ...props }) => {
 
     const handleIncheck = async (event) => {
         console.log('hi')
-        fetch('/order-details', {
+        fetch(`${process.env.REACT_APP_BACKEND}/order-details`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -33,7 +33,7 @@ const CheckinButtons = ({ ...props }) => {
     return (
         <Styles.Wrapper>
             {(() => {
-                if (days > 0 && days < 7) {
+                if (days >= 0 && days < 7) {
                     return (
                         <div className="buttonWrapper">
                             <ButtonPrimary

@@ -2,7 +2,13 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './verification.styles.js'
-import { StepsExplainer, UserChoice, CheckIdentity, CheckFacial } from 'components/organisms/index'
+import {
+    StepsExplainer,
+    CheckDrivers,
+    UserChoice,
+    CheckIdentity,
+    CheckFacial,
+} from 'components/organisms/index'
 
 // React component
 const Verification = () => {
@@ -11,7 +17,7 @@ const Verification = () => {
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
-        const data = await fetch('/order-details')
+        const data = await fetch('/verification')
         const response = await data.json()
         if (response === 'undefined') {
             window.location.href = '/reservations'
@@ -20,8 +26,8 @@ const Verification = () => {
         }
     }
 
-    const fetchItems = async () => {
-        const data = await fetch('/create-verification-session')
+    const verifyIdentity = async () => {
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/create-verification-session`)
         const items = await data.json()
         setItems(items)
     }
@@ -29,7 +35,7 @@ const Verification = () => {
     useEffect(() => {
         getData()
         readDB()
-        fetchItems()
+        verifyIdentity()
     }, [])
 
     const readDB = async () => {
@@ -38,13 +44,16 @@ const Verification = () => {
     }
 
     console.log('items', items)
+    console.log('current reservation:', carReservation)
 
-    console.log('reservations', reservations)
+    let viewportHeight = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
     return (
-        <Styles.Main>
+        <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/addressdata" step="1" />
+                <StepsExplainer backLink="/order-details" step="1" />
+                <CheckDrivers />
                 <UserChoice
                     title="Verifieer je eigen rijbewijs"
                     text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
@@ -55,6 +64,8 @@ const Verification = () => {
                     twoText="Bij de Europcar locatie"
                     threeTitle="Stap voor nu overslaan"
                     threeText="Je kunt later alsnog een keuze maken."
+                    movingRight="-100vw"
+                    movingLeft="-300vw"
                 />
                 <CheckIdentity />
                 <CheckFacial />

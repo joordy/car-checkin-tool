@@ -6,29 +6,30 @@ import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/orga
 
 // Component
 const OrderDetails = () => {
+    console.log(process.env.REACT_APP_BACKEND)
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
-        const data = await fetch('/order-details')
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/order-details`)
+        console.log(data)
         const response = await data.json()
         if (response === 'undefined') {
-            window.location.href = '/reservations'
+            console.log(response)
+            // window.location.href = '/reservations'
         } else {
             setCarReservation(response)
         }
     }
 
     const readDB = async () => {
-        const { data, error } = await supabase
-            .from('users')
-            .select()
-            .filter('userID', 'eq', `${carReservation.user.userID}`)
+        const { data, error } = await supabase.from('users').select()
+        // .filter('userID', 'eq', `${carReservation.user.userID}`)
         if (!error) {
             // setReservations(data)
         } else {
             console.log(error)
         }
-        console.log(data)
+        // console.log(data)
     }
 
     useEffect(() => {
@@ -36,10 +37,13 @@ const OrderDetails = () => {
         readDB()
     }, [])
 
-    console.log(carReservation)
+    console.log('current reservation:', carReservation)
+
+    let viewportHeight = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
     return (
-        <Styles.Main>
+        <Styles.Main className="page">
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/reservations" step="0" />
                 <CheckUserInfo />

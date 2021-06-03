@@ -115,7 +115,7 @@ const ShowQRCode = ({ title }) => {
     }
 
     async function createCheckin(data) {
-        const response = await fetch('/create-checkin', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/create-checkin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ const ShowQRCode = ({ title }) => {
                 </a>
             </article>
 
-            <SingleButtonWrapper text="Terug naar account" link="#" callback={moveRight} />
+            <SingleButtonWrapper type="href" text="Terug naar account" link="/reservations" />
         </Styles.Section>
     )
 }

@@ -18,6 +18,10 @@ export { default as CheckUserInfo } from './checkinSteps/orderDetails/checkUserI
 // User Verification steps
 export { default as CheckFacial } from './checkinSteps/verification/checkFacial/checkFacial'
 export { default as CheckIdentity } from './checkinSteps/verification/checkIdentity/checkIdentity'
+export { default as CheckDrivers } from './checkinSteps/verification/checkDrivers/checkDrivers'
+
+// User Deposit steps
+export { default as DepositForm } from './checkinSteps/deposit/depositForm.jsx'
 
 // User QR code
 export { default as ShowQRCode } from './showQRCode/showQRCode'

@@ -7,6 +7,9 @@ export const Section = styled.section`
     height: 100%;
     position: relative;
     overflow: hidden;
+    > .testje {
+        height: 100%;
+    }
     header {
         margin-bottom: 2em;
         &:nth-of-type(1) {

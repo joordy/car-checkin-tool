@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
+export const Container = styled.div`
+    position: relative;
+    overflow: hidden;
+`
+
 export const Section = styled.section`
     width: calc(100vw - 3rem);
     padding: 2.5rem 1.5rem 1.5rem;
@@ -23,42 +28,55 @@ export const Section = styled.section`
             }
         }
     }
-
-    article {
-        p {
-            margin: 0.4em 0;
-
-            &:nth-child(even) {
-                text-align: right;
+    section {
+        article {
+            &:nth-of-type(2) {
+                display: block !important;
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
             }
-        }
+            p {
+                margin: 0.4em 0;
 
-        &:nth-of-type(1) {
-            margin-top: 5vh;
-        }
-
-        &:nth-of-type(3) {
-            margin-top: 1vh;
-        }
-
-        &:nth-of-type(1),
-        &:nth-of-type(3) {
-            display: grid;
-            grid-template-columns: 60% 40%;
-
-            p:first-child {
-                font-weight: 600;
+                &:nth-child(even) {
+                    text-align: right;
+                }
             }
-        }
 
-        &:nth-of-type(2),
-        &:nth-of-type(4) {
-            display: grid;
-            grid-template-columns: 40% 60%;
+            &:nth-of-type(1) {
+                margin-top: 2rem;
+            }
 
-            p:nth-child(even),
-            p:nth-child(even) {
-                color: ${colors.secondaryText};
+            &:nth-of-type(3) {
+                margin-top: 1rem;
+            }
+
+            &:nth-of-type(1),
+            &:nth-of-type(3) {
+                display: grid;
+                grid-template-columns: 60% 40%;
+
+                p:first-child {
+                    font-weight: 600;
+                }
+            }
+
+            &:nth-of-type(2),
+            &:nth-of-type(4) {
+                display: grid;
+                grid-template-columns: 40% 60%;
+
+                p:nth-child(even),
+                p:nth-child(even) {
+                    color: ${colors.secondaryText};
+                }
             }
         }
     }
