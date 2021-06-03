@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
-    height: 100%;
+    /* height: 100%; */
+    max-height: 60vh;
     padding: 2.5rem 1.5rem 1.5rem;
     position: relative;
     overflow: hidden;
@@ -22,12 +23,13 @@ export const Section = styled.section`
     }
 `
 
-export const IdentityChecker = styled.article`
+export const ImageChecker = styled.article`
     position: relative;
     left: -1.5rem;
     width: 100vw;
-    height: min(250px, 60vh);
-    margin: 1.5rem 0 2rem;
+
+    /* height: min(250px, 60vh); */
+    margin: 2rem 0;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
     video {
         width: calc(100% - 3rem);

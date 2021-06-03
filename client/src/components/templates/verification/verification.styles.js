@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 
 export const Main = styled.main`
-    height: calc(100vh);
-    width: 100vw;
+    position: relative;
+    top: 0px;
+    height: calc(100vh - 7em);
+    display: block;
     overflow: hidden;
     label {
         margin-top: 1em;
     }
     div.stepsWrapper {
-        max-height: 100%;
+        height: inherit;
         display: flex;
         flex-flow: row nowrap;
         width: 100vw;
