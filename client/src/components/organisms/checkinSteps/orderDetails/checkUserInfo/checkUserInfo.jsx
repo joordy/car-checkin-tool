@@ -24,23 +24,25 @@ const CheckUserInfo = () => {
                 <Icons type="close" width="1.5rem" height="1.5em" />
             </header>
 
-            <article>
-                <p>Algemene gegevens</p>
-                <EditButton />
-            </article>
-            <hr />
-            <article>
-                <p>Voornaam</p>
-                <p>Kelly</p>
-                <p>Achternaam</p>
-                <p>de Jong</p>
-                <p>E-mailadres</p>
-                <p>kellydjong@hotmail.com</p>
-                <p>Telefoonnummer</p>
-                <p>0645542811</p>
-                <p>Geboortedatum</p>
-                <p>23 februari 1997</p>
-            </article>
+            <section>
+                <article>
+                    <p>Algemene gegevens</p>
+                    <EditButton />
+                </article>
+                <hr />
+                <article>
+                    <p>Voornaam</p>
+                    <p>Kelly</p>
+                    <p>Achternaam</p>
+                    <p>de Jong</p>
+                    <p>E-mailadres</p>
+                    <p>kellydjong@hotmail.com</p>
+                    <p>Telefoonnummer</p>
+                    <p>0645542811</p>
+                    <p>Geboortedatum</p>
+                    <p>23 februari 1997</p>
+                </article>
+            </section>
 
             <VerificationButtons
                 typeSecondary="btn"

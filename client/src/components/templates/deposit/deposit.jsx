@@ -17,8 +17,11 @@ const PageOne = () => {
         readDB()
     }, [])
 
+    let viewportHeight = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
+
     return (
-        <Styles.Main>
+        <Styles.Main className="page">
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/verification" step="2" />
                 <UserChoice
@@ -32,6 +35,8 @@ const PageOne = () => {
                     threeTitle="Stap voor nu overslaan"
                     threeText="Je kunt later alsnog een keuze maken."
                     deposit="500,-"
+                    movingRight="0vw"
+                    movingLeft="-200vw"
                 />
                 <DepositForm />
             </div>

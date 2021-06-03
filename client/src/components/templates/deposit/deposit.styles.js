@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 
 export const Main = styled.main`
-    height: calc(100vh);
-    width: 100vw;
+    position: relative;
+    top: 0px;
+    height: calc(100vh - 7em);
+    display: block;
     overflow: hidden;
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
     div.stepsWrapper {
-        max-height: 100%;
+        height: inherit;
         display: flex;
         flex-flow: row nowrap;
         width: 100vw;
