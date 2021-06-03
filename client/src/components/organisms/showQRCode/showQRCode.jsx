@@ -172,7 +172,7 @@ const ShowQRCode = ({ title }) => {
                 </a>
             </article>
 
-            <SingleButtonWrapper text="Terug naar account" link="#" callback={moveRight} />
+            <SingleButtonWrapper type="href" text="Terug naar account" link="/reservations" />
         </Styles.Section>
     )
 }

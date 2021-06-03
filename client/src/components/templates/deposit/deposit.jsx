@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './deposit.styles.js'
-import { StepsExplainer, UserChoice } from 'components/organisms/index'
+import { StepsExplainer, UserChoice, DepositForm } from 'components/organisms/index'
 
 // React component
 const PageOne = () => {
@@ -33,6 +33,7 @@ const PageOne = () => {
                     threeText="Je kunt later alsnog een keuze maken."
                     deposit="500,-"
                 />
+                <DepositForm />
             </div>
         </Styles.Main>
     )
