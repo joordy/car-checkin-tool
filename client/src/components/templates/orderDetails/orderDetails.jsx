@@ -36,8 +36,11 @@ const OrderDetails = () => {
 
     console.log('current reservation:', carReservation)
 
+    let viewportHeight = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
+
     return (
-        <Styles.Main>
+        <Styles.Main className="page">
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/reservations" step="0" />
                 <CheckUserInfo />

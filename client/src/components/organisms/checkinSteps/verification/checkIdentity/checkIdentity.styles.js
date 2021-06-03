@@ -3,7 +3,7 @@ import * as colors from 'styles/colors'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
-    height: 100%;
+    /* height: 100%; */
     padding: 2.5rem 1.5rem 1.5rem;
     position: relative;
     overflow: hidden;
@@ -27,8 +27,8 @@ export const IdentityChecker = styled.article`
     position: relative;
     left: -1.5rem;
     width: 100vw;
-    height: min(300px, 60vh);
-    margin: 1.5rem 0 2rem;
+    height: calc(100% - 350px);
+    margin: 2rem 0;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
     button {
         padding: 1.5rem;

@@ -17,19 +17,15 @@ const QRCode = () => {
         readDB()
     }, [])
 
+    let viewportHeight = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
+
     return (
-        <Styles.Main>
+        <Styles.Main className="page">
             <div className="stepsWrapper">
                 <StepsExplainer backLink="/deposit" step="3" />
                 <ShowQRCode title="Reservering 1234" />
             </div>
-            {/*
-            <VerificationOne />
-            <VerificationTwo />
-            <VerificationThree />
-            <VerificationFour />
-            <StepsBorg />
-            <BorgPayments /> */}
         </Styles.Main>
     )
 }

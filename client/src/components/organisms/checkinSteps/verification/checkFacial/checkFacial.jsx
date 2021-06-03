@@ -11,7 +11,7 @@ const CheckFacial = () => {
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
+        moveElement.style.transform = 'translateX(-300vw)'
     }
 
     const startVideo = () => {
