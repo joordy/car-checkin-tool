@@ -56,7 +56,7 @@ router.get('/deposit', (req, res) => {
 });
 
 router.post('/create-checkin', (req, res) => {
-  const { fullName, email, pickUpLocation, handInLocation, pickUpDateTime, handInDateTime, reservationID } = req.body;
+  const { firstName, email, pickUpLocation, pickUpDateTime, reservationID } = req.body;
 
   async function postData(url, data) {
     const response = await fetch(url, {
