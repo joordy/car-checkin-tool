@@ -74,14 +74,15 @@ router.post('/create-checkin', (req, res) => {
 
   postData(process.env.WALLET_URL, req.body).then((data) => {
     if (!data.errors) {
+      console.log(getDate(pickUpDateTime));
       const msg = {
         to: email,
-        from: 'europauto2021@outlook.com',
+        from: {email: 'europauto2021@outlook.com', name: "Europauto Checkin"},
         templateId: 'd-d13520409a12422783f1f2bf35983b45',
         dynamicTemplateData: {
           firstName: firstName,
           pickUpLocation: pickUpLocation,
-          pickUpDateTime: pickUpDateTime,
+          pickUpDateTime: getDate(pickUpDateTime),
           serialNumber: data.serialNumber,
           reservationID: reservationID,
         },
@@ -125,6 +126,19 @@ router.post('/create-verification-session', async (req, res) => {
   console.log('User verification');
   res.end(JSON.stringify(clientSecret));
 });
+
+function getDate(date) {
+  const dateTime = date.split(" ");
+  const dateElements = dateTime[0].split("-");
+  const newDate = `${dateElements[2]}-${dateElements[1]}-${dateElements[0]} ${dateTime[1]}`
+  const dateObject = new Date(newDate);
+  const day = dateObject.toLocaleString("nl-NL", { day: "numeric" });
+  const month = dateObject.toLocaleString("nl-NL", { month: "long" });
+  const year = dateObject.toLocaleString("nl-NL", { year: "numeric" });
+  const time = dateObject.toLocaleString("nl-NL", { hour: "2-digit", minute: '2-digit', hour12: false });
+
+  return `${day} ${month} ${year} om ${time} uur`;
+}
 
 // All other GET requests not handled before will return our React app
 // router.get('*', (req, res) => {
