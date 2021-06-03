@@ -33,7 +33,7 @@ const CheckinButtons = ({ ...props }) => {
     return (
         <Styles.Wrapper>
             {(() => {
-                if (days > 0 && days < 7) {
+                if (days >= 0 && days < 7) {
                     return (
                         <div className="buttonWrapper">
                             <ButtonPrimary
