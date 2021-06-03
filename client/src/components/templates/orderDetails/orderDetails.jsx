@@ -6,13 +6,16 @@ import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/orga
 
 // Component
 const OrderDetails = () => {
+    console.log(process.env.REACT_APP_BACKEND)
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
-        const data = await fetch('/order-details')
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/order-details`)
+        console.log(data)
         const response = await data.json()
         if (response === 'undefined') {
-            window.location.href = '/reservations'
+            console.log(response)
+            // window.location.href = '/reservations'
         } else {
             setCarReservation(response)
         }
