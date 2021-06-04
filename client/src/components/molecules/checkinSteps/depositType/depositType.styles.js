@@ -2,11 +2,6 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const Accordeon = styled.div`
-    &:last-of-type {
-        button {
-            border-bottom: 1px solid grey;
-        }
-    }
     position: relative;
     > button {
         position: relative;

@@ -1,4 +1,4 @@
-// React imports
+// React & Modules imports
 import React from 'react'
 import * as Styles from './checkIdentity.styles.js'
 import { loadStripe } from '@stripe/stripe-js'
@@ -25,7 +25,10 @@ const CheckIdentity = () => {
     const handleClick = async (event) => {
         const stripe = await stripePromise
         // Connect to backend to fetch the verification session
-        const response = await fetch('/create-verification-session', { method: 'POST' })
+        const response = await fetch(
+            `${process.env.REACT_APP_BACKEND}/create-verification-session`,
+            { method: 'POST' },
+        )
         const client_secret = await response.json()
         // Opens verification modal
         const result = await stripe.verifyIdentity(client_secret)

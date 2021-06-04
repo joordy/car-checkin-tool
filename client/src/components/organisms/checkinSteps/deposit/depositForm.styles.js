@@ -8,6 +8,7 @@ export const Section = styled.section`
     overflow-x: hidden;
     overflow-y: scroll;
     header {
+        margin-bottom: 2rem;
         &:nth-of-type(1) {
             position: relative;
             h1 {
@@ -24,16 +25,31 @@ export const Section = styled.section`
         }
     }
     main {
-        margin-bottom: 8rem;
+        margin: 0 0 10rem 0;
         article {
+            margin-bottom: 2rem;
             &:nth-of-type(2) {
                 position: relative;
                 h2 {
                     position: relative;
                     left: -1.5rem;
                     width: 100vw;
-                    /* border-top: 1px solid grey; */
                     padding: 0 0 0.75rem 1.5rem;
+                }
+                > div {
+                    &:last-of-type {
+                        > div {
+                            position: relative;
+                            left: -1.5rem;
+                            border-bottom: 1px solid grey;
+                            width: calc(100% + 3rem);
+                            p {
+                                /* color: hotpink; */
+                                padding: 0 1.5rem;
+                                margin-bottom: -1rem;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -43,34 +59,6 @@ export const Section = styled.section`
 export const DepositForm = styled.form`
     padding-bottom: 2rem;
     width: 100%;
-    > fieldset {
-        border: none;
-        padding: 0.5em 0;
-        overflow: hidden;
-        margin: 0;
-        margin-inline: unset;
-        padding-inline: unset;
-        &:nth-of-type(3) {
-            display: flex;
-            flex-direction: row;
-            div {
-                margin-right: 1rem;
-                > input {
-                    width: 3rem;
-                }
-            }
-        }
-        label {
-            margin-bottom: 0.5rem;
-        }
-        > input {
-            width: calc(100% - 3.2rem);
-            margin: 0;
-        }
-    }
-    button {
-        margin-top: 1rem;
-    }
 `
 
 export const BtnWrapper = styled.article`
