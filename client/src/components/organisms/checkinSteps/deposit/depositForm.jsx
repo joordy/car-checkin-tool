@@ -40,7 +40,11 @@ const DepositForm = () => {
                             Cupidatat dolor aliquip non sunt sit qui aliquip Lorem. Esse aute duis
                             officia adipisicing esse minim. Nisi reprehenderit minim aliqua sit et
                             consectetur sit ea mollit incididunt. Adipisicing sit eu consequat ipsum
-                            proident Lorem reprehenderit.
+                            proident Lorem reprehenderit. Est laborum cillum nisi aliqua do enim ad
+                            sunt sunt id consequat. Cupidatat dolor aliquip non sunt sit qui aliquip
+                            Lorem. Esse aute duis officia adipisicing esse minim. Nisi reprehenderit
+                            minim aliqua sit et consectetur sit ea mollit incididunt. Adipisicing
+                            sit eu consequat ipsum proident Lorem reprehenderit.
                         </p>
                     </DepositType>
                     <DepositType labelText="iDeal">

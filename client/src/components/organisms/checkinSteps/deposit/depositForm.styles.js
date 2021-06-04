@@ -25,13 +25,14 @@ export const Section = styled.section`
     }
     main {
         article {
-            &:nth-of-type(1) {
+            &:nth-of-type(2) {
                 position: relative;
                 h2 {
                     position: relative;
                     left: -1.5rem;
                     width: 100vw;
-                    border-bottom: 1px solid grey;
+                    /* border-top: 1px solid grey; */
+                    padding: 0 0 0.75rem 1.5rem;
                 }
             }
         }

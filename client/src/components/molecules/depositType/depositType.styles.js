@@ -10,14 +10,16 @@ export const Accordeon = styled.div`
         background: transparent;
         text-align: left;
         cursor: pointer;
-        padding: 0;
+        padding: 1.25rem 0 1.25rem 1.5rem;
         border: none;
-        /* border-top: 1px solid grey; */
-        border-bottom: 1px solid grey;
-        p {
-            margin: 0.5em 0;
-        }
+        border-top: 1px solid grey;
     }
-    section {
+    .content-parent {
+        height: 0px;
+        overflow: hidden;
+        transition: height ease 0.3s;
     }
+    /* .content-parent.show {
+        height: auto;
+    } */
 `
