@@ -6,7 +6,8 @@ export const Section = styled.section`
     padding: 2.5rem 1.5rem 1.5rem;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     header {
         &:nth-of-type(1) {
             position: relative;

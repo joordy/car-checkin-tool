@@ -14,12 +14,9 @@ export const Accordeon = styled.div`
         border: none;
         border-top: 1px solid grey;
     }
-    .content-parent {
+    div {
         height: 0px;
         overflow: hidden;
         transition: height ease 0.3s;
     }
-    /* .content-parent.show {
-        height: auto;
-    } */
 `

@@ -16,7 +16,6 @@ const DepositType = ({ labelText, children }) => {
         <Styles.Accordeon>
             <button onClick={() => setIsOpen(!isOpen)}>{labelText}</button>
             <div
-                className="content-parent"
                 ref={parentRef}
                 style={
                     isOpen ? { height: `${parentRef.current.scrollHeight}px` } : { height: '0px' }
