@@ -23,42 +23,16 @@ export const Section = styled.section`
             }
         }
     }
-
-    article {
-        p {
-            margin: 0.4em 0;
-
-            &:nth-child(even) {
-                text-align: right;
-            }
-        }
-
-        &:nth-of-type(1) {
-            margin-top: 5vh;
-        }
-
-        &:nth-of-type(3) {
-            margin-top: 1vh;
-        }
-
-        &:nth-of-type(1),
-        &:nth-of-type(3) {
-            display: grid;
-            grid-template-columns: 60% 40%;
-
-            p:first-child {
-                font-weight: 600;
-            }
-        }
-
-        &:nth-of-type(2),
-        &:nth-of-type(4) {
-            display: grid;
-            grid-template-columns: 40% 60%;
-
-            p:nth-child(even),
-            p:nth-child(even) {
-                color: ${colors.secondaryText};
+    main {
+        article {
+            &:nth-of-type(1) {
+                position: relative;
+                h2 {
+                    position: relative;
+                    left: -1.5rem;
+                    width: 100vw;
+                    border-bottom: 1px solid grey;
+                }
             }
         }
     }
