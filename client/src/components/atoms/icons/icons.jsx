@@ -491,6 +491,33 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                     </svg>
                 </Styles.Icon>
             )
+        case 'skip':
+            return (
+                <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
+                    <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 15 15"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M9.9375 5.875L14 9.9375L9.9375 14"
+                            stroke="#F87700"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M1 1V6.6875C1 7.54945 1.34241 8.3761 1.9519 8.9856C2.5614 9.59509 3.38805 9.9375 4.25 9.9375H14"
+                            stroke="#F87700"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </Styles.Icon>
+            )
     }
 }
 
