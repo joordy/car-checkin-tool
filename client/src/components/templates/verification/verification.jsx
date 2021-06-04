@@ -17,7 +17,7 @@ const Verification = () => {
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
-        const data = await fetch('/verification')
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/verification`)
         const response = await data.json()
         if (response === 'undefined') {
             window.location.href = '/reservations'
@@ -57,7 +57,7 @@ const Verification = () => {
                 <UserChoice
                     title="Verifieer je eigen rijbewijs"
                     text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
-                    labelText="Wanneer wil je je rijbewijs laten verifieren?"
+                    labelText="Wanneer wil je je eigen rijbewijs laten verifieren?"
                     oneTitle="Nu, online"
                     oneText="Dit is de snelste optie"
                     twoTitle="Ter plekke"

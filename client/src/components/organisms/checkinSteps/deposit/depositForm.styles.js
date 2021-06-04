@@ -4,10 +4,11 @@ import * as colors from 'styles/colors'
 export const Section = styled.section`
     width: calc(100vw - 3rem);
     padding: 2.5rem 1.5rem 1.5rem;
-    height: 100%;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     header {
+        margin-bottom: 2rem;
         &:nth-of-type(1) {
             position: relative;
             h1 {
@@ -23,45 +24,41 @@ export const Section = styled.section`
             }
         }
     }
-
-    article {
-        p {
-            margin: 0.4em 0;
-
-            &:nth-child(even) {
-                text-align: right;
-            }
-        }
-
-        &:nth-of-type(1) {
-            margin-top: 5vh;
-        }
-
-        &:nth-of-type(3) {
-            margin-top: 1vh;
-        }
-
-        &:nth-of-type(1),
-        &:nth-of-type(3) {
-            display: grid;
-            grid-template-columns: 60% 40%;
-
-            p:first-child {
-                font-weight: 600;
-            }
-        }
-
-        &:nth-of-type(2),
-        &:nth-of-type(4) {
-            display: grid;
-            grid-template-columns: 40% 60%;
-
-            p:nth-child(even),
-            p:nth-child(even) {
-                color: ${colors.secondaryText};
+    main {
+        margin: 0 0 10rem 0;
+        article {
+            margin-bottom: 2rem;
+            &:nth-of-type(2) {
+                position: relative;
+                h2 {
+                    position: relative;
+                    left: -1.5rem;
+                    width: 100vw;
+                    padding: 0 0 0.75rem 1.5rem;
+                }
+                > div {
+                    &:last-of-type {
+                        > div {
+                            position: relative;
+                            left: -1.5rem;
+                            border-bottom: 1px solid grey;
+                            width: calc(100% + 3rem);
+                            p {
+                                /* color: hotpink; */
+                                padding: 0 1.5rem;
+                                margin-bottom: -1rem;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
+`
+
+export const DepositForm = styled.form`
+    padding-bottom: 2rem;
+    width: 100%;
 `
 
 export const BtnWrapper = styled.article`

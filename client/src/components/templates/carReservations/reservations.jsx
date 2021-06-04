@@ -17,15 +17,15 @@ const Reservations = () => {
         readDB()
     }, [])
 
-    const firstUser = reservations[0]
+    const firstUser = reservations[2]
 
-    console.log(firstUser)
+    console.log(reservations)
 
     return (
         <>
             {(() => {
                 if (reservations[0]) {
-                    return <ReservationHeader user={reservations[0]} />
+                    return <ReservationHeader user={firstUser} />
                 } else {
                     return <ReservationHeader user={{ firstName: 'Lars' }} />
                 }

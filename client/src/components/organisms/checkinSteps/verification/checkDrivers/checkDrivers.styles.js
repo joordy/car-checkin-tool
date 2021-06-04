@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as colors from 'styles/colors'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
@@ -7,6 +8,7 @@ export const Section = styled.section`
     overflow: hidden;
     header {
         position: relative;
+        margin-bottom: 2em;
         h1 {
             width: 70%;
         }
@@ -17,6 +19,11 @@ export const Section = styled.section`
             position: absolute;
             top: 0;
             right: 0;
+        }
+    }
+    section {
+        ol {
+            padding-left: 1.5em;
         }
     }
 `

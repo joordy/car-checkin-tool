@@ -1,8 +1,8 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './checkDrivers.styles.js'
-import { Icons } from 'components/atoms/index'
-import { VerificationButtons } from 'components/molecules/index'
+import { Icons, Label } from 'components/atoms/index'
+import { VerificationButtons, DriverListItem } from 'components/molecules/index'
 
 // React component
 const CheckDrivers = () => {
@@ -25,7 +25,15 @@ const CheckDrivers = () => {
                     hebben. Je kunt de rijbewijzen hier online veilig en gemakkelijk verifiëren.
                 </p>
             </header>
-
+            <section>
+                <Label text="Te verifiëren bestuurders" />
+                <ol>
+                    <DriverListItem type="verified" name="Kelly de Jong" />
+                    <DriverListItem type="location" name="John Doe" />
+                    <DriverListItem type="skiped" name="Jong Kel" />
+                    <DriverListItem name="Anja Riet" subText="Extra bestuurder" />
+                </ol>
+            </section>
             <VerificationButtons
                 typeSecondary="btn"
                 typePrimary="btn"

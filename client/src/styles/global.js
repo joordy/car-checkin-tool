@@ -68,6 +68,9 @@ const GlobalStyle = createGlobalStyle`
   p {
     font-size: 1rem;
   }
+  button {
+    font: unset;
+  }
 
 `
 
