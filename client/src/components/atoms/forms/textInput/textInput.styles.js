@@ -3,7 +3,7 @@ import * as colors from 'styles/colors'
 
 export const Input = styled.input`
     display: block;
-    width: 300px;
+    /* width: 300px; */
     font-weight: normal;
     font-family: 'gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
         Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

@@ -1,8 +1,8 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './depositForm.styles.js'
-import { Icons, EditButton } from 'components/atoms/index.js'
-import { VerificationButtons, DepositType } from 'components/molecules/index'
+import {} from 'components/atoms/index.js'
+import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
 
 // React component
 const DepositForm = () => {
@@ -35,17 +35,7 @@ const DepositForm = () => {
                 <article>
                     <h2>Betaalmethode</h2>
                     <DepositType labelText="Creditcard">
-                        <p>
-                            Est laborum cillum nisi aliqua do enim ad sunt sunt id consequat.
-                            Cupidatat dolor aliquip non sunt sit qui aliquip Lorem. Esse aute duis
-                            officia adipisicing esse minim. Nisi reprehenderit minim aliqua sit et
-                            consectetur sit ea mollit incididunt. Adipisicing sit eu consequat ipsum
-                            proident Lorem reprehenderit. Est laborum cillum nisi aliqua do enim ad
-                            sunt sunt id consequat. Cupidatat dolor aliquip non sunt sit qui aliquip
-                            Lorem. Esse aute duis officia adipisicing esse minim. Nisi reprehenderit
-                            minim aliqua sit et consectetur sit ea mollit incididunt. Adipisicing
-                            sit eu consequat ipsum proident Lorem reprehenderit.
-                        </p>
+                        <DepositCC />
                     </DepositType>
                     <DepositType labelText="iDeal">
                         <p>
