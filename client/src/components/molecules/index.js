@@ -4,4 +4,5 @@ export { default as CheckinButtons } from './reservations/checkinButtons/checkin
 export { default as IconListItem } from './checkinSteps/iconListItem/iconListItem.jsx'
 export { default as VerificationButtons } from './checkinSteps/verificationButtons/verificationButtons.jsx'
 export { default as RadioInput } from './checkinSteps/radioInput/radioInput.jsx'
+export { default as DriverListItem } from './checkinSteps/driverListItem/driverListItem.jsx'
 export { default as SingleButtonWrapper } from './singleButtonWrapper/singleButtonWrapper.jsx'
