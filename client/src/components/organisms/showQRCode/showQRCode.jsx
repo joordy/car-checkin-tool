@@ -133,17 +133,17 @@ const ShowQRCode = ({ title }) => {
         <Styles.Section>
             <header>
                 <h1>Incheckbewijs</h1>
-                <p>Toon onderstaande QR-code bij de Express-balie</p>
+                <p>Toon dit bij de Express-balie</p>
             </header>
             <article>
                 <section>
                     <div>
                         <h3>Ophaallocatie</h3>
-                        <p>Amsterdam, Overtoom</p>
+                        <p>Overtoom</p>
                     </div>
                     <div>
                         <h3>Afleverlocatie</h3>
-                        <p>Amsterdam, Overtoom</p>
+                        <p>Overtoom</p>
                     </div>
                     <div>
                         <h3>Ophaaldatum</h3>
@@ -154,7 +154,6 @@ const ShowQRCode = ({ title }) => {
                         <p>18 juni 2021 11:00</p>
                     </div>
                 </section>
-                <p className="klasse">Klasse A</p>
                 <img
                     src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reservationID}`}
                     alt="qr code met reserveringsinformatie"
