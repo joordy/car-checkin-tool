@@ -8,17 +8,15 @@ const DepositType = ({ labelText, children }) => {
     const [isOpen, setIsOpen] = useState(false)
     const parentRef = useRef()
 
-    if (parentRef.current) {
-        console.log(parentRef.current.scrollHeight)
-    }
-
     return (
         <Styles.Accordeon>
             <button onClick={() => setIsOpen(!isOpen)}>{labelText}</button>
             <div
                 ref={parentRef}
                 style={
-                    isOpen ? { height: `${parentRef.current.scrollHeight}px` } : { height: '0px' }
+                    isOpen
+                        ? { height: `calc(30px + ${parentRef.current.scrollHeight}px)` }
+                        : { height: '0px' }
                 }
             >
                 <section className="content">{children}</section>

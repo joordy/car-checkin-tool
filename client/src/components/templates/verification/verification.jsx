@@ -17,7 +17,7 @@ const Verification = () => {
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
-        const data = await fetch('/verification')
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/verification`)
         const response = await data.json()
         if (response === 'undefined') {
             window.location.href = '/reservations'

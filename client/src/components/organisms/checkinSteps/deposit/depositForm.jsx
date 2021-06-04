@@ -3,15 +3,36 @@ import React, { useState } from 'react'
 import * as Styles from './depositForm.styles.js'
 import {} from 'components/atoms/index.js'
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+const promise = loadStripe(
+    'pk_test_51IsTukJEAzd2OWuLXMthwYCSoAGWjPoQntvnjXvvx1V5SrORa7YcifsL2G2mfwNpH5HBJG4fdNM9boA6ugGST6ir005GZ4jgMO',
+)
 
 // React component
 const DepositForm = () => {
-    const [isOpen, setIsOpen] = useState(false)
-
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
     }
+
+    console.log('test data for Stripe:', {
+        succes: {
+            cardnr: '4242 4242 4242 4242',
+            month: '08/24',
+            csv: '123',
+        },
+        auth: {
+            cardnr: '4000 0025 0000 3155',
+            month: '08/24',
+            csv: '123',
+        },
+        failed: {
+            cardnr: '4000 0000 0000 9995',
+            month: '08/24',
+            csv: '123',
+        },
+    })
 
     return (
         <Styles.Section>
@@ -20,7 +41,7 @@ const DepositForm = () => {
                 <p>
                     Bij een creditcard reservering wordt er niets afgeschreven. Kies je voor iDEAL?
                     Dan wordt de borg wel meteen afgeschreven. Je krijgt het na de huurperiode
-                    automatisch weer terug, mits er geen schade is.{' '}
+                    automatisch weer terug, mits er geen schade is.
                 </p>
             </header>
 
@@ -35,16 +56,12 @@ const DepositForm = () => {
                 <article>
                     <h2>Betaalmethode</h2>
                     <DepositType labelText="Creditcard">
-                        <DepositCC />
+                        <Elements stripe={promise}>
+                            <DepositCC />
+                        </Elements>
                     </DepositType>
                     <DepositType labelText="iDeal">
-                        <p>
-                            Est laborum cillum nisi aliqua do enim ad sunt sunt id consequat.
-                            Cupidatat dolor aliquip non sunt sit qui aliquip Lorem. Esse aute duis
-                            officia adipisicing esse minim. Nisi reprehenderit minim aliqua sit et
-                            consectetur sit ea mollit incididunt. Adipisicing sit eu consequat ipsum
-                            proident Lorem reprehenderit.
-                        </p>
+                        <p>Deze betaalmethode wordt op dit moment nog niet ondersteund.</p>
                     </DepositType>
                 </article>
             </main>
