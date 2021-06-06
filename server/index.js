@@ -5,14 +5,22 @@ const routesHandler = require('./routes/handler.js');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 7000; // backend routing port
+const allowedOrigins = ['http://localhost:3000', 'https://europcar.netlify.app/'];
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-// Then pass them to cors:
-app.use(cors(corsOptions));
-
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', routesHandler);
