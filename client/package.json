@@ -39,7 +39,7 @@
         "styled-components": "^5.3.0"
     },
     "dependencies": {
-        "@stripe/react-stripe-js": "github:stripe/react-stripe-js",
+        "@stripe/react-stripe-js": "^1.4.1",
         "@stripe/stripe-js": "^1.15.0",
         "@supabase/supabase-js": "^1.11.16",
         "@testing-library/jest-dom": "^5.12.0",
