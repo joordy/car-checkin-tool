@@ -4,8 +4,12 @@ const bodyParser = require('body-parser');
 const routesHandler = require('./routes/handler.js');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 7000; // backend routing port
-const allowedOrigins = ['http://localhost:3000', 'https://europcar.netlify.app/'];
+const PORT = process.env.PORT || 8000; // backend routing port
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://europcar.netlify.app/',
+  'https://car-checkin-tool.vercel.app/',
+];
 
 app.use(
   cors({
