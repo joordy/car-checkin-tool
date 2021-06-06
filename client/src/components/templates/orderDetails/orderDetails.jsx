@@ -7,6 +7,7 @@ import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/orga
 // Component
 const OrderDetails = () => {
     console.log(process.env.REACT_APP_BACKEND)
+    console.log(process.env.REACT_APP_BACKEND)
     const [carReservation, setCarReservation] = useState([])
 
     const getData = async () => {
