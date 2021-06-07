@@ -9,7 +9,8 @@ import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/orga
 
 // React component
 const OrderDetails = () => {
-    const [currentCar, setCurrentCar] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [reservationID, setReservationID] = useState([])
     let data
 
     useEffect(async () => {
@@ -18,6 +19,7 @@ const OrderDetails = () => {
     }, [])
 
     const getSpecificUser = async (fetchedData) => {
+        console.log(fetchedData)
         const { data, error } = await supabase
             .from('users')
             .select()
@@ -26,11 +28,13 @@ const OrderDetails = () => {
         if (!data) {
             console.log(error)
         } else {
-            setCurrentCar(...data)
+            setCurrentUser(...data)
+            setReservationID(fetchedData.reservationID)
         }
     }
 
-    console.log('currentCar', currentCar)
+    console.log('Current user', currentUser)
+    console.log('reservation ID', reservationID)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)

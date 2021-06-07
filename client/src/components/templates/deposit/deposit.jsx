@@ -9,8 +9,8 @@ import { StepsExplainer, UserChoice, DepositForm } from 'components/organisms/in
 
 // React component
 const Deposit = () => {
-    const [currCarReserv, setCurrCarReserv] = useState([])
-    const [currentCar, setCurrentCar] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [reservationID, setReservationID] = useState([])
     let data
 
     useEffect(async () => {
@@ -27,11 +27,13 @@ const Deposit = () => {
         if (!data) {
             console.log(error)
         } else {
-            setCurrentCar(...data)
+            setCurrentUser(...data)
+            setReservationID(fetchedData.reservationID)
         }
     }
 
-    console.log('currentCar', currentCar)
+    console.log('Current user', currentUser)
+    console.log('reservation ID', reservationID)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
