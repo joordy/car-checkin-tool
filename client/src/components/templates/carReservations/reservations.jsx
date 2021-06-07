@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
 import { ReservationCard, ReservationHeader, EmptyReservation } from 'components/organisms/index'
+import { v4 as uuidv4 } from 'uuid'
 
 // React component
 const Reservations = () => {

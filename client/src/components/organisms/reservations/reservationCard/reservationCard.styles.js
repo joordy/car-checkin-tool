@@ -25,6 +25,7 @@ export const Card = styled.section`
         position: absolute;
         z-index: 1;
         left: 1.125em;
+        width: 125px;
     }
     h3 {
         position: absolute;

@@ -7,6 +7,19 @@ import { StepsExplainer, UserChoice, DepositForm } from 'components/organisms/in
 // React component
 const PageOne = () => {
     const [reservations, setReservations] = useState([])
+    const [carReservation, setCarReservation] = useState([])
+
+    const getData = async () => {
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/order-details`)
+        console.log(data)
+        const response = await data.json()
+        if (response === 'undefined') {
+            console.log(response)
+            // window.location.href = '/reservations'
+        } else {
+            setCarReservation(response)
+        }
+    }
 
     const readDB = async () => {
         const { data, error } = await supabase.from('users').select()
@@ -14,8 +27,11 @@ const PageOne = () => {
     }
 
     useEffect(() => {
+        getData()
         readDB()
     }, [])
+
+    console.log('current reservation:', carReservation)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
