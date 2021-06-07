@@ -16,13 +16,24 @@ const Login = () => {
     let email = ''
     let loggedIn = false
 
-    const [showWrongEmailText, setshowWrongEmailText] = useState(false)
+    const [showWrongEmailText, setShowWrongEmailText] = useState(false)
+
+    const postData = async (loggedInUser) => {
+        fetch(`${process.env.REACT_APP_BACKEND}/reservations`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loggedInUser),
+        })
+    }
 
     const readDB = async (email) => {
         const { data, error } = await supabase.from('users').select().filter('email', 'eq', email)
         if (!error) {
             if (data[0] !== undefined) {
-                setUser(data[0])
+                postData(data[0])
                 loggedIn = true
             } else {
                 loggedIn = false
@@ -32,19 +43,14 @@ const Login = () => {
         }
     }
 
-    function setUser(user) {
-        window.localStorage.setItem('CurrentUser', JSON.stringify(user))
-        console.log(window.localStorage)
-    }
-
     async function handleSubmit(event) {
         event.preventDefault()
         email = event.target.email.value
-        window.setTimeout(await readDB(email), 2000)
+        await readDB(email)
         if (loggedIn) {
             window.location.replace('/reservations')
         } else {
-            setshowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
+            setShowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
         }
     }
 
@@ -57,7 +63,7 @@ const Login = () => {
                     {showWrongEmailText && (
                         <p className="error">Dit email is niet bekend bij ons</p>
                     )}
-                    <form onSubmit={handleSubmit}>
+                    <form action="/reservations" onSubmit={handleSubmit}>
                         <Label text="E-mailadres" forId="email" />
                         <TextInput
                             type="email"

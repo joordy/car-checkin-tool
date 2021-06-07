@@ -3,7 +3,7 @@ import * as colors from 'styles/colors'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
-    padding: 4.5rem 1.5rem 1.5rem;
+    padding: 2.5rem 1.5rem 1.5rem;
     height: 100vh;
     position: relative;
     overflow: hidden;
@@ -32,7 +32,7 @@ export const Section = styled.section`
             display: grid;
             grid-template-columns: 1fr 1fr;
             padding: 0 1em;
-            margin-bottom: 1.5em;
+            margin-bottom: 1.6em;
             div {
                 &:nth-of-type(2),
                 :nth-of-type(4) {
@@ -70,16 +70,15 @@ export const Section = styled.section`
         }
         img {
             width: 12em;
+            display: block;
+            margin: 0 auto;
             &:not(#wallet img) {
-                width: 10em;
+                width: 8em;
                 background-color: ${colors.white};
                 padding: 1em;
                 border-radius: 0.6em;
-                margin: 0 0 1em 0;
+                margin: 0 auto 1em auto;
             }
-        }
-        p.klasse {
-            font-weight: 700;
         }
     }
 `
