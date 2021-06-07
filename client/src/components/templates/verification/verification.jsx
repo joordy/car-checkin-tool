@@ -16,7 +16,9 @@ import {
 // React component
 const Verification = () => {
     const [items, setItems] = useState('')
-    const [currentCar, setCurrentCar] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [reservationID, setReservationID] = useState([])
+
     let data
 
     useEffect(async () => {
@@ -40,7 +42,8 @@ const Verification = () => {
         if (!data) {
             console.log(error)
         } else {
-            setCurrentCar(...data)
+            setCurrentUser(...data)
+            setReservationID(fetchedData.reservationID)
         }
     }
 
@@ -51,7 +54,8 @@ const Verification = () => {
         paidDeposit: false,
     }
 
-    console.log('currentCar', currentCar)
+    console.log('Current user', currentUser)
+    console.log('reservation ID', reservationID)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
