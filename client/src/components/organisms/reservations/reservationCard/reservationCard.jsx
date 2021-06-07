@@ -6,7 +6,7 @@ import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 // Component
 const ReservationCard = ({ ...props }) => {
     const reservation = { ...props }
-    // console.log(reservation)
+    console.log(reservation)
 
     return (
         <>
@@ -27,6 +27,12 @@ const ReservationCard = ({ ...props }) => {
                             <line x1="7.66406" y1="14" x2="7.66406" y2="43" stroke="#CCCCD6" />
                         </svg>
                     </span>
+
+                    <div>
+                        <ul>
+                            <li>{reservation.orderDetails}</li>
+                        </ul>
+                    </div>
 
                     <DealerLocations {...props} />
 

@@ -1,65 +1,67 @@
-// React imports
+// React & Module imports
 import React, { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
+
+// Components
 import { ReservationCard, ReservationHeader, EmptyReservation } from 'components/organisms/index'
-import { v4 as uuidv4 } from 'uuid'
 
 // React component
 const Reservations = () => {
-    const [reservations, setReservations] = useState([])
-    const [loggedInUser, setLoggedInUser] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [loggedUser, setLoggedUser] = useState([])
 
     const getData = async () => {
         const data = await fetch(`${process.env.REACT_APP_BACKEND}/reservations`)
-        console.log(data)
         const response = await data.json()
         if (response === 'undefined') {
             console.log(response)
-            // window.location.href = '/reservations'
+            window.location.href = '/'
         } else {
-            setLoggedInUser(response)
+            setLoggedUser(response)
         }
     }
 
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
+    const getSpecificUser = async () => {
+        const { data, error } = await supabase
+            .from('users')
+            .select()
+            .eq('userID', loggedUser.userID)
+
+        if (!data) {
+            console.log(error)
+        } else {
+            setCurrentUser(...data)
+        }
     }
 
-    useEffect(() => {
+    if (currentUser.length === 0) {
+        getSpecificUser()
+    }
+
+    useEffect(async () => {
         getData()
-        readDB()
     }, [])
 
-    console.log('current loggedInUser:', loggedInUser)
-
-    const firstUser = reservations[2]
-
-    console.log(reservations)
+    // console.log('loggedUser', loggedUser)
+    // console.log('currentUser', currentUser)
 
     return (
         <>
-            {(() => {
-                if (reservations[0]) {
-                    return <ReservationHeader user={firstUser} />
-                } else {
-                    return <ReservationHeader user={{ firstName: 'Lars' }} />
-                }
-            })()}
-
-            <Styles.Main>
-                {firstUser && (
-                    <>
-                        {firstUser.cars.length > 1 ? (
+            {currentUser.firstName ? (
+                <>
+                    <ReservationHeader user={{ firstName: currentUser.firstName }} />
+                    <Styles.Main>
+                        {currentUser.cars.length > 1 ? (
                             <>
                                 <h2>Mijn Reserveringen</h2>
-                                {firstUser.cars.map((item) => {
+                                {currentUser.cars.map((item) => {
                                     return (
                                         <ReservationCard
                                             key={item.reservationID}
                                             {...item}
-                                            user={firstUser}
+                                            user={currentUser}
                                         />
                                     )
                                 })}
@@ -67,9 +69,11 @@ const Reservations = () => {
                         ) : (
                             <EmptyReservation />
                         )}
-                    </>
-                )}
-            </Styles.Main>
+                    </Styles.Main>
+                </>
+            ) : (
+                <p>The condition must be false!</p>
+            )}
         </>
     )
 }

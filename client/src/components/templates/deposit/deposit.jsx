@@ -2,36 +2,36 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './deposit.styles.js'
+import fetchData from 'utils/fetchData'
+
+// Components
 import { StepsExplainer, UserChoice, DepositForm } from 'components/organisms/index'
 
 // React component
-const PageOne = () => {
-    const [reservations, setReservations] = useState([])
-    const [carReservation, setCarReservation] = useState([])
+const Deposit = () => {
+    const [currCarReserv, setCurrCarReserv] = useState([])
+    const [currentCar, setCurrentCar] = useState([])
+    let data
 
-    const getData = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/order-details`)
-        console.log(data)
-        const response = await data.json()
-        if (response === 'undefined') {
-            console.log(response)
-            // window.location.href = '/reservations'
+    useEffect(async () => {
+        data = await fetchData(`${process.env.REACT_APP_BACKEND}/order-details`)
+        getSpecificUser(data)
+    }, [])
+
+    const getSpecificUser = async (fetchedData) => {
+        const { data, error } = await supabase
+            .from('users')
+            .select()
+            .eq('userID', fetchedData.user.userID)
+
+        if (!data) {
+            console.log(error)
         } else {
-            setCarReservation(response)
+            setCurrentCar(...data)
         }
     }
 
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
-    }
-
-    useEffect(() => {
-        getData()
-        readDB()
-    }, [])
-
-    console.log('current reservation:', carReservation)
+    console.log('currentCar', currentCar)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
@@ -60,4 +60,4 @@ const PageOne = () => {
     )
 }
 
-export default PageOne
+export default Deposit
