@@ -46,7 +46,7 @@ const OrderDetails = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/reservations" step="0" />
+                <StepsExplainer backLink="/reservations" step="0" completedSteps={completedSteps} />
                 <CheckUserInfo />
                 <CheckBookingInfo />
             </div>

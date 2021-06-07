@@ -5,7 +5,7 @@ const routesHandler = require('./routes/handler.js');
 const corsMiddleware = require('./cors/index.js');
 // const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 8000; // backend routing port
+const PORT = process.env.PORT || 8005; // backend routing port
 
 // const allowedOrigins = [
 //   'http://localhost:3000',
@@ -40,3 +40,5 @@ app.use('/', routesHandler);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+console.log("hello world");
