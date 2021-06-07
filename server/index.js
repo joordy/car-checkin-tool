@@ -14,24 +14,26 @@ const allowedOrigins = [
   'http://car-checkin-tool.vercel.app',
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin
-      // (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        var msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.';
-        console.log('bla');
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       // allow requests with no origin
+//       // (like mobile apps or curl requests)
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         var msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.';
+//         console.log('bla');
+//         return callback(new Error(msg), false);
+//       }
+//       return callback(null, true);
+//     },
+//   })
+// );
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', routesHandler);
+app.options('*', cors());
+
 // app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.listen(PORT, () => {
