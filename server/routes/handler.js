@@ -17,7 +17,7 @@ router.get("/reservations", (req, res) => {
 });
 
 router.post("/reservations", (req, res) => {
-  console.log(req.body);
+  console.log("test");
   loggedInUser = req.body;
   res.end(JSON.stringify(req.body));
 });

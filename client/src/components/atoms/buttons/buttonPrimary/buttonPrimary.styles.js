@@ -37,4 +37,7 @@ export const Href = styled.a`
         cursor: pointer;
         border: 0.15em solid ${colors.primaryText};
     }
+    &[disabled] {
+        opacity: 0.4;
+    }
 `

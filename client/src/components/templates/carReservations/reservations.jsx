@@ -3,10 +3,24 @@ import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
 import { ReservationCard, ReservationHeader, EmptyReservation } from 'components/organisms/index'
+import { v4 as uuidv4 } from 'uuid'
 
 // React component
 const Reservations = () => {
     const [reservations, setReservations] = useState([])
+    const [loggedInUser, setLoggedInUser] = useState([])
+
+    const getData = async () => {
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/reservations`)
+        console.log(data)
+        const response = await data.json()
+        if (response === 'undefined') {
+            console.log(response)
+            // window.location.href = '/reservations'
+        } else {
+            setLoggedInUser(response)
+        }
+    }
 
     const readDB = async () => {
         const { data, error } = await supabase.from('users').select()
@@ -14,8 +28,11 @@ const Reservations = () => {
     }
 
     useEffect(() => {
+        getData()
         readDB()
     }, [])
+
+    console.log('current loggedInUser:', loggedInUser)
 
     const firstUser = reservations[2]
 

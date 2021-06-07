@@ -13,6 +13,8 @@ const VerificationButtons = ({
     linkSecondary,
     callbackSecondary,
     callbackPrimary,
+    id,
+    disabled,
 }) => {
     return (
         <Styles.BtnWrapper>
@@ -27,6 +29,8 @@ const VerificationButtons = ({
                 text={textPrimary}
                 linkTo={linkPrimary}
                 _callback={callbackPrimary}
+                id={id}
+                disabled={disabled}
             />
         </Styles.BtnWrapper>
     )
