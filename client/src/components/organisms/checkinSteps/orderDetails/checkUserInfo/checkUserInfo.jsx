@@ -5,7 +5,7 @@ import { Icons, EditButton } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
-const CheckUserInfo = ({ userInfo }) => {
+const CheckUserInfo = ({ reservation }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(0)'
@@ -16,6 +16,7 @@ const CheckUserInfo = ({ userInfo }) => {
         moveElement.style.transform = 'translateX(-200vw)'
     }
 
+    console.log('hello reservation here: ', reservation)
     return (
         <Styles.Section>
             <header>
@@ -31,24 +32,16 @@ const CheckUserInfo = ({ userInfo }) => {
                 </article>
                 <hr />
                 <article>
-                    <ul>
-                        <li>
-                            <span>Voornaam</span>
-                            <span>{userInfo.firstName}</span>
-                        </li>
-                        <li>
-                            <span>Achternaam</span>
-                            <span>{userInfo.lastName}</span>
-                        </li>
-                        <li>
-                            <span>E-mailadres</span>
-                            <span>{userInfo.email}</span>
-                        </li>
-                        <li>
-                            <span>Telefoonnummer</span>
-                            <span>{userInfo.phoneNumber}</span>
-                        </li>
-                    </ul>
+                    <p>Voornaam</p>
+                    <p>{reservation.firstName}</p>
+                    <p>Achternaam</p>
+                    <p>{reservation.lastName}</p>
+                    <p>E-mailadres</p>
+                    <p>{reservation.email}</p>
+                    <p>Telefoonnummer</p>
+                    <p>0645542811</p>
+                    <p>Geboortedatum</p>
+                    <p>23 februari 1997</p>
                 </article>
             </section>
 

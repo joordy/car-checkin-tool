@@ -2,36 +2,39 @@
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './qrCode.styles.js'
+import fetchData from 'utils/fetchData'
+
+// Components
 import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 
 // React component
 const QRCode = () => {
-    const [reservations, setReservations] = useState([])
-    const [carReservation, setCarReservation] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [reservationID, setReservationID] = useState([])
 
-    const getData = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/order-details`)
-        console.log(data)
-        const response = await data.json()
-        if (response === 'undefined') {
-            console.log(response)
-            // window.location.href = '/reservations'
+    let data
+
+    useEffect(async () => {
+        data = await fetchData(`${process.env.REACT_APP_BACKEND}/order-details`)
+        getSpecificUser(data)
+    }, [])
+
+    const getSpecificUser = async (fetchedData) => {
+        const { data, error } = await supabase
+            .from('users')
+            .select()
+            .eq('userID', fetchedData.user.userID)
+
+        if (!data) {
+            console.log(error)
         } else {
-            setCarReservation(response)
+            setCurrentUser(...data)
+            setReservationID(fetchedData.reservationID)
         }
     }
 
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
-    }
-
-    useEffect(() => {
-        getData()
-        readDB()
-    }, [])
-
-    console.log('current reservation:', carReservation)
+    console.log('Current user', currentUser)
+    console.log('reservation ID', reservationID)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)

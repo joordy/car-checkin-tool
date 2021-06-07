@@ -1,10 +1,14 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './depositForm.styles.js'
-import {} from 'components/atoms/index.js'
+import { useSelector } from 'react-redux'
+
+// Components
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+
+// Set up
 const promise = loadStripe(
     'pk_test_51IsTukJEAzd2OWuLXMthwYCSoAGWjPoQntvnjXvvx1V5SrORa7YcifsL2G2mfwNpH5HBJG4fdNM9boA6ugGST6ir005GZ4jgMO',
 )
@@ -33,6 +37,9 @@ const DepositForm = () => {
             csv: '123',
         },
     })
+
+    const isPaid = useSelector((state) => state.paidReducer)
+    console.log('paid', isPaid)
 
     return (
         <Styles.Section>
@@ -66,15 +73,29 @@ const DepositForm = () => {
                 </article>
             </main>
 
-            <VerificationButtons
-                typeSecondary="btn"
-                typePrimary="href"
-                textPrimary="Volgende"
-                textSecondary="Terug"
-                linkPrimary="/qr"
-                linkSecondary="#"
-                callbackSecondary={moveRight}
-            />
+            {isPaid ? (
+                <VerificationButtons
+                    typeSecondary="btn"
+                    typePrimary="btn"
+                    textPrimary="Volgende"
+                    textSecondary="Terug"
+                    linkPrimary="/qr"
+                    linkSecondary="#"
+                    callbackSecondary={moveRight}
+                    callbackPrimary={() => (window.location.href = '/qr')}
+                />
+            ) : (
+                <VerificationButtons
+                    typeSecondary="btn"
+                    typePrimary="btn"
+                    textPrimary="Volgende"
+                    textSecondary="Terug"
+                    linkPrimary="#"
+                    linkSecondary="#"
+                    callbackSecondary={moveRight}
+                    disabled
+                />
+            )}
         </Styles.Section>
     )
 }

@@ -94,13 +94,13 @@ const CheckFacial = () => {
 
             <VerificationButtons
                 typeSecondary="btn"
-                typePrimary="href"
+                typePrimary="btn"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="/deposit"
                 linkSecondary="#"
                 callbackSecondary={moveLeft}
-                id="lastButton"
+                callbackPrimary={() => (window.location.href = '/deposit')}
                 disabled={!disabling}
             />
         </Styles.Section>

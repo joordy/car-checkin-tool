@@ -28,6 +28,7 @@ const CheckinButtons = ({ ...props }) => {
             },
             body: JSON.stringify(reservation),
         })
+        window.location.href = '/order-details'
     }
 
     return (
@@ -37,9 +38,9 @@ const CheckinButtons = ({ ...props }) => {
                     return (
                         <div className="buttonWrapper">
                             <ButtonPrimary
-                                type="href"
+                                type="btn"
                                 text="Inchecken"
-                                linkTo="/order-details"
+                                // linkTo="/order-details"
                                 width="100%"
                                 height="48px"
                                 _callback={handleIncheck}

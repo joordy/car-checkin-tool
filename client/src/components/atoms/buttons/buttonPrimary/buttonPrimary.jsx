@@ -25,7 +25,7 @@ const ButtonPrimary = ({ type, text, linkTo, width, _callback, height, id, disab
             )
         case 'href':
             return (
-                <Styles.Href
+                <Styles.ButtonLink
                     width={width}
                     href={linkTo}
                     onClick={_callback}
@@ -34,13 +34,13 @@ const ButtonPrimary = ({ type, text, linkTo, width, _callback, height, id, disab
                     disabled={disabled}
                 >
                     {text}
-                </Styles.Href>
+                </Styles.ButtonLink>
             )
         case 'href-small':
             return (
-                <Styles.Href href={linkTo} onClick={_callback} id={id} disabled={disabled}>
+                <Styles.ButtonLink href={linkTo} onClick={_callback} id={id} disabled={disabled}>
                     {text}
-                </Styles.Href>
+                </Styles.ButtonLink>
             )
     }
 }

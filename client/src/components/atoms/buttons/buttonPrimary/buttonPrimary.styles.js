@@ -18,9 +18,12 @@ export const Button = styled.button`
         cursor: pointer;
         border: 0.15em solid ${colors.primaryText};
     }
+    &[disabled] {
+        opacity: 0.4;
+    }
 `
 
-export const Href = styled.a`
+export const ButtonLink = styled.button`
     display: block;
     width: ${(props) => props.width || '284px'};
     max-height: 48px;
