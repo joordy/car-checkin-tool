@@ -1,11 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
-export const Container = styled.div`
-    position: relative;
-    overflow: hidden;
-`
-
 export const Section = styled.section`
     width: calc(100vw - 3rem);
     padding: 2.5rem 1.5rem 1.5rem;
@@ -13,7 +8,7 @@ export const Section = styled.section`
     position: relative;
     overflow: hidden;
     header {
-        &:nth-of-type(1) {
+        &:nth-of-type(odd) {
             position: relative;
             h1 {
                 width: 70%;
@@ -28,55 +23,42 @@ export const Section = styled.section`
             }
         }
     }
-    section {
-        article {
-            &:nth-of-type(2) {
-                display: block !important;
-                ul {
-                    list-style-type: none;
-                    margin: 0;
-                    padding: 0;
-                    li {
-                        display: flex;
-                        justify-content: space-between;
-                    }
+    article {
+        &:nth-of-type(even) {
+            display: block !important;
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    line-height: 1.5em;
                 }
             }
-            p {
-                margin: 0.4em 0;
+        }
 
-                &:nth-child(even) {
-                    text-align: right;
-                }
+        svg {
+            path {
+                stroke: ${colors.accent};
             }
+        }
 
-            &:nth-of-type(1) {
-                margin-top: 2rem;
+        &:nth-of-type(odd) {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            margin-top: 5vh;
+
+            p:first-child {
+                font-weight: 600;
             }
+        }
 
-            &:nth-of-type(3) {
-                margin-top: 1rem;
-            }
+        p {
+            margin: 0.4em 0;
 
-            &:nth-of-type(1),
-            &:nth-of-type(3) {
-                display: grid;
-                grid-template-columns: 60% 40%;
-
-                p:first-child {
-                    font-weight: 600;
-                }
-            }
-
-            &:nth-of-type(2),
-            &:nth-of-type(4) {
-                display: grid;
-                grid-template-columns: 40% 60%;
-
-                p:nth-child(even),
-                p:nth-child(even) {
-                    color: ${colors.secondaryText};
-                }
+            &:nth-child(even) {
+                text-align: right;
             }
         }
     }

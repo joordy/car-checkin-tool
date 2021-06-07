@@ -5,7 +5,7 @@ import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
-const CheckBookingInfo = () => {
+const CheckBookingInfo = ({ carInfo, otherInfo }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -27,35 +27,30 @@ const CheckBookingInfo = () => {
                 <article>
                     <ul>
                         <li>
-                            <span>A</span>
+                            <span>Datum ophalen</span>
+                            <span>{carInfo.pickUpDate}</span>
+                        </li>
+                        <li>
+                            <span>Datum inleveren</span>
+                            <span>{carInfo.handInDate}</span>
+                        </li>
+                        <li>
+                            <span>Type klasse</span>
+                            <span>{carInfo.class}</span>
+                        </li>
+                        <li>
+                            <span>Huurprijs</span>
                             <span>B</span>
                         </li>
                         <li>
-                            <span>A</span>
+                            <span>{carInfo.extraDriver}x Extra bestuurder</span>
                             <span>B</span>
                         </li>
                         <li>
-                            <span>A</span>
-                            <span>B</span>
-                        </li>
-                        <li>
-                            <span>A</span>
+                            <span>Verlagen Eigen Risico</span>
                             <span>B</span>
                         </li>
                     </ul>
-                    {/*}                    
-                    <p>Datum ophalen</p>
-                    <p>Woensdag 16 juni 2021</p>
-                    <p>Datum inleveren</p>
-                    <p>Vrijdag 18 juni 2021</p>
-                    <p>Type klasse</p>
-                    <p>Elektrisch</p>
-                    <p>Huurprijs</p>
-                    <p>€ 477,80</p>
-                    <p>1x Extra bestuurder</p>
-                    <p>€ 20,33</p>
-                    <p>Verlagen eigen risico</p>
-                    <p>€ 60,02</p> */}
                 </article>
 
                 <article>
@@ -63,14 +58,24 @@ const CheckBookingInfo = () => {
                 </article>
                 <hr />
                 <article>
-                    <p>Eigen risico</p>
-                    <p>€ 400</p>
-                    <p>Borg</p>
-                    <p>€ 500</p>
-                    <p>Vrije km</p>
-                    <p>600 km</p>
-                    <p>Prijs per extra km</p>
-                    <p>€ 0,30</p>
+                    <ul>
+                        <li>
+                            <span>Eigen risico</span>
+                            <span>€ {otherInfo.ownRisk}</span>
+                        </li>
+                        <li>
+                            <span>Borg</span>
+                            <span>€ {otherInfo.deposit}</span>
+                        </li>
+                        <li>
+                            <span>Vrije km</span>
+                            <span>{otherInfo.freeKM} KM</span>
+                        </li>
+                        <li>
+                            <span>Prijs per extra km</span>
+                            <span>€ {otherInfo.priceExtraKM}</span>
+                        </li>
+                    </ul>
                 </article>
             </section>
             <VerificationButtons

@@ -40,7 +40,7 @@ const Login = () => {
     async function handleSubmit(event) {
         event.preventDefault()
         email = event.target.email.value
-        window.setTimeout(await readDB(email), 2000)
+        await readDB(email)
         if (loggedIn) {
             window.location.replace('/reservations')
         } else {
