@@ -44,6 +44,13 @@ const Verification = () => {
         }
     }
 
+    const completedSteps = {
+        orderDetails: true,
+        verificationProcess: true,
+        payMethod: 'skipped',
+        paidDeposit: false,
+    }
+
     console.log('currentCar', currentCar)
 
     let viewportHeight = window.innerHeight * 0.01
@@ -52,7 +59,7 @@ const Verification = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/order-details" step="1" />
+                <StepsExplainer backLink="/order-details" completedSteps={completedSteps} />
                 <CheckDrivers />
                 <UserChoice
                     title="Verifieer je eigen rijbewijs"
