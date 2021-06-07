@@ -2,12 +2,13 @@
 import React, { useState } from 'react'
 import * as Styles from './checkFacial.styles.js'
 import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
-import { VerificationButtons } from 'components/molecules/index'
+import { VerificationButtons, VerifyModal } from 'components/molecules/index'
 
 // React component
 const CheckFacial = () => {
     const [playing, setPlaying] = useState(false)
-    const [showModal, setShowModal] = useState(false)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [disabling, setDisabling] = useState('')
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
@@ -37,10 +38,15 @@ const CheckFacial = () => {
     }
 
     const makeImage = () => {
-        setShowModal((prev) => !prev)
+        setModalIsOpen(true)
+        setDisabling('created')
         let video = document.querySelector('#videoWrapper')
         video.pause()
     }
+
+    // const lastbtn = document.querySelector('#lastButton')
+    // lastbtn.disabled = true
+    // console.log(lastbtn)
 
     return (
         <Styles.Section id="facial">
@@ -59,9 +65,24 @@ const CheckFacial = () => {
                     <>
                         <video muted autoPlay id="videoWrapper"></video>
                         {playing ? (
-                            <div>
-                                <ButtonTertiary type="btn" text="Maak foto" _callback={makeImage} />
-                            </div>
+                            <>
+                                <div>
+                                    <ButtonTertiary
+                                        type="btn"
+                                        text="Maak foto"
+                                        _callback={makeImage}
+                                    />
+                                </div>
+                                <VerifyModal
+                                    open={modalIsOpen}
+                                    onClose={() => setModalIsOpen(false)}
+                                    buttonText="volgende"
+                                >
+                                    <Icons type="success" width="3em" height="3em" />
+                                    <h2>Gelukt</h2>
+                                    <p>Rijbewijs succesvol geverifieerd</p>
+                                </VerifyModal>
+                            </>
                         ) : (
                             <ButtonPrimary type="btn" text="Open camera" _callback={startVideo} />
                         )}
@@ -73,12 +94,14 @@ const CheckFacial = () => {
 
             <VerificationButtons
                 typeSecondary="btn"
-                typePrimary="href"
+                typePrimary="btn"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="/deposit"
                 linkSecondary="#"
                 callbackSecondary={moveLeft}
+                callbackPrimary={() => (window.location.href = '/deposit')}
+                disabled={!disabling}
             />
         </Styles.Section>
     )

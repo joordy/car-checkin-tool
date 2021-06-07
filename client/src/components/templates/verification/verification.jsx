@@ -1,7 +1,10 @@
-// React imports
+// React & Module imports
 import React, { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './verification.styles.js'
+import fetchData from 'utils/fetchData'
+
+// Components
 import {
     StepsExplainer,
     CheckDrivers,
@@ -12,24 +15,33 @@ import {
 
 // React component
 const Verification = () => {
-    const [reservations, setReservations] = useState([])
     const [items, setItems] = useState('')
-    const [carReservation, setCarReservation] = useState([])
+    const [currentCar, setCurrentCar] = useState([])
+    let data
 
-    const getData = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/verification`)
-        const response = await data.json()
-        if (response === 'undefined') {
-            window.location.href = '/reservations'
-        } else {
-            setCarReservation(response)
-        }
-    }
+    useEffect(async () => {
+        data = await fetchData(`${process.env.REACT_APP_BACKEND}/order-details`)
+        getSpecificUser(data)
+        verifyIdentity()
+    }, [])
 
     const verifyIdentity = async () => {
         const data = await fetch(`${process.env.REACT_APP_BACKEND}/create-verification-session`)
         const items = await data.json()
         setItems(items)
+    }
+
+    const getSpecificUser = async (fetchedData) => {
+        const { data, error } = await supabase
+            .from('users')
+            .select()
+            .eq('userID', fetchedData.user.userID)
+
+        if (!data) {
+            console.log(error)
+        } else {
+            setCurrentCar(...data)
+        }
     }
 
     const completedSteps = {
@@ -39,19 +51,7 @@ const Verification = () => {
         paidDeposit: false,
     }
 
-    useEffect(() => {
-        getData()
-        readDB()
-        verifyIdentity()
-    }, [])
-
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
-    }
-
-    console.log('items', items)
-    console.log('current reservation:', carReservation)
+    console.log('currentCar', currentCar)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)

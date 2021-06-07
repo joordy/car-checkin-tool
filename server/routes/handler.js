@@ -9,21 +9,28 @@ const stripe = require('stripe')(
 );
 
 let reservation;
+let loggedInUser;
 
-router.get('/reservations', (req, res) => {
-  console.log('reservation page');
-  const str = 'reservation page';
-  res.end(JSON.stringify(str));
+// Posts user object to server, to use later on
+router.post('/reservations', (req, res) => {
+  loggedInUser = req.body;
+  res.end(JSON.stringify(req.body));
 });
 
+// Receives logged in user from signed in user
+router.get('/reservations', (req, res) => {
+  console.log(loggedInUser.firstName);
+  res.end(JSON.stringify(loggedInUser));
+});
+
+// Post specific car obj to server, to fetch on later.
 router.post('/order-details', (req, res) => {
-  console.log('req.body', req.body);
   reservation = req.body;
   res.end(JSON.stringify(req.body));
 });
 
+// Receives selected car obj from signed in user
 router.get('/order-details', (req, res) => {
-  console.log('test, server approached');
   console.log(reservation);
   const data = () => {
     if (!reservation) {
@@ -159,7 +166,11 @@ function getDate(date) {
   const day = dateObject.toLocaleString('nl-NL', { day: 'numeric' });
   const month = dateObject.toLocaleString('nl-NL', { month: 'long' });
   const year = dateObject.toLocaleString('nl-NL', { year: 'numeric' });
-  const time = dateObject.toLocaleString('nl-NL', { hour: '2-digit', minute: '2-digit', hour12: false });
+  const time = dateObject.toLocaleString('nl-NL', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
 
   return `${day} ${month} ${year} om ${time} uur`;
 }

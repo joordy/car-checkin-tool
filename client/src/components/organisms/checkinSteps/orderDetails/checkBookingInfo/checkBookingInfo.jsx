@@ -75,12 +75,13 @@ const CheckBookingInfo = () => {
             </section>
             <VerificationButtons
                 typeSecondary="btn"
-                typePrimary="href"
+                typePrimary="btn"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="/verification"
                 linkSecondary="#"
                 callbackSecondary={moveRight}
+                callbackPrimary={() => (window.location.href = '/verification')}
             />
         </Styles.Section>
     )
