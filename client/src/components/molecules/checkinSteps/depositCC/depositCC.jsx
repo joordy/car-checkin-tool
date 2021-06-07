@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import * as Styles from './depositCC.styles.js'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import { useSelector, useDispatch } from 'react-redux'
+import { paid } from 'constants/actions'
 
 // React component
 const DepositCC = ({ labelText, children }) => {
@@ -13,6 +15,8 @@ const DepositCC = ({ labelText, children }) => {
     const [clientSecret, setClientSecret] = useState('')
     const stripe = useStripe()
     const elements = useElements()
+    const paidVal = useSelector((state) => state.paidReducer)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -34,8 +38,9 @@ const DepositCC = ({ labelText, children }) => {
 
     const cardStyle = {
         style: {
+            hidePostalCode: true,
             base: {
-                hidePostalCode: true,
+                // hidePostalCode: true
                 color: '#32325d',
                 fontFamily: 'Arial, sans-serif',
                 fontSmoothing: 'antialiased',
@@ -75,6 +80,8 @@ const DepositCC = ({ labelText, children }) => {
             setError(null)
             setProcessing(false)
             setSucceeded(true)
+            // convert paid to true when successfull
+            dispatch(paid())
         }
     }
     return (
