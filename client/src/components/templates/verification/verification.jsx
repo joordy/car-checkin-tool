@@ -32,6 +32,13 @@ const Verification = () => {
         setItems(items)
     }
 
+    const completedSteps = {
+        orderDetails: true,
+        verificationProcess: true,
+        payMethod: 'skipped',
+        paidDeposit: false,
+    }
+
     useEffect(() => {
         getData()
         readDB()
@@ -52,7 +59,7 @@ const Verification = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/order-details" step="1" />
+                <StepsExplainer backLink="/order-details" completedSteps={completedSteps} />
                 <CheckDrivers />
                 <UserChoice
                     title="Verifieer je eigen rijbewijs"
