@@ -5,10 +5,13 @@ const routesHandler = require('./routes/handler.js');
 const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000; // backend routing port
+
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://europcar.netlify.app/',
-  'https://car-checkin-tool.vercel.app/',
+  'https://europcar.netlify.app',
+  'http://europcar.netlify.app',
+  'https://car-checkin-tool.vercel.app',
+  'http://car-checkin-tool.vercel.app',
 ];
 
 app.use(
@@ -19,6 +22,7 @@ app.use(
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         var msg = 'The CORS policy for this site does not ' + 'allow access from the specified Origin.';
+        console.log('bla');
         return callback(new Error(msg), false);
       }
       return callback(null, true);
