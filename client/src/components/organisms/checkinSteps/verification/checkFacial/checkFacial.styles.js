@@ -25,8 +25,8 @@ export const ImageChecker = styled.article`
     position: relative;
     left: -1.5rem;
     width: 100vw;
-    height: calc(100% - 350px);
-    margin: calc(2rem + 18px) 0 2rem;
+    height: calc(100% - 375px);
+    margin: 2rem 0;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
     video {
         width: calc(100% - 3rem);
@@ -39,8 +39,9 @@ export const ImageChecker = styled.article`
         bottom: -4rem;
         left: 50%;
         transform: translateX(-50%);
-        a {
+        button {
             position: relative;
+            bottom: 1.25em;
         }
     }
     > a,

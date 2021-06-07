@@ -10,5 +10,5 @@ ReactDOM.render(
             <App />
         </Router>
     </React.StrictMode>,
-    document.querySelector('body'),
+    document.querySelector('#root'),
 )
