@@ -42,9 +42,9 @@ const OrderDetails = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/reservations" step="0" reservation={currentCar} />
-                <CheckUserInfo reservation={currentCar} />
-                <CheckBookingInfo reservation={currentCar} />
+                <StepsExplainer backLink="/reservations" step="0" reservation={currentUser} />
+                <CheckUserInfo reservation={currentUser} />
+                <CheckBookingInfo reservation={currentUser} />
             </div>
         </Styles.Main>
     )

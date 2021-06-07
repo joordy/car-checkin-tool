@@ -1,12 +1,14 @@
-// React & Components imports
+// React & Modules imports
 import React from 'react'
 import * as Styles from './reservationCard.styles.js'
+
+// Components
+import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
-// Component
+// React Component
 const ReservationCard = ({ ...props }) => {
     const reservation = { ...props }
-    console.log(reservation.orderDetails)
 
     return (
         <>
@@ -34,32 +36,75 @@ const ReservationCard = ({ ...props }) => {
                     <Styles.StatusCheck>
                         <h4>Online Check-In</h4>
                         <p>
-                            <span>1</span> van de <span>3</span> stappen voltooid
+                            <span>0</span> van de <span>3</span> stappen voltooid
                         </p>
                         <ul>
                             <li>
                                 {reservation.orderDetails ? (
-                                    <p>The condition must be true!</p>
+                                    <div className="wrapper active">
+                                        <div>
+                                            <Icons type="data" width="1.5rem" height="1.5rem" />
+                                        </div>
+                                        <p>Gegevens</p>
+                                    </div>
                                 ) : (
-                                    <p>The condition must be false!</p>
+                                    <div className="wrapper">
+                                        <div>
+                                            <Icons type="data" width="1.5rem" height="1.5rem" />
+                                        </div>
+                                        <p>Gegevens</p>
+                                    </div>
                                 )}
-                                Gegevens
                             </li>
                             <li>
                                 {reservation.verification[0].verified ? (
-                                    <p>The condition must be true!</p>
+                                    <div className="wrapper active">
+                                        <div>
+                                            <Icons
+                                                type="userCheck"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Verificatie</p>
+                                    </div>
                                 ) : (
-                                    <p>The condition must be false!</p>
+                                    <div className="wrapper">
+                                        <div>
+                                            <Icons
+                                                type="userCheck"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Verificatie</p>
+                                    </div>
                                 )}
-                                Verificatie
                             </li>
                             <li>
                                 {reservation.paidDeposit.paid ? (
-                                    <p>The condition must be true!</p>
+                                    <div className="wrapper active">
+                                        <div>
+                                            <Icons
+                                                type="creditcard"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Borg</p>
+                                    </div>
                                 ) : (
-                                    <p>The condition must be false!</p>
+                                    <div className="wrapper">
+                                        <div>
+                                            <Icons
+                                                type="creditcard"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Borg</p>
+                                    </div>
                                 )}
-                                Borg
                             </li>
                         </ul>
                     </Styles.StatusCheck>
