@@ -9,7 +9,9 @@ import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 
 // React component
 const QRCode = () => {
-    const [currentCar, setCurrentCar] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [reservationID, setReservationID] = useState([])
+
     let data
 
     useEffect(async () => {
@@ -26,11 +28,13 @@ const QRCode = () => {
         if (!data) {
             console.log(error)
         } else {
-            setCurrentCar(...data)
+            setCurrentUser(...data)
+            setReservationID(fetchedData.reservationID)
         }
     }
 
-    console.log('currentCar', currentCar)
+    console.log('Current user', currentUser)
+    console.log('reservation ID', reservationID)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)

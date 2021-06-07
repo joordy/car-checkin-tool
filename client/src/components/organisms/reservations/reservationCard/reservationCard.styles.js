@@ -52,3 +52,22 @@ export const Card = styled.section`
         }
     }
 `
+
+export const StatusCheck = styled.div`
+    border-top: 1px solid ${colors.inputBorder};
+    h4 {
+        margin: 1rem 0 0 0;
+    }
+    p {
+        margin: 0.25rem 0 1rem 0;
+    }
+    ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0 0 1rem 0;
+        padding: 0;
+        li {
+            text-align: center;
+        }
+    }
+`
