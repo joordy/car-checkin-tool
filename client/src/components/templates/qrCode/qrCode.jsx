@@ -46,8 +46,8 @@ const QRCode = () => {
                     <>
                         <StepsExplainer
                             backLink="/deposit"
-                            step="3"
-                            completedSteps={completedSteps}
+                            loading={loadingData}
+                            reservation={currentReservation}
                         />
                         <ShowQRCode title="Reservering 1234" />
                     </>
