@@ -27,28 +27,20 @@ const CheckBookingInfo = ({ reservation }) => {
                 <article>
                     <ul>
                         <li>
-                            <span>Datum ophalen</span>
-                            <span>{reservation.pickUpDate}</span>
+                            <span>Datum ophalen:</span>
+                            <span>{reservation.pickUpLocation}</span>
                         </li>
                         <li>
-                            <span>Datum inleveren</span>
-                            <span>{reservation.handInDate}</span>
+                            <span>Datum inleveren:</span>
+                            <span>{reservation.handInLocation}</span>
                         </li>
                         <li>
-                            <span>Type klasse</span>
+                            <span>Type klasse:</span>
                             <span>{reservation.class}</span>
                         </li>
                         <li>
-                            <span>Huurprijs</span>
-                            <span>B</span>
-                        </li>
-                        <li>
-                            <span>{reservation.extraDriver}x Extra bestuurder</span>
-                            <span>B</span>
-                        </li>
-                        <li>
-                            <span>Verlagen Eigen Risico</span>
-                            <span>B</span>
+                            <span>Huurprijs:</span>
+                            <span>€ {reservation.rentPrice}</span>
                         </li>
                     </ul>
                 </article>

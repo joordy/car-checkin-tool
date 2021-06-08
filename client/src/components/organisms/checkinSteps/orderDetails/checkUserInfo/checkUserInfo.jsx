@@ -31,24 +31,16 @@ const CheckUserInfo = ({ userInfo }) => {
                 </article>
                 <hr />
                 <article>
-                    <ul>
-                        <li>
-                            <span>Voornaam</span>
-                            <span>{userInfo.firstName}</span>
-                        </li>
-                        <li>
-                            <span>Achternaam</span>
-                            <span>{userInfo.lastName}</span>
-                        </li>
-                        <li>
-                            <span>E-mailadres</span>
-                            <span>{userInfo.email}</span>
-                        </li>
-                        <li>
-                            <span>Telefoonnummer</span>
-                            <span>{userInfo.phoneNumber}</span>
-                        </li>
-                    </ul>
+                    <p>Voornaam</p>
+                    <p>{reservation.user.firstName}</p>
+                    <p>Achternaam</p>
+                    <p>{reservation.user.lastName}</p>
+                    <p>E-mailadres</p>
+                    <p>{reservation.user.email}</p>
+                    <p>Telefoonnummer</p>
+                    <p>{reservation.user.phoneNumber}</p>
+                    <p>Geboortedatum</p>
+                    <p>{reservation.user.birthDate}</p>
                 </article>
             </section>
 
