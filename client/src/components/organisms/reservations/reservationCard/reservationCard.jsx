@@ -33,7 +33,7 @@ const ReservationCard = ({ ...props }) => {
 
                         <DealerLocations {...props} />
                     </>
-                    <Styles.StatusCheck>
+                    {/*<Styles.StatusCheck>
                         <h4>Online Check-In</h4>
                         <p>
                             <span>1</span> van de <span>3</span> stappen voltooid
@@ -64,9 +64,7 @@ const ReservationCard = ({ ...props }) => {
                                 Borg
                             </li>
                         </ul>
-                            <span>0</span> van de <span>3</span> stappen voltooid
-                        </p>
-                    </Styles.StatusCheck>
+                                </Styles.StatusCheck>*/}
 
                     <CheckinButtons {...props} />
                 </article>

@@ -1,7 +1,7 @@
-// Imports
+// React & Module Imports
 import * as Styles from './icons.styles.js'
 
-// Component
+// React  Component
 const Icons = ({ type, width, height, opacity, fill, onClick }) => {
     switch (type) {
         case 'close':

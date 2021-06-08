@@ -14,7 +14,7 @@ const promise = loadStripe(
 )
 
 // React component
-const DepositForm = () => {
+const DepositForm = ({ currentReservation }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -39,7 +39,7 @@ const DepositForm = () => {
     })
 
     const isPaid = useSelector((state) => state.paidReducer)
-    console.log('paid', isPaid)
+    console.log('currentReservation', currentReservation)
 
     return (
         <Styles.Section>
@@ -56,7 +56,7 @@ const DepositForm = () => {
                 <article>
                     <h2>Borg:</h2>
                     <p>
-                        € <span>500,-</span>
+                        € <span>{currentReservation.rentPrice},-</span>
                     </p>
                 </article>
 
