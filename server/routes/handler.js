@@ -19,7 +19,6 @@ router.post("/reservations", (req, res) => {
 
 // Receives logged in user from signed in user
 router.get("/reservations", (req, res) => {
-  console.log(loggedInUser.firstName);
   res.end(JSON.stringify(loggedInUser));
 });
 
@@ -30,18 +29,10 @@ router.post("/order-details", (req, res) => {
 });
 
 // Receives selected car obj from signed in user
-<<<<<<< HEAD
 router.get("/order-details", (req, res) => {
-  console.log(reservation);
+  console.log("reservation", reservation);
   const data = () => {
     if (!reservation) {
-      return "undefined";
-=======
-router.get('/order-details', (req, res) => {
-  console.log('reservation', reservation);
-  const data = () => {
-    if (!reservation) {
->>>>>>> 0d304502f6d1255b15173ad8e62da3cd274849b3
     } else {
       return reservation;
     }
