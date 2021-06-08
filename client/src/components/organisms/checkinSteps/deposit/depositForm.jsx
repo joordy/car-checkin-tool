@@ -1,6 +1,8 @@
 // React imports
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as Styles from './depositForm.styles.js'
+import supabase from 'db/supabase.js'
+
 import { useSelector } from 'react-redux'
 
 // Components
@@ -40,6 +42,36 @@ const DepositForm = ({ currentReservation }) => {
 
     const isPaid = useSelector((state) => state.paidReducer)
     console.log('currentReservation', currentReservation)
+
+    const handleClick = async () => {
+        console.log('betaald pik')
+        const resID = currentReservation.reservationID
+
+        getSpecificUser(resID)
+        setTimeout(() => {
+            // window.location.href = '/qr'
+        }, 100)
+    }
+
+    const getSpecificUser = async (resID) => {
+        console.log(resID)
+
+        function getKeyByValue(object, value) {
+            return Object.keys(object).find((key) => object[key] === value)
+        }
+
+        const { data, error } = await supabase.from('users').select()
+        // .eq('userID', currentReservation.user.userID)
+        // .update(`address: { street: 'Melrose Place', postcode: 90210 }`)
+        // .eq('address->postcode', 90210)
+
+        if (!data) {
+            console.log(error)
+        } else {
+            console.log(data)
+            // console.log(getKeyByValue(data[0], resID))
+        }
+    }
 
     return (
         <Styles.Section>
@@ -82,7 +114,7 @@ const DepositForm = ({ currentReservation }) => {
                     linkPrimary="/qr"
                     linkSecondary="#"
                     callbackSecondary={moveRight}
-                    callbackPrimary={() => (window.location.href = '/qr')}
+                    callbackPrimary={handleClick}
                 />
             ) : (
                 <VerificationButtons
