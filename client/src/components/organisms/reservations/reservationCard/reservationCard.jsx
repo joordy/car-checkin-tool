@@ -1,12 +1,14 @@
-// React & Components imports
+// React & Modules imports
 import React from 'react'
 import * as Styles from './reservationCard.styles.js'
+
+// Components
+import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
-// Component
+// React Component
 const ReservationCard = ({ ...props }) => {
     const reservation = { ...props }
-    console.log(reservation.orderDetails)
 
     return (
         <>
@@ -62,6 +64,8 @@ const ReservationCard = ({ ...props }) => {
                                 Borg
                             </li>
                         </ul>
+                            <span>0</span> van de <span>3</span> stappen voltooid
+                        </p>
                     </Styles.StatusCheck>
 
                     <CheckinButtons {...props} />
