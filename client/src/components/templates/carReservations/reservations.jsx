@@ -35,8 +35,8 @@ const Reservations = () => {
         getData()
     }, [])
 
-    console.log('allReservations', allReservations)
-    console.log('currentUser', currentUser)
+    // console.log('allReservations', allReservations)
+    // console.log('currentUser', currentUser)
 
     return (
         <>
@@ -47,11 +47,12 @@ const Reservations = () => {
                         {allReservations.length > 1 ? (
                             <>
                                 <h2>Mijn Reserveringen</h2>
-                                {allReservations.map((item) => {
+                                {allReservations.map((item, index) => {
                                     return (
                                         <ReservationCard
                                             key={item.reservationID}
-                                            {...item}
+                                            data={item}
+                                            reservationKey={index}
                                             user={currentUser}
                                         />
                                     )

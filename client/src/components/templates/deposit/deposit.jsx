@@ -20,10 +20,10 @@ const Deposit = () => {
                 .then((res) => {
                     setCurrentReservation(res.data)
                     setCompletedSteps({
-                        orderDetails: res.data.orderDetails,
-                        verificationProcess: res.data.verificationProcess,
-                        payMethod: res.data.paidDeposit.method,
-                        paidDeposit: res.data.paidDeposit.paid,
+                        orderDetails: res.data.car.orderDetails,
+                        verificationProcess: res.data.car.verificationProcess,
+                        payMethod: res.data.car.paidDeposit.method,
+                        paidDeposit: res.data.car.paidDeposit.paid,
                     })
                 })
             setLoadingData(true)

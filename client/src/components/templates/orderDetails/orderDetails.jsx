@@ -29,7 +29,7 @@ const OrderDetails = () => {
         getData()
     }, [])
 
-    console.log(currentReservation)
+    console.log('currentReservation', currentReservation)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
@@ -41,7 +41,7 @@ const OrderDetails = () => {
                     <>
                         <StepsExplainer backLink="/reservations" step="0" />
                         <CheckUserInfo reservation={currentReservation} />
-                        <CheckBookingInfo reservation={currentReservation} />
+                        <CheckBookingInfo reservation={currentReservation.car} />
                     </>
                 ) : (
                     <>

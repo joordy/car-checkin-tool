@@ -6,9 +6,9 @@ import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
 // React Component
-const ReservationCard = ({ ...props }) => {
-    const reservation = { ...props }
-
+const ReservationCard = ({ data, reservationKey, user }) => {
+    const reservation = data
+    console.log('data', data)
     return (
         <>
             <Styles.Card>
@@ -30,9 +30,95 @@ const ReservationCard = ({ ...props }) => {
                             </svg>
                         </span>
 
-                        <DealerLocations {...props} />
+                        <DealerLocations {...data} />
                     </>
-                    {/*<Styles.StatusCheck>
+
+                    <Styles.StatusCheck>
+                        <h4>Online Check-In</h4>
+                        <p>
+                            <span>1</span> van de <span>3</span> stappen voltooid
+                        </p>
+                        <ul>
+                            <li>
+                                {data.orderDetails ? (
+                                    <div className="wrapper active">
+                                        <div>
+                                            <Icons type="data" width="1.5rem" height="1.5rem" />
+                                        </div>
+                                        <p>Gegevens</p>
+                                    </div>
+                                ) : (
+                                    <div className="wrapper">
+                                        <div>
+                                            <Icons type="data" width="1.5rem" height="1.5rem" />
+                                        </div>
+                                        <p>Gegevens</p>
+                                    </div>
+                                )}
+                            </li>
+                            <li>
+                                {data.driverOne.verified && data.driverTwo.verified ? (
+                                    <div className="wrapper active">
+                                        <div>
+                                            <Icons
+                                                type="userCheck"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Verificatie</p>
+                                    </div>
+                                ) : (
+                                    <div className="wrapper">
+                                        <div>
+                                            <Icons
+                                                type="userCheck"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Verificatie</p>
+                                    </div>
+                                )}
+                            </li>
+                            <li>
+                                {data.paidDeposit.paid ? (
+                                    <div className="wrapper active">
+                                        <div>
+                                            <Icons
+                                                type="creditcard"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Borg</p>
+                                    </div>
+                                ) : (
+                                    <div className="wrapper">
+                                        <div>
+                                            <Icons
+                                                type="creditcard"
+                                                width="1.5rem"
+                                                height="1.5rem"
+                                            />
+                                        </div>
+                                        <p>Borg</p>
+                                    </div>
+                                )}
+                            </li>
+                        </ul>
+                    </Styles.StatusCheck>
+                    <CheckinButtons reservation={data} carIndexKey={reservationKey} user={user} />
+                </article>
+            </Styles.Card>
+        </>
+    )
+}
+
+export default ReservationCard
+
+{
+    /*<Styles.StatusCheck>
                         <h4>Online Check-In</h4>
                         <p>
                             <span>1</span> van de <span>3</span> stappen voltooid
@@ -63,13 +149,5 @@ const ReservationCard = ({ ...props }) => {
                                 Borg
                             </li>
                         </ul>
-                                </Styles.StatusCheck>*/}
-
-                    <CheckinButtons {...props} />
-                </article>
-            </Styles.Card>
-        </>
-    )
+                                </Styles.StatusCheck>*/
 }
-
-export default ReservationCard
