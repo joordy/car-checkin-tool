@@ -11,42 +11,26 @@ const stripe = require("stripe")(
 let reservation;
 let loggedInUser;
 
-<<<<<<< HEAD
-router.get("/reservations", (req, res) => {
-  console.log("reservation page");
-  const str = "reservation page";
-  res.end(JSON.stringify(str));
-});
-
-router.post("/order-details", (req, res) => {
-  // console.log("req.body", req.body);
-=======
 // Posts user object to server, to use later on
-router.post('/reservations', (req, res) => {
+router.post("/reservations", (req, res) => {
   loggedInUser = req.body;
   res.end(JSON.stringify(req.body));
 });
 
 // Receives logged in user from signed in user
-router.get('/reservations', (req, res) => {
+router.get("/reservations", (req, res) => {
   console.log(loggedInUser.firstName);
   res.end(JSON.stringify(loggedInUser));
 });
 
 // Post specific car obj to server, to fetch on later.
-router.post('/order-details', (req, res) => {
->>>>>>> c5d2bcff3f4083efd56dd8aee4a14dcb298bece9
+router.post("/order-details", (req, res) => {
   reservation = req.body;
   res.end(JSON.stringify(req.body));
 });
 
-<<<<<<< HEAD
-router.get("/order-details", (req, res) => {
-  console.log("test, server approached");
-=======
 // Receives selected car obj from signed in user
-router.get('/order-details', (req, res) => {
->>>>>>> c5d2bcff3f4083efd56dd8aee4a14dcb298bece9
+router.get("/order-details", (req, res) => {
   console.log(reservation);
   const data = () => {
     if (!reservation) {
@@ -182,21 +166,12 @@ function getDate(date) {
   const dateElements = dateTime[0].split("-");
   const newDate = `${dateElements[2]}-${dateElements[1]}-${dateElements[0]} ${dateTime[1]}`;
   const dateObject = new Date(newDate);
-<<<<<<< HEAD
   const day = dateObject.toLocaleString("nl-NL", { day: "numeric" });
   const month = dateObject.toLocaleString("nl-NL", { month: "long" });
   const year = dateObject.toLocaleString("nl-NL", { year: "numeric" });
   const time = dateObject.toLocaleString("nl-NL", {
     hour: "2-digit",
     minute: "2-digit",
-=======
-  const day = dateObject.toLocaleString('nl-NL', { day: 'numeric' });
-  const month = dateObject.toLocaleString('nl-NL', { month: 'long' });
-  const year = dateObject.toLocaleString('nl-NL', { year: 'numeric' });
-  const time = dateObject.toLocaleString('nl-NL', {
-    hour: '2-digit',
-    minute: '2-digit',
->>>>>>> c5d2bcff3f4083efd56dd8aee4a14dcb298bece9
     hour12: false,
   });
 

@@ -5,7 +5,7 @@ import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
-const CheckBookingInfo = ({ carInfo, otherInfo }) => {
+const CheckBookingInfo = ({ reservation }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -28,22 +28,22 @@ const CheckBookingInfo = ({ carInfo, otherInfo }) => {
                     <ul>
                         <li>
                             <span>Datum ophalen</span>
-                            <span>{carInfo.pickUpDate}</span>
+                            <span>{reservation.pickUpDate}</span>
                         </li>
                         <li>
                             <span>Datum inleveren</span>
-                            <span>{carInfo.handInDate}</span>
+                            <span>{reservation.handInDate}</span>
                         </li>
                         <li>
                             <span>Type klasse</span>
-                            <span>{carInfo.class}</span>
+                            <span>{reservation.class}</span>
                         </li>
                         <li>
                             <span>Huurprijs</span>
                             <span>B</span>
                         </li>
                         <li>
-                            <span>{carInfo.extraDriver}x Extra bestuurder</span>
+                            <span>{reservation.extraDriver}x Extra bestuurder</span>
                             <span>B</span>
                         </li>
                         <li>
@@ -61,19 +61,19 @@ const CheckBookingInfo = ({ carInfo, otherInfo }) => {
                     <ul>
                         <li>
                             <span>Eigen risico</span>
-                            <span>€ {otherInfo.ownRisk}</span>
+                            <span>€ {reservation.ownRisk}</span>
                         </li>
                         <li>
                             <span>Borg</span>
-                            <span>€ {otherInfo.deposit}</span>
+                            <span>€ {reservation.deposit}</span>
                         </li>
                         <li>
                             <span>Vrije km</span>
-                            <span>{otherInfo.freeKM} KM</span>
+                            <span>{reservation.freeKM} KM</span>
                         </li>
                         <li>
                             <span>Prijs per extra km</span>
-                            <span>€ {otherInfo.priceExtraKM}</span>
+                            <span>€ {reservation.priceExtraKM}</span>
                         </li>
                     </ul>
                 </article>

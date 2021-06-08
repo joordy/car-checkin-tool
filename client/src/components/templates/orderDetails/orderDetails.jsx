@@ -9,7 +9,7 @@ import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/orga
 
 // React component
 const OrderDetails = () => {
-    const [currentUser, setCurrentUser] = useState([])
+    const [currentUser, setCurrentUser] = useState({ firstName: '', lastName: '', email: '' })
     const [reservationID, setReservationID] = useState([])
     let data
 
@@ -42,9 +42,9 @@ const OrderDetails = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/reservations" step="0" reservation={currentCar} />
-                <CheckUserInfo reservation={currentCar} />
-                <CheckBookingInfo reservation={currentCar} />
+                {/* <StepsExplainer backLink="/reservations" step="0" reservation={currentCar} /> */}
+                <CheckUserInfo reservation={currentUser} />
+                <CheckBookingInfo reservation={currentUser} />
             </div>
         </Styles.Main>
     )
