@@ -1,5 +1,5 @@
 // React & Modules imports
-import React from 'react'
+import { useState } from 'react'
 import * as Styles from './checkIdentity.styles.js'
 import { useSelector, useDispatch } from 'react-redux'
 import { verifiedDriver } from 'constants/actions'
@@ -16,6 +16,8 @@ const stripePromise = loadStripe(
 
 // React component
 const CheckIdentity = () => {
+    const [isLoading, setIsLoading] = useState(false)
+
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-200vw)'
@@ -27,6 +29,7 @@ const CheckIdentity = () => {
     }
 
     const handleClick = async (event) => {
+        setIsLoading(true)
         const stripe = await stripePromise
         // Connect to backend to fetch the verification session
         const response = await fetch(
@@ -50,6 +53,7 @@ const CheckIdentity = () => {
     const isVerifiedDriver = useSelector((state) => state.verifiedDriverReducer)
     const dispatch = useDispatch()
 
+    console.log(isLoading, 'isLoading')
     return (
         <Styles.Section id="identity">
             <header>
@@ -63,9 +67,21 @@ const CheckIdentity = () => {
             </header>
 
             <Styles.IdentityChecker>
-                <button role="link" onClick={handleClick}>
+                <Styles.StartBtn role="link" onClick={handleClick}>
                     <Icons type="camera" width="2.5rem" />
-                </button>
+                </Styles.StartBtn>
+
+                {/*} {isLoading ? (
+                    <>
+                        <Styles.LoadingBtn role="link">
+                            <Icons type="success" width="2.5rem" height="2.5rem" />
+                            <p>Verificatie wordt gestart</p>
+                        </Styles.LoadingBtn>
+                    </>
+                ) : (
+                    <>
+                    </>
+                )} */}
             </Styles.IdentityChecker>
 
             {isVerifiedDriver ? (

@@ -38,15 +38,12 @@ const CheckFacial = () => {
     }
 
     const makeImage = () => {
+        console.log('maak foto bruur')
         setModalIsOpen(true)
         setDisabling('created')
         let video = document.querySelector('#videoWrapper')
         video.pause()
     }
-
-    // const lastbtn = document.querySelector('#lastButton')
-    // lastbtn.disabled = true
-    // console.log(lastbtn)
 
     return (
         <Styles.Section id="facial">
@@ -66,22 +63,19 @@ const CheckFacial = () => {
                         <video muted autoPlay id="videoWrapper"></video>
                         {playing ? (
                             <>
-                                <div>
+                                <div id="createImage">
                                     <ButtonTertiary
                                         type="btn"
                                         text="Maak foto"
                                         _callback={makeImage}
                                     />
                                 </div>
-                                <VerifyModal
-                                    open={modalIsOpen}
-                                    onClose={() => setModalIsOpen(false)}
-                                    buttonText="volgende"
-                                >
-                                    <Icons type="success" width="3em" height="3em" />
-                                    <h2>Gelukt</h2>
-                                    <p>Rijbewijs succesvol geverifieerd</p>
-                                </VerifyModal>
+                                {modalIsOpen && (
+                                    <VerifyModal
+                                        message="success"
+                                        onClose={() => setModalIsOpen(false)}
+                                    />
+                                )}
                             </>
                         ) : (
                             <ButtonPrimary type="btn" text="Open camera" _callback={startVideo} />

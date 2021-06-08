@@ -30,20 +30,41 @@ export const IdentityChecker = styled.article`
     height: calc(100% - 350px);
     margin: 2rem 0;
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
-    button {
-        padding: 1.5rem;
-        background-color: rgba(255, 255, 255, 0.3);
-        margin: 3rem 3rem;
-        width: calc(100% - 6rem);
-        height: calc(100% - 6rem);
-        border-radius: 1rem;
-        border: 2px solid white;
-        color: white;
-        svg {
-            path {
-                fill: transparent;
-                stroke: white;
-            }
+`
+
+export const LoadingBtn = styled.button`
+    padding: 1.5rem;
+    background-color: transparent;
+    margin: 3rem 3rem;
+    width: calc(100% - 6rem);
+    height: calc(100% - 6rem);
+    border-radius: 1rem;
+    border: none;
+    color: white;
+    svg {
+        path {
+            fill: transparent;
+            stroke: white;
+        }
+    }
+`
+
+export const StartBtn = styled.button`
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 3rem 3rem;
+    width: calc(100% - 6rem);
+    height: calc(100% - 6rem);
+    border-radius: 1rem;
+    border: 2px solid white;
+    color: white;
+    span {
+        margin-bottom: 2rem;
+    }
+    svg {
+        path {
+            fill: transparent;
+            stroke: white;
         }
     }
 `
