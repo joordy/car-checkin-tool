@@ -1,5 +1,4 @@
 // React & Modules imports
-import React from 'react'
 import * as Styles from './reservationCard.styles.js'
 
 // Components
