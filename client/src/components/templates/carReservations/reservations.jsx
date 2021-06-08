@@ -9,8 +9,8 @@ import { ReservationCard, ReservationHeader, EmptyReservation } from 'components
 
 // React component
 const Reservations = () => {
-    const [currentUser, setCurrentUser] = useState([])
-    const [loggedUser, setLoggedUser] = useState([])
+    const [currentUser, setCurrentUser] = useState({})
+    const [reservations, setReservations] = useState([])
 
     const getData = async () => {
         const data = await fetch(`${process.env.REACT_APP_BACKEND}/reservations`)
@@ -19,33 +19,32 @@ const Reservations = () => {
             console.log(response)
             window.location.href = '/'
         } else {
-            setLoggedUser(response)
+            setCurrentUser(response)
+            setReservations([...response.carResOne, ...response.carResTwo, ...response.carResThree])
         }
-    }
-
-    const getSpecificUser = async () => {
-        const { data, error } = await supabase
-            .from('users')
-            .select()
-            .eq('userID', loggedUser.userID)
-
-        if (!data) {
-            console.log(error)
-        } else {
-            setCurrentUser(...data)
-        }
-    }
-
-    if (currentUser.length === 0) {
-        getSpecificUser()
     }
 
     useEffect(async () => {
         getData()
+        if (currentUser.userID) {
+            const { data, error } = await supabase
+                .from('users')
+                .select()
+                .eq('userID', currentUser.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setReservations([
+                    ...data[0].carResOne,
+                    ...data[0].carResTwo,
+                    ...data[0].carResThree,
+                ])
+            }
+        }
     }, [])
 
-    // console.log('loggedUser', loggedUser)
-    // console.log('currentUser', currentUser)
+    console.log('currentUser', currentUser)
+    console.log('reservations', reservations)
 
     return (
         <>
@@ -53,10 +52,10 @@ const Reservations = () => {
                 <>
                     <ReservationHeader user={{ firstName: currentUser.firstName }} />
                     <Styles.Main>
-                        {currentUser.cars.length > 1 ? (
+                        {reservations.length > 1 ? (
                             <>
                                 <h2>Mijn Reserveringen</h2>
-                                {currentUser.cars.map((item) => {
+                                {reservations.map((item) => {
                                     return (
                                         <ReservationCard
                                             key={item.reservationID}

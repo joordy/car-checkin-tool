@@ -31,10 +31,9 @@ router.post('/order-details', (req, res) => {
 
 // Receives selected car obj from signed in user
 router.get('/order-details', (req, res) => {
-  console.log(reservation);
+  console.log('reservation', reservation);
   const data = () => {
     if (!reservation) {
-      return 'undefined';
     } else {
       return reservation;
     }
