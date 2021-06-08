@@ -29,8 +29,6 @@ const OrderDetails = () => {
         getData()
     }, [])
 
-    console.log(currentReservation)
-
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
@@ -39,13 +37,18 @@ const OrderDetails = () => {
             <div className="stepsWrapper">
                 {loadingData ? (
                     <>
-                        <StepsExplainer backLink="/reservations" step="0" />
+                        <StepsExplainer
+                            backLink="/reservations"
+                            step="0"
+                            reservation={currentReservation}
+                            loading={loadingData}
+                        />
                         <CheckUserInfo reservation={currentReservation} />
                         <CheckBookingInfo reservation={currentReservation} />
                     </>
                 ) : (
                     <>
-                        <StepsExplainer backLink="/reservations" step="0" />{' '}
+                        <StepsExplainer backLink="/reservations" step="0" loading={loadingData} />{' '}
                     </>
                 )}
             </div>

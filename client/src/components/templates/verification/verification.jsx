@@ -74,7 +74,11 @@ const Verification = () => {
             <div className="stepsWrapper">
                 {loadingData ? (
                     <>
-                        <StepsExplainer backLink="/order-details" completedSteps={completedSteps} />
+                        <StepsExplainer
+                            backLink="/order-details"
+                            loading={loadingData}
+                            reservation={currentReservation}
+                        />
                         <CheckDrivers />
                         <UserChoice
                             title="Verifieer je eigen rijbewijs"
@@ -94,7 +98,7 @@ const Verification = () => {
                     </>
                 ) : (
                     <>
-                        <StepsExplainer backLink="/order-details" />
+                        <StepsExplainer loading={loadingData} backLink="/order-details" />
                     </>
                 )}
             </div>
