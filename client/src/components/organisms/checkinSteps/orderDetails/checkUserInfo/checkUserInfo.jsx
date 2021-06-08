@@ -1,5 +1,5 @@
 // React imports
-import React from 'react'
+import React, { useState } from 'react'
 import * as Styles from './checkUserInfo.styles.js'
 import { Icons, EditButton } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
@@ -16,6 +16,8 @@ const CheckUserInfo = ({ userInfo }) => {
         moveElement.style.transform = 'translateX(-200vw)'
     }
 
+    const [editing, setEditing] = useState(false)
+
     return (
         <Styles.Section>
             <header>
@@ -31,16 +33,28 @@ const CheckUserInfo = ({ userInfo }) => {
                 </article>
                 <hr />
                 <article>
-                    <p>Voornaam</p>
-                    <p>{reservation.user.firstName}</p>
-                    <p>Achternaam</p>
-                    <p>{reservation.user.lastName}</p>
-                    <p>E-mailadres</p>
-                    <p>{reservation.user.email}</p>
-                    <p>Telefoonnummer</p>
-                    <p>{reservation.user.phoneNumber}</p>
-                    <p>Geboortedatum</p>
-                    <p>{reservation.user.birthDate}</p>
+                    <ul>
+                        <li>
+                            <span>Voornaam</span>
+                            <span>{userInfo.user.firstName}</span>
+                        </li>
+                        <li>
+                            <span>Achternaam</span>
+                            <span>{userInfo.user.lastName}</span>
+                        </li>
+                        <li>
+                            <span>E-mailadres</span>
+                            <span>{userInfo.user.email}</span>
+                        </li>
+                        <li>
+                            <span>Telefoonnummer</span>
+                            <span>{userInfo.user.phoneNumber}</span>
+                        </li>
+                        <li>
+                            <span>Geboortedatum</span>
+                            <span>{userInfo.user.birthDate}</span>
+                        </li>
+                    </ul>
                 </article>
             </section>
 

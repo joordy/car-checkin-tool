@@ -59,11 +59,11 @@ const Deposit = () => {
                             twoText="Via creditcard, PIN of contant."
                             threeTitle="Stap voor nu overslaan"
                             threeText="Je kunt later alsnog een keuze maken."
-                            deposit="500,-"
+                            deposit={currentReservation.rentPrice}
                             movingRight="0vw"
                             movingLeft="-200vw"
                         />
-                        <DepositForm />
+                        <DepositForm currentReservation={currentReservation} />
                     </>
                 ) : (
                     <>

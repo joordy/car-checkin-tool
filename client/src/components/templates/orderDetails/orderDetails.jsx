@@ -40,7 +40,7 @@ const OrderDetails = () => {
                 {loadingData ? (
                     <>
                         <StepsExplainer backLink="/reservations" step="0" />
-                        <CheckUserInfo reservation={currentReservation} />
+                        <CheckUserInfo userInfo={currentReservation} />
                         <CheckBookingInfo reservation={currentReservation} />
                     </>
                 ) : (

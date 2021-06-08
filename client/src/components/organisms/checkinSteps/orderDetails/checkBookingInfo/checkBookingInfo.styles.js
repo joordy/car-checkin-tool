@@ -33,7 +33,7 @@ export const Section = styled.section`
                 li {
                     display: flex;
                     justify-content: space-between;
-                    line-height: 1.5em;
+                    line-height: 2em;
                 }
             }
         }

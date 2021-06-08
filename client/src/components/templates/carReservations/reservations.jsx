@@ -35,6 +35,9 @@ const Reservations = () => {
         getData()
     }, [])
 
+    console.log(allReservations)
+    console.log(currentUser)
+
     return (
         <>
             {loadingData ? (

@@ -53,19 +53,19 @@ const CheckBookingInfo = ({ reservation }) => {
                     <ul>
                         <li>
                             <span>Eigen risico</span>
-                            <span>€ {reservation.ownRisk}</span>
+                            <span>€ {reservation.otherInfo.ownRisk}</span>
                         </li>
                         <li>
                             <span>Borg</span>
-                            <span>€ {reservation.deposit}</span>
+                            <span>€ {reservation.otherInfo.deposit}</span>
                         </li>
                         <li>
                             <span>Vrije km</span>
-                            <span>{reservation.freeKM} KM</span>
+                            <span>{reservation.otherInfo.freeKM} KM</span>
                         </li>
                         <li>
                             <span>Prijs per extra km</span>
-                            <span>€ {reservation.priceExtraKM}</span>
+                            <span>€ {reservation.otherInfo.priceExtraKM}</span>
                         </li>
                     </ul>
                 </article>
