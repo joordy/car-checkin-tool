@@ -20,7 +20,6 @@ const Verification = () => {
     //         .from('users')
     //         .select()
     //         .eq('userID', fetchedData.user.userID)
-  
     //     if (!data) {
     //         console.log(error)
     //     } else {

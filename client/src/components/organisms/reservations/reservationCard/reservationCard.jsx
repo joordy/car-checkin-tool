@@ -16,7 +16,7 @@ const ReservationCard = ({ ...props }) => {
                 <img src={reservation.carImage} alt="Car image" />
                 <h3>{reservation.class}</h3>
                 <article>
-                    <>
+                    <a>
                         <span>
                             <svg
                                 width="14"
@@ -32,43 +32,7 @@ const ReservationCard = ({ ...props }) => {
                         </span>
 
                         <DealerLocations {...props} />
-                    </>
-                    <Styles.StatusCheck>
-                        <h4>Online Check-In</h4>
-                        <p>
-                            <span>1</span> van de <span>3</span> stappen voltooid
-                        </p>
-                        <ul>
-                            <li>
-                                {reservation.orderDetails ? (
-                                    <p>The condition must be true!</p>
-                                ) : (
-                                    <p>The condition must be false!</p>
-                                )}
-                                Gegevens
-                            </li>
-                            <li>
-                                {reservation.verification[0].verified ? (
-                                    <p>The condition must be true!</p>
-                                ) : (
-                                    <p>The condition must be false!</p>
-                                )}
-                                Verificatie
-                            </li>
-                            <li>
-                                {reservation.paidDeposit.paid ? (
-                                    <p>The condition must be true!</p>
-                                ) : (
-                                    <p>The condition must be false!</p>
-                                )}
-                                Borg
-                            </li>
-                        </ul>
-                            <span>0</span> van de <span>3</span> stappen voltooid
-                        </p>
-                    </Styles.StatusCheck>
-
-                    <CheckinButtons {...props} />
+                    </a>
                 </article>
             </Styles.Card>
         </>
