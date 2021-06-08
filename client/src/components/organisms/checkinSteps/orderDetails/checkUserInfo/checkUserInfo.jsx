@@ -33,15 +33,15 @@ const CheckUserInfo = ({ reservation }) => {
                 <hr />
                 <article>
                     <p>Voornaam</p>
-                    <p>{reservation.firstName}</p>
+                    <p>{reservation.user.firstName}</p>
                     <p>Achternaam</p>
-                    <p>{reservation.lastName}</p>
+                    <p>{reservation.user.lastName}</p>
                     <p>E-mailadres</p>
-                    <p>{reservation.email}</p>
+                    <p>{reservation.user.email}</p>
                     <p>Telefoonnummer</p>
-                    <p>0645542811</p>
+                    <p>{reservation.user.phoneNumber}</p>
                     <p>Geboortedatum</p>
-                    <p>23 februari 1997</p>
+                    <p>{reservation.user.birthDate}</p>
                 </article>
             </section>
 

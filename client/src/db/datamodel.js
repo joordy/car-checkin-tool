@@ -1,14 +1,12 @@
-import { v4 as uuidv4 } from 'uuid'
-
-const user = {
-    firstName: 'Robert',
-    lastName: 'Spier',
-    email: 'robert@gmail.com',
+const user2 = {
+    firstName: 'Justus',
+    lastName: 'Sturkeboom',
+    email: 'justus@gmail.com',
     password: 'Welkom123',
     phoneNumber: '+31 6 12345678',
     birthDate: '01-01-1997',
     userID: uuidv4(),
-    cars: [
+    carResOne: [
         {
             carImage:
                 'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
@@ -31,26 +29,24 @@ const user = {
                 priceExtraKM: 0.3,
             },
             orderDetails: false,
-            verification: [
-                {
-                    driver: 'Robert Spier',
-                    role: 'hoofdbestuurder',
-                    method: 'location',
-                    verified: false,
-                },
-                {
-                    driver: 'Justus Sturkeboom',
-                    role: 'extra',
-                    method: 'location',
-                    verified: false,
-                },
-                {
-                    driver: 'Janno Kapritsias',
-                    role: 'extra',
-                    method: 'location',
-                    verified: false,
-                },
-            ],
+            driverOne: {
+                driver: '',
+                role: 'hoofdbestuurder',
+                method: 'location',
+                verified: false,
+            },
+            driverTwo: {
+                driver: 'Janno Kapritsias',
+                role: 'extra',
+                method: 'location',
+                verified: false,
+            },
+            driverThree: {
+                driver: 'Joost Faber',
+                role: 'extra',
+                method: 'location',
+                verified: false,
+            },
             verificationProcess: false,
             paidDeposit: {
                 method: 'location',
@@ -59,6 +55,8 @@ const user = {
             qrCode: Boolean,
             walletSerialNumber: 'String',
         },
+    ],
+    carResTwo: [
         {
             carImage:
                 'https://user-images.githubusercontent.com/48051912/120997155-44941580-c787-11eb-9c99-03983138a782.png',
@@ -81,14 +79,12 @@ const user = {
                 priceExtraKM: 0.3,
             },
             orderDetails: false,
-            verification: [
-                {
-                    driver: 'Robert Spier',
-                    role: 'hoofdbestuurder',
-                    method: 'location',
-                    verified: false,
-                },
-            ],
+            driverOne: {
+                driver: 'Justus Sturkeboom',
+                role: 'hoofdbestuurder',
+                method: 'location',
+                verified: false,
+            },
             verificationProcess: false,
             paidDeposit: {
                 method: 'location',
@@ -97,6 +93,8 @@ const user = {
             qrCode: Boolean,
             walletSerialNumber: 'String',
         },
+    ],
+    carResThree: [
         {
             carImage:
                 'https://user-images.githubusercontent.com/48051912/120997155-44941580-c787-11eb-9c99-03983138a782.png',
@@ -119,20 +117,18 @@ const user = {
                 priceExtraKM: 0.3,
             },
             orderDetails: false,
-            verification: [
-                {
-                    driver: 'Robert Spier',
-                    role: 'hoofdbestuurder',
-                    method: 'location',
-                    verified: false,
-                },
-                {
-                    driver: 'Janno Kapritsias',
-                    role: 'extra',
-                    method: 'location',
-                    verified: false,
-                },
-            ],
+            driverOne: {
+                driver: 'Justus Sturkeboom',
+                role: 'hoofdbestuurder',
+                method: 'location',
+                verified: false,
+            },
+            driverTwo: {
+                driver: 'Joost Faber',
+                role: 'extra',
+                method: 'location',
+                verified: false,
+            },
             verificationProcess: false,
             paidDeposit: {
                 method: 'location',
@@ -150,4 +146,7 @@ const insertDB = async () => {
     console.log(error)
 }
 
-insertDB()
+useEffect(async () => {
+    insertDB()
+    // getData()
+}, [])

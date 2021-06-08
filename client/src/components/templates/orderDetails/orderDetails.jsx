@@ -1,40 +1,36 @@
 // React & Modules imports
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
 import supabase from 'db/supabase.js'
 import * as Styles from './orderDetails.styles.js'
-import fetchData from 'utils/fetchData'
 
 // Components
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
 
 // React component
 const OrderDetails = () => {
-    const [currentUser, setCurrentUser] = useState([])
-    const [reservationID, setReservationID] = useState([])
-    let data
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
 
-    useEffect(async () => {
-        data = await fetchData(`${process.env.REACT_APP_BACKEND}/order-details`)
-        getSpecificUser(data)
-    }, [])
-
-    const getSpecificUser = async (fetchedData) => {
-        console.log(fetchedData)
-        const { data, error } = await supabase
-            .from('users')
-            .select()
-            .eq('userID', fetchedData.user.userID)
-
-        if (!data) {
-            console.log(error)
-        } else {
-            setCurrentUser(...data)
-            setReservationID(fetchedData.reservationID)
+    const getData = async () => {
+        try {
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
+                .then((res) => {
+                    setCurrentReservation(res.data)
+                })
+            setLoadingData(true)
+        } catch (e) {
+            console.log(e)
         }
     }
 
-    console.log('Current user', currentUser)
-    console.log('reservation ID', reservationID)
+    useEffect(() => {
+        getData()
+    }, [])
+
+    console.log(currentReservation)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
@@ -42,9 +38,17 @@ const OrderDetails = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/reservations" step="0" reservation={currentUser} />
-                <CheckUserInfo reservation={currentUser} />
-                <CheckBookingInfo reservation={currentUser} />
+                {loadingData ? (
+                    <>
+                        <StepsExplainer backLink="/reservations" step="0" />
+                        <CheckUserInfo reservation={currentReservation} />
+                        <CheckBookingInfo reservation={currentReservation} />
+                    </>
+                ) : (
+                    <>
+                        <StepsExplainer backLink="/reservations" step="0" />{' '}
+                    </>
+                )}
             </div>
         </Styles.Main>
     )

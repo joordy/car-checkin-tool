@@ -6,6 +6,7 @@ import { ButtonPrimary } from 'components/atoms/index'
 // Component
 const CheckinButtons = ({ ...props }) => {
     const reservation = { ...props }
+    console.log('bttns ', reservation)
     const day = reservation.pickUpDate.slice(0, 2)
     const month = reservation.pickUpDate.slice(3, 5)
     let pickupDay = [day, month]
@@ -28,6 +29,8 @@ const CheckinButtons = ({ ...props }) => {
             },
             body: JSON.stringify(reservation),
         })
+        window.localStorage.clear()
+        window.localStorage.setItem('reservationObj', JSON.stringify(reservation.reservationID))
         window.location.href = '/order-details'
     }
 

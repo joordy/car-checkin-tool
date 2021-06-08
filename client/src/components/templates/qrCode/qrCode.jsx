@@ -1,40 +1,40 @@
-// React imports
+// React & Module imports
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './qrCode.styles.js'
-import fetchData from 'utils/fetchData'
 
 // Components
 import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 
 // React component
 const QRCode = () => {
-    const [currentUser, setCurrentUser] = useState([])
-    const [reservationID, setReservationID] = useState([])
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
+    const [completedSteps, setCompletedSteps] = useState()
 
-    let data
-
-    useEffect(async () => {
-        data = await fetchData(`${process.env.REACT_APP_BACKEND}/order-details`)
-        getSpecificUser(data)
-    }, [])
-
-    const getSpecificUser = async (fetchedData) => {
-        const { data, error } = await supabase
-            .from('users')
-            .select()
-            .eq('userID', fetchedData.user.userID)
-
-        if (!data) {
-            console.log(error)
-        } else {
-            setCurrentUser(...data)
-            setReservationID(fetchedData.reservationID)
+    const getData = async () => {
+        try {
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
+                .then((res) => {
+                    setCurrentReservation(res.data)
+                    setCompletedSteps({
+                        orderDetails: res.data.orderDetails,
+                        verificationProcess: res.data.verificationProcess,
+                        payMethod: res.data.paidDeposit.method,
+                        paidDeposit: res.data.paidDeposit.paid,
+                    })
+                })
+            setLoadingData(true)
+        } catch (e) {
+            console.log(e)
         }
     }
 
-    console.log('Current user', currentUser)
-    console.log('reservation ID', reservationID)
+    useEffect(() => {
+        getData()
+    }, [])
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
@@ -42,8 +42,20 @@ const QRCode = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/deposit" step="3" />
-                <ShowQRCode title="Reservering 1234" />
+                {loadingData ? (
+                    <>
+                        <StepsExplainer
+                            backLink="/deposit"
+                            step="3"
+                            completedSteps={completedSteps}
+                        />
+                        <ShowQRCode title="Reservering 1234" />
+                    </>
+                ) : (
+                    <>
+                        <StepsExplainer backLink="/deposit" step="3" />
+                    </>
+                )}
             </div>
         </Styles.Main>
     )
