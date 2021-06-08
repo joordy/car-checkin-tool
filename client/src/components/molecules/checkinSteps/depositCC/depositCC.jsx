@@ -1,9 +1,12 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as Styles from './depositCC.styles.js'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { useSelector, useDispatch } from 'react-redux'
 import { paid } from 'constants/actions'
+
+// Components
+import { Warnings } from 'components/atoms/index'
 
 // React component
 const DepositCC = ({ labelText, children }) => {
@@ -96,16 +99,24 @@ const DepositCC = ({ labelText, children }) => {
             </fieldset>
 
             {error && (
-                <div className="card-error" role="alert">
+                <Warnings type="failed" className="card-error" role="alert">
                     {error}
-                </div>
+                </Warnings>
             )}
 
-            <p className={succeeded ? 'result-message' : 'result-message hidden'}>
-                Payment succeeded, see the result in your
-                <a href={`https://dashboard.stripe.com/test/payments`}> Stripe dashboard.</a>{' '}
-                Refresh the page to pay again.
-            </p>
+            <Warnings
+                type="success"
+                className={succeeded ? 'result-message' : 'result-message hidden'}
+            >
+                <p className={succeeded ? 'result-message' : 'result-message hidden'}>
+                    Payment succeeded, see the result in your
+                    <a href={`https://dashboard.stripe.com/test/payments`}>
+                        {' '}
+                        Stripe dashboard.
+                    </a>{' '}
+                    Refresh the page to pay again.
+                </p>
+            </Warnings>
         </Styles.DepositForm>
     )
 }

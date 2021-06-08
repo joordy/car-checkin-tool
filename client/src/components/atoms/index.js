@@ -10,3 +10,4 @@ export { default as InlineButton } from './buttons/inlineButton/inlineButton.jsx
 export { default as ButtonPrimary } from './buttons/buttonPrimary/buttonPrimary.jsx'
 export { default as ButtonSecondary } from './buttons/buttonSecondary/buttonSecondary.jsx'
 export { default as ButtonTertiary } from './buttons/buttonTertiary/buttonTertiary.jsx'
+export { default as Warnings } from './warnings/warnings.jsx'
