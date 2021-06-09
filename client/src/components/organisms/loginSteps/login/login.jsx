@@ -19,7 +19,7 @@ const Login = () => {
     const [showWrongEmailText, setShowWrongEmailText] = useState(false)
 
     const postData = async (loggedInUser) => {
-        fetch(`${process.env.REACT_APP_BACKEND}/reservations`, {
+        fetch(`/api/reservations`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
