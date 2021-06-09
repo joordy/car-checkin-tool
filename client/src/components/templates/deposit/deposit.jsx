@@ -47,7 +47,8 @@ const Deposit = () => {
                         <StepsExplainer
                             backLink="/verification"
                             step="2"
-                            completedSteps={completedSteps}
+                            loading={loadingData}
+                            reservation={currentReservation}
                         />
                         <UserChoice
                             title="Borg reservering"
@@ -67,7 +68,7 @@ const Deposit = () => {
                     </>
                 ) : (
                     <>
-                        <StepsExplainer backLink="/verification" step="2" />
+                        <StepsExplainer backLink="/verification" loading={loadingData} />
                     </>
                 )}
             </div>

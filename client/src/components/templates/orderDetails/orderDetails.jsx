@@ -39,13 +39,18 @@ const OrderDetails = () => {
             <div className="stepsWrapper">
                 {loadingData ? (
                     <>
-                        <StepsExplainer backLink="/reservations" step="0" />
+                        <StepsExplainer
+                            backLink="/reservations"
+                            step="0"
+                            reservation={currentReservation}
+                            loading={loadingData}
+                        />
                         <CheckUserInfo reservation={currentReservation} />
                         <CheckBookingInfo reservation={currentReservation.car} />
                     </>
                 ) : (
                     <>
-                        <StepsExplainer backLink="/reservations" step="0" />{' '}
+                        <StepsExplainer backLink="/reservations" step="0" loading={loadingData} />{' '}
                     </>
                 )}
             </div>
