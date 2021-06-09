@@ -45,31 +45,92 @@ const DepositForm = ({ currentReservation }) => {
 
     const handleClick = async () => {
         console.log('betaald pik')
-        const resID = currentReservation.reservationID
+        const resID = currentReservation.car.reservationID
+        const userID = currentReservation.user.userID
+        const index = currentReservation.carkey
 
-        getSpecificUser(resID)
+        getSpecificUser(resID, userID, index)
+
         setTimeout(() => {
-            // window.location.href = '/qr'
+            window.location.href = '/qr'
         }, 100)
     }
 
-    const getSpecificUser = async (resID) => {
-        console.log(resID)
+    const getSpecificUser = async (resID, userID, index) => {
+        console.log('resID', resID)
+        console.log('userID', userID)
 
-        function getKeyByValue(object, value) {
-            return Object.keys(object).find((key) => object[key] === value)
+        const newObject = {
+            class: currentReservation.car.class,
+            carImage:
+                'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+            checkedIn: currentReservation.car.checkedIn,
+            driverOne: {
+                role: currentReservation.car.driverOne.role,
+                driver: currentReservation.car.driverOne.driver,
+                method: currentReservation.car.driverOne.method,
+                verified: currentReservation.car.driverOne.verified,
+            },
+            driverTwo: {
+                role: currentReservation.car.driverTwo.role,
+                driver: currentReservation.car.driverTwo.driver,
+                method: currentReservation.car.driverTwo.method,
+                verified: currentReservation.car.driverTwo.verified,
+            },
+            otherInfo: {
+                freeKM: currentReservation.car.otherInfo.freeKM,
+                deposit: currentReservation.car.otherInfo.deposit,
+                ownRisk: currentReservation.car.otherInfo.ownRisk,
+                priceExtraKM: currentReservation.car.otherInfo.priceExtraKM,
+            },
+            rentPrice: currentReservation.car.rentPrice,
+            handInDate: currentReservation.car.handInDate,
+            handInTime: currentReservation.car.handInTime,
+            pickUpDate: currentReservation.car.pickUpDate,
+            pickUpTime: currentReservation.car.pickUpTime,
+            extraDriver: currentReservation.car.extraDriver,
+            paidDeposit: {
+                paid: true,
+                method: 'card',
+            },
+            lowerOwnRisk: currentReservation.car.lowerOwnRisk,
+            orderDetails: currentReservation.car.orderDetails,
+            reservationID: currentReservation.car.reservationID,
+            handInLocation: currentReservation.car.handInLocation,
+            pickUpLocation: currentReservation.car.pickUpLocation,
+            walletSerialNumber: currentReservation.car.walletSerialNumber,
+            verificationProcess: currentReservation.car.verificationProcess,
         }
-
-        const { data, error } = await supabase.from('users').select()
-        // .eq('userID', currentReservation.user.userID)
-        // .update(`address: { street: 'Melrose Place', postcode: 90210 }`)
-        // .eq('address->postcode', 90210)
-
-        if (!data) {
-            console.log(error)
-        } else {
-            console.log(data)
-            // console.log(getKeyByValue(data[0], resID))
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 3) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
         }
     }
 
@@ -88,7 +149,7 @@ const DepositForm = ({ currentReservation }) => {
                 <article>
                     <h2>Borg:</h2>
                     <p>
-                        € <span>{currentReservation.rentPrice},-</span>
+                        € <span>{currentReservation.car.rentPrice},-</span>
                     </p>
                 </article>
 

@@ -29,6 +29,8 @@ const OrderDetails = () => {
         getData()
     }, [])
 
+    console.log('currentReservation', currentReservation)
+
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
@@ -44,7 +46,7 @@ const OrderDetails = () => {
                             loading={loadingData}
                         />
                         <CheckUserInfo reservation={currentReservation} />
-                        <CheckBookingInfo reservation={currentReservation} />
+                        <CheckBookingInfo reservation={currentReservation.car} />
                     </>
                 ) : (
                     <>
