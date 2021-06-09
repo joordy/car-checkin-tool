@@ -1,5 +1,7 @@
 // React & Modules imports
 import * as Styles from './reservationCard.styles.js'
+import { useState, useEffect } from 'react'
+import supabase from 'db/supabase.js'
 
 // Components
 import { Icons } from 'components/atoms/index'
@@ -8,7 +10,47 @@ import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 // React Component
 const ReservationCard = ({ data, reservationKey, user }) => {
     const reservation = data
-    console.log('data', data)
+    console.log('reservationKey', reservationKey)
+
+    const [dbData, setDBdata] = useState()
+    const [loadingData, setLoadingData] = useState(false)
+
+    const getSpecificUser = async () => {
+        if (reservationKey == 0) {
+            const { data, error } = await supabase.from('users').select().eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setDBdata(data[0].carResOne)
+                setLoadingData(true)
+            }
+        } else if (reservationKey == 1) {
+            const { data, error } = await supabase.from('users').select().eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setDBdata(data[0].carResTwo)
+                setLoadingData(true)
+            }
+        } else if (reservationKey == 2) {
+            const { data, error } = await supabase.from('users').select().eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setDBdata(data[0].carResThree)
+                setLoadingData(true)
+            }
+        } else {
+            console.log('not existing')
+        }
+    }
+
+    useEffect(async () => {
+        getSpecificUser()
+    }, [])
+
+    console.log('dbdata', dbData)
+
     return (
         <>
             <Styles.Card>
@@ -38,75 +80,79 @@ const ReservationCard = ({ data, reservationKey, user }) => {
                         <p>
                             <span>1</span> van de <span>3</span> stappen voltooid
                         </p>
-                        <ul>
-                            <li>
-                                {data.orderDetails ? (
-                                    <div className="wrapper active">
-                                        <div>
-                                            <Icons type="data" width="1.5rem" height="1.5rem" />
+                        {loadingData ? (
+                            <ul>
+                                <li>
+                                    {dbData.orderDetails ? (
+                                        <div className="wrapper active">
+                                            <div>
+                                                <Icons type="data" width="1.5rem" height="1.5rem" />
+                                            </div>
+                                            <p>Gegevens</p>
                                         </div>
-                                        <p>Gegevens</p>
-                                    </div>
-                                ) : (
-                                    <div className="wrapper">
-                                        <div>
-                                            <Icons type="data" width="1.5rem" height="1.5rem" />
+                                    ) : (
+                                        <div className="wrapper">
+                                            <div>
+                                                <Icons type="data" width="1.5rem" height="1.5rem" />
+                                            </div>
+                                            <p>Gegevens</p>
                                         </div>
-                                        <p>Gegevens</p>
-                                    </div>
-                                )}
-                            </li>
-                            <li>
-                                {data.driverOne.verified && data.driverTwo.verified ? (
-                                    <div className="wrapper active">
-                                        <div>
-                                            <Icons
-                                                type="userCheck"
-                                                width="1.5rem"
-                                                height="1.5rem"
-                                            />
+                                    )}
+                                </li>
+                                <li>
+                                    {dbData.driverOne.verified ? (
+                                        <div className="wrapper active">
+                                            <div>
+                                                <Icons
+                                                    type="userCheck"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Verificatie</p>
                                         </div>
-                                        <p>Verificatie</p>
-                                    </div>
-                                ) : (
-                                    <div className="wrapper">
-                                        <div>
-                                            <Icons
-                                                type="userCheck"
-                                                width="1.5rem"
-                                                height="1.5rem"
-                                            />
+                                    ) : (
+                                        <div className="wrapper">
+                                            <div>
+                                                <Icons
+                                                    type="userCheck"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Verificatie</p>
                                         </div>
-                                        <p>Verificatie</p>
-                                    </div>
-                                )}
-                            </li>
-                            <li>
-                                {data.paidDeposit.paid ? (
-                                    <div className="wrapper active">
-                                        <div>
-                                            <Icons
-                                                type="creditcard"
-                                                width="1.5rem"
-                                                height="1.5rem"
-                                            />
+                                    )}
+                                </li>
+                                <li>
+                                    {dbData.paidDeposit.paid ? (
+                                        <div className="wrapper active">
+                                            <div>
+                                                <Icons
+                                                    type="creditcard"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Borg</p>
                                         </div>
-                                        <p>Borg</p>
-                                    </div>
-                                ) : (
-                                    <div className="wrapper">
-                                        <div>
-                                            <Icons
-                                                type="creditcard"
-                                                width="1.5rem"
-                                                height="1.5rem"
-                                            />
+                                    ) : (
+                                        <div className="wrapper">
+                                            <div>
+                                                <Icons
+                                                    type="creditcard"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Borg</p>
                                         </div>
-                                        <p>Borg</p>
-                                    </div>
-                                )}
-                            </li>
-                        </ul>
+                                    )}
+                                </li>
+                            </ul>
+                        ) : (
+                            <p>Loading</p>
+                        )}
                     </Styles.StatusCheck>
                     <CheckinButtons reservation={data} carIndexKey={reservationKey} user={user} />
                 </article>
