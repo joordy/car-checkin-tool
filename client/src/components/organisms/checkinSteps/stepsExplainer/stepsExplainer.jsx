@@ -4,38 +4,48 @@ import * as Styles from './stepsExplainer.styles.js'
 import { VerificationButtons, IconListItem } from 'components/molecules/index'
 
 // React component
-const StepsExplainer = ({ backLink, completedSteps }) => {
+const StepsExplainer = ({ backLink, reservation, loading }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
-    let title
+    let title = 'Inchecken in slechts 3 stappen'
     let buttonText = 'Volgende'
     let time
+    let step1 = false
+    let step2 = false
+    let step3 = false
 
-    // const { orderDetails, verificationProcess, payMethod, paidDeposit } = completedSteps
+    if (loading) {
+        step1 = reservation.car.orderDetails
+        step2 = reservation.car.verificationProcess
+        const payMethod = reservation.car.paidDeposit.method
+        step3 = reservation.car.paidDeposit.paid
 
-    // if (!orderDetails && !verificationProcess && !paidDeposit) {
-    //     title = 'Inchecken in 3 stappen'
-    //     buttonText = 'Check gegevens'
-    //     time = <p className="time">Dit proces neemt ongeveer 5 minuten van jouw tijd in beslag.</p>
-    // } else if (orderDetails && !verificationProcess && !paidDeposit) {
-    //     title = 'Gelukt! Je kunt verder naar stap 2'
-    //     buttonText = 'Start verificatie'
-    // } else if (orderDetails && verificationProcess && !paidDeposit && !payMethod) {
-    //     title = 'Gelukt! Je bent bijna klaar'
-    //     buttonText = 'Regel borg'
-    // } else if (orderDetails && verificationProcess && paidDeposit) {
-    //     title = 'Geregeld! Ontvang nu je QR-code'
-    //     buttonText = 'Afronden'
-    // } else if (orderDetails && !verificationProcess && paidDeposit) {
-    //     title = 'Ga verder met de verificatie'
-    //     buttonText = 'Doorgaan'
-    // } else if (orderDetails && verificationProcess && !paidDeposit && payMethod) {
-    //     title = 'Bijna klaar! Regel nu de borg '
-    //     buttonText = 'Doorgaan'
-    // }
+        if (!step1 && !step2 && !step3) {
+            title = 'Inchecken in 3 stappen'
+            buttonText = 'Check gegevens'
+            time = (
+                <p className="time">Dit proces neemt ongeveer 5 minuten van jouw tijd in beslag.</p>
+            )
+        } else if (step1 && !step2 && !step3) {
+            title = 'Gelukt! Je kunt verder naar stap 2'
+            buttonText = 'Start verificatie'
+        } else if (step1 && step2 && !step3 && !payMethod) {
+            title = 'Gelukt! Je bent bijna klaar'
+            buttonText = 'Regel borg'
+        } else if (step1 && step2 && step3) {
+            title = 'Geregeld! Ontvang nu je QR-code'
+            buttonText = 'Afronden'
+        } else if (step1 && !step2 && step3) {
+            title = 'Ga verder met de verificatie'
+            buttonText = 'Doorgaan'
+        } else if (step1 && step2 && !step3 && payMethod) {
+            title = 'Bijna klaar! Regel nu de borg '
+            buttonText = 'Doorgaan'
+        }
+    }
 
     return (
         <Styles.Section id="introduction">
@@ -47,21 +57,21 @@ const StepsExplainer = ({ backLink, completedSteps }) => {
                         opacity="0.75"
                         title="Gegevens"
                         text="Controleer of de gegevens van je reservering juist zijn."
-                        // completed={orderDetails}
+                        completed={step1}
                     />
                     <IconListItem
                         iconName="UserCheckIcon"
                         opacity="0.75"
                         title="Verificatie"
                         text="We controleren of je een geldig rijbewijs hebt en of je minimaal 23 jaar oud bent."
-                        // completed={verificationProcess}
+                        completed={step2}
                     />
                     <IconListItem
                         iconName="CreditcardIcon"
                         opacity="0.75"
                         title="Borg"
                         text="Geef een garantie op je creditcard of betaal contant."
-                        // completed={paidDeposit}
+                        completed={step3}
                     />
                 </ul>
                 {time}

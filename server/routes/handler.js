@@ -10,13 +10,37 @@ const stripe = require("stripe")(
 
 let reservation;
 let loggedInUser;
+<<<<<<< HEAD
 
 // Posts user object to server, to use later on
 router.post("/reservations", (req, res) => {
-  loggedInUser = req.body;
-  res.end(JSON.stringify(req.body));
-});
+=======
+let carIndexKey;
 
+// Post routes
+router.post('/api/reservations', postReservation);
+router.post('/api/order-details', postOrderDetails);
+router.post('/api/carIndexKey', postCarIndexKey);
+router.post('/api/create-verification-session', postCreateVerificationSession);
+router.post('/api/create-checkin', postCreateCheckin);
+router.post('/api/create-payment-intent', postCreatePaymentIntent);
+
+// Get routes
+router.get('/api/reservations', getReservation);
+router.get('/api/carIndexKey', getCarIndexKey);
+router.get('/api/order-details', getOrderDetails);
+router.get('/api/verification', getVerification);
+router.get('/api/deposit', getDeposit);
+
+// Post user info to server when logging in
+function postReservation(req, res) {
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
+  loggedInUser = req.body;
+  console.log(loggedInUser);
+  // res.end(JSON.stringify(req.body));
+}
+
+<<<<<<< HEAD
 // Receives logged in user from signed in user
 router.get("/reservations", (req, res) => {
   res.end(JSON.stringify(loggedInUser));
@@ -24,13 +48,45 @@ router.get("/reservations", (req, res) => {
 
 // Post specific car obj to server, to fetch on later.
 router.post("/order-details", (req, res) => {
+=======
+// Get logged in user information
+function getReservation(req, res) {
+  setTimeout(() => {
+    console.log('all reservations of current user', reservation);
+    res.send(loggedInUser);
+  }, 100);
+}
+
+// Post specific car obj to server, to fetch on later.
+function postOrderDetails(req, res) {
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
   reservation = req.body;
-  res.end(JSON.stringify(req.body));
-});
+  console.log('this is the one', req.body);
+  res.send(req.body);
+}
+
+// Save chosen car index key on server
+function postCarIndexKey(req, res) {
+  console.log('this is the key index', req.body);
+
+  carIndexKey = req.body;
+  res.send(req.body);
+}
+
+// Receive chosen car index key
+function getCarIndexKey(req, res) {
+  console.log('carKeyIndex:', carIndexKey);
+  res.send(carIndexKey);
+}
 
 // Receives selected car obj from signed in user
+<<<<<<< HEAD
 router.get("/order-details", (req, res) => {
   console.log("reservation", reservation);
+=======
+function getOrderDetails(req, res) {
+  console.log('current reservation', reservation);
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
   const data = () => {
     if (!reservation) {
     } else {
@@ -38,10 +94,15 @@ router.get("/order-details", (req, res) => {
     }
   };
 
-  res.end(JSON.stringify(data()));
-});
+  res.send(data());
+}
 
+<<<<<<< HEAD
 router.get("/verification", (req, res) => {
+=======
+//
+function getVerification(req, res) {
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
   console.log(reservation);
   const data = () => {
     if (!reservation) {
@@ -51,10 +112,15 @@ router.get("/verification", (req, res) => {
     }
   };
 
-  res.end(JSON.stringify(data()));
-});
+  res.send(data());
+}
 
+<<<<<<< HEAD
 router.get("/deposit", (req, res) => {
+=======
+// Get information
+function getDeposit(req, res) {
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
   console.log(reservation);
   const data = () => {
     if (!reservation) {
@@ -64,12 +130,18 @@ router.get("/deposit", (req, res) => {
     }
   };
 
-  res.end(JSON.stringify(data()));
-});
+  res.send(data());
+}
 
+<<<<<<< HEAD
 router.post("/create-checkin", (req, res) => {
   const { firstName, email, pickUpLocation, pickUpDateTime, reservationID } =
     req.body;
+=======
+// Handle client-side verification
+async function postCreateCheckin(req, res) {
+  const { firstName, email, pickUpLocation, pickUpDateTime, reservationID } = req.body;
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 
   async function postData(url, data) {
     const response = await fetch(url, {
@@ -120,8 +192,9 @@ router.post("/create-checkin", (req, res) => {
       });
     }
   });
-});
+}
 
+<<<<<<< HEAD
 router.post("/create-verification-session", async (req, res) => {
   const verificationSession = await stripe.identity.verificationSessions.create(
     {
@@ -131,12 +204,22 @@ router.post("/create-verification-session", async (req, res) => {
       },
     }
   );
+=======
+// Post verification to client
+async function postCreateVerificationSession(req, res) {
+  const verificationSession = await stripe.identity.verificationSessions.create({
+    type: 'document',
+    metadata: {
+      user_id: '{{USER_ID}}',
+    },
+  });
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 
   const clientSecret = verificationSession.client_secret;
 
   console.log("User verification");
   res.end(JSON.stringify(clientSecret));
-});
+}
 
 // Stripe code adapted from: https://stripe.com/docs/payments/integration-builder
 const calculateOrderAmount = (items) => {
@@ -146,7 +229,12 @@ const calculateOrderAmount = (items) => {
   return 1400;
 };
 
+<<<<<<< HEAD
 router.post("/create-payment-intent", async (req, res) => {
+=======
+// Function to handle payments of stripe
+async function postCreatePaymentIntent(req, res) {
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
   console.log(req.body);
   const { items } = req.body;
   // Create a PaymentIntent with the order amount and currency
@@ -157,8 +245,9 @@ router.post("/create-payment-intent", async (req, res) => {
   res.send({
     clientSecret: paymentIntent.client_secret,
   });
-});
+}
 
+// Function to calculate specific dates
 function getDate(date) {
   const dateTime = date.split(" ");
   const dateElements = dateTime[0].split("-");

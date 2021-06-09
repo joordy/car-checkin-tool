@@ -6,7 +6,7 @@ import { verifiedDriver } from 'constants/actions'
 import { loadStripe } from '@stripe/stripe-js'
 
 // Components
-import { Icons } from 'components/atoms/index'
+import { Icons, ButtonPrimary } from 'components/atoms/index'
 import { VerificationButtons } from 'components/molecules/index'
 
 // Set up
@@ -17,6 +17,7 @@ const stripePromise = loadStripe(
 // React component
 const CheckIdentity = () => {
     const [isLoading, setIsLoading] = useState(false)
+    const [consentDeclined, setConsentDeclined] = useState(false)
 
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
@@ -29,23 +30,25 @@ const CheckIdentity = () => {
     }
 
     const handleClick = async (event) => {
+        console.log('CLICKY')
         setIsLoading(true)
         const stripe = await stripePromise
         // Connect to backend to fetch the verification session
-        const response = await fetch(
-            `${process.env.REACT_APP_BACKEND}/create-verification-session`,
-            { method: 'POST' },
-        )
+        const response = await fetch(`/api/create-verification-session`, { method: 'POST' })
         const client_secret = await response.json()
         // Opens verification modal
         const result = await stripe.verifyIdentity(client_secret)
 
-        console.log('result', result)
         if (result.error) {
             // If `verifyIdentity` fails, display the localized error
             // message using `result.error.message`.
-            alert(result.error.message)
+            setIsLoading(false)
+            console.log('ERRROR', result)
+            if (result.error.code === 'consent_declined') {
+                setConsentDeclined(true)
+            }
         } else {
+            setIsLoading(false)
             dispatch(verifiedDriver())
         }
     }
@@ -67,21 +70,50 @@ const CheckIdentity = () => {
             </header>
 
             <Styles.IdentityChecker>
-                <Styles.StartBtn role="link" onClick={handleClick}>
-                    <Icons type="camera" width="2.5rem" />
-                </Styles.StartBtn>
-
-                {/*} {isLoading ? (
+                {isLoading ? (
                     <>
-                        <Styles.LoadingBtn role="link">
-                            <Icons type="success" width="2.5rem" height="2.5rem" />
+                        <Styles.LoadingBtn>
+                            <Icons type="loader" width="2.5rem" height="2.5rem" />
                             <p>Verificatie wordt gestart</p>
+                            <p>Dit kan even duren</p>
                         </Styles.LoadingBtn>
                     </>
                 ) : (
+                    <></>
+                )}
+                {isVerifiedDriver ? (
                     <>
+                        <Styles.LoadingBtn>
+                            <Icons type="success" width="3rem" height="3rem" />
+                            <p>Verificatie gelukt</p>
+                            <p>Druk op “Volgende” om verder te gaan</p>
+                        </Styles.LoadingBtn>
                     </>
-                )} */}
+                ) : (
+                    <></>
+                )}
+                {consentDeclined ? (
+                    <>
+                        <Styles.LoadingBtn>
+                            <Icons type="warning" width="2.5rem" height="2.5rem" />
+                            <p>Toestemming geweigerd</p>
+                            <p>
+                                Probeer het opnieuw of ga terug naar de vorige stap als je op
+                                locatie bij Europcar wilt verifiëren.
+                            </p>
+                            <ButtonPrimary
+                                type="btn"
+                                text="Probeer opnieuw"
+                                _callback={handleClick}
+                            />
+                        </Styles.LoadingBtn>
+                    </>
+                ) : (
+                    <></>
+                )}
+                <Styles.StartBtn role="link" onClick={handleClick}>
+                    <Icons type="camera" width="2.5rem" />
+                </Styles.StartBtn>
             </Styles.IdentityChecker>
 
             {isVerifiedDriver ? (

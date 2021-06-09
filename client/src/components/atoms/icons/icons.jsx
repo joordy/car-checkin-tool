@@ -500,6 +500,13 @@ const Icons = ({ type, width, height, opacity, fill, onClick, stroke }) => {
                     </svg>
                 </Styles.Icon>
             )
+        case 'loader':
+            return (
+                <Styles.Loader width={width} height={height} opacity={opacity} fill={fill}>
+                    <div></div>
+                    <div></div>
+                </Styles.Loader>
+            )
     }
 }
 

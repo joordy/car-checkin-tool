@@ -1,7 +1,6 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
 
 // Components
@@ -15,6 +14,7 @@ const Reservations = () => {
 
     const getData = async () => {
         try {
+<<<<<<< HEAD
             const data = await axios
                 .get(`${process.env.REACT_APP_BACKEND}/reservations`)
                 .then((res) => {
@@ -26,6 +26,14 @@ const Reservations = () => {
                         res.data.carResThree,
                     ])
                 })
+=======
+            const data = await axios.get(`/api/reservations`).then((res) => {
+                console.log('res.data', res.data)
+                setCurrentUser(res.data)
+                setAllReservations([res.data.carResOne, res.data.carResTwo, res.data.carResThree])
+            })
+            console.log(data)
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
             setLoadingData(true)
         } catch (e) {
             console.log(e)
@@ -35,8 +43,13 @@ const Reservations = () => {
         getData()
     }, [])
 
+<<<<<<< HEAD
     console.log(allReservations)
     console.log(currentUser)
+=======
+    // console.log('allReservations', allReservations)
+    // console.log('currentUser', currentUser)
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 
     return (
         <>
@@ -47,11 +60,12 @@ const Reservations = () => {
                         {allReservations.length > 1 ? (
                             <>
                                 <h2>Mijn Reserveringen</h2>
-                                {allReservations.map((item) => {
+                                {allReservations.map((item, index) => {
                                     return (
                                         <ReservationCard
                                             key={item.reservationID}
-                                            {...item}
+                                            data={item}
+                                            reservationKey={index}
                                             user={currentUser}
                                         />
                                     )

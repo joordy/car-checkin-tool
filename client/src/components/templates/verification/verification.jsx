@@ -20,6 +20,10 @@ const Verification = () => {
     //         .from('users')
     //         .select()
     //         .eq('userID', fetchedData.user.userID)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
     //     if (!data) {
     //         console.log(error)
     //     } else {
@@ -29,7 +33,7 @@ const Verification = () => {
     // }
 
     const verifyIdentity = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/create-verification-session`)
+        const data = await fetch(`/api/create-verification-session`)
         const items = await data.json()
         setItems(items)
     }
@@ -43,12 +47,13 @@ const Verification = () => {
             const data = await axios
                 .get(`${process.env.REACT_APP_BACKEND}/order-details`)
                 .then((res) => {
+                    console.log('res.data', res.data)
                     setCurrentReservation(res.data)
                     setCompletedSteps({
-                        orderDetails: res.data.orderDetails,
-                        verificationProcess: res.data.verificationProcess,
-                        payMethod: res.data.paidDeposit.method,
-                        paidDeposit: res.data.paidDeposit.paid,
+                        orderDetails: res.data.car.orderDetails,
+                        verificationProcess: res.data.car.verificationProcess,
+                        payMethod: res.data.car.paidDeposit.method,
+                        paidDeposit: res.data.car.paidDeposit.paid,
                     })
                 })
             setLoadingData(true)
@@ -73,7 +78,11 @@ const Verification = () => {
             <div className="stepsWrapper">
                 {loadingData ? (
                     <>
-                        <StepsExplainer backLink="/order-details" completedSteps={completedSteps} />
+                        <StepsExplainer
+                            backLink="/order-details"
+                            loading={loadingData}
+                            reservation={currentReservation}
+                        />
                         <CheckDrivers />
                         <UserChoice
                             title="Verifieer je eigen rijbewijs"
@@ -93,7 +102,7 @@ const Verification = () => {
                     </>
                 ) : (
                     <>
-                        <StepsExplainer backLink="/order-details" />
+                        <StepsExplainer loading={loadingData} backLink="/order-details" />
                     </>
                 )}
             </div>

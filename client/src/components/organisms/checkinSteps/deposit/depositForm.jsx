@@ -1,6 +1,8 @@
 // React imports
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as Styles from './depositForm.styles.js'
+import supabase from 'db/supabase.js'
+
 import { useSelector } from 'react-redux'
 
 // Components
@@ -41,6 +43,97 @@ const DepositForm = ({ currentReservation }) => {
     const isPaid = useSelector((state) => state.paidReducer)
     console.log('currentReservation', currentReservation)
 
+    const handleClick = () => {
+        console.log('betaald pik')
+        const resID = currentReservation.car.reservationID
+        const userID = currentReservation.user.userID
+        const index = currentReservation.carkey
+
+        getSpecificUser(resID, userID, index)
+
+        setTimeout(() => {
+            // window.location.href = '/qr'
+        }, 100)
+    }
+
+    const getSpecificUser = async (resID, userID, index) => {
+        console.log('resID', resID)
+        console.log('userID', userID)
+
+        const newObject = {
+            class: currentReservation.car.class,
+            carImage:
+                'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+            checkedIn: currentReservation.car.checkedIn,
+            driverOne: {
+                role: currentReservation.car.driverOne.role,
+                driver: currentReservation.car.driverOne.driver,
+                method: currentReservation.car.driverOne.method,
+                verified: currentReservation.car.driverOne.verified,
+            },
+            // driverTwo: {
+            //     role: 'extra',
+            //     driver: currentReservation.car.driverTwo.driver,
+            //     method: currentReservation.car.driverTwo.method,
+            //     verified: currentReservation.car.driverTwo.verified,
+            // },
+            otherInfo: {
+                freeKM: currentReservation.car.otherInfo.freeKM,
+                deposit: currentReservation.car.otherInfo.deposit,
+                ownRisk: currentReservation.car.otherInfo.ownRisk,
+                priceExtraKM: currentReservation.car.otherInfo.priceExtraKM,
+            },
+            rentPrice: currentReservation.car.rentPrice,
+            handInDate: currentReservation.car.handInDate,
+            handInTime: currentReservation.car.handInTime,
+            pickUpDate: currentReservation.car.pickUpDate,
+            pickUpTime: currentReservation.car.pickUpTime,
+            extraDriver: currentReservation.car.extraDriver,
+            paidDeposit: {
+                paid: true,
+                method: 'card',
+            },
+            lowerOwnRisk: currentReservation.car.lowerOwnRisk,
+            orderDetails: currentReservation.car.orderDetails,
+            reservationID: currentReservation.car.reservationID,
+            handInLocation: currentReservation.car.handInLocation,
+            pickUpLocation: currentReservation.car.pickUpLocation,
+            walletSerialNumber: currentReservation.car.walletSerialNumber,
+            verificationProcess: currentReservation.car.verificationProcess,
+        }
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 1) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        }
+    }
+
     return (
         <Styles.Section>
             <header>
@@ -56,7 +149,7 @@ const DepositForm = ({ currentReservation }) => {
                 <article>
                     <h2>Borg:</h2>
                     <p>
-                        € <span>{currentReservation.rentPrice},-</span>
+                        € <span>{currentReservation.car.rentPrice},-</span>
                     </p>
                 </article>
 
@@ -82,7 +175,7 @@ const DepositForm = ({ currentReservation }) => {
                     linkPrimary="/qr"
                     linkSecondary="#"
                     callbackSecondary={moveRight}
-                    callbackPrimary={() => (window.location.href = '/qr')}
+                    callbackPrimary={handleClick}
                 />
             ) : (
                 <VerificationButtons

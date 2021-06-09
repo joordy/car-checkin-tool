@@ -1,14 +1,55 @@
 // React & Modules imports
-import React from 'react'
 import * as Styles from './reservationCard.styles.js'
+import { useState, useEffect } from 'react'
+import supabase from 'db/supabase.js'
 
 // Components
 import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
 // React Component
-const ReservationCard = ({ ...props }) => {
-    const reservation = { ...props }
+const ReservationCard = ({ data, reservationKey, user }) => {
+    const reservation = data
+    console.log('reservationKey', reservationKey)
+
+    const [dbData, setDBdata] = useState()
+    const [loadingData, setLoadingData] = useState(false)
+
+    const getSpecificUser = async () => {
+        if (reservationKey == 0) {
+            const { data, error } = await supabase.from('users').select().eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setDBdata(data[0].carResOne)
+                setLoadingData(true)
+            }
+        } else if (reservationKey == 1) {
+            const { data, error } = await supabase.from('users').select().eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setDBdata(data[0].carResTwo)
+                setLoadingData(true)
+            }
+        } else if (reservationKey == 2) {
+            const { data, error } = await supabase.from('users').select().eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                setDBdata(data[0].carResThree)
+                setLoadingData(true)
+            }
+        } else {
+            console.log('not existing')
+        }
+    }
+
+    useEffect(async () => {
+        getSpecificUser()
+    }, [])
+
+    console.log('dbdata', dbData)
 
     return (
         <>
@@ -31,9 +72,103 @@ const ReservationCard = ({ ...props }) => {
                             </svg>
                         </span>
 
-                        <DealerLocations {...props} />
+                        <DealerLocations {...data} />
                     </>
+<<<<<<< HEAD
                     {/*<Styles.StatusCheck>
+=======
+
+                    <Styles.StatusCheck>
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
+                        <h4>Online Check-In</h4>
+                        <p>
+                            <span>1</span> van de <span>3</span> stappen voltooid
+                        </p>
+                        {loadingData ? (
+                            <ul>
+                                <li>
+                                    {dbData.orderDetails ? (
+                                        <div className="wrapper active">
+                                            <div>
+                                                <Icons type="data" width="1.5rem" height="1.5rem" />
+                                            </div>
+                                            <p>Gegevens</p>
+                                        </div>
+                                    ) : (
+                                        <div className="wrapper">
+                                            <div>
+                                                <Icons type="data" width="1.5rem" height="1.5rem" />
+                                            </div>
+                                            <p>Gegevens</p>
+                                        </div>
+                                    )}
+                                </li>
+                                <li>
+                                    {dbData.driverOne.verified ? (
+                                        <div className="wrapper active">
+                                            <div>
+                                                <Icons
+                                                    type="userCheck"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Verificatie</p>
+                                        </div>
+                                    ) : (
+                                        <div className="wrapper">
+                                            <div>
+                                                <Icons
+                                                    type="userCheck"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Verificatie</p>
+                                        </div>
+                                    )}
+                                </li>
+                                <li>
+                                    {dbData.paidDeposit.paid ? (
+                                        <div className="wrapper active">
+                                            <div>
+                                                <Icons
+                                                    type="creditcard"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Borg</p>
+                                        </div>
+                                    ) : (
+                                        <div className="wrapper">
+                                            <div>
+                                                <Icons
+                                                    type="creditcard"
+                                                    width="1.5rem"
+                                                    height="1.5rem"
+                                                />
+                                            </div>
+                                            <p>Borg</p>
+                                        </div>
+                                    )}
+                                </li>
+                            </ul>
+                        ) : (
+                            <p>Loading</p>
+                        )}
+                    </Styles.StatusCheck>
+                    <CheckinButtons reservation={data} carIndexKey={reservationKey} user={user} />
+                </article>
+            </Styles.Card>
+        </>
+    )
+}
+
+export default ReservationCard
+
+{
+    /*<Styles.StatusCheck>
                         <h4>Online Check-In</h4>
                         <p>
                             <span>1</span> van de <span>3</span> stappen voltooid
@@ -64,6 +199,7 @@ const ReservationCard = ({ ...props }) => {
                                 Borg
                             </li>
                         </ul>
+<<<<<<< HEAD
                                 </Styles.StatusCheck>*/}
 
                     <CheckinButtons {...props} />
@@ -71,6 +207,7 @@ const ReservationCard = ({ ...props }) => {
             </Styles.Card>
         </>
     )
+=======
+                                </Styles.StatusCheck>*/
+>>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 }
-
-export default ReservationCard

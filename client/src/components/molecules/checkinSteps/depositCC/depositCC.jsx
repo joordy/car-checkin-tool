@@ -24,7 +24,7 @@ const DepositCC = ({ labelText, children }) => {
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         window
-            .fetch(`${process.env.REACT_APP_BACKEND}/create-payment-intent`, {
+            .fetch(`/api/create-payment-intent`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -99,23 +99,17 @@ const DepositCC = ({ labelText, children }) => {
             </fieldset>
 
             {error && (
-                <Warnings type="failed" className="card-error" role="alert">
-                    {error}
+                <Warnings type="failed" classes="card-error" role="alert">
+                    {/*<p>{error}</p>*/}
+                    <p>We kunnen je betalingswijze niet verifiëren. Probeer het opnieuw.</p>
                 </Warnings>
             )}
 
             <Warnings
                 type="success"
-                className={succeeded ? 'result-message' : 'result-message hidden'}
+                classes={succeeded ? 'result-message' : 'result-message hidden'}
             >
-                <p className={succeeded ? 'result-message' : 'result-message hidden'}>
-                    Payment succeeded, see the result in your
-                    <a href={`https://dashboard.stripe.com/test/payments`}>
-                        {' '}
-                        Stripe dashboard.
-                    </a>{' '}
-                    Refresh the page to pay again.
-                </p>
+                <p>Borg succesvol gereserveerd! Druk op “Volgende” om verder te gaan.</p>
             </Warnings>
         </Styles.DepositForm>
     )

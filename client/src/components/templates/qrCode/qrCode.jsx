@@ -15,17 +15,15 @@ const QRCode = () => {
 
     const getData = async () => {
         try {
-            const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
-                .then((res) => {
-                    setCurrentReservation(res.data)
-                    setCompletedSteps({
-                        orderDetails: res.data.orderDetails,
-                        verificationProcess: res.data.verificationProcess,
-                        payMethod: res.data.paidDeposit.method,
-                        paidDeposit: res.data.paidDeposit.paid,
-                    })
+            const data = await axios.get(`/api/order-details`).then((res) => {
+                setCurrentReservation(res.data)
+                setCompletedSteps({
+                    orderDetails: res.data.orderDetails,
+                    verificationProcess: res.data.verificationProcess,
+                    payMethod: res.data.paidDeposit.method,
+                    paidDeposit: res.data.paidDeposit.paid,
                 })
+            })
             setLoadingData(true)
         } catch (e) {
             console.log(e)
@@ -46,8 +44,8 @@ const QRCode = () => {
                     <>
                         <StepsExplainer
                             backLink="/deposit"
-                            step="3"
-                            completedSteps={completedSteps}
+                            loading={loadingData}
+                            reservation={currentReservation}
                         />
                         <ShowQRCode title="Reservering 1234" />
                     </>
