@@ -1,20 +1,20 @@
 // React imports
 import { useState, useEffect } from 'react'
 import * as Styles from './checkDrivers.styles.js'
-import { Icons, Label } from 'components/atoms/index'
+import { Icons, Label, ButtonPrimary } from 'components/atoms/index'
 import { VerificationButtons, DriverListItem } from 'components/molecules/index'
 import supabase from 'db/supabase.js'
 
 // React component
-const CheckDrivers = ({ reservation }) => {
+const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(0vw)'
+        moveElement.style.transform = `translateX(${movingRight}vw)`
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
+        moveElement.style.transform = `translateX(${movingLeft}vw)`
     }
 
     const [dbData, setDBdata] = useState()
@@ -143,6 +143,11 @@ const CheckDrivers = ({ reservation }) => {
         //changeData(resID, userID, index)
     }, [])
 
+    const handleClick = () => {
+        console.log('clicky')
+        setTesting(true)
+    }
+
     let driverList = []
 
     if (loadingData && dbData) {
@@ -180,6 +185,7 @@ const CheckDrivers = ({ reservation }) => {
                 <Label text="Te verifiëren bestuurders" />
                 <ol>{driverList}</ol>
             </section>
+            <ButtonPrimary type="btn" text="Probeer opnieuw" _callback={handleClick} />
             <VerificationButtons
                 typeSecondary="btn"
                 typePrimary="btn"

@@ -23,12 +23,12 @@ const UserChoice = ({
 }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingRight})`
+        moveElement.style.transform = `translateX(${movingRight}vw)`
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingLeft})`
+        moveElement.style.transform = `translateX(${movingLeft}vw)`
     }
 
     let depositAmount

@@ -5,14 +5,24 @@ import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
 import { VerificationButtons, VerifyModal } from 'components/molecules/index'
 
 // React component
-const CheckFacial = () => {
+const CheckFacial = ({ movingRight, movingLeft }) => {
     const [playing, setPlaying] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [disabling, setDisabling] = useState('')
 
+    const moveRight = () => {
+        const moveElement = document.querySelector('.stepsWrapper')
+        moveElement.style.transform = `translateX(${movingRight}vw)`
+    }
+
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-300vw)'
+        moveElement.style.transform = `translateX(${movingLeft}vw)`
+    }
+
+    const nextPage = () => {
+        console.log('klik')
+        window.location.href = '/deposit'
     }
 
     const startVideo = () => {
@@ -93,8 +103,9 @@ const CheckFacial = () => {
                 textSecondary="Terug"
                 linkPrimary="/deposit"
                 linkSecondary="#"
-                callbackSecondary={moveLeft}
-                callbackPrimary={() => (window.location.href = '/deposit')}
+                callbackSecondary={moveRight}
+                callbackPrimary={movingLeft == 'last' ? nextPage : moveLeft}
+                //callbackPrimary={() => (window.location.href = '/deposit')}
                 disabled={!disabling}
             />
         </Styles.Section>

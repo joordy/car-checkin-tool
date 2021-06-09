@@ -15,18 +15,18 @@ const stripePromise = loadStripe(
 )
 
 // React component
-const CheckIdentity = () => {
+const CheckIdentity = ({ movingRight, movingLeft }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [consentDeclined, setConsentDeclined] = useState(false)
 
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
+        moveElement.style.transform = `translateX(${movingRight}vw)`
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-400vw)'
+        moveElement.style.transform = `translateX(${movingLeft}vw)`
     }
 
     const handleClick = async (event) => {
