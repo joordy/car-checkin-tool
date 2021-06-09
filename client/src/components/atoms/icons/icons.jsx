@@ -309,18 +309,21 @@ const Icons = ({ type, width, height, opacity, fill, onClick, stroke }) => {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                         <path
                             d="M11 7V11"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                         <path
                             d="M11 15H11.01"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                     </svg>
                 </Styles.Icon>

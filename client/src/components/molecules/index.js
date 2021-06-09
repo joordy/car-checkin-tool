@@ -11,3 +11,4 @@ export { default as SingleButtonWrapper } from './singleButtonWrapper/singleButt
 export { default as DepositType } from './checkinSteps/depositType/depositType.jsx'
 export { default as DepositCC } from './checkinSteps/depositCC/depositCC.jsx'
 export { default as VerifyModal } from './checkinSteps/verifyModal/verifyModal.jsx'
+export { default as LoginError } from './login/loginError/loginError.jsx'
