@@ -38,7 +38,7 @@ function postReservation(req, res) {
 function getReservation(req, res) {
   setTimeout(() => {
     console.log('all reservations of current user', reservation);
-    res.json(loggedInUser);
+    res.send(loggedInUser);
   }, 100);
 }
 
@@ -46,7 +46,7 @@ function getReservation(req, res) {
 function postOrderDetails(req, res) {
   reservation = req.body;
   console.log('this is the one', req.body);
-  res.end(JSON.stringify(req.body));
+  res.send(req.body);
 }
 
 // Save chosen car index key on server
@@ -54,13 +54,13 @@ function postCarIndexKey(req, res) {
   console.log('this is the key index', req.body);
 
   carIndexKey = req.body;
-  res.end(JSON.stringify(req.body));
+  res.send(req.body);
 }
 
 // Receive chosen car index key
 function getCarIndexKey(req, res) {
   console.log('carKeyIndex:', carIndexKey);
-  res.end(JSON.stringify(carIndexKey));
+  res.send(carIndexKey);
 }
 
 // Receives selected car obj from signed in user
@@ -73,7 +73,7 @@ function getOrderDetails(req, res) {
     }
   };
 
-  res.end(JSON.stringify(data()));
+  res.send(data());
 }
 
 //
@@ -87,7 +87,7 @@ function getVerification(req, res) {
     }
   };
 
-  res.end(JSON.stringify(data()));
+  res.send(data());
 }
 
 // Get information
@@ -101,7 +101,7 @@ function getDeposit(req, res) {
     }
   };
 
-  res.end(JSON.stringify(data()));
+  res.send(data());
 }
 
 // Handle client-side verification
