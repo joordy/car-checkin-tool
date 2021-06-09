@@ -52,7 +52,7 @@ const DepositForm = ({ currentReservation }) => {
         getSpecificUser(resID, userID, index)
 
         setTimeout(() => {
-            window.location.href = '/qr'
+            // window.location.href = '/qr'
         }, 100)
     }
 
@@ -71,12 +71,12 @@ const DepositForm = ({ currentReservation }) => {
                 method: currentReservation.car.driverOne.method,
                 verified: currentReservation.car.driverOne.verified,
             },
-            driverTwo: {
-                role: currentReservation.car.driverTwo.role,
-                driver: currentReservation.car.driverTwo.driver,
-                method: currentReservation.car.driverTwo.method,
-                verified: currentReservation.car.driverTwo.verified,
-            },
+            // driverTwo: {
+            //     role: 'extra',
+            //     driver: currentReservation.car.driverTwo.driver,
+            //     method: currentReservation.car.driverTwo.method,
+            //     verified: currentReservation.car.driverTwo.verified,
+            // },
             otherInfo: {
                 freeKM: currentReservation.car.otherInfo.freeKM,
                 deposit: currentReservation.car.otherInfo.deposit,
@@ -111,7 +111,7 @@ const DepositForm = ({ currentReservation }) => {
             } else {
                 console.log(data)
             }
-        } else if (index === 2) {
+        } else if (index === 1) {
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResTwo: newObject })
@@ -121,7 +121,7 @@ const DepositForm = ({ currentReservation }) => {
             } else {
                 console.log(data)
             }
-        } else if (index === 3) {
+        } else if (index === 2) {
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResThree: newObject })

@@ -18,10 +18,10 @@ const StepsExplainer = ({ backLink, reservation, loading }) => {
     let step3 = false
 
     if (loading) {
-        step1 = reservation.orderDetails
-        step2 = reservation.verificationProcess
-        const payMethod = reservation.paidDeposit.method
-        step3 = reservation.paidDeposit.paid
+        step1 = reservation.car.orderDetails
+        step2 = reservation.car.verificationProcess
+        const payMethod = reservation.car.paidDeposit.method
+        step3 = reservation.car.paidDeposit.paid
 
         if (!step1 && !step2 && !step3) {
             title = 'Inchecken in 3 stappen'

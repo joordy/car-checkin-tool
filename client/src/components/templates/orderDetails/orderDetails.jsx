@@ -1,7 +1,6 @@
 // React & Modules imports
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import supabase from 'db/supabase.js'
 import * as Styles from './orderDetails.styles.js'
 
 // Components

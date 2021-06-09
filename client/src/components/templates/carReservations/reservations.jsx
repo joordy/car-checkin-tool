@@ -1,5 +1,5 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'

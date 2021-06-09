@@ -160,7 +160,7 @@ async function postCreateCheckin(req, res) {
 }
 
 // Post verification to client
-async function postCreateVerificationSession() {
+async function postCreateVerificationSession(req, res) {
   const verificationSession = await stripe.identity.verificationSessions.create({
     type: 'document',
     metadata: {
