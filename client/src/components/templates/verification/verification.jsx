@@ -1,7 +1,10 @@
-// React imports
+// React & Module imports
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './verification.styles.js'
+
+// Components
 import {
     StepsExplainer,
     CheckDrivers,
@@ -12,19 +15,19 @@ import {
 
 // React component
 const Verification = () => {
-    const [reservations, setReservations] = useState([])
-    const [items, setItems] = useState('')
-    const [carReservation, setCarReservation] = useState([])
+    // const getSpecificUser = async (fetchedData) => {
+    //     const { data, error } = await supabase
+    //         .from('users')
+    //         .select()
+    //         .eq('userID', fetchedData.user.userID)
 
-    const getData = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/verification`)
-        const response = await data.json()
-        if (response === 'undefined') {
-            window.location.href = '/reservations'
-        } else {
-            setCarReservation(response)
-        }
-    }
+    //     if (!data) {
+    //         console.log(error)
+    //     } else {
+    //         setCurrentUser(...data)
+    //         setReservationID(fetchedData.reservationID)
+    //     }
+    // }
 
     const verifyIdentity = async () => {
         const data = await fetch(`${process.env.REACT_APP_BACKEND}/create-verification-session`)
@@ -32,43 +35,73 @@ const Verification = () => {
         setItems(items)
     }
 
-    useEffect(() => {
-        getData()
-        readDB()
-        verifyIdentity()
-    }, [])
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
+    const [completedSteps, setCompletedSteps] = useState()
 
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
+    const getData = async () => {
+        try {
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
+                .then((res) => {
+                    console.log('res.data', res.data)
+                    setCurrentReservation(res.data)
+                    setCompletedSteps({
+                        orderDetails: res.data.car.orderDetails,
+                        verificationProcess: res.data.car.verificationProcess,
+                        payMethod: res.data.car.paidDeposit.method,
+                        paidDeposit: res.data.car.paidDeposit.paid,
+                    })
+                })
+            setLoadingData(true)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
-    console.log('items', items)
-    console.log('current reservation:', carReservation)
+    useEffect(() => {
+        getData()
+        verifyIdentity()
+    }, [])
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
+    console.log(currentReservation)
+    console.log(completedSteps)
+
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/order-details" step="1" />
-                <CheckDrivers />
-                <UserChoice
-                    title="Verifieer je eigen rijbewijs"
-                    text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
-                    labelText="Wanneer wil je je eigen rijbewijs laten verifieren?"
-                    oneTitle="Nu, online"
-                    oneText="Dit is de snelste optie"
-                    twoTitle="Ter plekke"
-                    twoText="Bij de Europcar locatie"
-                    threeTitle="Stap voor nu overslaan"
-                    threeText="Je kunt later alsnog een keuze maken."
-                    movingRight="-100vw"
-                    movingLeft="-300vw"
-                />
-                <CheckIdentity />
-                <CheckFacial />
+                {loadingData ? (
+                    <>
+                        <StepsExplainer
+                            backLink="/order-details"
+                            loading={loadingData}
+                            reservation={currentReservation}
+                        />
+                        <CheckDrivers />
+                        <UserChoice
+                            title="Verifieer je eigen rijbewijs"
+                            text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                            labelText="Wanneer wil je je eigen rijbewijs laten verifieren?"
+                            oneTitle="Nu, online"
+                            oneText="Dit is de snelste optie"
+                            twoTitle="Ter plekke"
+                            twoText="Bij de Europcar locatie"
+                            threeTitle="Stap voor nu overslaan"
+                            threeText="Je kunt later alsnog een keuze maken."
+                            movingRight="-100vw"
+                            movingLeft="-300vw"
+                        />
+                        <CheckIdentity />
+                        <CheckFacial />
+                    </>
+                ) : (
+                    <>
+                        <StepsExplainer loading={loadingData} backLink="/order-details" />
+                    </>
+                )}
             </div>
         </Styles.Main>
     )

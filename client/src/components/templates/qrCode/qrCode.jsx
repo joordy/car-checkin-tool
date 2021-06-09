@@ -1,20 +1,39 @@
-// React imports
+// React & Module imports
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './qrCode.styles.js'
+
+// Components
 import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 
 // React component
 const QRCode = () => {
-    const [reservations, setReservations] = useState([])
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
+    const [completedSteps, setCompletedSteps] = useState()
 
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
+    const getData = async () => {
+        try {
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
+                .then((res) => {
+                    setCurrentReservation(res.data)
+                    setCompletedSteps({
+                        orderDetails: res.data.orderDetails,
+                        verificationProcess: res.data.verificationProcess,
+                        payMethod: res.data.paidDeposit.method,
+                        paidDeposit: res.data.paidDeposit.paid,
+                    })
+                })
+            setLoadingData(true)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     useEffect(() => {
-        readDB()
+        getData()
     }, [])
 
     let viewportHeight = window.innerHeight * 0.01
@@ -23,8 +42,20 @@ const QRCode = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/deposit" step="3" />
-                <ShowQRCode title="Reservering 1234" />
+                {loadingData ? (
+                    <>
+                        <StepsExplainer
+                            backLink="/deposit"
+                            step="3"
+                            completedSteps={completedSteps}
+                        />
+                        <ShowQRCode title="Reservering 1234" />
+                    </>
+                ) : (
+                    <>
+                        <StepsExplainer backLink="/deposit" step="3" />
+                    </>
+                )}
             </div>
         </Styles.Main>
     )

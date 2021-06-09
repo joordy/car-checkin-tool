@@ -7,7 +7,7 @@
             "store/*": ["src/store/*"],
             "database/*": ["src/db/*"],
             "utils/*": ["src/utils/*"],
-            "context/*": ["src/context/*"]
+            "constants/*": ["src/constants/*"]
         }
     },
     "include": ["src"]

@@ -1,16 +1,22 @@
 // React imports
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as Styles from './depositForm.styles.js'
-import {} from 'components/atoms/index.js'
+import supabase from 'db/supabase.js'
+
+import { useSelector } from 'react-redux'
+
+// Components
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+
+// Set up
 const promise = loadStripe(
     'pk_test_51IsTukJEAzd2OWuLXMthwYCSoAGWjPoQntvnjXvvx1V5SrORa7YcifsL2G2mfwNpH5HBJG4fdNM9boA6ugGST6ir005GZ4jgMO',
 )
 
 // React component
-const DepositForm = () => {
+const DepositForm = ({ currentReservation }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -34,6 +40,100 @@ const DepositForm = () => {
         },
     })
 
+    const isPaid = useSelector((state) => state.paidReducer)
+    console.log('currentReservation', currentReservation)
+
+    const handleClick = async () => {
+        console.log('betaald pik')
+        const resID = currentReservation.car.reservationID
+        const userID = currentReservation.user.userID
+        const index = currentReservation.carkey
+
+        getSpecificUser(resID, userID, index)
+
+        setTimeout(() => {
+            window.location.href = '/qr'
+        }, 100)
+    }
+
+    const getSpecificUser = async (resID, userID, index) => {
+        console.log('resID', resID)
+        console.log('userID', userID)
+
+        const newObject = {
+            class: currentReservation.car.class,
+            carImage:
+                'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+            checkedIn: currentReservation.car.checkedIn,
+            driverOne: {
+                role: currentReservation.car.driverOne.role,
+                driver: currentReservation.car.driverOne.driver,
+                method: currentReservation.car.driverOne.method,
+                verified: currentReservation.car.driverOne.verified,
+            },
+            driverTwo: {
+                role: currentReservation.car.driverTwo.role,
+                driver: currentReservation.car.driverTwo.driver,
+                method: currentReservation.car.driverTwo.method,
+                verified: currentReservation.car.driverTwo.verified,
+            },
+            otherInfo: {
+                freeKM: currentReservation.car.otherInfo.freeKM,
+                deposit: currentReservation.car.otherInfo.deposit,
+                ownRisk: currentReservation.car.otherInfo.ownRisk,
+                priceExtraKM: currentReservation.car.otherInfo.priceExtraKM,
+            },
+            rentPrice: currentReservation.car.rentPrice,
+            handInDate: currentReservation.car.handInDate,
+            handInTime: currentReservation.car.handInTime,
+            pickUpDate: currentReservation.car.pickUpDate,
+            pickUpTime: currentReservation.car.pickUpTime,
+            extraDriver: currentReservation.car.extraDriver,
+            paidDeposit: {
+                paid: true,
+                method: 'card',
+            },
+            lowerOwnRisk: currentReservation.car.lowerOwnRisk,
+            orderDetails: currentReservation.car.orderDetails,
+            reservationID: currentReservation.car.reservationID,
+            handInLocation: currentReservation.car.handInLocation,
+            pickUpLocation: currentReservation.car.pickUpLocation,
+            walletSerialNumber: currentReservation.car.walletSerialNumber,
+            verificationProcess: currentReservation.car.verificationProcess,
+        }
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 3) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: newObject })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        }
+    }
+
     return (
         <Styles.Section>
             <header>
@@ -49,7 +149,7 @@ const DepositForm = () => {
                 <article>
                     <h2>Borg:</h2>
                     <p>
-                        € <span>500,-</span>
+                        € <span>{currentReservation.car.rentPrice},-</span>
                     </p>
                 </article>
 
@@ -66,15 +166,29 @@ const DepositForm = () => {
                 </article>
             </main>
 
-            <VerificationButtons
-                typeSecondary="btn"
-                typePrimary="href"
-                textPrimary="Volgende"
-                textSecondary="Terug"
-                linkPrimary="/qr"
-                linkSecondary="#"
-                callbackSecondary={moveRight}
-            />
+            {isPaid ? (
+                <VerificationButtons
+                    typeSecondary="btn"
+                    typePrimary="btn"
+                    textPrimary="Volgende"
+                    textSecondary="Terug"
+                    linkPrimary="/qr"
+                    linkSecondary="#"
+                    callbackSecondary={moveRight}
+                    callbackPrimary={handleClick}
+                />
+            ) : (
+                <VerificationButtons
+                    typeSecondary="btn"
+                    typePrimary="btn"
+                    textPrimary="Volgende"
+                    textSecondary="Terug"
+                    linkPrimary="#"
+                    linkSecondary="#"
+                    callbackSecondary={moveRight}
+                    disabled
+                />
+            )}
         </Styles.Section>
     )
 }

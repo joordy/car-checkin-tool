@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const DepositForm = styled.form`
-    padding-bottom: 2rem;
+    padding-bottom: 5rem;
     width: 100%;
     fieldset {
         border: none;
@@ -22,8 +22,9 @@ export const DepositForm = styled.form`
     .result-message {
         line-height: 1.25rem;
         font-size: 1rem;
-        position: relative;
-        top: -1.7em;
+        margin-top: 1rem;
+        /* position: relative; */
+        /* top: -1.7em; */
     }
     .result-message a {
         color: rgb(89, 111, 214);

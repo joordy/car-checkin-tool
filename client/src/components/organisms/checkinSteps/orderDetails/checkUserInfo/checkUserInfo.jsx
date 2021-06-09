@@ -5,7 +5,7 @@ import { Icons, EditButton } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
-const CheckUserInfo = () => {
+const CheckUserInfo = ({ reservation }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(0)'
@@ -16,6 +16,7 @@ const CheckUserInfo = () => {
         moveElement.style.transform = 'translateX(-200vw)'
     }
 
+    console.log('hello reservation here: ', reservation)
     return (
         <Styles.Section>
             <header>
@@ -32,15 +33,15 @@ const CheckUserInfo = () => {
                 <hr />
                 <article>
                     <p>Voornaam</p>
-                    <p>Kelly</p>
+                    <p>{reservation.user.firstName}</p>
                     <p>Achternaam</p>
-                    <p>de Jong</p>
+                    <p>{reservation.user.lastName}</p>
                     <p>E-mailadres</p>
-                    <p>kellydjong@hotmail.com</p>
+                    <p>{reservation.user.email}</p>
                     <p>Telefoonnummer</p>
-                    <p>0645542811</p>
+                    <p>{reservation.user.phoneNumber}</p>
                     <p>Geboortedatum</p>
-                    <p>23 februari 1997</p>
+                    <p>{reservation.user.birthDate}</p>
                 </article>
             </section>
 

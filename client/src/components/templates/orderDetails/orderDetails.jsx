@@ -1,44 +1,35 @@
-// React & Components imports
-import React, { useState, useEffect, useContext } from 'react'
+// React & Modules imports
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './orderDetails.styles.js'
+
+// Components
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
 
-// Component
+// React component
 const OrderDetails = () => {
-    console.log(process.env.REACT_APP_BACKEND)
-    console.log(process.env.REACT_APP_BACKEND)
-    const [carReservation, setCarReservation] = useState([])
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
 
     const getData = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/order-details`)
-        console.log(data)
-        const response = await data.json()
-        if (response === 'undefined') {
-            console.log(response)
-            // window.location.href = '/reservations'
-        } else {
-            setCarReservation(response)
+        try {
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
+                .then((res) => {
+                    setCurrentReservation(res.data)
+                })
+            setLoadingData(true)
+        } catch (e) {
+            console.log(e)
         }
-    }
-
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        // .filter('userID', 'eq', `${carReservation.user.userID}`)
-        if (!error) {
-            // setReservations(data)
-        } else {
-            console.log(error)
-        }
-        // console.log(data)
     }
 
     useEffect(() => {
         getData()
-        readDB()
     }, [])
 
-    console.log('current reservation:', carReservation)
+    console.log('currentReservation', currentReservation)
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
@@ -46,9 +37,22 @@ const OrderDetails = () => {
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
-                <StepsExplainer backLink="/reservations" step="0" />
-                <CheckUserInfo />
-                <CheckBookingInfo />
+                {loadingData ? (
+                    <>
+                        <StepsExplainer
+                            backLink="/reservations"
+                            step="0"
+                            reservation={currentReservation}
+                            loading={loadingData}
+                        />
+                        <CheckUserInfo reservation={currentReservation} />
+                        <CheckBookingInfo reservation={currentReservation.car} />
+                    </>
+                ) : (
+                    <>
+                        <StepsExplainer backLink="/reservations" step="0" loading={loadingData} />{' '}
+                    </>
+                )}
             </div>
         </Styles.Main>
     )

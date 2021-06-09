@@ -1,48 +1,59 @@
-// React imports
+// React & Module imports
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
+
+// Components
 import { ReservationCard, ReservationHeader, EmptyReservation } from 'components/organisms/index'
 
 // React component
 const Reservations = () => {
-    const [reservations, setReservations] = useState([])
+    const [allReservations, setAllReservations] = useState([])
+    const [currentUser, setCurrentUser] = useState([])
+    const [loadingData, setLoadingData] = useState(false)
 
-    const readDB = async () => {
-        const { data, error } = await supabase.from('users').select()
-        setReservations(data)
+    const getData = async () => {
+        try {
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/reservations`)
+                .then((res) => {
+                    console.log('res.data', res.data)
+                    setCurrentUser(res.data)
+                    setAllReservations([
+                        res.data.carResOne,
+                        res.data.carResTwo,
+                        res.data.carResThree,
+                    ])
+                })
+            setLoadingData(true)
+        } catch (e) {
+            console.log(e)
+        }
     }
-
-    useEffect(() => {
-        readDB()
+    useEffect(async () => {
+        getData()
     }, [])
 
-    const firstUser = reservations[2]
-
-    console.log(reservations)
+    // console.log('allReservations', allReservations)
+    // console.log('currentUser', currentUser)
 
     return (
         <>
-            {(() => {
-                if (reservations[0]) {
-                    return <ReservationHeader user={firstUser} />
-                } else {
-                    return <ReservationHeader user={{ firstName: 'Lars' }} />
-                }
-            })()}
-
-            <Styles.Main>
-                {firstUser && (
-                    <>
-                        {firstUser.cars.length > 1 ? (
+            {loadingData ? (
+                <>
+                    <ReservationHeader user={{ firstName: currentUser.firstName }} />
+                    <Styles.Main>
+                        {allReservations.length > 1 ? (
                             <>
                                 <h2>Mijn Reserveringen</h2>
-                                {firstUser.cars.map((item) => {
+                                {allReservations.map((item, index) => {
                                     return (
                                         <ReservationCard
                                             key={item.reservationID}
-                                            {...item}
-                                            user={firstUser}
+                                            data={item}
+                                            reservationKey={index}
+                                            user={currentUser}
                                         />
                                     )
                                 })}
@@ -50,9 +61,13 @@ const Reservations = () => {
                         ) : (
                             <EmptyReservation />
                         )}
-                    </>
-                )}
-            </Styles.Main>
+                    </Styles.Main>
+                </>
+            ) : (
+                <>
+                    <ReservationHeader user={{ firstName: 'loading' }} />
+                </>
+            )}
         </>
     )
 }

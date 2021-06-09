@@ -1,7 +1,12 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as Styles from './depositCC.styles.js'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import { useSelector, useDispatch } from 'react-redux'
+import { paid } from 'constants/actions'
+
+// Components
+import { Warnings } from 'components/atoms/index'
 
 // React component
 const DepositCC = ({ labelText, children }) => {
@@ -13,6 +18,8 @@ const DepositCC = ({ labelText, children }) => {
     const [clientSecret, setClientSecret] = useState('')
     const stripe = useStripe()
     const elements = useElements()
+    const paidVal = useSelector((state) => state.paidReducer)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -34,8 +41,9 @@ const DepositCC = ({ labelText, children }) => {
 
     const cardStyle = {
         style: {
+            hidePostalCode: true,
             base: {
-                hidePostalCode: true,
+                // hidePostalCode: true
                 color: '#32325d',
                 fontFamily: 'Arial, sans-serif',
                 fontSmoothing: 'antialiased',
@@ -75,6 +83,8 @@ const DepositCC = ({ labelText, children }) => {
             setError(null)
             setProcessing(false)
             setSucceeded(true)
+            // convert paid to true when successfull
+            dispatch(paid())
         }
     }
     return (
@@ -89,16 +99,18 @@ const DepositCC = ({ labelText, children }) => {
             </fieldset>
 
             {error && (
-                <div className="card-error" role="alert">
-                    {error}
-                </div>
+                <Warnings type="failed" classes="card-error" role="alert">
+                    {/*<p>{error}</p>*/}
+                    <p>We kunnen je betalingswijze niet verifiëren. Probeer het opnieuw.</p>
+                </Warnings>
             )}
 
-            <p className={succeeded ? 'result-message' : 'result-message hidden'}>
-                Payment succeeded, see the result in your
-                <a href={`https://dashboard.stripe.com/test/payments`}> Stripe dashboard.</a>{' '}
-                Refresh the page to pay again.
-            </p>
+            <Warnings
+                type="success"
+                classes={succeeded ? 'result-message' : 'result-message hidden'}
+            >
+                <p>Borg succesvol gereserveerd! Druk op “Volgende” om verder te gaan.</p>
+            </Warnings>
         </Styles.DepositForm>
     )
 }

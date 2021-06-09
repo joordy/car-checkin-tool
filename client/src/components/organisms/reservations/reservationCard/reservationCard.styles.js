@@ -25,6 +25,7 @@ export const Card = styled.section`
         position: absolute;
         z-index: 1;
         left: 1.125em;
+        width: 125px;
     }
     h3 {
         position: absolute;
@@ -48,6 +49,99 @@ export const Card = styled.section`
             svg {
                 margin-top: 0.25rem;
             }
+        }
+    }
+`
+
+export const StatusCheck = styled.div`
+    border-top: 1px solid ${colors.inputBorder};
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    h4 {
+        margin: 1rem 0 0 0;
+    }
+    p {
+        margin: 0.25rem 0 1rem 0;
+    }
+    ul {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+        margin: 0 0 1rem 0;
+        padding: 0;
+        li {
+            text-align: center;
+            width: 33%;
+            div.wrapper {
+                > div {
+                    width: 3rem;
+                    height: 3rem;
+                    margin: 0.5rem auto 0.5rem auto;
+                    background-color: ${colors.inputBorder};
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    svg {
+                        path {
+                            stroke: white;
+                        }
+                    }
+                }
+                p {
+                    color: ${colors.inputBorder};
+                }
+            }
+            &:nth-of-type(1),
+            &:nth-of-type(2) {
+                div.wrapper {
+                    > div {
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            width: 50px;
+                            height: 2px;
+                            background-color: ${colors.inputBorder};
+                            left: 110%;
+                        }
+                    }
+                }
+            }
+            &:nth-of-type(2) {
+                div.wrapper {
+                    > div {
+                        svg {
+                            fill: white;
+                            stroke: transparent;
+                        }
+                    }
+                }
+            }
+            div.active {
+                > div {
+                    background-color: ${colors.secondary};
+                }
+                p {
+                    color: ${colors.secondary};
+                }
+            }
+            /*
+            p {
+                color: ${colors.inputBorder};
+                margin: 0;
+            }
+            div {
+                &.active {
+                    background-color: ${colors.secondary};
+                }
+                svg {
+                    path {
+                        stroke: white;
+                    }
+                }
+            } */
         }
     }
 `

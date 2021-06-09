@@ -5,7 +5,7 @@ import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 
 // React component
-const CheckBookingInfo = () => {
+const CheckBookingInfo = ({ reservation }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -27,20 +27,20 @@ const CheckBookingInfo = () => {
                 <article>
                     <ul>
                         <li>
-                            <span>A</span>
-                            <span>B</span>
+                            <span>Datum ophalen:</span>
+                            <span>{reservation.pickUpLocation}</span>
                         </li>
                         <li>
-                            <span>A</span>
-                            <span>B</span>
+                            <span>Datum inleveren:</span>
+                            <span>{reservation.handInLocation}</span>
                         </li>
                         <li>
-                            <span>A</span>
-                            <span>B</span>
+                            <span>Type klasse:</span>
+                            <span>{reservation.class}</span>
                         </li>
                         <li>
-                            <span>A</span>
-                            <span>B</span>
+                            <span>Huurprijs:</span>
+                            <span>€ {reservation.rentPrice}</span>
                         </li>
                     </ul>
                     {/*}                    
@@ -75,12 +75,13 @@ const CheckBookingInfo = () => {
             </section>
             <VerificationButtons
                 typeSecondary="btn"
-                typePrimary="href"
+                typePrimary="btn"
                 textPrimary="Volgende"
                 textSecondary="Terug"
                 linkPrimary="/verification"
                 linkSecondary="#"
                 callbackSecondary={moveRight}
+                callbackPrimary={() => (window.location.href = '/verification')}
             />
         </Styles.Section>
     )

@@ -4,8 +4,10 @@ import * as Styles from './checkinButtons.styles.js'
 import { ButtonPrimary } from 'components/atoms/index'
 
 // Component
-const CheckinButtons = ({ ...props }) => {
-    const reservation = { ...props }
+const CheckinButtons = ({ reservation, carIndexKey, user }) => {
+    console.log('key', carIndexKey)
+    console.log('reservation', reservation)
+
     const day = reservation.pickUpDate.slice(0, 2)
     const month = reservation.pickUpDate.slice(3, 5)
     let pickupDay = [day, month]
@@ -19,15 +21,32 @@ const CheckinButtons = ({ ...props }) => {
     }
 
     const handleIncheck = async (event) => {
+        console.log('userrrrrr', user)
+        console.log('ressseervaationnnn', reservation)
         console.log('hi')
+        const currentUser = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phoneNumber: user.phoneNumber,
+            password: user.password,
+            birthDate: user.birthDate,
+            email: user.email,
+            userID: user.userID,
+        }
+        const currReservation = {
+            car: reservation,
+            user: currentUser,
+            carkey: carIndexKey,
+        }
         fetch(`${process.env.REACT_APP_BACKEND}/order-details`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(reservation),
+            body: JSON.stringify(currReservation),
         })
+        window.location.href = '/order-details'
     }
 
     return (
@@ -37,9 +56,9 @@ const CheckinButtons = ({ ...props }) => {
                     return (
                         <div className="buttonWrapper">
                             <ButtonPrimary
-                                type="href"
+                                type="btn"
                                 text="Inchecken"
-                                linkTo="/order-details"
+                                // linkTo="/order-details"
                                 width="100%"
                                 height="48px"
                                 _callback={handleIncheck}
