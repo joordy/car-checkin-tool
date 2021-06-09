@@ -43,7 +43,7 @@ const DepositForm = ({ currentReservation }) => {
     const isPaid = useSelector((state) => state.paidReducer)
     console.log('currentReservation', currentReservation)
 
-    const handleClick = async () => {
+    const handleClick = () => {
         console.log('betaald pik')
         const resID = currentReservation.car.reservationID
         const userID = currentReservation.user.userID

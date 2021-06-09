@@ -1,7 +1,6 @@
 // React & Module imports
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
 
 // Components
@@ -15,17 +14,12 @@ const Reservations = () => {
 
     const getData = async () => {
         try {
-            const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/reservations`)
-                .then((res) => {
-                    console.log('res.data', res.data)
-                    setCurrentUser(res.data)
-                    setAllReservations([
-                        res.data.carResOne,
-                        res.data.carResTwo,
-                        res.data.carResThree,
-                    ])
-                })
+            const data = await axios.get(`/api/reservations`).then((res) => {
+                console.log('res.data', res.data)
+                setCurrentUser(res.data)
+                setAllReservations([res.data.carResOne, res.data.carResTwo, res.data.carResThree])
+            })
+            console.log(data)
             setLoadingData(true)
         } catch (e) {
             console.log(e)

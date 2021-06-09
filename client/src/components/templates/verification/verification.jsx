@@ -30,7 +30,7 @@ const Verification = () => {
     // }
 
     const verifyIdentity = async () => {
-        const data = await fetch(`${process.env.REACT_APP_BACKEND}/create-verification-session`)
+        const data = await fetch(`/api/create-verification-session`)
         const items = await data.json()
         setItems(items)
     }

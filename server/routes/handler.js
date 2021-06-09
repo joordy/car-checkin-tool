@@ -13,19 +13,19 @@ let loggedInUser;
 let carIndexKey;
 
 // Post routes
-router.post('/reservations', postReservation);
-router.post('/order-details', postOrderDetails);
-router.post('/carIndexKey', postCarIndexKey);
-router.post('/create-verification-session', postCreateVerificationSession);
-router.post('/create-checkin', postCreateCheckin);
-router.post('/create-payment-intent', postCreatePaymentIntent);
+router.post('/api/reservations', postReservation);
+router.post('/api/order-details', postOrderDetails);
+router.post('/api/carIndexKey', postCarIndexKey);
+router.post('/api/create-verification-session', postCreateVerificationSession);
+router.post('/api/create-checkin', postCreateCheckin);
+router.post('/api/create-payment-intent', postCreatePaymentIntent);
 
 // Get routes
-router.get('/reservations', getReservation);
-router.get('/carIndexKey', getCarIndexKey);
-router.get('/order-details', getOrderDetails);
-router.get('/verification', getVerification);
-router.get('/deposit', getDeposit);
+router.get('/api/reservations', getReservation);
+router.get('/api/carIndexKey', getCarIndexKey);
+router.get('/api/order-details', getOrderDetails);
+router.get('/api/verification', getVerification);
+router.get('/api/deposit', getDeposit);
 
 // Post user info to server when logging in
 function postReservation(req, res) {
@@ -38,7 +38,7 @@ function postReservation(req, res) {
 function getReservation(req, res) {
   setTimeout(() => {
     console.log('all reservations of current user', reservation);
-    res.end(JSON.stringify(loggedInUser));
+    res.json(loggedInUser);
   }, 100);
 }
 
