@@ -32,12 +32,15 @@ export const IdentityChecker = styled.article`
     background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
 `
 
-export const LoadingBtn = styled.button`
-    padding: 1.5rem;
+export const LoadingBtn = styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
     background-color: transparent;
-    margin: 3rem 3rem;
+    margin: 0 3rem 0 3rem;
     width: calc(100% - 6rem);
-    height: calc(100% - 6rem);
+    height: calc(100%);
     border-radius: 1rem;
     border: none;
     color: white;
@@ -46,6 +49,20 @@ export const LoadingBtn = styled.button`
             fill: transparent;
             stroke: white;
         }
+    }
+    div {
+        margin: 0 auto;
+    }
+    p {
+        margin: 0;
+        &:first-of-type {
+            font-weight: 700;
+            font-size: 1.3em;
+            margin: 1em 0 0.3em 0;
+        }
+    }
+    button {
+        margin: 2em auto 0 auto;
     }
 `
 
@@ -66,6 +83,9 @@ export const StartBtn = styled.button`
             fill: transparent;
             stroke: white;
         }
+    }
+    &:hover {
+        cursor: pointer;
     }
 `
 
