@@ -16,7 +16,11 @@ const Reservations = () => {
     const getData = async () => {
         try {
             const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/reservations`)
+                .get(`${process.env.REACT_APP_BACKEND}/reservations`, {
+                    headers: {
+                        method: 'GET',
+                    },
+                })
                 .then((res) => {
                     console.log('res.data', res.data)
                     setCurrentUser(res.data)
