@@ -74,12 +74,8 @@ const ReservationCard = ({ data, reservationKey, user }) => {
 
                         <DealerLocations {...data} />
                     </>
-<<<<<<< HEAD
-                    {/*<Styles.StatusCheck>
-=======
 
                     <Styles.StatusCheck>
->>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
                         <h4>Online Check-In</h4>
                         <p>
                             <span>1</span> van de <span>3</span> stappen voltooid
@@ -199,15 +195,5 @@ export default ReservationCard
                                 Borg
                             </li>
                         </ul>
-<<<<<<< HEAD
-                                </Styles.StatusCheck>*/}
-
-                    <CheckinButtons {...props} />
-                </article>
-            </Styles.Card>
-        </>
-    )
-=======
                                 </Styles.StatusCheck>*/
->>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 }

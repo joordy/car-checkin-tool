@@ -30,7 +30,7 @@ router.get("/api/deposit", getDeposit);
 // Post user info to server when logging in
 function postReservation(req, res) {
   loggedInUser = req.body;
-  console.log(loggedInUser);
+  console.log("loggedinuser", loggedInUser);
   // res.end(JSON.stringify(req.body));
 }
 

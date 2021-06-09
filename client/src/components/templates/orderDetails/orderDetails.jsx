@@ -13,9 +13,11 @@ const OrderDetails = () => {
 
     const getData = async () => {
         try {
-            const data = await axios.get(`/api/order-details`).then((res) => {
-                setCurrentReservation(res.data)
-            })
+            const data = await axios
+                .get(`${process.env.REACT_APP_BACKEND}/api/order-details`)
+                .then((res) => {
+                    setCurrentReservation(res.data)
+                })
             setLoadingData(true)
         } catch (e) {
             console.log(e)
@@ -26,11 +28,7 @@ const OrderDetails = () => {
         getData()
     }, [])
 
-<<<<<<< HEAD
-    console.log(currentReservation)
-=======
     console.log('currentReservation', currentReservation)
->>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
@@ -40,20 +38,14 @@ const OrderDetails = () => {
             <div className="stepsWrapper">
                 {loadingData ? (
                     <>
-<<<<<<< HEAD
-                        <StepsExplainer backLink="/reservations" step="0" />
-                        <CheckUserInfo userInfo={currentReservation} />
-                        <CheckBookingInfo reservation={currentReservation} />
-=======
                         <StepsExplainer
                             backLink="/reservations"
                             step="0"
                             reservation={currentReservation}
                             loading={loadingData}
                         />
-                        <CheckUserInfo reservation={currentReservation} />
+                        <CheckUserInfo userInfo={currentReservation} />
                         <CheckBookingInfo reservation={currentReservation.car} />
->>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
                     </>
                 ) : (
                     <>

@@ -115,7 +115,7 @@ const ShowQRCode = ({ title }) => {
     }
 
     async function createCheckin(data) {
-        const response = await fetch(`/api/create-checkin`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/create-checkin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

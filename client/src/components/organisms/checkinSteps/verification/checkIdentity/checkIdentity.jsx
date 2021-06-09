@@ -34,7 +34,10 @@ const CheckIdentity = () => {
         setIsLoading(true)
         const stripe = await stripePromise
         // Connect to backend to fetch the verification session
-        const response = await fetch(`/api/create-verification-session`, { method: 'POST' })
+        const response = await fetch(
+            `${process.env.REACT_APP_BACKEND}/api/create-verification-session`,
+            { method: 'POST' },
+        )
         const client_secret = await response.json()
         // Opens verification modal
         const result = await stripe.verifyIdentity(client_secret)

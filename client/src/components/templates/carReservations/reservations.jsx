@@ -14,11 +14,10 @@ const Reservations = () => {
 
     const getData = async () => {
         try {
-<<<<<<< HEAD
             const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/reservations`)
+                .get(`${process.env.REACT_APP_BACKEND}/api/reservations`)
                 .then((res) => {
-                    console.log(res.data)
+                    console.log('res.data', res.data)
                     setCurrentUser(res.data)
                     setAllReservations([
                         res.data.carResOne,
@@ -26,14 +25,7 @@ const Reservations = () => {
                         res.data.carResThree,
                     ])
                 })
-=======
-            const data = await axios.get(`/api/reservations`).then((res) => {
-                console.log('res.data', res.data)
-                setCurrentUser(res.data)
-                setAllReservations([res.data.carResOne, res.data.carResTwo, res.data.carResThree])
-            })
             console.log(data)
->>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
             setLoadingData(true)
         } catch (e) {
             console.log(e)
@@ -43,13 +35,8 @@ const Reservations = () => {
         getData()
     }, [])
 
-<<<<<<< HEAD
-    console.log(allReservations)
-    console.log(currentUser)
-=======
     // console.log('allReservations', allReservations)
     // console.log('currentUser', currentUser)
->>>>>>> 4ad927893673caee0eaed6e239b686ea7b17e5ec
 
     return (
         <>
