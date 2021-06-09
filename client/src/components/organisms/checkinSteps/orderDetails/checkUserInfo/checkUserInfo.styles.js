@@ -38,12 +38,6 @@ export const Section = styled.section`
             }
         }
 
-        svg {
-            path {
-                stroke: ${colors.accent};
-            }
-        }
-
         &:first-of-type {
             display: grid;
             grid-template-columns: 60% 40%;

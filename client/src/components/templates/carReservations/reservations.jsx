@@ -21,9 +21,9 @@ const Reservations = () => {
                     console.log(res.data)
                     setCurrentUser(res.data)
                     setAllReservations([
-                        ...res.data.carResOne,
-                        ...res.data.carResTwo,
-                        ...res.data.carResThree,
+                        res.data.carResOne,
+                        res.data.carResTwo,
+                        res.data.carResThree,
                     ])
                 })
             setLoadingData(true)

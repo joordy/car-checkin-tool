@@ -2,6 +2,8 @@
 export { default as DealerLocations } from './reservations/dealerLocations/dealerLocations.jsx'
 export { default as CheckinButtons } from './reservations/checkinButtons/checkinButtons.jsx'
 export { default as IconListItem } from './checkinSteps/iconListItem/iconListItem.jsx'
+export { default as SaveButton } from './checkinSteps/saveButton/saveButton.jsx'
+export { default as SavedMessage } from './checkinSteps/savedMessage/savedMessage.jsx'
 export { default as VerificationButtons } from './checkinSteps/verificationButtons/verificationButtons.jsx'
 export { default as RadioInput } from './checkinSteps/radioInput/radioInput.jsx'
 export { default as DriverListItem } from './checkinSteps/driverListItem/driverListItem.jsx'
