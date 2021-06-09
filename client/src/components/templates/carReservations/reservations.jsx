@@ -1,5 +1,5 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './reservations.styles.js'
@@ -16,7 +16,11 @@ const Reservations = () => {
     const getData = async () => {
         try {
             const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/reservations`)
+                .get(`${process.env.REACT_APP_BACKEND}/reservations`, {
+                    headers: {
+                        method: 'GET',
+                    },
+                })
                 .then((res) => {
                     console.log('res.data', res.data)
                     setCurrentUser(res.data)

@@ -5,9 +5,6 @@ import { ButtonPrimary } from 'components/atoms/index'
 
 // Component
 const CheckinButtons = ({ reservation, carIndexKey, user }) => {
-    console.log('key', carIndexKey)
-    console.log('reservation', reservation)
-
     const day = reservation.pickUpDate.slice(0, 2)
     const month = reservation.pickUpDate.slice(3, 5)
     let pickupDay = [day, month]
@@ -21,9 +18,6 @@ const CheckinButtons = ({ reservation, carIndexKey, user }) => {
     }
 
     const handleIncheck = async (event) => {
-        console.log('userrrrrr', user)
-        console.log('ressseervaationnnn', reservation)
-        console.log('hi')
         const currentUser = {
             firstName: user.firstName,
             lastName: user.lastName,
@@ -38,6 +32,7 @@ const CheckinButtons = ({ reservation, carIndexKey, user }) => {
             user: currentUser,
             carkey: carIndexKey,
         }
+
         fetch(`${process.env.REACT_APP_BACKEND}/order-details`, {
             method: 'POST',
             headers: {

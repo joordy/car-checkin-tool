@@ -13,6 +13,7 @@ import { Route, Switch } from 'react-router-dom'
 import GlobalStyle from './styles/global'
 
 function App() {
+    console.log('backend elem', process.env.REACT_APP_BACKEND)
     return (
         <>
             <Switch>
