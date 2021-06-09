@@ -80,7 +80,7 @@ const Verification = () => {
                             loading={loadingData}
                             reservation={currentReservation}
                         />
-                        <CheckDrivers />
+                        <CheckDrivers reservation={currentReservation} />
                         <UserChoice
                             title="Verifieer je eigen rijbewijs"
                             text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
