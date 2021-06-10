@@ -52,7 +52,7 @@ const DepositForm = ({ currentReservation }) => {
         getSpecificUser(resID, userID, index)
 
         setTimeout(() => {
-            // window.location.href = '/qr'
+            window.location.href = '/qr'
         }, 100)
     }
 

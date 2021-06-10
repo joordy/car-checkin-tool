@@ -5,6 +5,7 @@ import { VerificationButtons, IconListItem } from 'components/molecules/index'
 
 // React component
 const StepsExplainer = ({ backLink, reservation, loading }) => {
+    console.log(reservation)
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
