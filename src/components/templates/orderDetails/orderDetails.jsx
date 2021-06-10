@@ -14,9 +14,10 @@ const OrderDetails = () => {
     const getData = async () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
+                console.log('res', res)
                 setCurrentReservation(res.data)
+                setLoadingData(true)
             })
-            setLoadingData(true)
         } catch (e) {
             console.log(e)
         }

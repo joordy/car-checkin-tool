@@ -18,7 +18,23 @@ const UserChoice = (props) => {
         moveElement.style.transform = `translateX(${0}vw)`
     }
 
-    console.log('userChoice reservation data = ', props.reservation)
+    // const moveLeft = () => {
+    //     if (selected === 'now') {
+    //         console.log('NU')
+    //         const moveElement = document.querySelector('.stepsWrapper')
+    //         moveElement.style.transform = `translateX(${movingLeft}vw)`
+    //     } else if (selected === 'location' && !last) {
+    //         console.log('location')
+    //         const moveElement = document.querySelector('.stepsWrapper')
+    //         moveElement.style.transform = `translateX(${movingLeft}vw)`
+    //     } else if (selected === 'skip' && !last) {
+    //         const next = makeChoice.concat([{ role: 'extra', driver: 'Test Persoon' }])
+    //         setMakeChoice(next)
+    //         const moveElement = document.querySelector('.stepsWrapper')
+    //         moveElement.style.transform = `translateX(${movingLeft}vw)`
+    //     } else if (selected === 'skip' && last) {
+    //         window.location.href = '/deposit'
+    // console.log('userChoice reservation data = ', props.reservation)
 
     const checkStateAndMove = async (choice) => {
         if (window.location.pathname == '/deposit') {
@@ -51,6 +67,7 @@ const UserChoice = (props) => {
                     )
             }
         } else if (window.location.pathname == '/verification') {
+            console.log('gebruiker hier', props.user)
             const moveElement = document.querySelector('.stepsWrapper')
             moveElement.style.transform = `translateX(-300vw)`
         }
@@ -135,6 +152,25 @@ const UserChoice = (props) => {
         )
     }
 
+    const RenderedComponent = () => {
+        if (!props.reservation.car.driverOne.verified) {
+            return <p>Gebruiker 1</p>
+        } else if (
+            props.reservation.car.driverOne.verified &&
+            !props.reservation.car.driverTwo.verified
+        ) {
+            return <p>Gebruiker 2</p>
+        } else if (
+            props.reservation.car.driverOne.verified &&
+            props.reservation.car.driverTwo.verified &&
+            !props.reservation.car.driverThree.verified
+        ) {
+            return <p>Gebruiker 3</p>
+        }
+    }
+
+    console.log('this user here', props.user)
+
     return (
         <Styles.Section>
             <div className="testje">
@@ -145,6 +181,7 @@ const UserChoice = (props) => {
                 </header>
                 <article>
                     {depositAmount}
+
                     <form>
                         <Label text={props.labelText} />
                         <RadioInput
