@@ -24,15 +24,6 @@ const Login = () => {
         const res = await axios
             .post('/api/reservations', loggedInUser)
             .then((res) => console.log(res))
-
-        // fetch(`/api/reservations`, {
-        //     method: 'POST',
-        //     headers: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: loggedInUser,
-        // })
     }
 
     const readDB = async (email) => {

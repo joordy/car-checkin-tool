@@ -15,29 +15,16 @@ import {
 
 // React component
 const Verification = () => {
-    // const getSpecificUser = async (fetchedData) => {
-    //     const { data, error } = await supabase
-    //         .from('users')
-    //         .select()
-    //         .eq('userID', fetchedData.user.userID)
-    //     if (!data) {
-    //         console.log(error)
-    //     } else {
-    //         setCurrentUser(...data)
-    //         setReservationID(fetchedData.reservationID)
-    //     }
-    // }
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
+    const [completedSteps, setCompletedSteps] = useState()
+    const [testing, setTesting] = useState()
 
     const verifyIdentity = async () => {
         const data = await fetch(`/api/create-verification-session`)
         const items = await data.json()
         setItems(items)
     }
-
-    const [currentReservation, setCurrentReservation] = useState(null)
-    const [loadingData, setLoadingData] = useState(false)
-    const [completedSteps, setCompletedSteps] = useState()
-    const [testing, setTesting] = useState()
 
     const getData = async () => {
         try {
@@ -50,8 +37,8 @@ const Verification = () => {
                     payMethod: res.data.car.paidDeposit.method,
                     paidDeposit: res.data.car.paidDeposit.paid,
                 })
+                setLoadingData(true)
             })
-            setLoadingData(true)
         } catch (e) {
             console.log(e)
         }
@@ -65,8 +52,8 @@ const Verification = () => {
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
-    console.log(currentReservation)
-    console.log(completedSteps)
+    console.log('Verification currentReservation data', currentReservation)
+    console.log('completedSteps', completedSteps)
     console.log('TESR', testing)
 
     let steps = []
@@ -85,7 +72,7 @@ const Verification = () => {
 
         drivers.forEach((person, index) => {
             const { role, driver, method, verified } = currentReservation.car[person]
-            if (!verified && method != 'location') {
+            if (!verified) {
                 console.log(index, drivers.length - 1)
                 steps.push(
                     <React.Fragment key={person}>
@@ -115,6 +102,7 @@ const Verification = () => {
                             threeText="Je kunt later alsnog een keuze maken."
                             movingRight={frameStepsRight[frames + 1]}
                             movingLeft={frameStepsLeft[frames + 1]}
+                            reservation={currentReservation}
                         />
                         <CheckIdentity
                             movingRight={frameStepsRight[frames + 2]}
