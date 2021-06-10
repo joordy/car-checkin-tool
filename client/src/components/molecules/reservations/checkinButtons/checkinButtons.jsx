@@ -33,7 +33,7 @@ const CheckinButtons = ({ reservation, carIndexKey, user }) => {
             carkey: carIndexKey,
         }
 
-        fetch(`${process.env.REACT_APP_BACKEND}/api/order-details`, {
+        fetch(`/api/order-details`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

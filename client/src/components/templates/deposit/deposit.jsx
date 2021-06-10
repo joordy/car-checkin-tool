@@ -14,17 +14,15 @@ const Deposit = () => {
 
     const getData = async () => {
         try {
-            const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/api/order-details`)
-                .then((res) => {
-                    setCurrentReservation(res.data)
-                    setCompletedSteps({
-                        orderDetails: res.data.car.orderDetails,
-                        verificationProcess: res.data.car.verificationProcess,
-                        payMethod: res.data.car.paidDeposit.method,
-                        paidDeposit: res.data.car.paidDeposit.paid,
-                    })
+            const data = await axios.get(`/api/order-details`).then((res) => {
+                setCurrentReservation(res.data)
+                setCompletedSteps({
+                    orderDetails: res.data.car.orderDetails,
+                    verificationProcess: res.data.car.verificationProcess,
+                    payMethod: res.data.car.paidDeposit.method,
+                    paidDeposit: res.data.car.paidDeposit.paid,
                 })
+            })
             setLoadingData(true)
         } catch (e) {
             console.log(e)

@@ -13,11 +13,9 @@ const OrderDetails = () => {
 
     const getData = async () => {
         try {
-            const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/api/order-details`)
-                .then((res) => {
-                    setCurrentReservation(res.data)
-                })
+            const data = await axios.get(`/api/order-details`).then((res) => {
+                setCurrentReservation(res.data)
+            })
             setLoadingData(true)
         } catch (e) {
             console.log(e)

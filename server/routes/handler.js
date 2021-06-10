@@ -1,11 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const fetch = require("node-fetch");
-const sgMail = require("@sendgrid/mail");
+const fetch = require('node-fetch');
+const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const stripe = require('stripe')(`${process.env.STRIPE_TEST_KEY}`);
-const stripe = require("stripe")(
-  "sk_test_51IsTukJEAzd2OWuLk3FnSrJQnDxX3VuWZRtUIkCCvEBhK20GOantGHhar8kn1eqtYLtZ1qSX0hvVZ2lwyRWkCl5n002JbZmNr2"
+const stripe = require('stripe')(
+  'sk_test_51IsTukJEAzd2OWuLk3FnSrJQnDxX3VuWZRtUIkCCvEBhK20GOantGHhar8kn1eqtYLtZ1qSX0hvVZ2lwyRWkCl5n002JbZmNr2'
 );
 
 let reservation;
@@ -13,31 +12,31 @@ let loggedInUser;
 let carIndexKey;
 
 // Post routes
-router.post("/api/reservations", postReservation);
-router.post("/api/order-details", postOrderDetails);
-router.post("/api/carIndexKey", postCarIndexKey);
-router.post("/api/create-verification-session", postCreateVerificationSession);
-router.post("/api/create-checkin", postCreateCheckin);
-router.post("/api/create-payment-intent", postCreatePaymentIntent);
+router.post('/api/reservations', postReservation);
+router.post('/api/order-details', postOrderDetails);
+router.post('/api/carIndexKey', postCarIndexKey);
+router.post('/api/create-verification-session', postCreateVerificationSession);
+router.post('/api/create-checkin', postCreateCheckin);
+router.post('/api/create-payment-intent', postCreatePaymentIntent);
 
 // Get routes
-router.get("/api/reservations", getReservation);
-router.get("/api/carIndexKey", getCarIndexKey);
-router.get("/api/order-details", getOrderDetails);
-router.get("/api/verification", getVerification);
-router.get("/api/deposit", getDeposit);
+router.get('/api/reservations', getReservation);
+router.get('/api/carIndexKey', getCarIndexKey);
+router.get('/api/order-details', getOrderDetails);
+router.get('/api/verification', getVerification);
+router.get('/api/deposit', getDeposit);
 
 // Post user info to server when logging in
 function postReservation(req, res) {
   loggedInUser = req.body;
-  console.log("loggedinuser", loggedInUser);
+  console.log('loggedinuser', loggedInUser);
   // res.end(JSON.stringify(req.body));
 }
 
 // Get logged in user information
 function getReservation(req, res) {
   setTimeout(() => {
-    console.log("all reservations of current user", reservation);
+    console.log('all reservations of current user', reservation);
     res.send(loggedInUser);
   }, 100);
 }
@@ -45,13 +44,13 @@ function getReservation(req, res) {
 // Post specific car obj to server, to fetch on later.
 function postOrderDetails(req, res) {
   reservation = req.body;
-  console.log("this is the one", req.body);
+  console.log('this is the one', req.body);
   res.send(req.body);
 }
 
 // Save chosen car index key on server
 function postCarIndexKey(req, res) {
-  console.log("this is the key index", req.body);
+  console.log('this is the key index', req.body);
 
   carIndexKey = req.body;
   res.send(req.body);
@@ -59,13 +58,13 @@ function postCarIndexKey(req, res) {
 
 // Receive chosen car index key
 function getCarIndexKey(req, res) {
-  console.log("carKeyIndex:", carIndexKey);
+  console.log('carKeyIndex:', carIndexKey);
   res.send(carIndexKey);
 }
 
 // Receives selected car obj from signed in user
 function getOrderDetails(req, res) {
-  console.log("current reservation", reservation);
+  console.log('current reservation', reservation);
   const data = () => {
     if (!reservation) {
     } else {
@@ -81,7 +80,7 @@ function getVerification(req, res) {
   console.log(reservation);
   const data = () => {
     if (!reservation) {
-      return "undefined";
+      return 'undefined';
     } else {
       return reservation;
     }
@@ -95,7 +94,7 @@ function getDeposit(req, res) {
   console.log(reservation);
   const data = () => {
     if (!reservation) {
-      return "undefined";
+      return 'undefined';
     } else {
       return reservation;
     }
@@ -106,17 +105,16 @@ function getDeposit(req, res) {
 
 // Handle client-side verification
 async function postCreateCheckin(req, res) {
-  const { firstName, email, pickUpLocation, pickUpDateTime, reservationID } =
-    req.body;
+  const { firstName, email, pickUpLocation, pickUpDateTime, reservationID } = req.body;
 
   async function postData(url, data) {
     const response = await fetch(url, {
-      method: "POST",
-      mode: "cors",
-      credentials: "same-origin",
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'same-origin',
       headers: {
         Authorization: `Basic ${process.env.WALLET_SECRET}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
@@ -128,8 +126,8 @@ async function postCreateCheckin(req, res) {
       console.log(getDate(pickUpDateTime));
       const msg = {
         to: email,
-        from: { email: "europauto2021@outlook.com", name: "Europauto Checkin" },
-        templateId: "d-d13520409a12422783f1f2bf35983b45",
+        from: { email: 'europauto2021@outlook.com', name: 'Europauto Checkin' },
+        templateId: 'd-d13520409a12422783f1f2bf35983b45',
         dynamicTemplateData: {
           firstName: firstName,
           pickUpLocation: pickUpLocation,
@@ -141,19 +139,19 @@ async function postCreateCheckin(req, res) {
       sgMail
         .send(msg)
         .then(() => {
-          console.log("Email sent");
+          console.log('Email sent');
         })
         .catch((error) => {
           console.error(error);
         });
 
       res.send({
-        status: "200",
+        status: '200',
         serialNumber: data.serialNumber,
       });
     } else {
       res.send({
-        status: "404",
+        status: '404',
         errors: data.errors,
       });
     }
@@ -162,18 +160,16 @@ async function postCreateCheckin(req, res) {
 
 // Post verification to client
 async function postCreateVerificationSession(req, res) {
-  const verificationSession = await stripe.identity.verificationSessions.create(
-    {
-      type: "document",
-      metadata: {
-        user_id: "{{USER_ID}}",
-      },
-    }
-  );
+  const verificationSession = await stripe.identity.verificationSessions.create({
+    type: 'document',
+    metadata: {
+      user_id: '{{USER_ID}}',
+    },
+  });
 
   const clientSecret = verificationSession.client_secret;
 
-  console.log("User verification");
+  console.log('User verification');
   res.end(JSON.stringify(clientSecret));
 }
 
@@ -192,7 +188,7 @@ async function postCreatePaymentIntent(req, res) {
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
-    currency: "usd",
+    currency: 'usd',
   });
   res.send({
     clientSecret: paymentIntent.client_secret,
@@ -201,16 +197,16 @@ async function postCreatePaymentIntent(req, res) {
 
 // Function to calculate specific dates
 function getDate(date) {
-  const dateTime = date.split(" ");
-  const dateElements = dateTime[0].split("-");
+  const dateTime = date.split(' ');
+  const dateElements = dateTime[0].split('-');
   const newDate = `${dateElements[2]}-${dateElements[1]}-${dateElements[0]} ${dateTime[1]}`;
   const dateObject = new Date(newDate);
-  const day = dateObject.toLocaleString("nl-NL", { day: "numeric" });
-  const month = dateObject.toLocaleString("nl-NL", { month: "long" });
-  const year = dateObject.toLocaleString("nl-NL", { year: "numeric" });
-  const time = dateObject.toLocaleString("nl-NL", {
-    hour: "2-digit",
-    minute: "2-digit",
+  const day = dateObject.toLocaleString('nl-NL', { day: 'numeric' });
+  const month = dateObject.toLocaleString('nl-NL', { month: 'long' });
+  const year = dateObject.toLocaleString('nl-NL', { year: 'numeric' });
+  const time = dateObject.toLocaleString('nl-NL', {
+    hour: '2-digit',
+    minute: '2-digit',
     hour12: false,
   });
 

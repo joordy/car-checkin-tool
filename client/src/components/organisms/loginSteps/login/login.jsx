@@ -1,5 +1,6 @@
 // React imports
-import React, { useState } from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 import * as Styles from './login.styles.js'
 import supabase from 'db/supabase.js'
 import {
@@ -20,14 +21,18 @@ const Login = () => {
     const [showWrongEmailText, setShowWrongEmailText] = useState(false)
 
     const postData = async (loggedInUser) => {
-        fetch(`${process.env.REACT_APP_BACKEND}/api/reservations`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(loggedInUser),
-        })
+        const res = await axios
+            .post('/api/reservations', loggedInUser)
+            .then((res) => console.log(res))
+
+        // fetch(`/api/reservations`, {
+        //     method: 'POST',
+        //     headers: {
+        //         Accept: 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: loggedInUser,
+        // })
     }
 
     const readDB = async (email) => {
