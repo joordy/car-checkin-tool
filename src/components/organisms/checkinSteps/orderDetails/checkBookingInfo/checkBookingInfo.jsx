@@ -101,19 +101,19 @@ const CheckBookingInfo = (props) => {
                     <ul>
                         <li>
                             <span>Datum ophalen:</span>
-                            <span>{reservation.car.pickUpDate}</span>
+                            <span>{props.reservation.car.pickUpDate}</span>
                         </li>
                         <li>
                             <span>Datum inleveren:</span>
-                            <span>{reservation.car.handInDate}</span>
+                            <span>{props.reservation.car.handInDate}</span>
                         </li>
                         <li>
                             <span>Type klasse:</span>
-                            <span>{reservation.car.class}</span>
+                            <span>{props.reservation.car.class}</span>
                         </li>
                         <li>
                             <span>Huurprijs:</span>
-                            <span>€ {reservation.car.rentPrice}</span>
+                            <span>€ {props.reservation.car.rentPrice}</span>
                         </li>
                     </ul>
                 </article>
@@ -126,19 +126,19 @@ const CheckBookingInfo = (props) => {
                     <ul>
                         <li>
                             <span>Eigen risico</span>
-                            <span>€ {reservation.car.otherInfo.ownRisk}</span>
+                            <span>€ {props.reservation.car.otherInfo.ownRisk}</span>
                         </li>
                         <li>
                             <span>Borg</span>
-                            <span>€ {reservation.car.otherInfo.deposit}</span>
+                            <span>€ {props.reservation.car.otherInfo.deposit}</span>
                         </li>
                         <li>
                             <span>Vrije km</span>
-                            <span>{reservation.car.otherInfo.freeKM} KM</span>
+                            <span>{props.reservation.car.otherInfo.freeKM} KM</span>
                         </li>
                         <li>
                             <span>Prijs per extra km</span>
-                            <span>€ {reservation.car.otherInfo.priceExtraKM}</span>
+                            <span>€ {props.reservation.car.otherInfo.priceExtraKM}</span>
                         </li>
                     </ul>
                 </article>
