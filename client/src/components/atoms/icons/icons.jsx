@@ -1,8 +1,9 @@
 // React & Module Imports
 import * as Styles from './icons.styles.js'
+import colors from 'styles/colors.js'
 
 // React  Component
-const Icons = ({ type, width, height, opacity, fill, onClick }) => {
+const Icons = ({ type, width, height, opacity, fill, onClick, stroke }) => {
     switch (type) {
         case 'close':
             return (
@@ -112,6 +113,7 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                             strokeWidth="1.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={colors.accent}
                         />
                     </svg>
                 </Styles.Icon>
@@ -142,28 +144,6 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                             strokeLinejoin="round"
                         />
                     </svg>
-
-                    {/*}                    <svg
-                        width="24"
-                        height="18"
-                        viewBox="0 0 24 18"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        onClick={onClick}
-                    >
-                        <path
-                            d="M1 9C1 9 5 1 12 1C19 1 23 9 23 9C23 9 19 17 12 17C5 17 1 9 1 9Z"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                        <path
-                            d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-            </svg>*/}
                 </Styles.Icon>
             )
         case 'eyeOff':
@@ -246,12 +226,14 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                         <path
                             d="M20 3.58105L10.5 13.2711L7.65002 10.367"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                     </svg>
                 </Styles.Icon>
@@ -327,18 +309,21 @@ const Icons = ({ type, width, height, opacity, fill, onClick }) => {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                         <path
                             d="M11 7V11"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                         <path
                             d="M11 15H11.01"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
+                            stroke={stroke}
                         />
                     </svg>
                 </Styles.Icon>

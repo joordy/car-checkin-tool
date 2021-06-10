@@ -18,10 +18,10 @@ export const Login = styled.section`
             color: ${colors.error};
         }
 
-        p {
+        > p {
             line-height: 1.4em;
             margin-top: 2vh;
-            margin-bottom: 5vh;
+            margin-bottom: 3vh;
         }
 
         form {

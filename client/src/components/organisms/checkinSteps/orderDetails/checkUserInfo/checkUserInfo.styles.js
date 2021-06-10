@@ -24,21 +24,20 @@ export const Section = styled.section`
         }
     }
     article {
-        svg {
-            path {
-                stroke: ${colors.accent};
+        &:nth-of-type(2) {
+            display: block !important;
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    line-height: 2em;
+                }
             }
         }
-        &:first-of-type {
-            display: grid;
-            grid-template-columns: 60% 40%;
-            margin-top: 5vh;
-        }
-        p {
-            margin: 0.4em 0;
-        }
-    }
-    article {
+
         &:first-of-type {
             display: grid;
             grid-template-columns: 60% 40%;
@@ -46,15 +45,6 @@ export const Section = styled.section`
 
             p:first-child {
                 font-weight: 600;
-            }
-        }
-
-        &:nth-of-type(2) {
-            display: grid;
-            grid-template-columns: 40% 60%;
-
-            p:nth-child(even) {
-                color: ${colors.secondaryText};
             }
         }
 
