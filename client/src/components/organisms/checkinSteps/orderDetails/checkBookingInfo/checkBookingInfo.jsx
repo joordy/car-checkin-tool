@@ -43,19 +43,6 @@ const CheckBookingInfo = ({ reservation }) => {
                             <span>€ {reservation.rentPrice}</span>
                         </li>
                     </ul>
-                    {/*}                    
-                    <p>Datum ophalen</p>
-                    <p>Woensdag 16 juni 2021</p>
-                    <p>Datum inleveren</p>
-                    <p>Vrijdag 18 juni 2021</p>
-                    <p>Type klasse</p>
-                    <p>Elektrisch</p>
-                    <p>Huurprijs</p>
-                    <p>€ 477,80</p>
-                    <p>1x Extra bestuurder</p>
-                    <p>€ 20,33</p>
-                    <p>Verlagen eigen risico</p>
-                    <p>€ 60,02</p> */}
                 </article>
 
                 <article>
@@ -63,14 +50,24 @@ const CheckBookingInfo = ({ reservation }) => {
                 </article>
                 <hr />
                 <article>
-                    <p>Eigen risico</p>
-                    <p>€ 400</p>
-                    <p>Borg</p>
-                    <p>€ 500</p>
-                    <p>Vrije km</p>
-                    <p>600 km</p>
-                    <p>Prijs per extra km</p>
-                    <p>€ 0,30</p>
+                    <ul>
+                        <li>
+                            <span>Eigen risico</span>
+                            <span>€ {reservation.otherInfo.ownRisk}</span>
+                        </li>
+                        <li>
+                            <span>Borg</span>
+                            <span>€ {reservation.otherInfo.deposit}</span>
+                        </li>
+                        <li>
+                            <span>Vrije km</span>
+                            <span>{reservation.otherInfo.freeKM} KM</span>
+                        </li>
+                        <li>
+                            <span>Prijs per extra km</span>
+                            <span>€ {reservation.otherInfo.priceExtraKM}</span>
+                        </li>
+                    </ul>
                 </article>
             </section>
             <VerificationButtons

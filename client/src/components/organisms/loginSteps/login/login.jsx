@@ -10,6 +10,7 @@ import {
     ButtonSecondary,
     FormButtonPrimaryLarge,
 } from 'components/atoms/index.js'
+import { LoginError } from 'components/molecules/index'
 
 // React component
 const Login = () => {
@@ -19,7 +20,7 @@ const Login = () => {
     const [showWrongEmailText, setShowWrongEmailText] = useState(false)
 
     const postData = async (loggedInUser) => {
-        fetch(`/api/reservations`, {
+        fetch(`${process.env.REACT_APP_BACKEND}/api/reservations`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -60,9 +61,7 @@ const Login = () => {
                 <main>
                     <h1>Log in met je EuropAuto account</h1>
                     <p>Dit is hetzelfde account waarmee je je reservering hebt gemaakt.</p>
-                    {showWrongEmailText && (
-                        <p className="error">Dit email is niet bekend bij ons</p>
-                    )}
+                    {showWrongEmailText && <LoginError />}
                     <form action="/reservations" onSubmit={handleSubmit}>
                         <Label text="E-mailadres" forId="email" />
                         <TextInput

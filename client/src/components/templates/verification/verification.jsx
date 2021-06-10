@@ -20,7 +20,6 @@ const Verification = () => {
     //         .from('users')
     //         .select()
     //         .eq('userID', fetchedData.user.userID)
-
     //     if (!data) {
     //         console.log(error)
     //     } else {
@@ -30,7 +29,7 @@ const Verification = () => {
     // }
 
     const verifyIdentity = async () => {
-        const data = await fetch(`/api/create-verification-session`)
+        const data = await fetch(`${process.env.REACT_APP_BACKEND}/api/create-verification-session`)
         const items = await data.json()
         setItems(items)
     }
@@ -42,7 +41,7 @@ const Verification = () => {
     const getData = async () => {
         try {
             const data = await axios
-                .get(`${process.env.REACT_APP_BACKEND}/order-details`)
+                .get(`${process.env.REACT_APP_BACKEND}/api/order-details`)
                 .then((res) => {
                     console.log('res.data', res.data)
                     setCurrentReservation(res.data)

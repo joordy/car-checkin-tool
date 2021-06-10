@@ -24,4 +24,5 @@ export const Input = styled.input`
     ::placeholder {
         color: ${colors.secondaryText};
     }
+    background-color: white;
 `
