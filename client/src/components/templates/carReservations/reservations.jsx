@@ -15,7 +15,7 @@ const Reservations = () => {
     const getData = async () => {
         try {
             const data = await axios.get(`/api/reservations`).then((res) => {
-                console.log('res.data', res.data)
+                console.log('res.data', res)
                 setCurrentUser(res.data)
                 setAllReservations([res.data.carResOne, res.data.carResTwo, res.data.carResThree])
             })
