@@ -42,7 +42,7 @@ const OrderDetails = () => {
                             reservation={currentReservation}
                             loading={loadingData}
                         />
-                        <CheckUserInfo reservation={currentReservation} />
+                        <CheckUserInfo userInfo={currentReservation} />
                         <CheckBookingInfo reservation={currentReservation.car} />
                     </>
                 ) : (

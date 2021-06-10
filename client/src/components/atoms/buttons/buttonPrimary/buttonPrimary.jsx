@@ -2,11 +2,22 @@
 import * as Styles from './buttonPrimary.styles.js'
 
 // Component
-const ButtonPrimary = ({ type, text, linkTo, width, _callback, height, id, disabled }) => {
+const ButtonPrimary = ({
+    type,
+    text,
+    linkTo,
+    width,
+    _callback,
+    height,
+    id,
+    disabled,
+    buttonType,
+}) => {
     switch (type) {
         case 'btn':
             return (
                 <Styles.Button
+                    type={buttonType}
                     width={width}
                     href={linkTo}
                     onClick={_callback}

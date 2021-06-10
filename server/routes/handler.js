@@ -3,7 +3,6 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-// const stripe = require('stripe')(`${process.env.STRIPE_TEST_KEY}`);
 const stripe = require('stripe')(
   'sk_test_51IsTukJEAzd2OWuLk3FnSrJQnDxX3VuWZRtUIkCCvEBhK20GOantGHhar8kn1eqtYLtZ1qSX0hvVZ2lwyRWkCl5n002JbZmNr2'
 );
@@ -30,7 +29,7 @@ router.get('/api/deposit', getDeposit);
 // Post user info to server when logging in
 function postReservation(req, res) {
   loggedInUser = req.body;
-  console.log(loggedInUser);
+  console.log('loggedinuser', loggedInUser);
   // res.end(JSON.stringify(req.body));
 }
 
