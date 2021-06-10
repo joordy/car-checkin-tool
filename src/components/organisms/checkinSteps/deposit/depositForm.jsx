@@ -1,9 +1,10 @@
 // React imports
 import { useState } from 'react'
+import axios from 'axios'
 import * as Styles from './depositForm.styles.js'
 import supabase from 'db/supabase.js'
-
 import { useSelector } from 'react-redux'
+import { updateDBwithMethodAndValue } from 'db/updateDatabase'
 
 // Components
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
@@ -15,121 +16,99 @@ const promise = loadStripe(
     'pk_test_51IsTukJEAzd2OWuLXMthwYCSoAGWjPoQntvnjXvvx1V5SrORa7YcifsL2G2mfwNpH5HBJG4fdNM9boA6ugGST6ir005GZ4jgMO',
 )
 
+console.log('test data for Stripe:', {
+    succes: {
+        cardnr: '4242 4242 4242 4242',
+        month: '08/24',
+        csv: '123',
+    },
+    auth: {
+        cardnr: '4000 0025 0000 3155',
+        month: '08/24',
+        csv: '123',
+    },
+    failed: {
+        cardnr: '4000 0000 0000 9995',
+        month: '08/24',
+        csv: '123',
+    },
+})
+
 // React component
-const DepositForm = ({ currentReservation }) => {
+const DepositForm = (props) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
-    console.log('test data for Stripe:', {
-        succes: {
-            cardnr: '4242 4242 4242 4242',
-            month: '08/24',
-            csv: '123',
-        },
-        auth: {
-            cardnr: '4000 0025 0000 3155',
-            month: '08/24',
-            csv: '123',
-        },
-        failed: {
-            cardnr: '4000 0000 0000 9995',
-            month: '08/24',
-            csv: '123',
-        },
-    })
-
     const isPaid = useSelector((state) => state.paidReducer)
-    console.log('currentReservation', currentReservation)
 
     const handleClick = () => {
         console.log('betaald pik')
-        const resID = currentReservation.car.reservationID
-        const userID = currentReservation.user.userID
-        const index = currentReservation.carkey
+        const resID = props.currentReservation.car.reservationID
+        const userID = props.currentReservation.user.userID
+        const index = props.currentReservation.carkey
 
         getSpecificUser(resID, userID, index)
 
-        setTimeout(() => {
-            window.location.href = '/qr'
+        setTimeout(async () => {
+            const res = await axios
+                .post('/api/payMethod', {
+                    paid: true,
+                    carkey: props.currentReservation.carkey,
+                    method: 'card',
+                })
+                .then((res) => console.log(res), (window.location.href = '/qr'))
         }, 100)
     }
 
     const getSpecificUser = async (resID, userID, index) => {
-        console.log('resID', resID)
-        console.log('userID', userID)
+        const stateOne =
+            props.currentReservation.car.driverOne &&
+            !props.currentReservation.car.driverTwo &&
+            !props.currentReservation.car.driverThree
+        const stateTwo =
+            props.currentReservation.car.driverOne &&
+            props.currentReservation.car.driverTwo &&
+            !props.currentReservation.car.driverThree
+        const stateThree =
+            props.currentReservation.car.driverOne &&
+            props.currentReservation.car.driverTwo &&
+            props.currentReservation.car.driverThree
 
-        const newObject = {
-            class: currentReservation.car.class,
-            carImage:
-                'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
-            checkedIn: currentReservation.car.checkedIn,
-            driverOne: {
-                role: currentReservation.car.driverOne.role,
-                driver: currentReservation.car.driverOne.driver,
-                method: currentReservation.car.driverOne.method,
-                verified: currentReservation.car.driverOne.verified,
-            },
-            // driverTwo: {
-            //     role: 'extra',
-            //     driver: currentReservation.car.driverTwo.driver,
-            //     method: currentReservation.car.driverTwo.method,
-            //     verified: currentReservation.car.driverTwo.verified,
-            // },
-            otherInfo: {
-                freeKM: currentReservation.car.otherInfo.freeKM,
-                deposit: currentReservation.car.otherInfo.deposit,
-                ownRisk: currentReservation.car.otherInfo.ownRisk,
-                priceExtraKM: currentReservation.car.otherInfo.priceExtraKM,
-            },
-            rentPrice: currentReservation.car.rentPrice,
-            handInDate: currentReservation.car.handInDate,
-            handInTime: currentReservation.car.handInTime,
-            pickUpDate: currentReservation.car.pickUpDate,
-            pickUpTime: currentReservation.car.pickUpTime,
-            extraDriver: currentReservation.car.extraDriver,
-            paidDeposit: {
-                paid: true,
-                method: 'card',
-            },
-            lowerOwnRisk: currentReservation.car.lowerOwnRisk,
-            orderDetails: currentReservation.car.orderDetails,
-            reservationID: currentReservation.car.reservationID,
-            handInLocation: currentReservation.car.handInLocation,
-            pickUpLocation: currentReservation.car.pickUpLocation,
-            walletSerialNumber: currentReservation.car.walletSerialNumber,
-            verificationProcess: currentReservation.car.verificationProcess,
+        const updateWithSettings = () => {
+            if (stateOne) {
+                return updateDBwithMethodAndValue('oneDriver', props.currentReservation)
+            } else if (stateTwo) {
+                return updateDBwithMethodAndValue('twoDrivers', props.currentReservation)
+            } else if (stateThree) {
+                return updateDBwithMethodAndValue('threeDrivers', props.currentReservation)
+            }
         }
+
         if (index === 0) {
             const { data, error } = await supabase
                 .from('users')
-                .update({ carResOne: newObject })
+                .update({ carResOne: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
             }
         } else if (index === 1) {
             const { data, error } = await supabase
                 .from('users')
-                .update({ carResTwo: newObject })
+                .update({ carResTwo: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
             }
         } else if (index === 2) {
             const { data, error } = await supabase
                 .from('users')
-                .update({ carResThree: newObject })
+                .update({ carResThree: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
             }
         }
     }
@@ -149,7 +128,7 @@ const DepositForm = ({ currentReservation }) => {
                 <article>
                     <h2>Borg:</h2>
                     <p>
-                        € <span>{currentReservation.car.rentPrice},-</span>
+                        € <span>{props.currentReservation.car.rentPrice},-</span>
                     </p>
                 </article>
 

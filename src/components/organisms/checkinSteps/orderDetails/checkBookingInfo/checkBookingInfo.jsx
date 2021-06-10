@@ -1,98 +1,87 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
+import supabase from 'db/supabase.js'
 import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
-import supabase from 'db/supabase.js'
+import { updateDBwithMethodAndValue } from 'db/updateDatabase'
 
 // React component
-const CheckBookingInfo = ({ reservation }) => {
+const CheckBookingInfo = (props) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
-    console.log('reservation', reservation)
+    console.log(reservation)
+
+    async function handleClick() {
+        const resID = props.reservation.car.reservationID
+        const userID = props.reservation.user.userID
+        const index = props.reservation.carkey
+
+        getSpecificUser(resID, userID, index)
+
+        setTimeout(async () => {
+            const res = await axios
+                .post('/api/orderDetails', {
+                    orderDetails: true,
+                    carkey: props.reservation.carkey,
+                    method: 'card',
+                })
+                .then((res) => console.log(res), (window.location.href = '/qr'))
+        }, 100)
+    }
 
     const getSpecificUser = async (resID, userID, index) => {
-        console.log('resID', resID)
-        console.log('userID', userID)
+        const stateOne =
+            props.reservation.car.driverOne &&
+            !props.reservation.car.driverTwo &&
+            !props.reservation.car.driverThree
+        const stateTwo =
+            props.reservation.car.driverOne &&
+            props.reservation.car.driverTwo &&
+            !props.reservation.car.driverThree
+        const stateThree =
+            props.reservation.car.driverOne &&
+            props.reservation.car.driverTwo &&
+            props.reservation.car.driverThree
 
-        const newObject = {
-            class: reservation.car.class,
-            carImage:
-                'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
-            checkedIn: reservation.car.checkedIn,
-            driverOne: {
-                role: reservation.car.driverOne.role,
-                driver: reservation.car.driverOne.driver,
-                method: reservation.car.driverOne.method,
-                verified: reservation.car.driverOne.verified,
-            },
-            otherInfo: {
-                freeKM: reservation.car.otherInfo.freeKM,
-                deposit: reservation.car.otherInfo.deposit,
-                ownRisk: reservation.car.otherInfo.ownRisk,
-                priceExtraKM: reservation.car.otherInfo.priceExtraKM,
-            },
-            rentPrice: reservation.car.rentPrice,
-            handInDate: reservation.car.handInDate,
-            handInTime: reservation.car.handInTime,
-            pickUpDate: reservation.car.pickUpDate,
-            pickUpTime: reservation.car.pickUpTime,
-            extraDriver: reservation.car.extraDriver,
-            paidDeposit: reservation.car.paidDeposit,
-            lowerOwnRisk: reservation.car.lowerOwnRisk,
-            orderDetails: true,
-            reservationID: reservation.car.reservationID,
-            handInLocation: reservation.car.handInLocation,
-            pickUpLocation: reservation.car.pickUpLocation,
-            walletSerialNumber: reservation.car.walletSerialNumber,
-            verificationProcess: reservation.car.verificationProcess,
+        const updateWithSettings = () => {
+            if (stateOne) {
+                return updateDBwithMethodAndValue('oneDriver', props.reservation)
+            } else if (stateTwo) {
+                return updateDBwithMethodAndValue('twoDrivers', props.reservation)
+            } else if (stateThree) {
+                return updateDBwithMethodAndValue('threeDrivers', props.reservation)
+            }
         }
+
         if (index === 0) {
             const { data, error } = await supabase
                 .from('users')
-                .update({ carResOne: newObject })
+                .update({ carResOne: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
             }
         } else if (index === 1) {
             const { data, error } = await supabase
                 .from('users')
-                .update({ carResTwo: newObject })
+                .update({ carResTwo: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
             }
         } else if (index === 2) {
             const { data, error } = await supabase
                 .from('users')
-                .update({ carResThree: newObject })
+                .update({ carResThree: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
             }
         }
-    }
-
-    async function handleClick() {
-        const resID = reservation.car.reservationID
-        const userID = reservation.user.userID
-        const index = reservation.carkey
-
-        getSpecificUser(resID, userID, index)
-
-        setTimeout(() => {
-            window.location.href = '/verification'
-        }, 100)
     }
 
     return (

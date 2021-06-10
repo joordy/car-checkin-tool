@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as Styles from './orderDetails.styles.js'
+import { updateDBwithMethod } from '/db/updateDatabase.js'
 
 // Components
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
@@ -14,9 +15,10 @@ const OrderDetails = () => {
     const getData = async () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
+                console.log('res', res)
                 setCurrentReservation(res.data)
+                setLoadingData(true)
             })
-            setLoadingData(true)
         } catch (e) {
             console.log(e)
         }

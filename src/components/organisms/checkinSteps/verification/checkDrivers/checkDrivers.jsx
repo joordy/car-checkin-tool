@@ -6,7 +6,7 @@ import { VerificationButtons, DriverListItem } from 'components/molecules/index'
 import supabase from 'db/supabase.js'
 
 // React component
-const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
+const CheckDrivers = ({ reservation, movingRight, movingLeft }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = `translateX(${movingRight}vw)`
@@ -50,89 +50,89 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
         }
     }
 
-    const changeData = async (resID, userID, index) => {
-        console.log('resID', resID)
-        console.log('userID', userID)
+    // const changeData = async (resID, userID, index) => {
+    //     console.log('resID', resID)
+    //     console.log('userID', userID)
 
-        const newObject = {
-            class: reservation.car.class,
-            carImage:
-                'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
-            checkedIn: reservation.car.checkedIn,
-            driverOne: {
-                role: reservation.car.driverOne.role,
-                driver: reservation.car.driverOne.driver,
-                method: '',
-                verified: false,
-            },
-            driverTwo: {
-                role: 'extra',
-                driver: reservation.car.driverTwo.driver,
-                method: '',
-                verified: false,
-            },
-            driverThree: {
-                role: 'extra',
-                driver: reservation.car.driverThree.driver,
-                method: '',
-                verified: false,
-            },
-            otherInfo: {
-                freeKM: reservation.car.otherInfo.freeKM,
-                deposit: reservation.car.otherInfo.deposit,
-                ownRisk: reservation.car.otherInfo.ownRisk,
-                priceExtraKM: reservation.car.otherInfo.priceExtraKM,
-            },
-            rentPrice: reservation.car.rentPrice,
-            handInDate: reservation.car.handInDate,
-            handInTime: reservation.car.handInTime,
-            pickUpDate: reservation.car.pickUpDate,
-            pickUpTime: reservation.car.pickUpTime,
-            extraDriver: reservation.car.extraDriver,
-            paidDeposit: {
-                paid: false,
-                method: '',
-            },
-            lowerOwnRisk: reservation.car.lowerOwnRisk,
-            orderDetails: reservation.car.orderDetails,
-            reservationID: reservation.car.reservationID,
-            handInLocation: reservation.car.handInLocation,
-            pickUpLocation: reservation.car.pickUpLocation,
-            walletSerialNumber: reservation.car.walletSerialNumber,
-            verificationProcess: reservation.car.verificationProcess,
-        }
-        if (index === 0) {
-            const { data, error } = await supabase
-                .from('users')
-                .update({ carResOne: newObject })
-                .eq('userID', userID)
-            if (!data) {
-                console.log(error)
-            } else {
-                console.log(data)
-            }
-        } else if (index === 1) {
-            const { data, error } = await supabase
-                .from('users')
-                .update({ carResTwo: newObject })
-                .eq('userID', userID)
-            if (!data) {
-                console.log(error)
-            } else {
-                console.log(data)
-            }
-        } else if (index === 2) {
-            const { data, error } = await supabase
-                .from('users')
-                .update({ carResThree: newObject })
-                .eq('userID', userID)
-            if (!data) {
-                console.log(error)
-            } else {
-                console.log(data)
-            }
-        }
-    }
+    //     const newObject = {
+    //         class: reservation.car.class,
+    //         carImage:
+    //             'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+    //         checkedIn: reservation.car.checkedIn,
+    //         driverOne: {
+    //             role: reservation.car.driverOne.role,
+    //             driver: reservation.car.driverOne.driver,
+    //             method: '',
+    //             verified: false,
+    //         },
+    //         driverTwo: {
+    //             role: 'extra',
+    //             driver: reservation.car.driverTwo.driver,
+    //             method: '',
+    //             verified: false,
+    //         },
+    //         driverThree: {
+    //             role: 'extra',
+    //             driver: reservation.car.driverThree.driver,
+    //             method: '',
+    //             verified: false,
+    //         },
+    //         otherInfo: {
+    //             freeKM: reservation.car.otherInfo.freeKM,
+    //             deposit: reservation.car.otherInfo.deposit,
+    //             ownRisk: reservation.car.otherInfo.ownRisk,
+    //             priceExtraKM: reservation.car.otherInfo.priceExtraKM,
+    //         },
+    //         rentPrice: reservation.car.rentPrice,
+    //         handInDate: reservation.car.handInDate,
+    //         handInTime: reservation.car.handInTime,
+    //         pickUpDate: reservation.car.pickUpDate,
+    //         pickUpTime: reservation.car.pickUpTime,
+    //         extraDriver: reservation.car.extraDriver,
+    //         paidDeposit: {
+    //             paid: false,
+    //             method: '',
+    //         },
+    //         lowerOwnRisk: reservation.car.lowerOwnRisk,
+    //         orderDetails: reservation.car.orderDetails,
+    //         reservationID: reservation.car.reservationID,
+    //         handInLocation: reservation.car.handInLocation,
+    //         pickUpLocation: reservation.car.pickUpLocation,
+    //         walletSerialNumber: reservation.car.walletSerialNumber,
+    //         verificationProcess: reservation.car.verificationProcess,
+    //     }
+    //     if (index === 0) {
+    //         const { data, error } = await supabase
+    //             .from('users')
+    //             .update({ carResOne: newObject })
+    //             .eq('userID', userID)
+    //         if (!data) {
+    //             console.log(error)
+    //         } else {
+    //             console.log(data)
+    //         }
+    //     } else if (index === 1) {
+    //         const { data, error } = await supabase
+    //             .from('users')
+    //             .update({ carResTwo: newObject })
+    //             .eq('userID', userID)
+    //         if (!data) {
+    //             console.log(error)
+    //         } else {
+    //             console.log(data)
+    //         }
+    //     } else if (index === 2) {
+    //         const { data, error } = await supabase
+    //             .from('users')
+    //             .update({ carResThree: newObject })
+    //             .eq('userID', userID)
+    //         if (!data) {
+    //             console.log(error)
+    //         } else {
+    //             console.log(data)
+    //         }
+    //     }
+    // }
 
     const resID = reservation.car.reservationID
     const userID = reservation.user.userID
@@ -149,12 +149,15 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
     }
 
     let driverList = []
+    let nonVerifiedDrivers = []
 
     if (loadingData && dbData) {
-        const drivers = Object.keys(dbData).filter((str) => str.includes('driver'))
+        const drivers = Object.keys(dbData)
+            .filter((str) => str.includes('driver'))
+            .sort()
         drivers.forEach((person) => {
             const { role, driver, method, verified } = dbData[person]
-            if (!verified && method != 'skip' && method != 'location') {
+            if (!verified && method != 'skip' && method != 'lobation') {
                 driverList.push(
                     <DriverListItem
                         key={person}
@@ -162,6 +165,7 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
                         subText={role == 'extra' ? 'Extra bestuurder' : 'Hoofdbestuurder'}
                     />,
                 )
+                nonVerifiedDrivers.push(person)
             } else if (!verified && method == 'skip') {
                 driverList.push(<DriverListItem key={person} name={driver} type="skiped" />)
             } else if (!verified && method == 'location') {
@@ -185,7 +189,6 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
                 <Label text="Te verifiëren bestuurders" />
                 <ol>{driverList}</ol>
             </section>
-            <ButtonPrimary type="btn" text="Probeer opnieuw" _callback={handleClick} />
             <VerificationButtons
                 typeSecondary="btn"
                 typePrimary="btn"
