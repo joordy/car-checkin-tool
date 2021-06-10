@@ -22,6 +22,8 @@ const RadioInput = ({ checked, title, text, id, value, name, changeState }) => {
             <input onChange={changeState} type="radio" id={id} value={value} name={name} />
         )
     }
+
+    // console.log(changeState)
     return (
         <Styles.Label htmlFor={value}>
             {checkedInput}

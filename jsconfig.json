@@ -5,7 +5,7 @@
             "components/*": ["src/components/*"],
             "firebaseSetup/*": ["src/firebaseSetup/*"],
             "store/*": ["src/store/*"],
-            "database/*": ["src/db/*"],
+            "db/*": ["src/db/*"],
             "utils/*": ["src/utils/*"],
             "constants/*": ["src/constants/*"]
         }
