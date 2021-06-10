@@ -13,7 +13,7 @@ const CheckBookingInfo = (props) => {
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
-    console.log(reservation)
+    console.log(props.reservation)
 
     async function handleClick() {
         const resID = props.reservation.car.reservationID
