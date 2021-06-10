@@ -1,5 +1,5 @@
 // React imports
-import React from 'react'
+import React, { useState } from 'react'
 import * as Styles from './userChoice.styles.js'
 import { Label, Icons } from 'components/atoms/index'
 import { VerificationButtons, RadioInput } from 'components/molecules/index'
@@ -21,14 +21,21 @@ const UserChoice = ({
     movingRight,
     movingLeft,
 }) => {
+    const [selected, setSelected] = useState('now')
+
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingRight})`
+        moveElement.style.transform = `translateX(${movingRight}vw)`
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingLeft})`
+        moveElement.style.transform = `translateX(${movingLeft}vw)`
+    }
+
+    const changeState = (e) => {
+        console.log(e.currentTarget.value)
+        setSelected(e.currentTarget.value)
     }
 
     let depositAmount
@@ -59,6 +66,7 @@ const UserChoice = ({
                             name="choose"
                             value="now"
                             id="now"
+                            changeState={changeState}
                             checked
                         />
                         <RadioInput
@@ -67,6 +75,7 @@ const UserChoice = ({
                             name="choose"
                             value="location"
                             id="location"
+                            changeState={changeState}
                         />
                         <RadioInput
                             title={threeTitle}
@@ -74,6 +83,7 @@ const UserChoice = ({
                             name="choose"
                             value="skip"
                             id="skip"
+                            changeState={changeState}
                         />
                     </form>
                     <p className="progress">{progressText}</p>
