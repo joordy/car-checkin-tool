@@ -4,8 +4,7 @@ import * as Styles from './stepsExplainer.styles.js'
 import { VerificationButtons, IconListItem } from 'components/molecules/index'
 
 // React component
-const StepsExplainer = ({ backLink, reservation, loading }) => {
-    console.log(reservation)
+const StepsExplainer = (props) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -18,11 +17,11 @@ const StepsExplainer = ({ backLink, reservation, loading }) => {
     let step2 = false
     let step3 = false
 
-    if (loading) {
-        step1 = reservation.car.orderDetails
-        step2 = reservation.car.verificationProcess
-        const payMethod = reservation.car.paidDeposit.method
-        step3 = reservation.car.paidDeposit.paid
+    if (props.loading) {
+        step1 = props.reservation.car.orderDetails
+        step2 = props.reservation.car.verificationProcess
+        const payMethod = props.reservation.car.paidDeposit.method
+        step3 = props.reservation.car.paidDeposit.paid
 
         if (!step1 && !step2 && !step3) {
             title = 'Inchecken in 3 stappen'
@@ -84,7 +83,7 @@ const StepsExplainer = ({ backLink, reservation, loading }) => {
                 textPrimary={buttonText}
                 textSecondary="Terug"
                 linkPrimary="#"
-                linkSecondary={backLink}
+                linkSecondary={props.backLink}
                 callbackPrimary={moveRight}
             />
         </Styles.Section>
