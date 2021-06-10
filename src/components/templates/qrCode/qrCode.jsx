@@ -17,12 +17,12 @@ const QRCode = () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
                 setCurrentReservation(res.data)
-                setCompletedSteps({
-                    orderDetails: res.data.orderDetails,
-                    verificationProcess: res.data.verificationProcess,
-                    payMethod: res.data.paidDeposit.method,
-                    paidDeposit: res.data.paidDeposit.paid,
-                })
+                // setCompletedSteps({
+                //     orderDetails: res.data.orderDetails,
+                //     verificationProcess: res.data.verificationProcess,
+                //     payMethod: res.data.paidDeposit.method,
+                //     paidDeposit: res.data.paidDeposit.paid,
+                // })
             })
             setLoadingData(true)
         } catch (e) {

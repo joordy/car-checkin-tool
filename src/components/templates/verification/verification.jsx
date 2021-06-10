@@ -42,7 +42,7 @@ const Verification = () => {
     const getData = async () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
-                console.log('res.data', res.data)
+                console.log('res.data', res)
                 setCurrentReservation(res.data)
                 setCompletedSteps({
                     orderDetails: res.data.car.orderDetails,
