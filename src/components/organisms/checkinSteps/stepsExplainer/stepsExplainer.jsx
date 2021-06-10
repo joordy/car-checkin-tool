@@ -19,6 +19,8 @@ const StepsExplainer = ({ backLink, reservation, loading }) => {
     let step3 = false
 
     if (loading) {
+        console.log('LOADING:', loading)
+        console.log('RESERVATION', reservation)
         step1 = reservation.car.orderDetails
         step2 = reservation.car.verificationProcess
         const payMethod = reservation.car.paidDeposit.method

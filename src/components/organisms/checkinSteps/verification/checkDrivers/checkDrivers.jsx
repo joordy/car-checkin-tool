@@ -6,15 +6,22 @@ import { VerificationButtons, DriverListItem } from 'components/molecules/index'
 import supabase from 'db/supabase.js'
 
 // React component
-const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
+const CheckDrivers = ({ reservation, setMakeChoice, movingRight, movingLeft }) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = `translateX(${movingRight}vw)`
     }
 
     const moveLeft = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingLeft}vw)`
+        if (nonVerifiedDrivers.length > 0) {
+            if (nonVerifiedDrivers.length === 1) {
+                setMakeChoice([{ ...dbData[nonVerifiedDrivers[0]], last: true }])
+            } else {
+                setMakeChoice([{ ...dbData[nonVerifiedDrivers[0]], last: false }])
+            }
+            const moveElement = document.querySelector('.stepsWrapper')
+            moveElement.style.transform = `translateX(${movingLeft}vw)`
+        }
     }
 
     const [dbData, setDBdata] = useState()
@@ -149,12 +156,15 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
     }
 
     let driverList = []
+    let nonVerifiedDrivers = []
 
     if (loadingData && dbData) {
-        const drivers = Object.keys(dbData).filter((str) => str.includes('driver'))
+        const drivers = Object.keys(dbData)
+            .filter((str) => str.includes('driver'))
+            .sort()
         drivers.forEach((person) => {
             const { role, driver, method, verified } = dbData[person]
-            if (!verified && method != 'skip' && method != 'location') {
+            if (!verified && method != 'skip' && method != 'lobation') {
                 driverList.push(
                     <DriverListItem
                         key={person}
@@ -162,6 +172,7 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
                         subText={role == 'extra' ? 'Extra bestuurder' : 'Hoofdbestuurder'}
                     />,
                 )
+                nonVerifiedDrivers.push(person)
             } else if (!verified && method == 'skip') {
                 driverList.push(<DriverListItem key={person} name={driver} type="skiped" />)
             } else if (!verified && method == 'location') {
@@ -185,7 +196,6 @@ const CheckDrivers = ({ reservation, setTesting, movingRight, movingLeft }) => {
                 <Label text="Te verifiëren bestuurders" />
                 <ol>{driverList}</ol>
             </section>
-            <ButtonPrimary type="btn" text="Probeer opnieuw" _callback={handleClick} />
             <VerificationButtons
                 typeSecondary="btn"
                 typePrimary="btn"

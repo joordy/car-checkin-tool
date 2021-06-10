@@ -20,6 +20,9 @@ const UserChoice = ({
     deposit,
     movingRight,
     movingLeft,
+    makeChoice,
+    setMakeChoice,
+    last,
 }) => {
     const [selected, setSelected] = useState('now')
 
@@ -29,8 +32,22 @@ const UserChoice = ({
     }
 
     const moveLeft = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingLeft}vw)`
+        if (selected === 'now') {
+            console.log('NU')
+            const moveElement = document.querySelector('.stepsWrapper')
+            moveElement.style.transform = `translateX(${movingLeft}vw)`
+        } else if (selected === 'location' && !last) {
+            console.log('location')
+            const moveElement = document.querySelector('.stepsWrapper')
+            moveElement.style.transform = `translateX(${movingLeft}vw)`
+        } else if (selected === 'skip' && !last) {
+            const next = makeChoice.concat([{ role: 'extra', driver: 'Test Persoon' }])
+            setMakeChoice(next)
+            const moveElement = document.querySelector('.stepsWrapper')
+            moveElement.style.transform = `translateX(${movingLeft}vw)`
+        } else if (selected === 'skip' && last) {
+            window.location.href = '/deposit'
+        }
     }
 
     const changeState = (e) => {
