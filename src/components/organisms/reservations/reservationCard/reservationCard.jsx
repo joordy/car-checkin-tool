@@ -100,7 +100,7 @@ const ReservationCard = ({ data, reservationKey, user }) => {
                                     )}
                                 </li>
                                 <li>
-                                    {dbData.driverOne.verified ? (
+                                    {dbData.verificationProcess ? (
                                         <div className="wrapper active">
                                             <div>
                                                 <Icons

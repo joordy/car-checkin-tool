@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as Styles from './orderDetails.styles.js'
-import { updateDBwithMethod } from '/db/updateDatabase.js'
+import { updateDBwithMethod } from 'db/updateDatabase.js'
 
 // Components
 import { StepsExplainer, CheckUserInfo, CheckBookingInfo } from 'components/organisms/index'
