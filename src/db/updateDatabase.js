@@ -1,4 +1,4 @@
-export const updateDBwithMethod = (driversCount, thisReservation, userChoice) => {
+export const updateDBwithMethod = (driversCount, thisReservation, userChoice, detailsChecked) => {
     // console.log('curr', thisReservation)
     switch (driversCount) {
         case 'oneDriver':
@@ -30,7 +30,7 @@ export const updateDBwithMethod = (driversCount, thisReservation, userChoice) =>
                     method: userChoice,
                 },
                 lowerOwnRisk: thisReservation.car.lowerOwnRisk,
-                orderDetails: thisReservation.car.orderDetails,
+                orderDetails: detailsChecked,
                 reservationID: thisReservation.car.reservationID,
                 handInLocation: thisReservation.car.handInLocation,
                 pickUpLocation: thisReservation.car.pickUpLocation,
@@ -72,7 +72,7 @@ export const updateDBwithMethod = (driversCount, thisReservation, userChoice) =>
                     method: userChoice,
                 },
                 lowerOwnRisk: thisReservation.car.lowerOwnRisk,
-                orderDetails: thisReservation.car.orderDetails,
+                orderDetails: detailsChecked,
                 reservationID: thisReservation.car.reservationID,
                 handInLocation: thisReservation.car.handInLocation,
                 pickUpLocation: thisReservation.car.pickUpLocation,
@@ -120,7 +120,7 @@ export const updateDBwithMethod = (driversCount, thisReservation, userChoice) =>
                     method: userChoice,
                 },
                 lowerOwnRisk: thisReservation.car.lowerOwnRisk,
-                orderDetails: thisReservation.car.orderDetails,
+                orderDetails: detailsChecked,
                 reservationID: thisReservation.car.reservationID,
                 handInLocation: thisReservation.car.handInLocation,
                 pickUpLocation: thisReservation.car.pickUpLocation,

@@ -1,14 +1,87 @@
 // React imports
 import React from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
+import supabase from 'db/supabase.js'
 import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
+import { updateDBwithMethodAndValue } from 'db/updateDatabase'
 
 // React component
-const CheckBookingInfo = ({ reservation }) => {
+const CheckBookingInfo = (props) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
+    }
+
+    console.log(props.reservation)
+
+    async function handleClick() {
+        const resID = props.reservation.car.reservationID
+        const userID = props.reservation.user.userID
+        const index = props.reservation.carkey
+
+        getSpecificUser(resID, userID, index)
+
+        setTimeout(async () => {
+            const res = await axios
+                .post('/api/orderDetails', {
+                    orderDetails: true,
+                    carkey: props.reservation.carkey,
+                    method: 'card',
+                })
+                .then((res) => console.log(res), (window.location.href = '/qr'))
+        }, 100)
+    }
+
+    const getSpecificUser = async (resID, userID, index) => {
+        const stateOne =
+            props.reservation.car.driverOne &&
+            !props.reservation.car.driverTwo &&
+            !props.reservation.car.driverThree
+        const stateTwo =
+            props.reservation.car.driverOne &&
+            props.reservation.car.driverTwo &&
+            !props.reservation.car.driverThree
+        const stateThree =
+            props.reservation.car.driverOne &&
+            props.reservation.car.driverTwo &&
+            props.reservation.car.driverThree
+
+        const updateWithSettings = () => {
+            if (stateOne) {
+                return updateDBwithMethodAndValue('oneDriver', props.reservation)
+            } else if (stateTwo) {
+                return updateDBwithMethodAndValue('twoDrivers', props.reservation)
+            } else if (stateThree) {
+                return updateDBwithMethodAndValue('threeDrivers', props.reservation)
+            }
+        }
+
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            }
+        } else if (index === 1) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            }
+        }
     }
 
     return (
@@ -28,19 +101,19 @@ const CheckBookingInfo = ({ reservation }) => {
                     <ul>
                         <li>
                             <span>Datum ophalen:</span>
-                            <span>{reservation.pickUpLocation}</span>
+                            <span>{props.reservation.car.pickUpDate}</span>
                         </li>
                         <li>
                             <span>Datum inleveren:</span>
-                            <span>{reservation.handInLocation}</span>
+                            <span>{props.reservation.car.handInDate}</span>
                         </li>
                         <li>
                             <span>Type klasse:</span>
-                            <span>{reservation.class}</span>
+                            <span>{props.reservation.car.class}</span>
                         </li>
                         <li>
                             <span>Huurprijs:</span>
-                            <span>€ {reservation.rentPrice}</span>
+                            <span>€ {props.reservation.car.rentPrice}</span>
                         </li>
                     </ul>
                 </article>
@@ -53,19 +126,19 @@ const CheckBookingInfo = ({ reservation }) => {
                     <ul>
                         <li>
                             <span>Eigen risico</span>
-                            <span>€ {reservation.otherInfo.ownRisk}</span>
+                            <span>€ {props.reservation.car.otherInfo.ownRisk}</span>
                         </li>
                         <li>
                             <span>Borg</span>
-                            <span>€ {reservation.otherInfo.deposit}</span>
+                            <span>€ {props.reservation.car.otherInfo.deposit}</span>
                         </li>
                         <li>
                             <span>Vrije km</span>
-                            <span>{reservation.otherInfo.freeKM} KM</span>
+                            <span>{props.reservation.car.otherInfo.freeKM} KM</span>
                         </li>
                         <li>
                             <span>Prijs per extra km</span>
-                            <span>€ {reservation.otherInfo.priceExtraKM}</span>
+                            <span>€ {props.reservation.car.otherInfo.priceExtraKM}</span>
                         </li>
                     </ul>
                 </article>
@@ -73,12 +146,12 @@ const CheckBookingInfo = ({ reservation }) => {
             <VerificationButtons
                 typeSecondary="btn"
                 typePrimary="btn"
-                textPrimary="Volgende"
+                textPrimary="Klaar"
                 textSecondary="Terug"
                 linkPrimary="/verification"
                 linkSecondary="#"
                 callbackSecondary={moveRight}
-                callbackPrimary={() => (window.location.href = '/verification')}
+                callbackPrimary={handleClick}
             />
         </Styles.Section>
     )
