@@ -176,6 +176,7 @@ const CheckUserInfo = ({ userInfo }) => {
                         buttonType="submit"
                         textPrimary="Opslaan"
                         linkPrimary="#"
+                        onClick={handleSave}
                     />
                 )}
             </form>

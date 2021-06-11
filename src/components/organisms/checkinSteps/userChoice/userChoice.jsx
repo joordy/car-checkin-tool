@@ -26,7 +26,7 @@ const UserChoice = (props) => {
     //     } else if (selected === 'location' && !last) {
     //         console.log('location')
     //         const moveElement = document.querySelector('.stepsWrapper')
-    //         moveElement.style.transform = `translateX(${movingLeft}vw)`
+    //           moveElement.syle.transform = `translateX(${movingLeft}vw)`
     //     } else if (selected === 'skip' && !last) {
     //         const next = makeChoice.concat([{ role: 'extra', driver: 'Test Persoon' }])
     //         setMakeChoice(next)

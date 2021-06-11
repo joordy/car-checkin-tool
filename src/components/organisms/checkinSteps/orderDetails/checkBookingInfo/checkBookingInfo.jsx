@@ -1,10 +1,11 @@
 // React imports
-import React from 'react'
+import { useState, useEffect } from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
 import supabase from 'db/supabase.js'
+import axios from 'axios'
 import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
-import { updateDBwithMethodAndValue } from 'db/updateDatabase'
+import { updateDBwithOrderDetails } from 'db/updateDatabase'
 
 // React component
 const CheckBookingInfo = (props) => {
@@ -13,27 +14,26 @@ const CheckBookingInfo = (props) => {
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
-    console.log(props.reservation)
-
     async function handleClick() {
         const resID = props.reservation.car.reservationID
         const userID = props.reservation.user.userID
         const index = props.reservation.carkey
 
-        getSpecificUser(resID, userID, index)
-
-        setTimeout(async () => {
-            const res = await axios
-                .post('/api/orderDetails', {
-                    orderDetails: true,
-                    carkey: props.reservation.carkey,
-                    method: 'card',
-                })
-                .then((res) => console.log(res), (window.location.href = '/qr'))
-        }, 100)
+        const { data, error } = await supabase.from('users').select().eq('userID', userID)
+        if (!data) {
+            console.log(error)
+        } else {
+            console.log(data)
+            await getSpecificUser(resID, userID, index, ...data)
+            setTimeout(() => {
+                window.location.href = '/verification'
+            }, 100)
+        }
     }
 
-    const getSpecificUser = async (resID, userID, index) => {
+    const getSpecificUser = async (resID, userID, index, currentUserDB) => {
+        console.log('currentUserDB', currentUserDB)
+
         const stateOne =
             props.reservation.car.driverOne &&
             !props.reservation.car.driverTwo &&
@@ -49,11 +49,11 @@ const CheckBookingInfo = (props) => {
 
         const updateWithSettings = () => {
             if (stateOne) {
-                return updateDBwithMethodAndValue('oneDriver', props.reservation)
+                return updateDBwithOrderDetails('oneDriver', props.reservation, currentUserDB)
             } else if (stateTwo) {
-                return updateDBwithMethodAndValue('twoDrivers', props.reservation)
+                return updateDBwithOrderDetails('twoDrivers', props.reservation, currentUserDB)
             } else if (stateThree) {
-                return updateDBwithMethodAndValue('threeDrivers', props.reservation)
+                return updateDBwithOrderDetails('threeDrivers', props.reservation, currentUserDB)
             }
         }
 
