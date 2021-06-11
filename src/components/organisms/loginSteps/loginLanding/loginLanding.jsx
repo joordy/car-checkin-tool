@@ -44,7 +44,7 @@ const LoginLanding = () => {
                         <li>
                             <Icons type="lock" width="1.7em" height="1.7em" />
                             <div>
-                                <p>Je informatie is veilig</p>
+                                <p>Het is veilig</p>
                                 <p>We beveiligen je data en doen niets zonder jouw toestemming.</p>
                             </div>
                         </li>
