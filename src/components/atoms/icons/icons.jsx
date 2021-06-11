@@ -510,6 +510,103 @@ const Icons = ({ type, width, height, opacity, fill, onClick, stroke }) => {
                     <div></div>
                 </Styles.Loader>
             )
+        case 'users':
+            return (
+                <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
+                    <svg
+                        width="29"
+                        height="29"
+                        viewBox="0 0 29 29"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <g>
+                            <path
+                                d="M20.5416 25.375V22.9583C20.5416 21.6765 20.0324 20.4471 19.1259 19.5407C18.2195 18.6342 16.9901 18.125 15.7083 18.125H6.04158C4.75971 18.125 3.53033 18.6342 2.6239 19.5407C1.71748 20.4471 1.20825 21.6765 1.20825 22.9583V25.375"
+                                stroke="white"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M10.8751 13.2917C13.5445 13.2917 15.7084 11.1277 15.7084 8.45833C15.7084 5.78896 13.5445 3.625 10.8751 3.625C8.20571 3.625 6.04175 5.78896 6.04175 8.45833C6.04175 11.1277 8.20571 13.2917 10.8751 13.2917Z"
+                                stroke="white"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M27.7917 25.375V22.9584C27.7909 21.8874 27.4345 20.8471 26.7784 20.0007C26.1223 19.1543 25.2037 18.5498 24.1667 18.2821"
+                                stroke="white"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M19.3333 3.7821C20.3729 4.0483 21.2944 4.65295 21.9525 5.50073C22.6105 6.34851 22.9677 7.39119 22.9677 8.4644C22.9677 9.5376 22.6105 10.5803 21.9525 11.4281C21.2944 12.2758 20.3729 12.8805 19.3333 13.1467"
+                                stroke="white"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </g>
+                    </svg>
+                </Styles.Icon>
+            )
+        case 'forward':
+            return (
+                <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
+                    <svg
+                        width="29"
+                        height="21"
+                        viewBox="0 0 29 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M16 20L28 10.5L16 1V20Z"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M1 20L13 10.5L1 1V20Z"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </Styles.Icon>
+            )
+        case 'lock':
+            return (
+                <Styles.Icon width={width} height={height} opacity={opacity} fill={fill}>
+                    <svg
+                        width="26"
+                        height="29"
+                        viewBox="0 0 26 29"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M22.3333 13H3.66667C2.19391 13 1 14.221 1 15.7273V25.2727C1 26.779 2.19391 28 3.66667 28H22.3333C23.8061 28 25 26.779 25 25.2727V15.7273C25 14.221 23.8061 13 22.3333 13Z"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                        <path
+                            d="M6 13V7.66667C6 5.89856 6.7375 4.20286 8.05025 2.95262C9.36301 1.70238 11.1435 1 13 1C14.8565 1 16.637 1.70238 17.9497 2.95262C19.2625 4.20286 20 5.89856 20 7.66667V13"
+                            stroke="white"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </Styles.Icon>
+            )
     }
 }
 
