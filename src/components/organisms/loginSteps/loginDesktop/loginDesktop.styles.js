@@ -49,7 +49,6 @@ export const LoginDesktop = styled.section`
                 margin: 0;
                 padding: 0;
                 gap: 5em;
-                /* justify-content: space-around; */
                 li {
                     width: 100%;
                     label {
