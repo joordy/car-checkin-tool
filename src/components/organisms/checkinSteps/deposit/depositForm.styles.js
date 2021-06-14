@@ -48,10 +48,23 @@ export const Section = styled.section`
                     padding: 0 0 0.75rem 1.5rem;
                 }
                 > div {
+                    div#card-element {
+                        margin-top: 1em;
+                        @media ${device.laptop} {
+                            margin-left: 1.5em;
+                            width: 30em;
+                        }
+                    }
                     button {
                         @media ${device.laptop} {
                             left: 0;
                             width: 85vw;
+                        }
+                        &#submit {
+                            @media ${device.laptop} {
+                                margin-left: 1.5em;
+                                width: 30em;
+                            }
                         }
                     }
                     &:last-of-type {

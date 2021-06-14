@@ -40,21 +40,22 @@ const DepositCC = ({ labelText, children }) => {
     }, [])
 
     const cardStyle = {
+        hidePostalCode: true,
+        iconStyle: 'solid',
         style: {
-            hidePostalCode: true,
             base: {
-                // hidePostalCode: true
-                color: '#32325d',
-                fontFamily: 'Arial, sans-serif',
+                iconColor: '#CCCCD6',
+                color: '#000333',
+                fontFamily: 'Montserrat, sans-serif',
                 fontSmoothing: 'antialiased',
-                fontSize: '14px',
+                fontSize: '16px',
                 '::placeholder': {
-                    color: '#32325d',
+                    color: '#666782',
                 },
             },
             invalid: {
-                color: '#fa755a',
-                iconColor: '#fa755a',
+                color: '#FF0000',
+                iconColor: '#FF0000',
             },
         },
     }
