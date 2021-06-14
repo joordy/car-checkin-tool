@@ -97,7 +97,7 @@ const Verification = () => {
                                                 driverOne: currentReservation.car.driverOne,
                                             }}
                                             title={'Verifieeer je eigen rijbewijs'}
-                                            text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                                            text="We zijn verplicht om te controleren of je een geldig rijbewijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
                                             labelText={`Wanneer wil je je eigen rijbewijs verifieren?`}
                                             oneTitle="Nu, online"
                                             oneText="Dit is de snelste optie"
@@ -139,7 +139,7 @@ const Verification = () => {
                                                 driverThree: currentReservation.car.driverThree,
                                             }}
                                             title={`Verifieer het  rijbewijs van ${currentReservation.car.driverOne.driverTwo}`}
-                                            text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                                            text="We zijn verplicht om te controleren of je een geldig rijbewijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
                                             labelText={`Wanneer wil je het rijbewijs van ${currentReservation.car.driverOne.driverTwo} laten verifieren?`}
                                             oneTitle="Nu, online"
                                             oneText="Dit is de snelste optie"
@@ -181,7 +181,7 @@ const Verification = () => {
                                                 driverThree: currentReservation.car.driverThree,
                                             }}
                                             title={`Verifieer het  rijbewijs van ${currentReservation.car.driverOne.driverThree}`}
-                                            text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                                            text="We zijn verplicht om te controleren of je een geldig rijbewijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
                                             labelText={`Wanneer wil je het rijbewijs van ${currentReservation.car.driverOne.driverThree} laten verifieren?`}
                                             oneTitle="Nu, online"
                                             oneText="Dit is de snelste optie"
