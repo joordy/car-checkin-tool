@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './checkFacial.styles.js'
-import { updateDBwithDriverID } from 'db/updateDatabase'
+import { updateDBwithDriverID, updateDBwithDriverOne } from 'db/updateDatabase'
 
 // Components
 import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
@@ -28,57 +28,57 @@ const CheckFacial = (props) => {
         const { data, error } = await supabase
             .from('users')
             .select()
-            .eq('userID', props.reservation.user.userID)
-        console.log(props)
+            .eq('userID', props.loggedinUser.userID)
 
         if (!data) {
             console.log(error)
         } else {
             // console.log(data)
             if (Object.keys(props.thisUser).includes('driverOne')) {
-                console.log('update driver 1')
-                await updateSpecificUser(
-                    props.reservation.user.userID,
+                return updateSpecificUser(
+                    props.loggedinUser.userID,
                     true,
-                    props.reservation.carkey,
+                    props.carkey,
                     ...data,
                     'driverOne',
                 )
             } else if (Object.keys(props.thisUser).includes('driverTwo')) {
-                console.log('update driver 2')
-                await updateSpecificUser(
-                    props.reservation.user.userID,
+                return updateSpecificUser(
+                    props.loggedinUser.userID,
                     true,
-                    props.reservation.carkey,
+                    props.carkey,
                     ...data,
                     'driverTwo',
                 )
             } else if (Object.keys(props.thisUser).includes('driverThree')) {
-                console.log('update driver 3')
-            } else {
-                ///
+                return updateSpecificUser(
+                    props.loggedinUser.userID,
+                    true,
+                    props.carkey,
+                    ...data,
+                    'driverThree',
+                )
             }
         }
     }
 
     const updateSpecificUser = async (userID, verified, index, currentUserDB, driverObj) => {
         const stateOne =
-            props.reservation.car.driverOne &&
-            !props.reservation.car.driverTwo &&
-            !props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            !props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateTwo =
-            props.reservation.car.driverOne &&
-            props.reservation.car.driverTwo &&
-            !props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateThree =
-            props.reservation.car.driverOne &&
-            props.reservation.car.driverTwo &&
-            props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            props.reservation.driverThree
 
         const updateWithSettings = () => {
             if (stateOne) {
-                console.log('element met 1 driver(s)')
-                return updateDBwithDriverID(
+                return updateDBwithDriverOne(
                     'oneDriver',
                     props.reservation,
                     currentUserDB,
@@ -88,9 +88,8 @@ const CheckFacial = (props) => {
                     props.thisUser,
                 )
             } else if (stateTwo) {
-                console.log('element met 2 driver(s)')
-                return updateDBwithDriverID(
-                    'twoDrivers',
+                return updateDBwithDriverOne(
+                    'oneDriver',
                     props.reservation,
                     currentUserDB,
                     'now',
@@ -99,8 +98,7 @@ const CheckFacial = (props) => {
                     props.thisUser,
                 )
             } else if (stateThree) {
-                console.log('element met 3 driver(s)')
-                return updateDBwithDriverID(
+                return updateDBwithDriverOne(
                     'threeDrivers',
                     props.reservation,
                     currentUserDB,
@@ -120,15 +118,8 @@ const CheckFacial = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log('updated data', data)
-                if (data[0].carResOne.driverTwo.verified === false) {
-                    // window.location.href = '/verification'
-                } else if (data[0].carResOne.driverThree.verified === false) {
-                    // window.location.href = '/verification'
-                    console.log('gebruiker 2 updated', data)
-                } else {
-                    // window.location.href = '/deposit'
-                }
+                console.log(...data)
+                // window.location.href = '/deposit'
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -137,6 +128,9 @@ const CheckFacial = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -145,6 +139,9 @@ const CheckFacial = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
             }
         }
     }
@@ -172,7 +169,6 @@ const CheckFacial = (props) => {
     }
 
     const makeImage = () => {
-        console.log('maak foto bruur')
         setModalIsOpen(true)
         setDisabling('created')
         let video = document.querySelector('#videoWrapper')
@@ -229,7 +225,6 @@ const CheckFacial = (props) => {
                 linkSecondary="#"
                 callbackSecondary={moveRight}
                 callbackPrimary={submitDriverIdentity}
-                //callbackPrimary={() => (window.location.href = '/deposit')}
                 disabled={!disabling}
             />
         </Styles.Section>

@@ -36,7 +36,7 @@ const Login = () => {
                 loggedIn = false
             }
         } else {
-            console.log(error)
+            consolHe.log(error)
         }
     }
 
