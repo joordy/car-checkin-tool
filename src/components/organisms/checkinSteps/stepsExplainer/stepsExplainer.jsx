@@ -21,12 +21,13 @@ const StepsExplainer = (props) => {
     let step2 = false
     let step3 = false
 
+    // console.log('props', props)
     if (props.loading) {
-        console.log(props.reservation.car)
-        step1 = props.reservation.car.orderDetails
-        step2 = props.reservation.car.verificationProcess
-        const payMethod = props.reservation.car.paidDeposit.method
-        step3 = props.reservation.car.paidDeposit.paid
+        // console.log(psrops.reservation)
+        step1 = props.reservation.orderDetails
+        step2 = props.reservation.verificationProcess
+        const payMethod = props.reservation.paidDeposit.method
+        step3 = props.reservation.paidDeposit.paid
 
         if (!step1 && !step2 && !step3) {
             title = 'Inchecken in 3 stappen'

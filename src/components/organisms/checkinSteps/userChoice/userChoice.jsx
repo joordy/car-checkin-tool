@@ -67,7 +67,7 @@ const UserChoice = (props) => {
                     )
             }
         } else if (window.location.pathname == '/verification') {
-            console.log('gebruiker hier', props.user)
+            console.log(props.thisUser)
             const moveElement = document.querySelector('.stepsWrapper')
             moveElement.style.transform = `translateX(-300vw)`
         }

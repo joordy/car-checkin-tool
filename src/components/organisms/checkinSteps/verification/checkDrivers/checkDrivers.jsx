@@ -1,7 +1,8 @@
 // React imports
 import { useState, useEffect } from 'react'
-import * as Styles from './checkDrivers.styles.js'
+import axios from 'axios'
 import supabase from 'db/supabase.js'
+import * as Styles from './checkDrivers.styles.js'
 
 // Componenten
 import { Icons, Label, ButtonPrimary } from 'components/atoms/index'
@@ -10,6 +11,8 @@ import { VerificationButtons, DriverListItem } from 'components/molecules/index'
 // React component
 const CheckDrivers = (props) => {
     const [dbData, setDBdata] = useState([])
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [currentUser, setCurrentUser] = useState(null)
     const [carDrivers, setCarDrivers] = useState([])
     const [loadingData, setLoadingData] = useState(false)
 
@@ -23,38 +26,48 @@ const CheckDrivers = (props) => {
         moveElement.style.transform = `translateX(${props.movingLeft}vw)`
     }
 
+    const getData = async () => {
+        try {
+            const data = await axios.get(`/api/order-details`).then((res) => {
+                console.log('', res.data)
+                setCurrentUser(res.data.user)
+                if (res.data) {
+                    const index = res.data.carkey
+                    const userID = res.data.user.userID
+                    console.log('user idddd', userID)
+                    getSpecificUser(userID, index)
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     const getSpecificUser = async (userID, index) => {
+        console.log('currentUser', currentUser)
+        console.log('props', props)
         if (index == 0) {
-            const { data, error } = await supabase
-                .from('users')
-                .select()
-                .eq('userID', props.reservation.user.userID)
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
             if (!data) {
                 console.log(error)
             } else {
-                setDBdata(data[0].carResOne)
+                console.log('data 1', data)
                 getAllDrivers(data[0].carResOne)
             }
         } else if (index == 1) {
-            const { data, error } = await supabase
-                .from('users')
-                .select()
-                .eq('userID', props.reservation.user.userID)
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
             if (!data) {
                 console.log(error)
             } else {
-                setDBdata(data[0].carResTwo)
+                console.log('data 2', data)
                 getAllDrivers(data[0].carResTwo)
             }
         } else if (index == 2) {
-            const { data, error } = await supabase
-                .from('users')
-                .select()
-                .eq('userID', props.reservation.user.userID)
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
             if (!data) {
                 console.log(error)
             } else {
-                setDBdata(data[0].carResThree)
+                console.log('data 3', data)
                 getAllDrivers(data[0].carResThree)
             }
         } else {
@@ -62,11 +75,12 @@ const CheckDrivers = (props) => {
         }
     }
 
-    const resID = props.reservation.car.reservationID
-    const userID = props.reservation.user.userID
-    const index = props.reservation.carkey
+    // const resID = props.reservation.car.reservationID
+    // const userID = props.reservation.user.userID
+    // const index = props.reservation.carkey
 
     const getAllDrivers = (reservationData) => {
+        console.log('reservationData', reservationData)
         let arr = []
 
         if (reservationData) {
@@ -81,9 +95,10 @@ const CheckDrivers = (props) => {
     }
 
     useEffect(() => {
-        getSpecificUser(userID, index)
+        // getSpecificUser(userID, index)
         // if (dbData) {
-        getAllDrivers()
+        getData()
+        // getAllDrivers()
         // }
     }, [])
 

@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './checkFacial.styles.js'
-import { updateDBwithDriverID } from 'db/updateDatabase'
+import { updateDBwithDriverID, updateDBwithDriverOne } from 'db/updateDatabase'
 
 // Components
 import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
@@ -10,6 +10,7 @@ import { VerificationButtons, VerifyModal } from 'components/molecules/index'
 
 // React component
 const CheckFacial = (props) => {
+    console.log('prooopsppspspsp', props)
     const [playing, setPlaying] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [disabling, setDisabling] = useState('')
@@ -28,8 +29,8 @@ const CheckFacial = (props) => {
         const { data, error } = await supabase
             .from('users')
             .select()
-            .eq('userID', props.reservation.user.userID)
-        console.log(props)
+            .eq('userID', props.loggedinUser.userID)
+        // console.log(props)
 
         if (!data) {
             console.log(error)
@@ -37,48 +38,67 @@ const CheckFacial = (props) => {
             // console.log(data)
             if (Object.keys(props.thisUser).includes('driverOne')) {
                 console.log('update driver 1')
+                console.log(props.thisUser)
+                console.log(data)
                 await updateSpecificUser(
-                    props.reservation.user.userID,
+                    props.loggedinUser.userID,
                     true,
-                    props.reservation.carkey,
+                    props.carkey,
                     ...data,
                     'driverOne',
                 )
             } else if (Object.keys(props.thisUser).includes('driverTwo')) {
                 console.log('update driver 2')
+                console.log(props.thisUser)
                 await updateSpecificUser(
-                    props.reservation.user.userID,
+                    props.loggedinUser.userID,
                     true,
-                    props.reservation.carkey,
+                    props.carkey,
                     ...data,
                     'driverTwo',
                 )
             } else if (Object.keys(props.thisUser).includes('driverThree')) {
                 console.log('update driver 3')
-            } else {
-                ///
+                console.log(props.thisUser)
+                await updateSpecificUser(
+                    props.loggedinUser.userID,
+                    true,
+                    props.carkey,
+                    ...data,
+                    'driverThree',
+                )
             }
         }
     }
 
     const updateSpecificUser = async (userID, verified, index, currentUserDB, driverObj) => {
         const stateOne =
-            props.reservation.car.driverOne &&
-            !props.reservation.car.driverTwo &&
-            !props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            !props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateTwo =
-            props.reservation.car.driverOne &&
-            props.reservation.car.driverTwo &&
-            !props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateThree =
-            props.reservation.car.driverOne &&
-            props.reservation.car.driverTwo &&
-            props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            props.reservation.driverThree
 
         const updateWithSettings = () => {
             if (stateOne) {
                 console.log('element met 1 driver(s)')
-                return updateDBwithDriverID(
+                // console.log(driverObj)
+                // return updateDBwithDriverID(
+                //     'oneDriver',
+                //     props.reservation,
+                //     currentUserDB,
+                //     'now',
+                //     verified,
+                //     driverObj,
+                //     props.thisUser,
+                // )
+                return updateDBwithDriverOne(
                     'oneDriver',
                     props.reservation,
                     currentUserDB,
@@ -89,8 +109,19 @@ const CheckFacial = (props) => {
                 )
             } else if (stateTwo) {
                 console.log('element met 2 driver(s)')
-                return updateDBwithDriverID(
-                    'twoDrivers',
+                // console.log(driverObj)
+
+                // return updateDBwithDriverID(
+                //     'twoDrivers',
+                //     props.reservation,
+                //     currentUserDB,
+                //     'now',
+                //     verified,
+                //     driverObj,
+                //     props.thisUser,
+                // )
+                return updateDBwithDriverOne(
+                    'oneDriver',
                     props.reservation,
                     currentUserDB,
                     'now',
@@ -100,7 +131,7 @@ const CheckFacial = (props) => {
                 )
             } else if (stateThree) {
                 console.log('element met 3 driver(s)')
-                return updateDBwithDriverID(
+                return updateDBwithDriverOne(
                     'threeDrivers',
                     props.reservation,
                     currentUserDB,
@@ -113,6 +144,7 @@ const CheckFacial = (props) => {
         }
 
         if (index === 0) {
+            console.log('element 1')
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResOne: updateWithSettings() })
@@ -120,17 +152,37 @@ const CheckFacial = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log('updated data', data)
-                if (data[0].carResOne.driverTwo.verified === false) {
-                    // window.location.href = '/verification'
-                } else if (data[0].carResOne.driverThree.verified === false) {
-                    // window.location.href = '/verification'
-                    console.log('gebruiker 2 updated', data)
+                if (data[0].carResOne.driverTwo && data[0].carResOne.driverTwo.verified == false) {
+                    window.location.href = '/verification'
+                } else if (
+                    data[0].carResOne.driverThree &&
+                    data[0].carResOne.driverThree.verified == false
+                ) {
+                    window.location.href = '/verification'
                 } else {
-                    // window.location.href = '/deposit'
+                    window.location.href = '/verification'
                 }
+                // console.log('updated data', data)
+                // console.log('driver two:', data[0].carResOne.driverTwo)
+                // console.log('driver three:', data[0].carResOne.driverThree)
+                // if (
+                //     data[0].carResOne.driverTwo.verified &&
+                //     data[0].carResOne.driverTwo.verified === false
+                // ) {
+                //     console.log('not verified yet')
+                //     window.location.href = '/verification'
+                // } else if (
+                //     data[0].carResOne.driverThree.verified &&
+                //     data[0].carResOne.driverThree.verified === false
+                // ) {
+                //     // window.location.href = '/verification'
+                //     console.log('gebruiker 2 updated', data)
+                // } else {
+                //     // window.location.href = '/deposit'
+                // }
             }
         } else if (index === 1) {
+            console.log('element 2')
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResTwo: updateWithSettings() })
@@ -139,6 +191,7 @@ const CheckFacial = (props) => {
                 console.log(error)
             }
         } else if (index === 2) {
+            console.log('element 3')
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResThree: updateWithSettings() })

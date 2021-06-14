@@ -15,15 +15,14 @@ const CheckBookingInfo = (props) => {
     }
 
     async function handleClick() {
-        const resID = props.reservation.car.reservationID
-        const userID = props.reservation.user.userID
-        const index = props.reservation.carkey
+        const resID = props.reservation.reservationID
+        const userID = props.loggedinUser.userID
+        const index = props.carkey
 
         const { data, error } = await supabase.from('users').select().eq('userID', userID)
         if (!data) {
             console.log(error)
         } else {
-            console.log(data)
             await getSpecificUser(resID, userID, index, ...data)
             setTimeout(() => {
                 window.location.href = '/verification'
@@ -32,20 +31,18 @@ const CheckBookingInfo = (props) => {
     }
 
     const getSpecificUser = async (resID, userID, index, currentUserDB) => {
-        console.log('currentUserDB', currentUserDB)
-
         const stateOne =
-            props.reservation.car.driverOne &&
-            !props.reservation.car.driverTwo &&
-            !props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            !props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateTwo =
-            props.reservation.car.driverOne &&
-            props.reservation.car.driverTwo &&
-            !props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateThree =
-            props.reservation.car.driverOne &&
-            props.reservation.car.driverTwo &&
-            props.reservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            props.reservation.driverThree
 
         const updateWithSettings = () => {
             if (stateOne) {
@@ -101,19 +98,19 @@ const CheckBookingInfo = (props) => {
                     <ul>
                         <li>
                             <span>Datum ophalen:</span>
-                            <span>{props.reservation.car.pickUpDate}</span>
+                            <span>{props.reservation.pickUpDate}</span>
                         </li>
                         <li>
                             <span>Datum inleveren:</span>
-                            <span>{props.reservation.car.handInDate}</span>
+                            <span>{props.reservation.handInDate}</span>
                         </li>
                         <li>
                             <span>Type klasse:</span>
-                            <span>{props.reservation.car.class}</span>
+                            <span>{props.reservation.class}</span>
                         </li>
                         <li>
                             <span>Huurprijs:</span>
-                            <span>€ {props.reservation.car.rentPrice}</span>
+                            <span>€ {props.reservation.rentPrice}</span>
                         </li>
                     </ul>
                 </article>
@@ -126,19 +123,19 @@ const CheckBookingInfo = (props) => {
                     <ul>
                         <li>
                             <span>Eigen risico</span>
-                            <span>€ {props.reservation.car.otherInfo.ownRisk}</span>
+                            <span>€ {props.reservation.otherInfo.ownRisk}</span>
                         </li>
                         <li>
                             <span>Borg</span>
-                            <span>€ {props.reservation.car.otherInfo.deposit}</span>
+                            <span>€ {props.reservation.otherInfo.deposit}</span>
                         </li>
                         <li>
                             <span>Vrije km</span>
-                            <span>{props.reservation.car.otherInfo.freeKM} KM</span>
+                            <span>{props.reservation.otherInfo.freeKM} KM</span>
                         </li>
                         <li>
                             <span>Prijs per extra km</span>
-                            <span>€ {props.reservation.car.otherInfo.priceExtraKM}</span>
+                            <span>€ {props.reservation.otherInfo.priceExtraKM}</span>
                         </li>
                     </ul>
                 </article>
