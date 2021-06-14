@@ -70,7 +70,7 @@ const Verification = () => {
         }
     }
 
-    useEffect(async () => {
+    useEffect(() => {
         verifyIdentity()
         getData()
     }, [])
