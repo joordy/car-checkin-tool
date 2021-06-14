@@ -52,18 +52,18 @@ const DepositForm = (props) => {
 
         getSpecificUser(resID, userID, index)
 
-        setTimeout(async () => {
-            const res = await axios
-                .post('/api/payMethod', {
-                    paid: true,
-                    carkey: props.carkey,
-                    method: 'card',
-                })
-                .then(
-                    (res) => console.log(res),
-                    //window.location.href = '/qr'
-                )
-        }, 100)
+        // setTimeout(async () => {
+        //     const res = await axios
+        //         .post('/api/payMethod', {
+        //             paid: true,
+        //             carkey: props.carkey,
+        //             method: 'card',
+        //         })
+        //         .then(
+        //             (res) => console.log(res),
+        //             //window.location.href = '/qr'
+        //         )
+        // }, 100)
     }
 
     const getSpecificUser = async (resID, userID, index) => {
@@ -99,6 +99,7 @@ const DepositForm = (props) => {
                 console.log(error)
             } else {
                 console.log(data)
+                window.location.href = '/qr'
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -109,6 +110,7 @@ const DepositForm = (props) => {
                 console.log(error)
             } else {
                 console.log(data)
+                window.location.href = '/qr'
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -119,6 +121,7 @@ const DepositForm = (props) => {
                 console.log(error)
             } else {
                 console.log(data)
+                window.location.href = '/qr'
             }
         }
     }
