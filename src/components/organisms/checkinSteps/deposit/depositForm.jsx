@@ -126,7 +126,7 @@ const DepositForm = (props) => {
 
             <main>
                 <article>
-                    <h2>Borg:</h2>
+                    <h2>Borg</h2>
                     <p>
                         € <span>{props.currentReservation.car.rentPrice},-</span>
                     </p>
@@ -139,7 +139,7 @@ const DepositForm = (props) => {
                             <DepositCC />
                         </Elements>
                     </DepositType>
-                    <DepositType labelText="iDeal">
+                    <DepositType labelText="iDEAL">
                         <p>Deze betaalmethode wordt op dit moment nog niet ondersteund.</p>
                     </DepositType>
                 </article>

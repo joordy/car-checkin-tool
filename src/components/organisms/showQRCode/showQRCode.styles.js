@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
@@ -27,6 +28,13 @@ export const Section = styled.section`
         }
     }
     article {
+        @media ${device.laptop} {
+            padding: 0 25vw;
+        }
+
+        @media ${device.laptopL} {
+            padding: 0 35vw;
+        }
         section {
             text-align: left;
             display: grid;
