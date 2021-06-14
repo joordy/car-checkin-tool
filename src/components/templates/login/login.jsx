@@ -31,7 +31,7 @@ const LoginPage = () => {
             <Media
                 queries={{
                     small: device.mobile,
-                    large: device.laptop,
+                    large: device.tablet,
                 }}
             >
                 {(matches) => (

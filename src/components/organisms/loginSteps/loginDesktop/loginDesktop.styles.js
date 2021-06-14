@@ -21,7 +21,7 @@ export const LoginDesktop = styled.section`
         }
 
         img {
-            width: 10vw;
+            width: calc(12vw + 2em);
         }
         h1 {
             margin-top: 80px;
