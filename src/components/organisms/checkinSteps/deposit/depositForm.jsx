@@ -4,7 +4,7 @@ import axios from 'axios'
 import * as Styles from './depositForm.styles.js'
 import supabase from 'db/supabase.js'
 import { useSelector } from 'react-redux'
-import { updateDBwithMethodAndValue } from 'db/updateDatabase'
+import { updateDBwithPayMethodAndValue } from 'db/updateDatabase'
 
 // Components
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
@@ -36,6 +36,7 @@ console.log('test data for Stripe:', {
 
 // React component
 const DepositForm = (props) => {
+    console.log(props)
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -45,9 +46,9 @@ const DepositForm = (props) => {
 
     const handleClick = () => {
         console.log('betaald pik')
-        const resID = props.currentReservation.car.reservationID
-        const userID = props.currentReservation.user.userID
-        const index = props.currentReservation.carkey
+        const resID = props.reservation.reservationID
+        const userID = props.loggedinUser.userID
+        const index = props.carkey
 
         getSpecificUser(resID, userID, index)
 
@@ -55,34 +56,37 @@ const DepositForm = (props) => {
             const res = await axios
                 .post('/api/payMethod', {
                     paid: true,
-                    carkey: props.currentReservation.carkey,
+                    carkey: props.carkey,
                     method: 'card',
                 })
-                .then((res) => console.log(res), (window.location.href = '/qr'))
+                .then(
+                    (res) => console.log(res),
+                    //window.location.href = '/qr'
+                )
         }, 100)
     }
 
     const getSpecificUser = async (resID, userID, index) => {
         const stateOne =
-            props.currentReservation.car.driverOne &&
-            !props.currentReservation.car.driverTwo &&
-            !props.currentReservation.car.driverThree
+            props.reservation.driverOne &&
+            !props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateTwo =
-            props.currentReservation.car.driverOne &&
-            props.currentReservation.car.driverTwo &&
-            !props.currentReservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            !props.reservation.driverThree
         const stateThree =
-            props.currentReservation.car.driverOne &&
-            props.currentReservation.car.driverTwo &&
-            props.currentReservation.car.driverThree
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            props.reservation.driverThree
 
         const updateWithSettings = () => {
             if (stateOne) {
-                return updateDBwithMethodAndValue('oneDriver', props.currentReservation)
+                return updateDBwithPayMethodAndValue('oneDriver', props.reservation)
             } else if (stateTwo) {
-                return updateDBwithMethodAndValue('twoDrivers', props.currentReservation)
+                return updateDBwithPayMethodAndValue('twoDrivers', props.reservation)
             } else if (stateThree) {
-                return updateDBwithMethodAndValue('threeDrivers', props.currentReservation)
+                return updateDBwithPayMethodAndValue('threeDrivers', props.reservation)
             }
         }
 
@@ -93,6 +97,8 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(data)
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -101,6 +107,8 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(data)
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -109,6 +117,8 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(data)
             }
         }
     }
@@ -128,7 +138,7 @@ const DepositForm = (props) => {
                 <article>
                     <h2>Borg:</h2>
                     <p>
-                        € <span>{props.currentReservation.car.rentPrice},-</span>
+                        € <span>{props.reservation.rentPrice},-</span>
                     </p>
                 </article>
 

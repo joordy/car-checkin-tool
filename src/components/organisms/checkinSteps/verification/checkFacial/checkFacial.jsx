@@ -10,7 +10,6 @@ import { VerificationButtons, VerifyModal } from 'components/molecules/index'
 
 // React component
 const CheckFacial = (props) => {
-    console.log('prooopsppspspsp', props)
     const [playing, setPlaying] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [disabling, setDisabling] = useState('')
@@ -30,17 +29,13 @@ const CheckFacial = (props) => {
             .from('users')
             .select()
             .eq('userID', props.loggedinUser.userID)
-        // console.log(props)
 
         if (!data) {
             console.log(error)
         } else {
             // console.log(data)
             if (Object.keys(props.thisUser).includes('driverOne')) {
-                console.log('update driver 1')
-                console.log(props.thisUser)
-                console.log(data)
-                await updateSpecificUser(
+                return updateSpecificUser(
                     props.loggedinUser.userID,
                     true,
                     props.carkey,
@@ -48,9 +43,7 @@ const CheckFacial = (props) => {
                     'driverOne',
                 )
             } else if (Object.keys(props.thisUser).includes('driverTwo')) {
-                console.log('update driver 2')
-                console.log(props.thisUser)
-                await updateSpecificUser(
+                return updateSpecificUser(
                     props.loggedinUser.userID,
                     true,
                     props.carkey,
@@ -58,9 +51,7 @@ const CheckFacial = (props) => {
                     'driverTwo',
                 )
             } else if (Object.keys(props.thisUser).includes('driverThree')) {
-                console.log('update driver 3')
-                console.log(props.thisUser)
-                await updateSpecificUser(
+                return updateSpecificUser(
                     props.loggedinUser.userID,
                     true,
                     props.carkey,
@@ -87,17 +78,6 @@ const CheckFacial = (props) => {
 
         const updateWithSettings = () => {
             if (stateOne) {
-                console.log('element met 1 driver(s)')
-                // console.log(driverObj)
-                // return updateDBwithDriverID(
-                //     'oneDriver',
-                //     props.reservation,
-                //     currentUserDB,
-                //     'now',
-                //     verified,
-                //     driverObj,
-                //     props.thisUser,
-                // )
                 return updateDBwithDriverOne(
                     'oneDriver',
                     props.reservation,
@@ -108,18 +88,6 @@ const CheckFacial = (props) => {
                     props.thisUser,
                 )
             } else if (stateTwo) {
-                console.log('element met 2 driver(s)')
-                // console.log(driverObj)
-
-                // return updateDBwithDriverID(
-                //     'twoDrivers',
-                //     props.reservation,
-                //     currentUserDB,
-                //     'now',
-                //     verified,
-                //     driverObj,
-                //     props.thisUser,
-                // )
                 return updateDBwithDriverOne(
                     'oneDriver',
                     props.reservation,
@@ -130,7 +98,6 @@ const CheckFacial = (props) => {
                     props.thisUser,
                 )
             } else if (stateThree) {
-                console.log('element met 3 driver(s)')
                 return updateDBwithDriverOne(
                     'threeDrivers',
                     props.reservation,
@@ -144,7 +111,6 @@ const CheckFacial = (props) => {
         }
 
         if (index === 0) {
-            console.log('element 1')
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResOne: updateWithSettings() })
@@ -152,52 +118,30 @@ const CheckFacial = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                if (data[0].carResOne.driverTwo && data[0].carResOne.driverTwo.verified == false) {
-                    window.location.href = '/verification'
-                } else if (
-                    data[0].carResOne.driverThree &&
-                    data[0].carResOne.driverThree.verified == false
-                ) {
-                    window.location.href = '/verification'
-                } else {
-                    window.location.href = '/verification'
-                }
-                // console.log('updated data', data)
-                // console.log('driver two:', data[0].carResOne.driverTwo)
-                // console.log('driver three:', data[0].carResOne.driverThree)
-                // if (
-                //     data[0].carResOne.driverTwo.verified &&
-                //     data[0].carResOne.driverTwo.verified === false
-                // ) {
-                //     console.log('not verified yet')
-                //     window.location.href = '/verification'
-                // } else if (
-                //     data[0].carResOne.driverThree.verified &&
-                //     data[0].carResOne.driverThree.verified === false
-                // ) {
-                //     // window.location.href = '/verification'
-                //     console.log('gebruiker 2 updated', data)
-                // } else {
-                //     // window.location.href = '/deposit'
-                // }
+                console.log(...data)
+                // window.location.href = '/deposit'
             }
         } else if (index === 1) {
-            console.log('element 2')
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResTwo: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
             }
         } else if (index === 2) {
-            console.log('element 3')
             const { data, error } = await supabase
                 .from('users')
                 .update({ carResThree: updateWithSettings() })
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
             }
         }
     }
@@ -225,7 +169,6 @@ const CheckFacial = (props) => {
     }
 
     const makeImage = () => {
-        console.log('maak foto bruur')
         setModalIsOpen(true)
         setDisabling('created')
         let video = document.querySelector('#videoWrapper')
@@ -282,7 +225,6 @@ const CheckFacial = (props) => {
                 linkSecondary="#"
                 callbackSecondary={moveRight}
                 callbackPrimary={submitDriverIdentity}
-                //callbackPrimary={() => (window.location.href = '/deposit')}
                 disabled={!disabling}
             />
         </Styles.Section>

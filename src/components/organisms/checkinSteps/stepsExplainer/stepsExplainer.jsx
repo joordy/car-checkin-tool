@@ -21,7 +21,7 @@ const StepsExplainer = (props) => {
     let step2 = false
     let step3 = false
 
-    // console.log('props', props)
+    console.log('stepsExplainer props', props)
     if (props.loading) {
         // console.log(psrops.reservation)
         step1 = props.reservation.orderDetails

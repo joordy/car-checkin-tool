@@ -16,9 +16,6 @@ import {
 // React component
 const Verification = () => {
     const [currentReservation, setCurrentReservation] = useState(null)
-    const [makeChoice, setMakeChoice] = useState(false)
-    const [dbData, setDBdata] = useState([])
-    const [carDrivers, setCarDrivers] = useState([])
     const [loadingData, setLoadingData] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
     const [currentKey, setCurrentKey] = useState(null)
@@ -32,7 +29,6 @@ const Verification = () => {
     const getData = async () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
-                console.log(res.data)
                 if (res.data) {
                     const index = res.data.carkey
                     const userID = res.data.user.userID
@@ -73,35 +69,6 @@ const Verification = () => {
             }
         }
     }
-    // const getSpecificReservation = async (userID, index) => {
-    //     if (index == 0) {
-    //         const { data, error } = await supabase.from('users').select().eq('userID', userID)
-    //         if (!data) {
-    //             console.log(error)
-    //         } else {
-    //             setDBdata(data[0].carResOne)
-    //             setLoadingData(true)
-    //         }
-    //     } else if (index == 1) {
-    //         const { data, error } = await supabase.from('users').select().eq('userID', userID)
-    //         if (!data) {
-    //             console.log(error)
-    //         } else {
-    //             setDBdata(data[0].carResTwo)
-    //             setLoadingData(true)
-    //         }
-    //     } else if (index == 2) {
-    //         const { data, error } = await supabase.from('users').select().eq('userID', userID)
-    //         if (!data) {
-    //             console.log(error)
-    //         } else {
-    //             setDBdata(data[0].carResThree)
-    //             setLoadingData(true)
-    //         }
-    //     } else {
-    //         console.log('not existing')
-    //     }
-    // }
 
     useEffect(async () => {
         verifyIdentity()
@@ -111,7 +78,6 @@ const Verification = () => {
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 
-    console.log('currentReservation', currentReservation)
     return (
         <Styles.Main className="page">
             <div className="stepsWrapper">
@@ -125,9 +91,7 @@ const Verification = () => {
                             loggedinUser={currentUser}
                         />
                         {(() => {
-                            console.log('test 1345678')
                             if (!currentReservation.driverOne.verified) {
-                                console.log('driver 1 is not verified')
                                 return (
                                     <>
                                         <CheckDrivers
@@ -182,7 +146,6 @@ const Verification = () => {
                                 currentReservation.driverTwo &&
                                 !currentReservation.driverTwo.verified
                             ) {
-                                console.log('driver 2 is not verified')
                                 return (
                                     <>
                                         <CheckDrivers
@@ -194,11 +157,11 @@ const Verification = () => {
                                         />
                                         <UserChoice
                                             thisUser={{
-                                                driverThree: currentReservation.driverThree,
+                                                driverTwo: currentReservation.driverTwo,
                                             }}
-                                            title={`Verifieer het  rijbewijs van ${currentReservation.driverOne.driverTwo}`}
+                                            title={`Verifieer het  rijbewijs van ${currentReservation.driverTwo.driver}`}
                                             text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
-                                            labelText={`Wanneer wil je het rijbewijs van ${currentReservation.driverOne.driverTwo} laten verifieren?`}
+                                            labelText={`Wanneer wil je het rijbewijs van ${currentReservation.driverTwo.driver} laten verifieren?`}
                                             oneTitle="Nu, online"
                                             oneText="Dit is de snelste optie"
                                             twoTitle="Ter plekke"
@@ -237,7 +200,6 @@ const Verification = () => {
                                 currentReservation.driverThree &&
                                 !currentReservation.driverThree.verified
                             ) {
-                                console.log('driver 3 is not verified')
                                 return (
                                     <>
                                         <CheckDrivers
@@ -293,7 +255,6 @@ const Verification = () => {
                                     <CheckDrivers
                                         reservation={currentReservation}
                                         movingRight={0}
-                                        movingLeft={-100}
                                     />
                                 )
                             }

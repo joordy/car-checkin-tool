@@ -16,7 +16,6 @@ const stripePromise = loadStripe(
 
 // React component
 const CheckIdentity = (props) => {
-    console.log('checkIdentity props:', props)
     const [isLoading, setIsLoading] = useState(false)
     const [consentDeclined, setConsentDeclined] = useState(false)
 
@@ -31,7 +30,6 @@ const CheckIdentity = (props) => {
     }
 
     const handleClick = async (event) => {
-        console.log('CLICKY')
         setIsLoading(true)
         const stripe = await stripePromise
         // Connect to backend to fetch the verification session
@@ -44,7 +42,6 @@ const CheckIdentity = (props) => {
             // If `verifyIdentity` fails, display the localized error
             // message using `result.error.message`.
             setIsLoading(false)
-            console.log('ERRROR', result)
             if (result.error.code === 'consent_declined') {
                 setConsentDeclined(true)
             }
@@ -57,7 +54,6 @@ const CheckIdentity = (props) => {
     const isVerifiedDriver = useSelector((state) => state.verifiedDriverReducer)
     const dispatch = useDispatch()
 
-    console.log(isLoading, 'isLoading')
     return (
         <Styles.Section id="identity">
             <header>
