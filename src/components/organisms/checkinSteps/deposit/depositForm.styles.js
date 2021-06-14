@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
@@ -9,6 +10,9 @@ export const Section = styled.section`
     overflow-y: scroll;
     header {
         margin-bottom: 2rem;
+        @media ${device.laptop} {
+            padding: 2em 3em 0 3em;
+        }
         &:nth-of-type(1) {
             position: relative;
             h1 {
@@ -16,6 +20,10 @@ export const Section = styled.section`
             }
             p {
                 width: 100%;
+                @media ${device.laptop} {
+                    width: 45em;
+                    margin-bottom: 3em;
+                }
             }
             span {
                 position: absolute;
@@ -28,6 +36,9 @@ export const Section = styled.section`
         margin: 0 0 10rem 0;
         article {
             margin-bottom: 2rem;
+            @media ${device.laptop} {
+                padding: 0 3em 0 3em;
+            }
             &:nth-of-type(2) {
                 position: relative;
                 h2 {
@@ -37,12 +48,22 @@ export const Section = styled.section`
                     padding: 0 0 0.75rem 1.5rem;
                 }
                 > div {
+                    button {
+                        @media ${device.laptop} {
+                            left: 0;
+                            width: 85vw;
+                        }
+                    }
                     &:last-of-type {
                         > div {
                             position: relative;
                             left: -1.5rem;
                             border-bottom: 1px solid grey;
                             width: calc(100% + 3rem);
+                            @media ${device.laptop} {
+                                left: 0;
+                                width: 85vw;
+                            }
                             p {
                                 /* color: hotpink; */
                                 padding: 0 1.5rem;
