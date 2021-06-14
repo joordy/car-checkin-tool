@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Login = styled.section`
     .error {
@@ -70,5 +71,9 @@ export const Login = styled.section`
                 }
             }
         }
+    }
+
+    @media ${device.laptop} {
+        flex-direction: row;
     }
 `

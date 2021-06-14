@@ -2,7 +2,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as Styles from './login.styles.js'
-import { Login, LoginLanding } from 'components/organisms/index'
+import { Login, LoginLanding, LoginDesktop } from 'components/organisms/index'
+import Media from 'react-media'
+import { device } from 'styles/devices'
 
 // React component
 const LoginPage = () => {
@@ -26,8 +28,24 @@ const LoginPage = () => {
     }, [])
     return (
         <>
-            <LoginLanding />
-            <Login />
+            <Media
+                queries={{
+                    small: device.mobile,
+                    large: device.laptop,
+                }}
+            >
+                {(matches) => (
+                    <>
+                        {matches.small && (
+                            <>
+                                <LoginLanding />
+                                <Login />{' '}
+                            </>
+                        )}
+                        {matches.large && <LoginDesktop />}
+                    </>
+                )}
+            </Media>
         </>
     )
 }

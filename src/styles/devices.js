@@ -1,4 +1,5 @@
 const size = {
+    mobile: '424px',
     mobileL: '425px',
     tablet: '768px',
     laptop: '1024px',
@@ -7,6 +8,7 @@ const size = {
 }
 
 export const device = {
+    mobile: `(max-width: ${size.mobile})`,
     mobileL: `(min-width: ${size.mobileL})`,
     tablet: `(min-width: ${size.tablet})`,
     laptop: `(min-width: ${size.laptop})`,
@@ -14,9 +16,3 @@ export const device = {
     desktop: `(min-width: ${size.desktop})`,
     desktopL: `(min-width: ${size.desktop})`,
 }
-
-// import { device } from './device';
-
-// @media ${device.laptop} {
-//   flex-direction: row;
-// }
