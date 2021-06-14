@@ -43,7 +43,7 @@ export const DepositForm = styled.form`
     }
     #card-element {
         border-radius: 4px 4px 0 0;
-        padding: 12px;
+        padding: 1.5em 2em 2.5em 2em;
         border: 1px solid rgba(50, 50, 93, 0.1);
         max-height: 44px;
         width: 100%;
@@ -56,11 +56,11 @@ export const DepositForm = styled.form`
 
     button {
         background: ${colors.primary};
-        font-family: Arial, sans-serif;
+        font-family: 'gotham', sans-serif;
         color: ${colors.primaryText};
         border-radius: 0 0 4px 4px;
         border: 0;
-        padding: 12px 16px;
+        padding: 1em 3em;
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
@@ -68,9 +68,10 @@ export const DepositForm = styled.form`
         transition: all 0.2s ease;
         box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
         width: 100%;
+        border: 0.15em solid ${colors.primary};
     }
     button:hover {
-        filter: contrast(115%);
+        border: 0.15em solid ${colors.primaryText};
     }
     button:disabled {
         opacity: 0.5;

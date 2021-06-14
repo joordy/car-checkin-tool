@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Section = styled.section`
     min-width: calc(100vw);
@@ -8,7 +9,7 @@ export const Section = styled.section`
     article {
         background: linear-gradient(0deg, #008500 0%, #9fce19 100%);
         width: 100%;
-        height: 100%;
+        height: 87%;
         h1 {
             text-align: center;
             color: ${colors.white};
@@ -21,6 +22,11 @@ export const Section = styled.section`
                     width: 10em;
                      `
             }}
+        }
+        @media ${device.laptop} {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         ul {
             display: flex;
@@ -51,6 +57,37 @@ export const Section = styled.section`
                 &:nth-of-type(2) {
                     &::after {
                         height: 50px;
+                    }
+                }
+            }
+            @media ${device.laptop} {
+                flex-direction: row;
+                justify-content: center;
+
+                li {
+                    display: block;
+                    text-align: center;
+                    padding: 0 2em;
+
+                    &:nth-of-type(2) {
+                        margin: 0.05em 0 1em 0;
+                    }
+
+                    &:first-of-type,
+                    &:nth-of-type(2) {
+                        &::after {
+                            left: 10.5em;
+                            top: 2em;
+                            height: 1px;
+                            width: 10.5em;
+                        }
+                    }
+
+                    div:first-of-type {
+                        margin: 0 auto 1em auto;
+                    }
+                    div:nth-of-type(2) {
+                        margin: 0 auto;
                     }
                 }
             }

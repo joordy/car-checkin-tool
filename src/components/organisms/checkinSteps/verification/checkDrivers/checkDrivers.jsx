@@ -105,7 +105,7 @@ const CheckDrivers = (props) => {
             <header>
                 <h1>Verifieer rijbewijzen</h1>
                 <p>
-                    We zijn verplicht om te controleren of alle bestuurders een geldig rijbwijs
+                    We zijn verplicht om te controleren of alle bestuurders een geldig rijbewijs
                     hebben. Je kunt de rijbewijzen hier online veilig en gemakkelijk verifiëren.
                 </p>
             </header>
