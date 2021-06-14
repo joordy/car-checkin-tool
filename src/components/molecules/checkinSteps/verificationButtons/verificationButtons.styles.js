@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { device } from 'styles/devices'
 
 export const BtnWrapper = styled.div`
     position: fixed;
@@ -12,4 +13,7 @@ export const BtnWrapper = styled.div`
     background-color: white;
     margin-left: -1.5em;
     box-shadow: 0px -7.5px 20px rgba(0, 0, 0, 0.2);
+    @media ${device.laptop} {
+        justify-content: center;
+    }
 `
