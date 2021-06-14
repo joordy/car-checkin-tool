@@ -15,7 +15,7 @@ export const device = {
     desktopL: `(min-width: ${size.desktop})`,
 }
 
-// import { device } from './device';
+// import { device } from 'styles/devices';
 
 // @media ${device.laptop} {
 //   flex-direction: row;
