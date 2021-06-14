@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const LoginLanding = styled.section`
     header {
@@ -63,5 +64,22 @@ export const LoginLanding = styled.section`
     .slideOut {
         transition: 1s ease-in;
         transform: translateY(-100%);
+    }
+
+    @media ${device.laptop} {
+        /* header {
+            display: flex;
+            justify-content: space-evenly;
+            > div {
+                max-width: 40vw;
+                margin-top: 200px;
+                img {
+                    width: 30vw !important;
+                }
+                ul {
+                    max-width: 25vw;
+                }
+            }
+        } */
     }
 `
