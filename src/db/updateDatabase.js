@@ -977,7 +977,7 @@ export const updateDBwithDriverOne = (
 }
 
 export const updateDBwithQRCodeWallet = (driversCount, thisReservation, walletSerialNumber) => {
-    //console.log('curr', thisReservation)
+    // console.log('curr', thisReservation)
     switch (driversCount) {
         case 'oneDriver':
             return {
