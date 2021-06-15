@@ -24,7 +24,10 @@ const Login = () => {
 
     const postData = async (loggedInUser) => {
         const res = await axios
-            .post('/api/reservations', loggedInUser)
+            .post(
+                'https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations',
+                loggedInUser,
+            )
             .then((res) => console.log(res))
     }
 

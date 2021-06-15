@@ -32,7 +32,7 @@ const CheckinButtons = (props) => {
             carkey: props.carIndexKey,
         }
 
-        fetch(`/api/order-details`, {
+        fetch(`https://us-central1-car-check-in.cloudfunctions.net/app/api/order-details`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

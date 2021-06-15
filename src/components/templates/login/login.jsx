@@ -14,10 +14,20 @@ const LoginPage = () => {
 
     const getData = async () => {
         try {
-            const res = await fetch('/api/reservations')
+            const data = await axios
+                .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api`)
+                .then((res) => {
+                    console.log('res.data', res)
+                })
 
-            const data = await res.json()
-            console.log(data)
+            // const res = await fetch(
+            //     'https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations',
+            // )
+            // console.log(res)
+            // const data = await res.json()
+            // const test = JSON.stringify(data)
+            // console.log(data)
+            // console.log(test)
 
             // const res1 = await fetch('/users').then(async (res) => {
             //     const test = await res.clone().json()

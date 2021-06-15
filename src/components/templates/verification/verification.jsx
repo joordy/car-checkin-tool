@@ -21,22 +21,26 @@ const Verification = () => {
     const [currentKey, setCurrentKey] = useState(null)
 
     const verifyIdentity = async () => {
-        const data = await fetch(`/api/create-verification-session`)
+        const data = await fetch(
+            `https://us-central1-car-check-in.cloudfunctions.net/app/api/create-verification-session`,
+        )
         const items = await data.json()
         setItems(items)
     }
 
     const getData = async () => {
         try {
-            const data = await axios.get(`/api/order-details`).then((res) => {
-                if (res.data) {
-                    const index = res.data.carkey
-                    const userID = res.data.user.userID
-                    setCurrentUser(res.data.user)
-                    setCurrentKey(res.data.carkey)
-                    getSpecificReservation(userID, index)
-                }
-            })
+            const data = await axios
+                .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api/order-details`)
+                .then((res) => {
+                    if (res.data) {
+                        const index = res.data.carkey
+                        const userID = res.data.user.userID
+                        setCurrentUser(res.data.user)
+                        setCurrentKey(res.data.carkey)
+                        getSpecificReservation(userID, index)
+                    }
+                })
         } catch (e) {
             console.log(e)
         }

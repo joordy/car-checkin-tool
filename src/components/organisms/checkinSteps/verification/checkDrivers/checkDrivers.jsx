@@ -59,14 +59,16 @@ const CheckDrivers = (props) => {
 
     const getData = async () => {
         try {
-            const data = await axios.get(`/api/order-details`).then((res) => {
-                setCurrentUser(res.data.user)
-                if (res.data) {
-                    const index = res.data.carkey
-                    const userID = res.data.user.userID
-                    getSpecificUser(userID, index)
-                }
-            })
+            const data = await axios
+                .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api/order-details`)
+                .then((res) => {
+                    setCurrentUser(res.data.user)
+                    if (res.data) {
+                        const index = res.data.carkey
+                        const userID = res.data.user.userID
+                        getSpecificUser(userID, index)
+                    }
+                })
         } catch (e) {
             console.log(e)
         }

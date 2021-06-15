@@ -29,4 +29,5 @@ yarn-error.log*
 
 _dummy/
 dummy
+setupProxy.js
 package_production.json
