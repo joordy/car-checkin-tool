@@ -14,8 +14,11 @@ const LoginPage = () => {
 
     const getData = async () => {
         try {
-            const data = await axios.post(`/api`).then((res) => {
+            const data = await axios.get(`/api`).then((res) => {
                 console.log('response', res)
+            })
+            const data2 = await axios.get(`/users`).then((res) => {
+                console.log('response 2', res)
             })
             console.log(data)
             setLoadingData(true)
