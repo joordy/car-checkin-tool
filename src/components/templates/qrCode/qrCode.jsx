@@ -11,22 +11,48 @@ import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 const QRCode = () => {
     const [currentReservation, setCurrentReservation] = useState(null)
     const [loadingData, setLoadingData] = useState(false)
-    const [completedSteps, setCompletedSteps] = useState()
 
     const getData = async () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
-                setCurrentReservation(res.data)
-                // setCompletedSteps({
-                //     orderDetails: res.data.orderDetails,
-                //     verificationProcess: res.data.verificationProcess,
-                //     payMethod: res.data.paidDeposit.method,
-                //     paidDeposit: res.data.paidDeposit.paid,
-                // })
+                if (res.data) {
+                    const index = res.data.carkey
+                    const userID = res.data.user.userID
+                    setCurrentUser(res.data.user)
+                    setCurrentKey(res.data.carkey)
+                    getSpecificReservation(userID, index)
+                }
             })
-            setLoadingData(true)
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    async function getSpecificReservation(userID, index) {
+        if (index == 0) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResOne)
+                await setLoadingData(true)
+            }
+        } else if (index == 1) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResTwo)
+                await setLoadingData(true)
+            }
+        } else if (index == 2) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResThree)
+                await setLoadingData(true)
+            }
         }
     }
 
