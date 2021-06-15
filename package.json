@@ -17,7 +17,6 @@
         ],
         "rules": {}
     },
-    "proxy": "https://us-central1-car-check-in.cloudfunctions.net/app",
     "browserslist": {
         "production": [
             ">0.2%",

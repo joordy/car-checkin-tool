@@ -16,7 +16,7 @@ const LoginPage = () => {
         try {
             const res = await fetch('/api/reservations')
 
-            const data = await res.text()
+            const data = await res.json()
             console.log(data)
 
             // const res1 = await fetch('/users').then(async (res) => {
