@@ -1,8 +1,11 @@
 // React imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as Styles from './showQRCode.styles.js'
 import supabase from 'db/supabase.js'
+import axios from 'axios'
 import { updateDBwithQRCodeWallet } from 'db/updateDatabase'
+
+// Componenten
 import { Icons } from 'components/atoms/index'
 import { SingleButtonWrapper } from 'components/molecules/index'
 import { data } from 'browserslist'
@@ -31,72 +34,56 @@ const ShowQRCode = ({ reservation, user, carKey }) => {
 
         const updateWithSettings = () => {
             if (stateOne) {
-                const test = updateDBwithQRCodeWallet('oneDriver', reservation, walletSerialNumber)
-                console.log(test)
                 return updateDBwithQRCodeWallet('oneDriver', reservation, walletSerialNumber)
             } else if (stateTwo) {
-                const test = updateDBwithQRCodeWallet('twoDrivers', reservation, walletSerialNumber)
-                console.log(test)
                 return updateDBwithQRCodeWallet('twoDrivers', reservation, walletSerialNumber)
             } else if (stateThree) {
-                const test = updateDBwithQRCodeWallet(
-                    'threeDrivers',
-                    reservation,
-                    walletSerialNumber,
-                )
-                console.log(test)
                 return updateDBwithQRCodeWallet('threeDrivers', reservation, walletSerialNumber)
             }
         }
 
         if (index === 0) {
-            updateWithSettings()
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: updateWithSettings() })
+                .eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+                // window.location.href = '/qr'
+            }
         } else if (index === 1) {
-            updateWithSettings()
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: updateWithSettings() })
+                .eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+                // window.location.href = '/qr'
+            }
         } else if (index === 2) {
-            updateWithSettings()
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: updateWithSettings() })
+                .eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+                // window.location.href = '/qr'
+            }
         }
-
-        // if (index === 0) {
-        //     const { data, error } = await supabase
-        //         .from('users')
-        //         .update({ carResOne: updateWithSettings() })
-        //         .eq('userID', userID)
-        //     if (!data) {
-        //         console.log(error)
-        //     } else {
-        //         console.log(data)
-        //         // window.location.href = '/qr'
-        //     }
-        // } else if (index === 1) {
-        //     const { data, error } = await supabase
-        //         .from('users')
-        //         .update({ carResTwo: updateWithSettings() })
-        //         .eq('userID', userID)
-        //     if (!data) {
-        //         console.log(error)
-        //     } else {
-        //         console.log(data)
-        //         // window.location.href = '/qr'
-        //     }
-        // } else if (index === 2) {
-        //     const { data, error } = await supabase
-        //         .from('users')
-        //         .update({ carResThree: updateWithSettings() })
-        //         .eq('userID', userID)
-        //     if (!data) {
-        //         console.log(error)
-        //     } else {
-        //         console.log(data)
-        //         // window.location.href = '/qr'
-        //     }
-        // }
     }
 
     async function verifyCheckin() {
         if (qrCode) {
+            console.log('wel qr')
             setWalletSerial(walletSerialNumber)
         } else {
+            console.log('geen qr')
             const userData = {
                 firstName: user.firstName,
                 fullName: `${user.firstName} ${user.lastName}`,
@@ -110,32 +97,25 @@ const ShowQRCode = ({ reservation, user, carKey }) => {
 
             console.log('userData', userData)
 
-            createCheckin(userData).then((data) => {
-                if (data && data.status === '200') {
-                    console.log('goed', data.serialNumber)
-                    addPassData(data.serialNumber)
-                } else {
-                    console.error('Kan pas niet aanmaken')
-                    console.log(data.errors)
-                }
-            })
+            axios
+                .post(`/api/create-checkin`, userData)
+                .then((res) => {
+                    console.log(res.data)
+                    if (res.data && res.data.status === '200') {
+                        console.log('goed', data.serialNumber)
+                        addPassData(res.data.serialNumber)
+                    } else {
+                        console.error('Kan pas niet aanmaken')
+                        console.log(res.data.errors)
+                    }
+                })
+                .catch((err) => console.log(err))
         }
     }
 
     async function addPassData(walletSerialNumber) {
         setWalletSerial(walletSerialNumber)
         await updateSpecificUser(reservationID, user.userID, carKey, walletSerialNumber)
-    }
-
-    async function createCheckin(data) {
-        const response = await fetch(`/api/create-checkin`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        return response.json()
     }
 
     useEffect(() => {
