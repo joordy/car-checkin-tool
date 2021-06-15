@@ -15,7 +15,8 @@ const LoginPage = () => {
     const getData = async () => {
         try {
             const res = await fetch('/api')
-            const data = await res.json()
+
+            const data = await res.text()
             console.log(data)
 
             // const res1 = await fetch('/users').then(async (res) => {
