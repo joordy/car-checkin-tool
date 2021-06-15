@@ -98,7 +98,10 @@ const ShowQRCode = ({ reservation, user, carKey }) => {
             console.log('userData', userData)
 
             axios
-                .post(`/api/create-checkin`, userData)
+                .post(
+                    `https://us-central1-car-check-in.cloudfunctions.net/app/api/create-checkin`,
+                    userData,
+                )
                 .then((res) => {
                     console.log(res.data)
                     if (res.data && res.data.status === '200') {

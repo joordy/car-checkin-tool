@@ -17,11 +17,13 @@ const ReservationCard = (props) => {
 
     const getData = async () => {
         try {
-            const data = await axios.get(`/api/reservations`).then((res) => {
-                if (res.data) {
-                    getSpecificReservation(res.data.userID, props.reservationKey)
-                }
-            })
+            const data = await axios
+                .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations`)
+                .then((res) => {
+                    if (res.data) {
+                        getSpecificReservation(res.data.userID, props.reservationKey)
+                    }
+                })
         } catch (e) {
             console.log(e)
         }
