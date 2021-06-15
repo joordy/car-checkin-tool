@@ -256,6 +256,8 @@ const Verification = () => {
                                         reservation={currentReservation}
                                         movingRight={0}
                                         movingLeft="/deposit"
+                                        carkey={currentKey}
+                                        loggedinUser={currentUser}
                                     />
                                 )
                             }

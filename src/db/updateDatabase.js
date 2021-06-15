@@ -684,10 +684,6 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
     }
 }
 
-export const tester = () => {
-    console.log('hi')
-}
-
 export const updateDBwithDriverOne = (
     driversCount,
     thisReservation,
@@ -696,8 +692,8 @@ export const updateDBwithDriverOne = (
     verified,
     driverObj,
 ) => {
-    console.log(currentUserDB)
     console.log(thisReservation)
+    console.log(currentUserDB)
     switch (driversCount) {
         case 'oneDriver':
             console.log('1')
@@ -707,7 +703,7 @@ export const updateDBwithDriverOne = (
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
-                    driver: `${currentUserDB.firstName} ${currentUserDB.lastName}`,
+                    driver: thisReservation.driverOne.driver,
                     method: `${method}`,
                     verified: verified,
                 },
@@ -747,7 +743,7 @@ export const updateDBwithDriverOne = (
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
-                        driver: `${currentUserDB.firstName} ${currentUserDB.lastName}`,
+                        driver: thisReservation.driverOne.driver,
                         method: `${method}`,
                         verified: verified,
                     },
@@ -790,7 +786,7 @@ export const updateDBwithDriverOne = (
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
-                        driver: `${currentUserDB.firstName} ${currentUserDB.lastName}`,
+                        driver: thisReservation.driverOne.driver,
                         method: thisReservation.driverOne.method,
                         verified: thisReservation.driverOne.verified,
                     },
@@ -837,7 +833,7 @@ export const updateDBwithDriverOne = (
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
-                        driver: `${currentUserDB.firstName} ${currentUserDB.lastName}`,
+                        driver: thisReservation.driverOne.driver,
                         method: `${method}`,
                         verified: verified,
                     },
@@ -886,7 +882,7 @@ export const updateDBwithDriverOne = (
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
-                        driver: `${currentUserDB.firstName} ${currentUserDB.lastName}`,
+                        driver: thisReservation.driverOne.driver,
                         method: thisReservation.driverOne.method,
                         verified: thisReservation.driverOne.verified,
                     },
@@ -935,7 +931,7 @@ export const updateDBwithDriverOne = (
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
-                        driver: `${currentUserDB.firstName} ${currentUserDB.lastName}`,
+                        driver: thisReservation.driverOne.driver,
                         method: thisReservation.driverOne.method,
                         verified: thisReservation.driverOne.verified,
                     },
@@ -976,6 +972,137 @@ export const updateDBwithDriverOne = (
                     verificationProcess: thisReservation.verificationProcess,
                     qrCode: thisReservation.qrCode,
                 }
+            }
+    }
+}
+
+export const updateDBwithVerifiedProcess = (driversCount, thisReservation, currentUserDB) => {
+    switch (driversCount) {
+        case 'oneDriver':
+            return {
+                class: currentUserDB.class,
+                carImage: currentUserDB.carImage,
+                checkedIn: currentUserDB.checkedIn,
+                driverOne: {
+                    role: currentUserDB.driverOne.role,
+                    driver: currentUserDB.driverOne.driver,
+                    method: currentUserDB.driverOne.method,
+                    verified: currentUserDB.driverOne.verified,
+                },
+                otherInfo: {
+                    freeKM: currentUserDB.otherInfo.freeKM,
+                    deposit: currentUserDB.otherInfo.deposit,
+                    ownRisk: currentUserDB.otherInfo.ownRisk,
+                    priceExtraKM: currentUserDB.otherInfo.priceExtraKM,
+                },
+                rentPrice: currentUserDB.rentPrice,
+                handInDate: currentUserDB.handInDate,
+                handInTime: currentUserDB.handInTime,
+                pickUpDate: currentUserDB.pickUpDate,
+                pickUpTime: currentUserDB.pickUpTime,
+                extraDriver: currentUserDB.extraDriver,
+                paidDeposit: {
+                    paid: currentUserDB.paidDeposit.paid,
+                    method: currentUserDB.paidDeposit.method,
+                },
+                lowerOwnRisk: currentUserDB.lowerOwnRisk,
+                orderDetails: currentUserDB.orderDetails,
+                reservationID: currentUserDB.reservationID,
+                handInLocation: currentUserDB.handInLocation,
+                pickUpLocation: currentUserDB.pickUpLocation,
+                walletSerialNumber: currentUserDB.walletSerialNumber,
+                verificationProcess: true,
+                qrCode: currentUserDB.qrCode,
+            }
+        case 'twoDrivers':
+            return {
+                class: currentUserDB.class,
+                carImage: currentUserDB.carImage,
+                checkedIn: currentUserDB.checkedIn,
+                driverOne: {
+                    role: currentUserDB.driverOne.role,
+                    driver: currentUserDB.driverOne.driver,
+                    method: currentUserDB.driverOne.method,
+                    verified: currentUserDB.driverOne.verified,
+                },
+                driverTwo: {
+                    role: currentUserDB.driverTwo.role,
+                    driver: currentUserDB.driverTwo.driver,
+                    method: currentUserDB.driverTwo.method,
+                    verified: currentUserDB.driverTwo.verified,
+                },
+                otherInfo: {
+                    freeKM: currentUserDB.otherInfo.freeKM,
+                    deposit: currentUserDB.otherInfo.deposit,
+                    ownRisk: currentUserDB.otherInfo.ownRisk,
+                    priceExtraKM: currentUserDB.otherInfo.priceExtraKM,
+                },
+                rentPrice: currentUserDB.rentPrice,
+                handInDate: currentUserDB.handInDate,
+                handInTime: currentUserDB.handInTime,
+                pickUpDate: currentUserDB.pickUpDate,
+                pickUpTime: currentUserDB.pickUpTime,
+                extraDriver: currentUserDB.extraDriver,
+                paidDeposit: {
+                    paid: currentUserDB.paidDeposit.paid,
+                    method: currentUserDB.paidDeposit.method,
+                },
+                lowerOwnRisk: currentUserDB.lowerOwnRisk,
+                orderDetails: currentUserDB.orderDetails,
+                reservationID: currentUserDB.reservationID,
+                handInLocation: currentUserDB.handInLocation,
+                pickUpLocation: currentUserDB.pickUpLocation,
+                walletSerialNumber: currentUserDB.walletSerialNumber,
+                verificationProcess: true,
+                qrCode: currentUserDB.qrCode,
+            }
+        case 'threeDrivers':
+            return {
+                class: currentUserDB.class,
+                carImage: currentUserDB.carImage,
+                checkedIn: currentUserDB.checkedIn,
+                driverOne: {
+                    role: currentUserDB.driverOne.role,
+                    driver: currentUserDB.driverOne.driver,
+                    method: currentUserDB.driverOne.method,
+                    verified: currentUserDB.driverOne.verified,
+                },
+                driverTwo: {
+                    role: currentUserDB.driverTwo.role,
+                    driver: currentUserDB.driverTwo.driver,
+                    method: currentUserDB.driverTwo.method,
+                    verified: currentUserDB.driverTwo.verified,
+                },
+                driverThree: {
+                    role: currentUserDB.driverThree.role,
+                    driver: currentUserDB.driverThree.driver,
+                    method: currentUserDB.driverThree.method,
+                    verified: currentUserDB.driverThree.verified,
+                },
+                otherInfo: {
+                    freeKM: currentUserDB.otherInfo.freeKM,
+                    deposit: currentUserDB.otherInfo.deposit,
+                    ownRisk: currentUserDB.otherInfo.ownRisk,
+                    priceExtraKM: currentUserDB.otherInfo.priceExtraKM,
+                },
+                rentPrice: currentUserDB.rentPrice,
+                handInDate: currentUserDB.handInDate,
+                handInTime: currentUserDB.handInTime,
+                pickUpDate: currentUserDB.pickUpDate,
+                pickUpTime: currentUserDB.pickUpTime,
+                extraDriver: currentUserDB.extraDriver,
+                paidDeposit: {
+                    paid: currentUserDB.paidDeposit.paid,
+                    method: currentUserDB.paidDeposit.method,
+                },
+                lowerOwnRisk: currentUserDB.lowerOwnRisk,
+                orderDetails: currentUserDB.orderDetails,
+                reservationID: currentUserDB.reservationID,
+                handInLocation: currentUserDB.handInLocation,
+                pickUpLocation: currentUserDB.pickUpLocation,
+                walletSerialNumber: currentUserDB.walletSerialNumber,
+                verificationProcess: true,
+                qrCode: currentUserDB.qrCode,
             }
     }
 }

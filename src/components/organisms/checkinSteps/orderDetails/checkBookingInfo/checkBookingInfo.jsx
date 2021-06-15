@@ -1,6 +1,8 @@
 // React imports
 import * as Styles from './checkBookingInfo.styles.js'
 import supabase from 'db/supabase.js'
+
+// Componenten
 import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 import { updateDBwithOrderDetails } from 'db/updateDatabase'
@@ -21,7 +23,7 @@ const CheckBookingInfo = (props) => {
         if (!data) {
             console.log(error)
         } else {
-            await getSpecificUser(resID, userID, index, ...data)
+            await updateSpecificUser(resID, userID, index, ...data)
 
             setTimeout(async () => {
                 let verified = props.reservation.verificationProcess
@@ -32,12 +34,14 @@ const CheckBookingInfo = (props) => {
                     window.location.href = '/verification'
                 } else if (verified === true && paid === true) {
                     window.location.href = '/qr'
+                } else {
+                    window.location.href = '/verification'
                 }
             }, 100)
         }
     }
 
-    const getSpecificUser = async (resID, userID, index, currentUserDB) => {
+    const updateSpecificUser = async (resID, userID, index, currentUserDB) => {
         const stateOne =
             props.reservation.driverOne &&
             !props.reservation.driverTwo &&
