@@ -14,6 +14,10 @@ export const Main = styled.main`
     h1 {
         margin-top: 1em;
     }
+    p {
+        max-width: 30em;
+        margin-bottom: 0;
+    }
     span {
         svg {
             stroke: white;

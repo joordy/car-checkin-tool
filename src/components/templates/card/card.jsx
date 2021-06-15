@@ -32,7 +32,7 @@ const Card = () => {
 
     return (
         <Styles.Main>
-            <Icons type="success" width="5em" height="5em" />
+            <Icons type="success" width="4em" height="4em" />
             <h1>Je check-in kaart wordt gedownload!</h1>
             <p>
                 Je kunt deze kaart toevoegen aan je Apple Wallet en gebruiken wanneer je incheckt
