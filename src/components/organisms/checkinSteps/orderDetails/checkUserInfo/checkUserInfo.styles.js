@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Section = styled.section`
     width: calc(100vw - 3rem);
@@ -8,6 +9,9 @@ export const Section = styled.section`
     position: relative;
     overflow: hidden;
     header {
+        @media ${device.laptop} {
+            padding: 2em 3em 0 3em;
+        }
         &:nth-of-type(1) {
             position: relative;
             h1 {
@@ -23,7 +27,17 @@ export const Section = styled.section`
             }
         }
     }
+    hr {
+        @media ${device.laptop} {
+            margin: 0 3em;
+            width: 30vw;
+        }
+    }
     article {
+        @media ${device.laptop} {
+            padding: 2em 3em 0 3em;
+            width: 30vw;
+        }
         &:nth-of-type(2) {
             display: block !important;
             ul {

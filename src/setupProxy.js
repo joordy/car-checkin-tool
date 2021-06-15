@@ -5,7 +5,7 @@ module.exports = function (app) {
         '/api',
         createProxyMiddleware({
             target: 'https://us-central1-car-check-in.cloudfunctions.net/app',
-            //target: 'http://localhost:5001/car-check-in/us-central1/app',
+            // target: 'http://localhost:5001/car-check-in/us-central1/app',
             changeOrigin: true,
         }),
     )
