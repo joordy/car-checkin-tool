@@ -14,13 +14,21 @@ const LoginPage = () => {
 
     const getData = async () => {
         try {
-            const data = await axios.get(`/api`).then((res) => {
-                console.log('response', res)
-            })
-            const data2 = await axios.get(`/users`).then((res) => {
-                console.log('response 2', res)
-            })
+            const res = await fetch('/api')
+            const data = await res.json()
             console.log(data)
+
+            const res1 = await fetch('/users').then(async (res) => {
+                const test = await res.clone().json()
+                console.log(test)
+            })
+
+            // const data = await fetch(`/api`).then((res) => {
+            //     console.log('response', res.json())
+            // })
+            // const data2 = await fetch(`/users`).then((res) => {
+            //     console.log('response 2', res)
+            // })
             setLoadingData(true)
         } catch (e) {
             console.log(e)
