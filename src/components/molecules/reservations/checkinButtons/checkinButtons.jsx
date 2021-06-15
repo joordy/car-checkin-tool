@@ -93,7 +93,7 @@ const CheckinButtons = (props) => {
                         </div>
                     )
                 } else {
-                    return <p>Inchecken kan over {days + 1} dagen.</p>
+                    return <p>Inchecken kan over {days - 7} dagen.</p>
                 }
             })()}
         </Styles.Wrapper>
