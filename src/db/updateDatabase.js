@@ -1104,6 +1104,10 @@ export const updateDBwithQRCodeWallet = (driversCount, thisReservation, walletSe
                 walletSerialNumber: walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
                 qrCode: true,
+            }
+    }
+}
+
 export const updateDBwithVerifiedProcess = (driversCount, thisReservation, currentUserDB) => {
     switch (driversCount) {
         case 'oneDriver':
