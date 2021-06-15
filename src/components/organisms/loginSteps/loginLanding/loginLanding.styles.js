@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const LoginLanding = styled.section`
     header {
@@ -13,35 +14,72 @@ export const LoginLanding = styled.section`
             display: flex;
             margin: auto;
             &:first-child {
-                width: 155px;
-                height: 30px;
-                padding: 15vh 0 5vh;
+                width: 150px;
+                height: 25px;
+                padding: 6vh 0 4vh;
             }
             &:nth-child(2) {
-                width: 70vw;
+                width: 60vw;
             }
         }
         h1 {
             text-align: center;
             color: white;
-            margin-top: 5vh;
-            line-height: 1.4em;
-        }
-        p {
-            text-align: center;
-            color: white;
-            margin: 2vh 4em 0;
-            line-height: 1.4em;
+            margin: 2.5vh 0 5.5vh 0;
+            font-size: 1.5em;
         }
         button {
             position: absolute;
-            bottom: 10vh;
+            bottom: 5vh;
             left: 50%;
             transform: translateX(-50%);
+        }
+        ul {
+            list-style-type: none;
+            margin: 0 auto;
+            padding: 0 3.5em;
+            li {
+                display: flex;
+                margin-bottom: 1.5em;
+                span {
+                    margin-right: 1em;
+                }
+                div {
+                    p {
+                        margin: 0;
+                        text-align: left;
+                        color: white;
+                        &:first-of-type {
+                            font-weight: bold;
+                            margin: 0 0 0.2em 0;
+                        }
+                    }
+                    &:nth-of-type(2) {
+                        margin: 0;
+                    }
+                }
+            }
         }
     }
     .slideOut {
         transition: 1s ease-in;
         transform: translateY(-100%);
+    }
+
+    @media ${device.laptop} {
+        /* header {
+            display: flex;
+            justify-content: space-evenly;
+            > div {
+                max-width: 40vw;
+                margin-top: 200px;
+                img {
+                    width: 30vw !important;
+                }
+                ul {
+                    max-width: 25vw;
+                }
+            }
+        } */
     }
 `

@@ -1,28 +1,149 @@
 // React imports
-import React, { useState } from 'react'
+import { useState } from 'react'
+import supabase from 'db/supabase.js'
 import * as Styles from './checkFacial.styles.js'
+import { updateDBwithDriverID, updateDBwithDriverOne } from 'db/updateDatabase'
+
+// Components
 import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
 import { VerificationButtons, VerifyModal } from 'components/molecules/index'
 
 // React component
-const CheckFacial = ({ movingRight, movingLeft }) => {
+const CheckFacial = (props) => {
     const [playing, setPlaying] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [disabling, setDisabling] = useState('')
 
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingRight}vw)`
+        moveElement.style.transform = `translateX(${props.movingRight}vw)`
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingLeft}vw)`
+        moveElement.style.transform = `translateX(${props.movingLeft}vw)`
     }
 
-    const nextPage = () => {
-        console.log('klik')
-        window.location.href = '/deposit'
+    const submitDriverIdentity = async () => {
+        const { data, error } = await supabase
+            .from('users')
+            .select()
+            .eq('userID', props.loggedinUser.userID)
+
+        if (!data) {
+            console.log(error)
+        } else {
+            // console.log(data)
+            if (Object.keys(props.thisUser).includes('driverOne')) {
+                return updateSpecificUser(
+                    props.loggedinUser.userID,
+                    true,
+                    props.carkey,
+                    ...data,
+                    'driverOne',
+                )
+            } else if (Object.keys(props.thisUser).includes('driverTwo')) {
+                return updateSpecificUser(
+                    props.loggedinUser.userID,
+                    true,
+                    props.carkey,
+                    ...data,
+                    'driverTwo',
+                )
+            } else if (Object.keys(props.thisUser).includes('driverThree')) {
+                return updateSpecificUser(
+                    props.loggedinUser.userID,
+                    true,
+                    props.carkey,
+                    ...data,
+                    'driverThree',
+                )
+            }
+        }
+    }
+
+    const updateSpecificUser = async (userID, verified, index, currentUserDB, driverObj) => {
+        const stateOne =
+            props.reservation.driverOne &&
+            !props.reservation.driverTwo &&
+            !props.reservation.driverThree
+        const stateTwo =
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            !props.reservation.driverThree
+        const stateThree =
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            props.reservation.driverThree
+
+        const updateWithSettings = () => {
+            if (stateOne) {
+                return updateDBwithDriverOne(
+                    'oneDriver',
+                    props.reservation,
+                    currentUserDB,
+                    'now',
+                    verified,
+                    driverObj,
+                    props.thisUser,
+                )
+            } else if (stateTwo) {
+                return updateDBwithDriverOne(
+                    'oneDriver',
+                    props.reservation,
+                    currentUserDB,
+                    'now',
+                    verified,
+                    driverObj,
+                    props.thisUser,
+                )
+            } else if (stateThree) {
+                return updateDBwithDriverOne(
+                    'threeDrivers',
+                    props.reservation,
+                    currentUserDB,
+                    'now',
+                    verified,
+                    driverObj,
+                    props.thisUser,
+                )
+            }
+        }
+
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
+            }
+        } else if (index === 1) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(...data)
+                // window.location.href = '/deposit'
+            }
+        }
     }
 
     const startVideo = () => {
@@ -48,7 +169,6 @@ const CheckFacial = ({ movingRight, movingLeft }) => {
     }
 
     const makeImage = () => {
-        console.log('maak foto bruur')
         setModalIsOpen(true)
         setDisabling('created')
         let video = document.querySelector('#videoWrapper')
@@ -104,8 +224,7 @@ const CheckFacial = ({ movingRight, movingLeft }) => {
                 linkPrimary="/deposit"
                 linkSecondary="#"
                 callbackSecondary={moveRight}
-                callbackPrimary={movingLeft == 'last' ? nextPage : moveLeft}
-                //callbackPrimary={() => (window.location.href = '/deposit')}
+                callbackPrimary={submitDriverIdentity}
                 disabled={!disabling}
             />
         </Styles.Section>

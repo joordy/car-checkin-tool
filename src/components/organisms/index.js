@@ -1,6 +1,7 @@
 // Organism will be a large element on the page, such as the complete contact form.
 export { default as LoginLanding } from './loginSteps/loginLanding/loginLanding'
 export { default as Login } from './loginSteps/login/login'
+export { default as LoginDesktop } from './loginSteps/loginDesktop/loginDesktop'
 
 // User reservations
 export { default as ReservationCard } from './reservations/reservationCard/reservationCard'

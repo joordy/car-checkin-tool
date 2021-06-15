@@ -7,7 +7,7 @@ import supabase from 'db/supabase.js'
 import colors from 'styles/colors.js'
 
 // React component
-const CheckUserInfo = ({ userInfo }) => {
+const CheckUserInfo = (props) => {
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(0)'
@@ -52,7 +52,7 @@ const CheckUserInfo = ({ userInfo }) => {
                 lastName: lastName,
                 phoneNumber: phoneNumber,
             })
-            .eq('userID', userInfo.user.userID)
+            .eq('userID', props.loggedinUser.userID)
 
         updateUser(birthDate, email, firstName, lastName, phoneNumber)
         handleEditState()
@@ -61,11 +61,11 @@ const CheckUserInfo = ({ userInfo }) => {
 
     // Updates the userInfo object with the new data from the form
     function updateUser(birthDate, email, firstName, lastName, phoneNumber) {
-        userInfo.user.birthDate = birthDate
-        userInfo.user.email = email
-        userInfo.user.firstName = firstName
-        userInfo.user.lastName = lastName
-        userInfo.user.phoneNumber = phoneNumber
+        props.loggedinUser.birthDate = birthDate
+        props.loggedinUser.email = email
+        props.loggedinUser.firstName = firstName
+        props.loggedinUser.lastName = lastName
+        props.loggedinUser.phoneNumber = phoneNumber
     }
 
     return (
@@ -91,7 +91,7 @@ const CheckUserInfo = ({ userInfo }) => {
                     <ul>
                         {!editing ? (
                             <li>
-                                <span>Voornaam</span> <span>{userInfo.user.firstName}</span>
+                                <span>Voornaam</span> <span>{props.loggedinUser.firstName}</span>
                             </li>
                         ) : (
                             <>
@@ -100,14 +100,14 @@ const CheckUserInfo = ({ userInfo }) => {
                                     type="text"
                                     id="firstName"
                                     name="firstName"
-                                    defaultValue={userInfo.user.firstName}
+                                    defaultValue={props.loggedinUser.firstName}
                                 />
                             </>
                         )}
 
                         {!editing ? (
                             <li>
-                                <span>Achternaam</span> <span>{userInfo.user.lastName}</span>
+                                <span>Achternaam</span> <span>{props.loggedinUser.lastName}</span>
                             </li>
                         ) : (
                             <>
@@ -116,14 +116,14 @@ const CheckUserInfo = ({ userInfo }) => {
                                     type="text"
                                     id="lastName"
                                     name="lastName"
-                                    defaultValue={userInfo.user.lastName}
+                                    defaultValue={props.loggedinUser.lastName}
                                 />
                             </>
                         )}
 
                         {!editing ? (
                             <li>
-                                <span>E-mailadres</span> <span>{userInfo.user.email}</span>
+                                <span>E-mailadres</span> <span>{props.loggedinUser.email}</span>
                             </li>
                         ) : (
                             <>
@@ -132,14 +132,15 @@ const CheckUserInfo = ({ userInfo }) => {
                                     type="email"
                                     id="email"
                                     name="email"
-                                    defaultValue={userInfo.user.email}
+                                    defaultValue={props.loggedinUser.email}
                                 />
                             </>
                         )}
 
                         {!editing ? (
                             <li>
-                                <span>Telefoonnummer</span> <span>{userInfo.user.phoneNumber}</span>
+                                <span>Telefoonnummer</span>{' '}
+                                <span>{props.loggedinUser.phoneNumber}</span>
                             </li>
                         ) : (
                             <>
@@ -148,14 +149,15 @@ const CheckUserInfo = ({ userInfo }) => {
                                     type="tel"
                                     id="phoneNumber"
                                     name="phoneNumber"
-                                    defaultValue={userInfo.user.phoneNumber}
+                                    defaultValue={props.loggedinUser.phoneNumber}
                                 />
                             </>
                         )}
 
                         {!editing ? (
                             <li>
-                                <span>Geboortedatum</span> <span>{userInfo.user.birthDate}</span>
+                                <span>Geboortedatum</span>{' '}
+                                <span>{props.loggedinUser.birthDate}</span>
                             </li>
                         ) : (
                             <>
@@ -164,7 +166,7 @@ const CheckUserInfo = ({ userInfo }) => {
                                     type="date"
                                     id="birthDate"
                                     name="birthDate"
-                                    defaultValue={userInfo.user.birthDate}
+                                    defaultValue={props.loggedinUser.birthDate}
                                 />
                             </>
                         )}
@@ -176,6 +178,7 @@ const CheckUserInfo = ({ userInfo }) => {
                         buttonType="submit"
                         textPrimary="Opslaan"
                         linkPrimary="#"
+                        onClick={handleSave}
                     />
                 )}
             </form>

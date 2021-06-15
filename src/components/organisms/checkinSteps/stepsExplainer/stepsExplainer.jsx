@@ -1,13 +1,38 @@
 // React imports
-import React from 'react'
+import { useState, useEffect } from 'react'
+import supabase from 'db/supabase.js'
+import axios from 'axios'
 import * as Styles from './stepsExplainer.styles.js'
+
+// Componenten
 import { VerificationButtons, IconListItem } from 'components/molecules/index'
 
 // React component
 const StepsExplainer = (props) => {
+    const [currentReservation, setCurrentReservation] = useState(null)
+    const [loadingData, setLoadingData] = useState(false)
+    const [currentUser, setCurrentUser] = useState(null)
+    const [currentKey, setCurrentKey] = useState(null)
+
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
+    }
+
+    const getData = async () => {
+        try {
+            const data = await axios.get(`/api/order-details`).then((res) => {
+                if (res.data) {
+                    const index = res.data.carkey
+                    const userID = res.data.user.userID
+                    setCurrentUser(res.data.user)
+                    setCurrentKey(res.data.carkey)
+                    getSpecificReservation(userID, index)
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     let title = 'Inchecken in slechts 3 stappen'
@@ -17,11 +42,43 @@ const StepsExplainer = (props) => {
     let step2 = false
     let step3 = false
 
-    if (props.loading) {
-        step1 = props.reservation.car.orderDetails
-        step2 = props.reservation.car.verificationProcess
-        const payMethod = props.reservation.car.paidDeposit.method
-        step3 = props.reservation.car.paidDeposit.paid
+    async function getSpecificReservation(userID, index) {
+        if (index == 0) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResOne)
+                await setLoadingData(true)
+            }
+        } else if (index == 1) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResTwo)
+                await setLoadingData(true)
+            }
+        } else if (index == 2) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResThree)
+                await setLoadingData(true)
+            }
+        }
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    if (loadingData) {
+        step1 = currentReservation.orderDetails
+        step2 = currentReservation.verificationProcess
+        const payMethod = currentReservation.paidDeposit.method
+        step3 = currentReservation.paidDeposit.paid
 
         if (!step1 && !step2 && !step3) {
             title = 'Inchecken in 3 stappen'

@@ -15,22 +15,21 @@ const stripePromise = loadStripe(
 )
 
 // React component
-const CheckIdentity = ({ movingRight, movingLeft }) => {
+const CheckIdentity = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const [consentDeclined, setConsentDeclined] = useState(false)
 
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingRight}vw)`
+        moveElement.style.transform = `translateX(${props.movingRight}vw)`
     }
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${movingLeft}vw)`
+        moveElement.style.transform = `translateX(${props.movingLeft}vw)`
     }
 
     const handleClick = async (event) => {
-        console.log('CLICKY')
         setIsLoading(true)
         const stripe = await stripePromise
         // Connect to backend to fetch the verification session
@@ -43,7 +42,6 @@ const CheckIdentity = ({ movingRight, movingLeft }) => {
             // If `verifyIdentity` fails, display the localized error
             // message using `result.error.message`.
             setIsLoading(false)
-            console.log('ERRROR', result)
             if (result.error.code === 'consent_declined') {
                 setConsentDeclined(true)
             }
@@ -56,7 +54,6 @@ const CheckIdentity = ({ movingRight, movingLeft }) => {
     const isVerifiedDriver = useSelector((state) => state.verifiedDriverReducer)
     const dispatch = useDispatch()
 
-    console.log(isLoading, 'isLoading')
     return (
         <Styles.Section id="identity">
             <header>

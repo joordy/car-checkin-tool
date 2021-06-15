@@ -1,5 +1,5 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './verification.styles.js'
@@ -17,8 +17,8 @@ import {
 const Verification = () => {
     const [currentReservation, setCurrentReservation] = useState(null)
     const [loadingData, setLoadingData] = useState(false)
-    const [completedSteps, setCompletedSteps] = useState()
-    const [testing, setTesting] = useState()
+    const [currentUser, setCurrentUser] = useState(null)
+    const [currentKey, setCurrentKey] = useState(null)
 
     const verifyIdentity = async () => {
         const data = await fetch(`/api/create-verification-session`)
@@ -29,97 +29,54 @@ const Verification = () => {
     const getData = async () => {
         try {
             const data = await axios.get(`/api/order-details`).then((res) => {
-                console.log('res.data', res)
-                setCurrentReservation(res.data)
-                setCompletedSteps({
-                    orderDetails: res.data.car.orderDetails,
-                    verificationProcess: res.data.car.verificationProcess,
-                    payMethod: res.data.car.paidDeposit.method,
-                    paidDeposit: res.data.car.paidDeposit.paid,
-                })
-                setLoadingData(true)
+                if (res.data) {
+                    const index = res.data.carkey
+                    const userID = res.data.user.userID
+                    setCurrentUser(res.data.user)
+                    setCurrentKey(res.data.carkey)
+                    getSpecificReservation(userID, index)
+                }
             })
         } catch (e) {
             console.log(e)
         }
     }
 
+    async function getSpecificReservation(userID, index) {
+        if (index == 0) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResOne)
+                await setLoadingData(true)
+            }
+        } else if (index == 1) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResTwo)
+                await setLoadingData(true)
+            }
+        } else if (index == 2) {
+            const { data, error } = await supabase.from('users').select().eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                await setCurrentReservation(data[0].carResThree)
+                await setLoadingData(true)
+            }
+        }
+    }
+
     useEffect(() => {
-        getData()
         verifyIdentity()
+        getData()
     }, [])
 
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
-
-    console.log('Verification currentReservation data', currentReservation)
-    console.log('completedSteps', completedSteps)
-    console.log('TESR', testing)
-
-    let steps = []
-    let frames = 0
-
-    const frameStepsRight = [
-        0, -100, -200, -300, -400, -500, -600, -700, -800, -900, -1000, -1100, -1200, -1300, -1400,
-        -1500,
-    ]
-    const frameStepsLeft = [
-        -200, -300, -400, -500, -600, -700, -800, -900, -1000, -1100, -1200, -1300, -1400, -1500,
-    ]
-
-    if (loadingData && currentReservation) {
-        const drivers = Object.keys(currentReservation.car).filter((str) => str.includes('driver'))
-
-        drivers.forEach((person, index) => {
-            const { role, driver, method, verified } = currentReservation.car[person]
-            if (!verified) {
-                console.log(index, drivers.length - 1)
-                steps.push(
-                    <React.Fragment key={person}>
-                        <CheckDrivers
-                            reservation={currentReservation}
-                            setTesting={setTesting}
-                            movingRight={frameStepsRight[frames]}
-                            movingLeft={frameStepsLeft[frames]}
-                        />
-                        <UserChoice
-                            title={
-                                role == 'extra'
-                                    ? `Verifieer het rijbewijs van ${driver}`
-                                    : 'Verifieer je eigen rijbewijs'
-                            }
-                            text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
-                            labelText={
-                                role == 'extra'
-                                    ? `Wanneer wil je het rijbewijs van ${driver} laten verifieren?`
-                                    : 'Wanneer wil je je eigen rijbewijs laten verifieren?'
-                            }
-                            oneTitle="Nu, online"
-                            oneText="Dit is de snelste optie"
-                            twoTitle="Ter plekke"
-                            twoText="Bij de Europcar locatie"
-                            threeTitle="Stap voor nu overslaan"
-                            threeText="Je kunt later alsnog een keuze maken."
-                            movingRight={frameStepsRight[frames + 1]}
-                            movingLeft={frameStepsLeft[frames + 1]}
-                            reservation={currentReservation}
-                        />
-                        <CheckIdentity
-                            movingRight={frameStepsRight[frames + 2]}
-                            movingLeft={frameStepsLeft[frames + 2]}
-                        />
-                        <CheckFacial
-                            movingRight={frameStepsRight[frames + 3]}
-                            movingLeft={
-                                index == drivers.length - 1 ? 'last' : frameStepsLeft[frames + 3]
-                            }
-                        />
-                    </React.Fragment>,
-                )
-                frames += 4
-            }
-        })
-    }
 
     return (
         <Styles.Main className="page">
@@ -130,8 +87,178 @@ const Verification = () => {
                             backLink="/order-details"
                             loading={loadingData}
                             reservation={currentReservation}
+                            carkey={currentKey}
+                            loggedinUser={currentUser}
                         />
-                        {steps}
+                        {(() => {
+                            if (!currentReservation.driverOne.verified) {
+                                return (
+                                    <>
+                                        <CheckDrivers
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                            movingRight={0}
+                                            movingLeft={-200}
+                                        />
+                                        <UserChoice
+                                            thisUser={{
+                                                driverOne: currentReservation.driverOne,
+                                            }}
+                                            title={'Verifieeer je eigen rijbewijs'}
+                                            text="We zijn verplicht om te controleren of je een geldig rijbewijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                                            labelText={`Wanneer wil je je eigen rijbewijs verifieren?`}
+                                            oneTitle="Nu, online"
+                                            oneText="Dit is de snelste optie"
+                                            twoTitle="Ter plekke"
+                                            twoText="Bij de Europcar locatie"
+                                            threeTitle="Stap voor nu overslaan"
+                                            threeText="Je kunt later alsnog een keuze maken."
+                                            movingRight={-100}
+                                            movingLeft={-300}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                        <CheckIdentity
+                                            thisUser={{
+                                                driverOne: currentReservation.driverOne,
+                                            }}
+                                            movingRight={-200}
+                                            movingLeft={-400}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                        <CheckFacial
+                                            thisUser={{
+                                                driverOne: currentReservation.driverOne,
+                                            }}
+                                            movingRight={-300}
+                                            movingLeft={-500}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                    </>
+                                )
+                            } else if (
+                                currentReservation.driverTwo &&
+                                !currentReservation.driverTwo.verified
+                            ) {
+                                return (
+                                    <>
+                                        <CheckDrivers
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                            movingRight={0}
+                                            movingLeft={-200}
+                                        />
+                                        <UserChoice
+                                            thisUser={{
+                                                driverTwo: currentReservation.driverTwo,
+                                            }}
+                                            title={`Verifieer het  rijbewijs van ${currentReservation.driverTwo.driver}`}
+                                            text="We zijn verplicht om te controleren of je een geldig rijbewijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                                            labelText={`Wanneer wil je het rijbewijs van ${currentReservation.driverTwo.driver} laten verifieren?`}
+                                            oneTitle="Nu, online"
+                                            oneText="Dit is de snelste optie"
+                                            twoTitle="Ter plekke"
+                                            twoText="Bij de Europcar locatie"
+                                            threeTitle="Stap voor nu overslaan"
+                                            threeText="Je kunt later alsnog een keuze maken."
+                                            movingRight={-100}
+                                            movingLeft={-300}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                        <CheckIdentity
+                                            thisUser={{
+                                                driverTwo: currentReservation.driverTwo,
+                                            }}
+                                            movingRight={-200}
+                                            movingLeft={-400}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                        <CheckFacial
+                                            thisUser={{
+                                                driverTwo: currentReservation.driverTwo,
+                                            }}
+                                            movingRight={-300}
+                                            movingLeft={-500}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                    </>
+                                )
+                            } else if (
+                                currentReservation.driverThree &&
+                                !currentReservation.driverThree.verified
+                            ) {
+                                return (
+                                    <>
+                                        <CheckDrivers
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                            movingRight={0}
+                                            movingLeft={-200}
+                                        />
+                                        <UserChoice
+                                            thisUser={{
+                                                driverThree: currentReservation.driverThree,
+                                            }}
+                                            title={`Verifieer het  rijbewijs van ${currentReservation.driverThree.driver}`}
+                                            text="We zijn verplicht om te controleren of je een geldig rijbwijs hebt. Je kunt dit nu direct online doen of later bij de Europcar locatie. Nu doen is snel en veilig."
+                                            labelText={`Wanneer wil je het rijbewijs van ${currentReservation.driverThree.driver} laten verifieren?`}
+                                            oneTitle="Nu, online"
+                                            oneText="Dit is de snelste optie"
+                                            twoTitle="Ter plekke"
+                                            twoText="Bij de Europcar locatie"
+                                            threeTitle="Stap voor nu overslaan"
+                                            threeText="Je kunt later alsnog een keuze maken."
+                                            movingRight={-100}
+                                            movingLeft={-300}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                        <CheckIdentity
+                                            thisUser={{
+                                                driverThree: currentReservation.driverThree,
+                                            }}
+                                            movingRight={-200}
+                                            movingLeft={-400}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                        <CheckFacial
+                                            thisUser={{
+                                                driverThree: currentReservation.driverThree,
+                                            }}
+                                            movingRight={-300}
+                                            movingLeft={-500}
+                                            reservation={currentReservation}
+                                            carkey={currentKey}
+                                            loggedinUser={currentUser}
+                                        />
+                                    </>
+                                )
+                            } else {
+                                return (
+                                    <CheckDrivers
+                                        reservation={currentReservation}
+                                        movingRight={0}
+                                    />
+                                )
+                            }
+                        })()}
                     </>
                 ) : (
                     <>
