@@ -4,8 +4,7 @@ export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservatio
         case 'oneDriver':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -41,8 +40,7 @@ export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservatio
         case 'twoDrivers':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -84,8 +82,7 @@ export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservatio
         case 'threeDrivers':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -429,8 +426,7 @@ export const updateDBwithPayMethodAndValue = (driversCount, thisReservation) => 
         case 'oneDriver':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -466,8 +462,7 @@ export const updateDBwithPayMethodAndValue = (driversCount, thisReservation) => 
         case 'twoDrivers':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -509,8 +504,7 @@ export const updateDBwithPayMethodAndValue = (driversCount, thisReservation) => 
         case 'threeDrivers':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -564,8 +558,7 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
         case 'oneDriver':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -601,8 +594,7 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
         case 'twoDrivers':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -644,8 +636,7 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
         case 'threeDrivers':
             return {
                 class: thisReservation.class,
-                carImage:
-                    'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
