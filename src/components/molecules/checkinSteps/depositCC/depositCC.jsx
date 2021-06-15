@@ -24,13 +24,16 @@ const DepositCC = ({ labelText, children }) => {
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         window
-            .fetch(`/api/create-payment-intent`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+            .fetch(
+                `https://us-central1-car-check-in.cloudfunctions.net/app/api/create-payment-intent`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
                 },
-                body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
-            })
+            )
             .then((res) => {
                 return res.json()
             })
