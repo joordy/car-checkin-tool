@@ -18,10 +18,10 @@ const LoginPage = () => {
             const data = await res.json()
             console.log(data)
 
-            const res1 = await fetch('/users').then(async (res) => {
-                const test = await res.clone().json()
-                console.log(test)
-            })
+            // const res1 = await fetch('/users').then(async (res) => {
+            //     const test = await res.clone().json()
+            //     console.log(test)
+            // })
 
             // const data = await fetch(`/api`).then((res) => {
             //     console.log('response', res.json())
