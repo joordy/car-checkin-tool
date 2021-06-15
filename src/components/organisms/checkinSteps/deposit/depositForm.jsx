@@ -1,11 +1,8 @@
 // React imports
-import { useState } from 'react'
-import axios from 'axios'
 import * as Styles from './depositForm.styles.js'
 import supabase from 'db/supabase.js'
 import { useSelector } from 'react-redux'
 import { updateDBwithPayMethodAndValue } from 'db/updateDatabase'
-import { checkIndex } from 'utils/cleandata'
 
 // Components
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
@@ -37,7 +34,6 @@ console.log('test data for Stripe:', {
 
 // React component
 const DepositForm = (props) => {
-    console.log(props)
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -46,7 +42,6 @@ const DepositForm = (props) => {
     const isPaid = useSelector((state) => state.paidReducer)
 
     const handleClick = async () => {
-        console.log('betaald pik')
         const resID = props.reservation.reservationID
         const userID = props.loggedinUser.userID
         const index = props.carkey
@@ -97,9 +92,6 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
-                // window.location.href = '/qr'
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -108,9 +100,6 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
-                // window.location.href = '/qr'
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -119,9 +108,6 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
-                // window.location.href = '/qr'
             }
         }
     }

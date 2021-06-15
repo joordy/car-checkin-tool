@@ -21,7 +21,11 @@ const CheckDrivers = (props) => {
 
     const moveLeft = () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${props.movingLeft}vw)`
+        if (typeof props.movingLeft === 'string') {
+            window.location.href = `${props.movingLeft}`
+        } else {
+            moveElement.style.transform = `translateX(${props.movingLeft}vw)`
+        }
     }
 
     const getData = async () => {

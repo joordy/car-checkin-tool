@@ -255,6 +255,7 @@ const Verification = () => {
                                     <CheckDrivers
                                         reservation={currentReservation}
                                         movingRight={0}
+                                        movingLeft="/deposit"
                                     />
                                 )
                             }
