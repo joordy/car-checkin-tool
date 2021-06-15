@@ -66,6 +66,7 @@ const Deposit = () => {
         getData()
     }, [])
 
+    console.log(currentReservation)
     let viewportHeight = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${viewportHeight}px`)
 

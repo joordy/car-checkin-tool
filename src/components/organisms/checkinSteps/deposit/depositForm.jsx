@@ -5,6 +5,7 @@ import * as Styles from './depositForm.styles.js'
 import supabase from 'db/supabase.js'
 import { useSelector } from 'react-redux'
 import { updateDBwithPayMethodAndValue } from 'db/updateDatabase'
+import { checkIndex } from 'utils/cleandata'
 
 // Components
 import { VerificationButtons, DepositType, DepositCC } from 'components/molecules/index'
@@ -44,26 +45,25 @@ const DepositForm = (props) => {
 
     const isPaid = useSelector((state) => state.paidReducer)
 
-    const handleClick = () => {
+    const handleClick = async () => {
         console.log('betaald pik')
         const resID = props.reservation.reservationID
         const userID = props.loggedinUser.userID
         const index = props.carkey
 
-        getSpecificUser(resID, userID, index)
+        await getSpecificUser(resID, userID, index)
 
-        // setTimeout(async () => {
-        //     const res = await axios
-        //         .post('/api/payMethod', {
-        //             paid: true,
-        //             carkey: props.carkey,
-        //             method: 'card',
-        //         })
-        //         .then(
-        //             (res) => console.log(res),
-        //             //window.location.href = '/qr'
-        //         )
-        // }, 100)
+        setTimeout(async () => {
+            let order = props.reservation.orderDetails
+            let verified = props.reservation.verificationProcess
+            if (verified === false && order === true) {
+                window.location.href = '/verification'
+            } else if (verified === false && order === false) {
+                window.location.href = '/order-details'
+            } else if (verified === true && order === true) {
+                window.location.href = '/qr'
+            }
+        }, 100)
     }
 
     const getSpecificUser = async (resID, userID, index) => {
@@ -99,7 +99,7 @@ const DepositForm = (props) => {
                 console.log(error)
             } else {
                 console.log(data)
-                window.location.href = '/qr'
+                // window.location.href = '/qr'
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -110,7 +110,7 @@ const DepositForm = (props) => {
                 console.log(error)
             } else {
                 console.log(data)
-                window.location.href = '/qr'
+                // window.location.href = '/qr'
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -121,7 +121,7 @@ const DepositForm = (props) => {
                 console.log(error)
             } else {
                 console.log(data)
-                window.location.href = '/qr'
+                // window.location.href = '/qr'
             }
         }
     }

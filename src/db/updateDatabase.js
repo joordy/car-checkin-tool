@@ -36,6 +36,7 @@ export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservatio
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
         case 'twoDrivers':
             return {
@@ -78,6 +79,7 @@ export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservatio
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
         case 'threeDrivers':
             return {
@@ -126,6 +128,7 @@ export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservatio
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
     }
 }
@@ -174,6 +177,7 @@ export const updateDBwithVerifyMethod = (
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
 
         case 'twoDrivers':
@@ -219,6 +223,7 @@ export const updateDBwithVerifyMethod = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             } else if (driverObj === 'driverTwo') {
                 console.log('driver two')
@@ -261,6 +266,7 @@ export const updateDBwithVerifyMethod = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             }
 
@@ -313,6 +319,7 @@ export const updateDBwithVerifyMethod = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             } else if (driverObj === 'driverTwo') {
                 console.log('driver two')
@@ -361,6 +368,7 @@ export const updateDBwithVerifyMethod = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             } else if (driverObj === 'driverThree') {
                 console.log('driver three')
@@ -409,6 +417,7 @@ export const updateDBwithVerifyMethod = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             }
     }
@@ -452,6 +461,7 @@ export const updateDBwithPayMethodAndValue = (driversCount, thisReservation) => 
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
         case 'twoDrivers':
             return {
@@ -494,6 +504,7 @@ export const updateDBwithPayMethodAndValue = (driversCount, thisReservation) => 
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
         case 'threeDrivers':
             return {
@@ -542,6 +553,7 @@ export const updateDBwithPayMethodAndValue = (driversCount, thisReservation) => 
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
     }
 }
@@ -584,6 +596,7 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
         case 'twoDrivers':
             return {
@@ -626,6 +639,7 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
         case 'threeDrivers':
             return {
@@ -674,6 +688,7 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
     }
 }
@@ -681,151 +696,6 @@ export const updateDBwithOrderDetails = (driversCount, thisReservation, currentU
 export const tester = () => {
     console.log('hi')
 }
-
-// export const updateDBwithDriverID = (
-//     driversCount,
-//     thisReservation,
-//     currentUserDB,
-//     method,
-//     verified,
-//     driverObj,
-//     user,
-// ) => {
-//     console.log('currentUserDB', currentUserDB)
-//     // console.log('driversCount', driversCount)
-//     console.log('thisReservation', thisReservation)
-//     // console.log('method', method)
-//     console.log('driverObj', driverObj)
-
-//     switch (driversCount) {
-//         case 'oneDriver':
-//             return {
-//                 class: thisReservation.class,
-//                 carImage:
-//                     'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
-//                 checkedIn: thisReservation.checkedIn,
-//                 driverOne: {
-//                     role: thisReservation.driverOne.role,
-//                     driver: `${checkName(thisReservation, currentUserDB)}`,
-//                     method: `${method}`,
-//                     verified: verified,
-//                 },
-//                 otherInfo: {
-//                     freeKM: thisReservation.otherInfo.freeKM,
-//                     deposit: thisReservation.otherInfo.deposit,
-//                     ownRisk: thisReservation.otherInfo.ownRisk,
-//                     priceExtraKM: thisReservation.otherInfo.priceExtraKM,
-//                 },
-//                 rentPrice: thisReservation.rentPrice,
-//                 handInDate: thisReservation.handInDate,
-//                 handInTime: thisReservation.handInTime,
-//                 pickUpDate: thisReservation.pickUpDate,
-//                 pickUpTime: thisReservation.pickUpTime,
-//                 extraDriver: thisReservation.extraDriver,
-//                 paidDeposit: {
-//                     paid: thisReservation.paidDeposit.paid,
-//                     method: thisReservation.paidDeposit.method,
-//                 },
-//                 lowerOwnRisk: thisReservation.lowerOwnRisk,
-//                 orderDetails: true,
-//                 reservationID: thisReservation.reservationID,
-//                 handInLocation: thisReservation.handInLocation,
-//                 pickUpLocation: thisReservation.pickUpLocation,
-//                 walletSerialNumber: thisReservation.walletSerialNumber,
-//                 verificationProcess: thisReservation.verificationProcess,
-//             }
-//         case 'twoDrivers':
-//             return {
-//                 class: thisReservation.class,
-//                 carImage:
-//                     'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
-//                 checkedIn: thisReservation.checkedIn,
-//                 driverOne: {
-//                     role: thisReservation.driverOne.role,
-//                     driver: `${checkName(thisReservation, currentUserDB)}`,
-//                     method: `${method}`,
-//                     verified: verified,
-//                 },
-//                 driverTwo: {
-//                     role: thisReservation.driverTwo.role,
-//                     driver: thisReservation.driverTwo.driver,
-//                     method: `${method}`,
-//                     verified: verified,
-//                 },
-//                 otherInfo: {
-//                     freeKM: thisReservation.otherInfo.freeKM,
-//                     deposit: thisReservation.otherInfo.deposit,
-//                     ownRisk: thisReservation.otherInfo.ownRisk,
-//                     priceExtraKM: thisReservation.otherInfo.priceExtraKM,
-//                 },
-//                 rentPrice: thisReservation.rentPrice,
-//                 handInDate: thisReservation.handInDate,
-//                 handInTime: thisReservation.handInTime,
-//                 pickUpDate: thisReservation.pickUpDate,
-//                 pickUpTime: thisReservation.pickUpTime,
-//                 extraDriver: thisReservation.extraDriver,
-//                 paidDeposit: {
-//                     paid: thisReservation.paidDeposit.paid,
-//                     method: thisReservation.paidDeposit.method,
-//                 },
-//                 lowerOwnRisk: thisReservation.lowerOwnRisk,
-//                 orderDetails: true,
-//                 reservationID: thisReservation.reservationID,
-//                 handInLocation: thisReservation.handInLocation,
-//                 pickUpLocation: thisReservation.pickUpLocation,
-//                 walletSerialNumber: thisReservation.walletSerialNumber,
-//                 verificationProcess: thisReservation.verificationProcess,
-//             }
-//         case 'threeDrivers':
-//             return {
-//                 class: thisReservation.class,
-//                 carImage:
-//                     'https://user-images.githubusercontent.com/48051912/120997146-42ca5200-c787-11eb-9b01-1a458b0664ed.png',
-//                 checkedIn: thisReservation.checkedIn,
-//                 driverOne: {
-//                     role: thisReservation.driverOne.role,
-//                     driver: `${checkName(thisReservation, currentUserDB)}`,
-//                     method: `${method}`,
-//                     verified: verified,
-//                 },
-//                 driverTwo: {
-//                     role: thisReservation.driverTwo.role,
-//                     driver: thisReservation.driverTwo.driver,
-//                     method: `${method}`,
-//                     verified: verified,
-//                 },
-//                 driverThree: {
-//                     role: thisReservation.driverThree.role,
-//                     driver: thisReservation.driverThree.driver,
-//                     method: `${method}`,
-//                     verified: verified,
-//                 },
-//                 otherInfo: {
-//                     freeKM: thisReservation.otherInfo.freeKM,
-//                     deposit: thisReservation.otherInfo.deposit,
-//                     ownRisk: thisReservation.otherInfo.ownRisk,
-//                     priceExtraKM: thisReservation.otherInfo.priceExtraKM,
-//                 },
-//                 rentPrice: thisReservation.rentPrice,
-//                 handInDate: thisReservation.handInDate,
-//                 handInTime: thisReservation.handInTime,
-//                 pickUpDate: thisReservation.pickUpDate,
-//                 pickUpTime: thisReservation.pickUpTime,
-//                 extraDriver: thisReservation.extraDriver,
-//                 paidDeposit: {
-//                     paid: thisReservation.paidDeposit.paid,
-//                     method: thisReservation.paidDeposit.method,
-//                 },
-//                 lowerOwnRisk: thisReservation.lowerOwnRisk,
-//                 orderDetails: true,
-//                 reservationID: thisReservation.reservationID,
-//                 handInLocation: thisReservation.handInLocation,
-//                 pickUpLocation: thisReservation.pickUpLocation,
-//                 walletSerialNumber: thisReservation.walletSerialNumber,
-//                 verificationProcess: thisReservation.verificationProcess,
-//             }
-//     }
-// }
 
 export const updateDBwithDriverOne = (
     driversCount,
@@ -873,6 +743,7 @@ export const updateDBwithDriverOne = (
                 pickUpLocation: thisReservation.pickUpLocation,
                 walletSerialNumber: thisReservation.walletSerialNumber,
                 verificationProcess: thisReservation.verificationProcess,
+                qrCode: thisReservation.qrCode,
             }
 
         case 'twoDrivers':
@@ -918,6 +789,7 @@ export const updateDBwithDriverOne = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             } else if (driverObj === 'driverTwo') {
                 console.log('driver two')
@@ -960,6 +832,7 @@ export const updateDBwithDriverOne = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             }
 
@@ -1012,6 +885,7 @@ export const updateDBwithDriverOne = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             } else if (driverObj === 'driverTwo') {
                 console.log('driver two')
@@ -1060,6 +934,7 @@ export const updateDBwithDriverOne = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             } else if (driverObj === 'driverThree') {
                 console.log('driver three')
@@ -1108,6 +983,7 @@ export const updateDBwithDriverOne = (
                     pickUpLocation: thisReservation.pickUpLocation,
                     walletSerialNumber: thisReservation.walletSerialNumber,
                     verificationProcess: thisReservation.verificationProcess,
+                    qrCode: thisReservation.qrCode,
                 }
             }
     }

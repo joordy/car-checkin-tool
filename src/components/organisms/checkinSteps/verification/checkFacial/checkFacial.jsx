@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import supabase from 'db/supabase.js'
 import * as Styles from './checkFacial.styles.js'
-import { updateDBwithDriverID, updateDBwithDriverOne } from 'db/updateDatabase'
+import { updateDBwithDriverOne } from 'db/updateDatabase'
 
 // Components
 import { Icons, ButtonPrimary, ButtonTertiary } from 'components/atoms/index'
