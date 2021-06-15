@@ -1,15 +1,14 @@
 // React imports
-import { useState } from 'react'
 import * as Styles from './checkBookingInfo.styles.js'
 import supabase from 'db/supabase.js'
+
+// Componenten
 import { Icons } from 'components/atoms/index.js'
 import { VerificationButtons } from 'components/molecules/index'
 import { updateDBwithOrderDetails } from 'db/updateDatabase'
-import { checkIndex } from 'utils/cleandata'
 
 // React component
 const CheckBookingInfo = (props) => {
-    const [currentReservation, setCurrentReservation] = useState(null)
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -24,25 +23,25 @@ const CheckBookingInfo = (props) => {
         if (!data) {
             console.log(error)
         } else {
-            await setCurrentReservation(...data)
-            await getSpecificUser(resID, userID, index, ...data)
+            await updateSpecificUser(resID, userID, index, ...data)
+
             setTimeout(async () => {
-                console.log(props)
-                // const resNum = await checkIndex(index)
-                // let verified = currentReservation[resNum].verificationProcess
-                // let paid = currentReservation[resNum].paidDeposit.paid
-                // if (verified === true && paid === false) {
-                //     window.location.href = '/deposit'
-                // } else if (verified === false && paid === true) {
-                //     window.location.href = '/verification'
-                // } else if (verified === true && paid === true) {
-                //     window.location.href = '/qr'
-                // }
+                let verified = props.reservation.verificationProcess
+                let paid = props.reservation.paidDeposit.paid
+                if (verified === true && paid === false) {
+                    window.location.href = '/deposit'
+                } else if (verified === false && paid === true) {
+                    window.location.href = '/verification'
+                } else if (verified === true && paid === true) {
+                    window.location.href = '/qr'
+                } else {
+                    window.location.href = '/verification'
+                }
             }, 100)
         }
     }
 
-    const getSpecificUser = async (resID, userID, index, currentUserDB) => {
+    const updateSpecificUser = async (resID, userID, index, currentUserDB) => {
         const stateOne =
             props.reservation.driverOne &&
             !props.reservation.driverTwo &&

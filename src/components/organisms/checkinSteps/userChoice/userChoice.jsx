@@ -245,10 +245,8 @@ const UserChoice = (props) => {
                         }
                     }
                 } else if (choice === 'now') {
-                    console.log('fix shit now')
                     const moveElement = document.querySelector('.stepsWrapper')
                     moveElement.style.transform = `translateX(-300vw)`
-                    console.log(props.thisUser)
                 }
             }
         }
@@ -256,10 +254,8 @@ const UserChoice = (props) => {
 
     const changeState = (e) => {
         if (window.location.pathname === '/deposit') {
-            // console.log(e.currentTarget.value)
             setSelected(e.currentTarget.value)
         } else if (window.location.pathname === '/verification') {
-            console.log(e.currentTarget.value)
             setSelected(e.currentTarget.value)
         }
     }

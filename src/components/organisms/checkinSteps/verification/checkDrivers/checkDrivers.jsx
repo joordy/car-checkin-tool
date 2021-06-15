@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './checkDrivers.styles.js'
+import { updateDBwithVerifiedProcess } from 'db/updateDatabase'
 
 // Componenten
-import { Icons, Label, ButtonPrimary } from 'components/atoms/index'
+import { Label } from 'components/atoms/index'
 import { VerificationButtons, DriverListItem } from 'components/molecules/index'
 
 // React component
@@ -19,9 +20,41 @@ const CheckDrivers = (props) => {
         moveElement.style.transform = `translateX(${props.movingRight}vw)`
     }
 
-    const moveLeft = () => {
+    const moveLeft = async () => {
         const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = `translateX(${props.movingLeft}vw)`
+        if (typeof props.movingLeft === 'string') {
+            const { data, error } = await supabase
+                .from('users')
+                .select()
+                .eq('userID', props.loggedinUser.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                if (props.carkey === 0) {
+                    await updateSpecificUser(
+                        props.carkey,
+                        props.loggedinUser.userID,
+                        data[0].carResOne,
+                    )
+                } else if (props.carkey === 1) {
+                    await updateSpecificUser(
+                        props.carkey,
+                        props.loggedinUser.userID,
+                        data[1].carResOne,
+                    )
+                } else if (props.carkey === 2) {
+                    await updateSpecificUser(
+                        props.carkey,
+                        props.loggedinUser.userID,
+                        data[2].carResOne,
+                    )
+                }
+
+                window.location.href = `${props.movingLeft}`
+            }
+        } else {
+            moveElement.style.transform = `translateX(${props.movingLeft}vw)`
+        }
     }
 
     const getData = async () => {
@@ -79,6 +112,56 @@ const CheckDrivers = (props) => {
         }
     }
 
+    const updateSpecificUser = async (index, userID, currentUserDB) => {
+        const stateOne =
+            props.reservation.driverOne &&
+            !props.reservation.driverTwo &&
+            !props.reservation.driverThree
+        const stateTwo =
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            !props.reservation.driverThree
+        const stateThree =
+            props.reservation.driverOne &&
+            props.reservation.driverTwo &&
+            props.reservation.driverThree
+
+        const updateWithSettings = () => {
+            if (stateOne) {
+                return updateDBwithVerifiedProcess('oneDriver', props.reservation, currentUserDB)
+            } else if (stateTwo) {
+                return updateDBwithVerifiedProcess('twoDrivers', props.reservation, currentUserDB)
+            } else if (stateThree) {
+                return updateDBwithVerifiedProcess('threeDrivers', props.reservation, currentUserDB)
+            }
+        }
+
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            }
+        } else if (index === 1) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: updateWithSettings() })
+                .eq('userID', userID)
+            if (!data) {
+                console.log(error)
+            }
+        }
+    }
     useEffect(() => {
         getData()
     }, [])
