@@ -6,17 +6,8 @@ import { SingleButtonWrapper } from 'components/molecules/index'
 import { data } from 'browserslist'
 
 // React component
-const ShowQRCode = ({ title }) => {
-    const moveRight = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(0)'
-    }
-
-    const moveLeft = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
-    }
-
+const ShowQRCode = ({ reservation }) => {
+    console.log(reservation)
     const user2 = {
         firstName: 'Jelly',
         lastName: 'de Jonger',

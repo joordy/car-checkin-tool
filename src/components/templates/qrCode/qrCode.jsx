@@ -18,8 +18,8 @@ const QRCode = () => {
                 if (res.data) {
                     const index = res.data.carkey
                     const userID = res.data.user.userID
-                    setCurrentUser(res.data.user)
-                    setCurrentKey(res.data.carkey)
+                    //setCurrentUser(res.data.user)
+                    //setCurrentKey(res.data.carkey)
                     getSpecificReservation(userID, index)
                 }
             })
@@ -73,7 +73,7 @@ const QRCode = () => {
                             loading={loadingData}
                             reservation={currentReservation}
                         />
-                        <ShowQRCode title="Reservering 1234" />
+                        <ShowQRCode reservation={currentReservation} />
                     </>
                 ) : (
                     <>
