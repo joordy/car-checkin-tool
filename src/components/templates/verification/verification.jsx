@@ -255,6 +255,9 @@ const Verification = () => {
                                     <CheckDrivers
                                         reservation={currentReservation}
                                         movingRight={0}
+                                        movingLeft="/deposit"
+                                        carkey={currentKey}
+                                        loggedinUser={currentUser}
                                     />
                                 )
                             }

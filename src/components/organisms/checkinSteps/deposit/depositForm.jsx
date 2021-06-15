@@ -1,6 +1,4 @@
 // React imports
-import { useState } from 'react'
-import axios from 'axios'
 import * as Styles from './depositForm.styles.js'
 import supabase from 'db/supabase.js'
 import { useSelector } from 'react-redux'
@@ -36,7 +34,6 @@ console.log('test data for Stripe:', {
 
 // React component
 const DepositForm = (props) => {
-    console.log(props)
     const moveRight = () => {
         const moveElement = document.querySelector('.stepsWrapper')
         moveElement.style.transform = 'translateX(-100vw)'
@@ -44,26 +41,24 @@ const DepositForm = (props) => {
 
     const isPaid = useSelector((state) => state.paidReducer)
 
-    const handleClick = () => {
-        console.log('betaald pik')
+    const handleClick = async () => {
         const resID = props.reservation.reservationID
         const userID = props.loggedinUser.userID
         const index = props.carkey
 
-        getSpecificUser(resID, userID, index)
+        await getSpecificUser(resID, userID, index)
 
-        // setTimeout(async () => {
-        //     const res = await axios
-        //         .post('/api/payMethod', {
-        //             paid: true,
-        //             carkey: props.carkey,
-        //             method: 'card',
-        //         })
-        //         .then(
-        //             (res) => console.log(res),
-        //             //window.location.href = '/qr'
-        //         )
-        // }, 100)
+        setTimeout(async () => {
+            let order = props.reservation.orderDetails
+            let verified = props.reservation.verificationProcess
+            if (verified === false && order === true) {
+                window.location.href = '/verification'
+            } else if (verified === false && order === false) {
+                window.location.href = '/order-details'
+            } else if (verified === true && order === true) {
+                window.location.href = '/qr'
+            }
+        }, 100)
     }
 
     const getSpecificUser = async (resID, userID, index) => {
@@ -97,9 +92,6 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
-                window.location.href = '/qr'
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -108,9 +100,6 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
-                window.location.href = '/qr'
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -119,9 +108,6 @@ const DepositForm = (props) => {
                 .eq('userID', userID)
             if (!data) {
                 console.log(error)
-            } else {
-                console.log(data)
-                window.location.href = '/qr'
             }
         }
     }

@@ -53,7 +53,7 @@ export const Card = styled.section`
     }
 `
 
-export const StatusCheck = styled.div`
+export const StatusCheck = styled.section`
     border-top: 1px solid ${colors.inputBorder};
     display: block;
     width: 100%;
@@ -65,19 +65,19 @@ export const StatusCheck = styled.div`
         margin: 0.25rem 0 1rem 0;
     }
     ul {
-        display: flex;
-        justify-content: space-between;
         list-style-type: none;
         margin: 0 0 1rem 0;
         padding: 0;
         li {
             text-align: center;
-            width: 33%;
+            width: 100%;
             div.wrapper {
+                display: flex;
+                align-items: center;
                 > div {
-                    width: 3rem;
-                    height: 3rem;
-                    margin: 0.5rem auto 0.5rem auto;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    margin: 0.5rem 1rem 0.5rem 0;
                     background-color: ${colors.inputBorder};
                     border-radius: 50%;
                     display: flex;
@@ -85,6 +85,7 @@ export const StatusCheck = styled.div`
                     align-items: center;
                     position: relative;
                     svg {
+                        width: 80%;
                         path {
                             stroke: white;
                         }
@@ -92,29 +93,14 @@ export const StatusCheck = styled.div`
                 }
                 p {
                     color: ${colors.inputBorder};
-                }
-            }
-            &:nth-of-type(1),
-            &:nth-of-type(2) {
-                div.wrapper {
-                    > div {
-                        &:after {
-                            content: '';
-                            position: absolute;
-                            width: 50px;
-                            height: 2px;
-                            background-color: ${colors.inputBorder};
-                            left: 110%;
-                        }
-                    }
+                    margin: 0;
                 }
             }
             &:nth-of-type(2) {
                 div.wrapper {
                     > div {
                         svg {
-                            fill: white;
-                            stroke: transparent;
+                            stroke: white;
                         }
                     }
                 }
@@ -127,21 +113,6 @@ export const StatusCheck = styled.div`
                     color: ${colors.secondary};
                 }
             }
-            /*
-            p {
-                color: ${colors.inputBorder};
-                margin: 0;
-            }
-            div {
-                &.active {
-                    background-color: ${colors.secondary};
-                }
-                svg {
-                    path {
-                        stroke: white;
-                    }
-                }
-            } */
         }
     }
 `

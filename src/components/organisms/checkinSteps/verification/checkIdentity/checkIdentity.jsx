@@ -16,6 +16,7 @@ const stripePromise = loadStripe(
 
 // React component
 const CheckIdentity = (props) => {
+    console.log('checkIdentity props:', props)
     const [isLoading, setIsLoading] = useState(false)
     const [consentDeclined, setConsentDeclined] = useState(false)
 
