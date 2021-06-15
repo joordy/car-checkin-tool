@@ -976,6 +976,134 @@ export const updateDBwithDriverOne = (
     }
 }
 
+export const updateDBwithQRCodeWallet = (driversCount, thisReservation, walletSerialNumber) => {
+    //console.log('curr', thisReservation)
+    switch (driversCount) {
+        case 'oneDriver':
+            return {
+                class: thisReservation.class,
+                carImage: thisReservation.carImage,
+                checkedIn: thisReservation.checkedIn,
+                driverOne: {
+                    role: thisReservation.driverOne.role,
+                    driver: thisReservation.driverOne.driver,
+                    method: thisReservation.driverOne.method,
+                    verified: thisReservation.driverOne.verified,
+                },
+                otherInfo: {
+                    freeKM: thisReservation.otherInfo.freeKM,
+                    deposit: thisReservation.otherInfo.deposit,
+                    ownRisk: thisReservation.otherInfo.ownRisk,
+                    priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                },
+                rentPrice: thisReservation.rentPrice,
+                handInDate: thisReservation.handInDate,
+                handInTime: thisReservation.handInTime,
+                pickUpDate: thisReservation.pickUpDate,
+                pickUpTime: thisReservation.pickUpTime,
+                extraDriver: thisReservation.extraDriver,
+                paidDeposit: {
+                    paid: thisReservation.paidDeposit.paid,
+                    method: thisReservation.paidDeposit.method,
+                },
+                lowerOwnRisk: thisReservation.lowerOwnRisk,
+                orderDetails: thisReservation.orderDetails,
+                reservationID: thisReservation.reservationID,
+                handInLocation: thisReservation.handInLocation,
+                pickUpLocation: thisReservation.pickUpLocation,
+                walletSerialNumber: walletSerialNumber,
+                verificationProcess: thisReservation.verificationProcess,
+                qrCode: true,
+            }
+        case 'twoDrivers':
+            return {
+                class: thisReservation.class,
+                carImage: thisReservation.carImage,
+                checkedIn: thisReservation.checkedIn,
+                driverOne: {
+                    role: thisReservation.driverOne.role,
+                    driver: thisReservation.driverOne.driver,
+                    method: thisReservation.driverOne.method,
+                    verified: thisReservation.driverOne.verified,
+                },
+                driverTwo: {
+                    role: thisReservation.driverTwo.role,
+                    driver: thisReservation.driverTwo.driver,
+                    method: thisReservation.driverTwo.method,
+                    verified: thisReservation.driverTwo.verified,
+                },
+                otherInfo: {
+                    freeKM: thisReservation.otherInfo.freeKM,
+                    deposit: thisReservation.otherInfo.deposit,
+                    ownRisk: thisReservation.otherInfo.ownRisk,
+                    priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                },
+                rentPrice: thisReservation.rentPrice,
+                handInDate: thisReservation.handInDate,
+                handInTime: thisReservation.handInTime,
+                pickUpDate: thisReservation.pickUpDate,
+                pickUpTime: thisReservation.pickUpTime,
+                extraDriver: thisReservation.extraDriver,
+                paidDeposit: {
+                    paid: thisReservation.paidDeposit.paid,
+                    method: thisReservation.paidDeposit.method,
+                },
+                lowerOwnRisk: thisReservation.lowerOwnRisk,
+                orderDetails: thisReservation.orderDetails,
+                reservationID: thisReservation.reservationID,
+                handInLocation: thisReservation.handInLocation,
+                pickUpLocation: thisReservation.pickUpLocation,
+                walletSerialNumber: walletSerialNumber,
+                verificationProcess: thisReservation.verificationProcess,
+                qrCode: true,
+            }
+        case 'threeDrivers':
+            return {
+                class: thisReservation.class,
+                carImage: thisReservation.carImage,
+                checkedIn: thisReservation.checkedIn,
+                driverOne: {
+                    role: thisReservation.driverOne.role,
+                    driver: thisReservation.driverOne.driver,
+                    method: thisReservation.driverOne.method,
+                    verified: thisReservation.driverOne.verified,
+                },
+                driverTwo: {
+                    role: thisReservation.driverTwo.role,
+                    driver: thisReservation.driverTwo.driver,
+                    method: thisReservation.driverTwo.method,
+                    verified: thisReservation.driverTwo.verified,
+                },
+                driverThree: {
+                    role: thisReservation.driverThree.role,
+                    driver: thisReservation.driverThree.driver,
+                    method: thisReservation.driverThree.method,
+                    verified: thisReservation.driverThree.verified,
+                },
+                otherInfo: {
+                    freeKM: thisReservation.otherInfo.freeKM,
+                    deposit: thisReservation.otherInfo.deposit,
+                    ownRisk: thisReservation.otherInfo.ownRisk,
+                    priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                },
+                rentPrice: thisReservation.rentPrice,
+                handInDate: thisReservation.handInDate,
+                handInTime: thisReservation.handInTime,
+                pickUpDate: thisReservation.pickUpDate,
+                pickUpTime: thisReservation.pickUpTime,
+                extraDriver: thisReservation.extraDriver,
+                paidDeposit: {
+                    paid: thisReservation.paidDeposit.paid,
+                    method: thisReservation.paidDeposit.method,
+                },
+                lowerOwnRisk: thisReservation.lowerOwnRisk,
+                orderDetails: thisReservation.orderDetails,
+                reservationID: thisReservation.reservationID,
+                handInLocation: thisReservation.handInLocation,
+                pickUpLocation: thisReservation.pickUpLocation,
+                walletSerialNumber: walletSerialNumber,
+                verificationProcess: thisReservation.verificationProcess,
+                qrCode: true,
 export const updateDBwithVerifiedProcess = (driversCount, thisReservation, currentUserDB) => {
     switch (driversCount) {
         case 'oneDriver':

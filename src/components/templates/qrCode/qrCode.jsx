@@ -11,6 +11,7 @@ import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 const QRCode = () => {
     const [currentReservation, setCurrentReservation] = useState(null)
     const [currentUser, setCurrentUser] = useState(null)
+    const [currentKey, setCurrentKey] = useState(false)
     const [loadingData, setLoadingData] = useState(false)
 
     const getData = async () => {
@@ -20,7 +21,7 @@ const QRCode = () => {
                     const index = res.data.carkey
                     const userID = res.data.user.userID
                     //setCurrentUser(res.data.user)
-                    //setCurrentKey(res.data.carkey)
+                    setCurrentKey(res.data.carkey)
                     getSpecificReservation(userID, index)
                 }
             })
@@ -77,7 +78,11 @@ const QRCode = () => {
                             loading={loadingData}
                             reservation={currentReservation}
                         />
-                        <ShowQRCode reservation={currentReservation} user={currentUser} />
+                        <ShowQRCode
+                            reservation={currentReservation}
+                            user={currentUser}
+                            carKey={currentKey}
+                        />
                     </>
                 ) : (
                     <>

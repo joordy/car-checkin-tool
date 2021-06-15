@@ -1,60 +1,15 @@
 // React imports
 import React, { useState, useEffect } from 'react'
 import * as Styles from './showQRCode.styles.js'
+import supabase from 'db/supabase.js'
+import { updateDBwithQRCodeWallet } from 'db/updateDatabase'
 import { Icons } from 'components/atoms/index'
 import { SingleButtonWrapper } from 'components/molecules/index'
 import { data } from 'browserslist'
 
 // React component
-const ShowQRCode = ({ reservation, user }) => {
+const ShowQRCode = ({ reservation, user, carKey }) => {
     console.log(reservation)
-    const user2 = {
-        firstName: 'Jelly',
-        lastName: 'de Jonger',
-        email: 'soyvvwbcezrullgosg@miucce.com',
-        password: 'Welkom123',
-        phone: '+31 6 12345678',
-        birthDate: '01-01-1997',
-        userID: '2e93f955-0632-493c-801f-3c1870fb6cad',
-        reservations: [
-            {
-                reservationID: '2e93f955-0632-493c-801f-3c1870fb6cad',
-                checkedIn: false,
-                pickUpLocation: 'Amsterdam, Overtoom',
-                pickUpDate: '02-06-2021',
-                pickUpTime: '09:00',
-                handInLocation: 'Amsterdam, Overtoom',
-                handInDate: '05-06-2921',
-                handInTime: '17:00',
-                class: 'A',
-                rentPrice: 600,
-                extraDriver: 0,
-                lowerOwnRisk: false,
-                otherInfo: {
-                    ownRisk: 450,
-                    deposit: 500,
-                    freeKM: 600,
-                    priceExtraKM: 0.3,
-                },
-                orderDetails: false,
-                verification: {
-                    method: 'location',
-                    verified: false,
-                },
-                paidDeposit: {
-                    method: 'location',
-                    paid: false,
-                },
-                wallet: {
-                    choice: Boolean,
-                    paid: Boolean,
-                },
-                qrCode: true,
-                walletSerialNumber: '4eab2de7-05f2-4c70-b229-c8a183d85d03',
-            },
-        ],
-    }
-
     const [walletSerial, setWalletSerial] = useState('')
 
     const {
@@ -69,7 +24,74 @@ const ShowQRCode = ({ reservation, user }) => {
         walletSerialNumber,
     } = reservation
 
-    console.log(qrCode, pickUpLocation)
+    const updateSpecificUser = async (resID, userID, index, walletSerialNumber) => {
+        const stateOne = reservation.driverOne && !reservation.driverTwo && !reservation.driverThree
+        const stateTwo = reservation.driverOne && reservation.driverTwo && reservation.driverThree
+        const stateThree = reservation.driverOne && reservation.driverTwo && reservation.driverThree
+
+        const updateWithSettings = () => {
+            if (stateOne) {
+                const test = updateDBwithQRCodeWallet('oneDriver', reservation, walletSerialNumber)
+                console.log(test)
+                return updateDBwithQRCodeWallet('oneDriver', reservation, walletSerialNumber)
+            } else if (stateTwo) {
+                const test = updateDBwithQRCodeWallet('twoDrivers', reservation, walletSerialNumber)
+                console.log(test)
+                return updateDBwithQRCodeWallet('twoDrivers', reservation, walletSerialNumber)
+            } else if (stateThree) {
+                const test = updateDBwithQRCodeWallet(
+                    'threeDrivers',
+                    reservation,
+                    walletSerialNumber,
+                )
+                console.log(test)
+                return updateDBwithQRCodeWallet('threeDrivers', reservation, walletSerialNumber)
+            }
+        }
+
+        if (index === 0) {
+            updateWithSettings()
+        } else if (index === 1) {
+            updateWithSettings()
+        } else if (index === 2) {
+            updateWithSettings()
+        }
+
+        // if (index === 0) {
+        //     const { data, error } = await supabase
+        //         .from('users')
+        //         .update({ carResOne: updateWithSettings() })
+        //         .eq('userID', userID)
+        //     if (!data) {
+        //         console.log(error)
+        //     } else {
+        //         console.log(data)
+        //         // window.location.href = '/qr'
+        //     }
+        // } else if (index === 1) {
+        //     const { data, error } = await supabase
+        //         .from('users')
+        //         .update({ carResTwo: updateWithSettings() })
+        //         .eq('userID', userID)
+        //     if (!data) {
+        //         console.log(error)
+        //     } else {
+        //         console.log(data)
+        //         // window.location.href = '/qr'
+        //     }
+        // } else if (index === 2) {
+        //     const { data, error } = await supabase
+        //         .from('users')
+        //         .update({ carResThree: updateWithSettings() })
+        //         .eq('userID', userID)
+        //     if (!data) {
+        //         console.log(error)
+        //     } else {
+        //         console.log(data)
+        //         // window.location.href = '/qr'
+        //     }
+        // }
+    }
 
     async function verifyCheckin() {
         if (qrCode) {
@@ -88,29 +110,33 @@ const ShowQRCode = ({ reservation, user }) => {
 
             console.log('userData', userData)
 
-            // createCheckin(userData).then((data) => {
-            //     if (data && data.status === '200') {
-            //         currentReservationData.qrCode = true
-            //         currentReservationData.walletSerialNumber = data.serialNumber
-            //         setWalletSerial(data.serialNumber)
-            //     } else {
-            //         console.error('Kan pas niet aanmaken')
-            //         console.log(data.errors)
-            //     }
-            // })
+            createCheckin(userData).then((data) => {
+                if (data && data.status === '200') {
+                    console.log('goed', data.serialNumber)
+                    addPassData(data.serialNumber)
+                } else {
+                    console.error('Kan pas niet aanmaken')
+                    console.log(data.errors)
+                }
+            })
         }
     }
 
-    // async function createCheckin(data) {
-    //     const response = await fetch(`/api/create-checkin`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data),
-    //     })
-    //     return response.json()
-    // }
+    async function addPassData(walletSerialNumber) {
+        setWalletSerial(walletSerialNumber)
+        await updateSpecificUser(reservationID, user.userID, carKey, walletSerialNumber)
+    }
+
+    async function createCheckin(data) {
+        const response = await fetch(`/api/create-checkin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        return response.json()
+    }
 
     useEffect(() => {
         verifyCheckin()
