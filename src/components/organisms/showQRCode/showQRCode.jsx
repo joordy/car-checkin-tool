@@ -6,17 +6,8 @@ import { SingleButtonWrapper } from 'components/molecules/index'
 import { data } from 'browserslist'
 
 // React component
-const ShowQRCode = ({ title }) => {
-    const moveRight = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(0)'
-    }
-
-    const moveLeft = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
-    }
-
+const ShowQRCode = ({ reservation, user }) => {
+    console.log(reservation)
     const user2 = {
         firstName: 'Jelly',
         lastName: 'de Jonger',
@@ -66,14 +57,6 @@ const ShowQRCode = ({ title }) => {
 
     const [walletSerial, setWalletSerial] = useState('')
 
-    const currentReservation = '2e93f955-0632-493c-801f-3c1870fb6cad'
-    const currentReservationData =
-        user2.reservations[
-            user2.reservations
-                .map((reservation) => reservation.reservationID)
-                .indexOf(currentReservation)
-        ]
-
     const {
         pickUpLocation,
         handInLocation,
@@ -84,46 +67,50 @@ const ShowQRCode = ({ title }) => {
         reservationID,
         qrCode,
         walletSerialNumber,
-    } = currentReservationData
+    } = reservation
+
+    console.log(qrCode, pickUpLocation)
 
     async function verifyCheckin() {
-        if (currentReservationData && qrCode === true) {
+        if (qrCode) {
             setWalletSerial(walletSerialNumber)
-        } else if (currentReservationData && qrCode === false) {
+        } else {
             const userData = {
-                firstName: user2.firstName,
-                fullName: `${user2.firstName} ${user2.lastName}`,
-                email: user2.email,
+                firstName: user.firstName,
+                fullName: `${user.firstName} ${user.lastName}`,
+                email: user.email,
                 pickUpLocation: pickUpLocation,
                 handInLocation: handInLocation,
-                pickUpDateTime: `${pickUpDate} ${pickUpTime}`,
-                handInDateTime: `${handInDate} ${handInTime}`,
+                pickUpDateTime: `${pickUpDate} ${pickUpTime.slice(0, -3)}`,
+                handInDateTime: `${handInDate} ${handInTime.slice(0, -3)}`,
                 reservationID: reservationID,
             }
 
-            createCheckin(userData).then((data) => {
-                if (data && data.status === '200') {
-                    currentReservationData.qrCode = true
-                    currentReservationData.walletSerialNumber = data.serialNumber
-                    setWalletSerial(data.serialNumber)
-                } else {
-                    console.error('Kan pas niet aanmaken')
-                    console.log(data.errors)
-                }
-            })
+            console.log('userData', userData)
+
+            // createCheckin(userData).then((data) => {
+            //     if (data && data.status === '200') {
+            //         currentReservationData.qrCode = true
+            //         currentReservationData.walletSerialNumber = data.serialNumber
+            //         setWalletSerial(data.serialNumber)
+            //     } else {
+            //         console.error('Kan pas niet aanmaken')
+            //         console.log(data.errors)
+            //     }
+            // })
         }
     }
 
-    async function createCheckin(data) {
-        const response = await fetch(`/api/create-checkin`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        return response.json()
-    }
+    // async function createCheckin(data) {
+    //     const response = await fetch(`/api/create-checkin`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data),
+    //     })
+    //     return response.json()
+    // }
 
     useEffect(() => {
         verifyCheckin()
@@ -139,19 +126,23 @@ const ShowQRCode = ({ title }) => {
                 <section>
                     <div>
                         <h3>Ophaallocatie</h3>
-                        <p>Overtoom</p>
+                        <p>{pickUpLocation}</p>
                     </div>
                     <div>
                         <h3>Afleverlocatie</h3>
-                        <p>Overtoom</p>
+                        <p>{handInLocation}</p>
                     </div>
                     <div>
                         <h3>Ophaaldatum</h3>
-                        <p>16 juni 2021 16:00</p>
+                        <p>
+                            {pickUpDate} {pickUpTime.slice(0, -3)}
+                        </p>
                     </div>
                     <div>
                         <h3>Afleverdatum</h3>
-                        <p>18 juni 2021 11:00</p>
+                        <p>
+                            {handInDate} {handInTime.slice(0, -3)}
+                        </p>
                     </div>
                 </section>
                 <img

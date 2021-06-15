@@ -10,6 +10,7 @@ import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 // React component
 const QRCode = () => {
     const [currentReservation, setCurrentReservation] = useState(null)
+    const [currentUser, setCurrentUser] = useState(null)
     const [loadingData, setLoadingData] = useState(false)
 
     const getData = async () => {
@@ -18,8 +19,8 @@ const QRCode = () => {
                 if (res.data) {
                     const index = res.data.carkey
                     const userID = res.data.user.userID
-                    setCurrentUser(res.data.user)
-                    setCurrentKey(res.data.carkey)
+                    //setCurrentUser(res.data.user)
+                    //setCurrentKey(res.data.carkey)
                     getSpecificReservation(userID, index)
                 }
             })
@@ -34,6 +35,7 @@ const QRCode = () => {
             if (!data) {
                 console.log(error)
             } else {
+                await setCurrentUser(data[0])
                 await setCurrentReservation(data[0].carResOne)
                 await setLoadingData(true)
             }
@@ -42,6 +44,7 @@ const QRCode = () => {
             if (!data) {
                 console.log(error)
             } else {
+                await setCurrentUser(data[0])
                 await setCurrentReservation(data[0].carResTwo)
                 await setLoadingData(true)
             }
@@ -50,6 +53,7 @@ const QRCode = () => {
             if (!data) {
                 console.log(error)
             } else {
+                await setCurrentUser(data[0])
                 await setCurrentReservation(data[0].carResThree)
                 await setLoadingData(true)
             }
@@ -73,7 +77,7 @@ const QRCode = () => {
                             loading={loadingData}
                             reservation={currentReservation}
                         />
-                        <ShowQRCode title="Reservering 1234" />
+                        <ShowQRCode reservation={currentReservation} user={currentUser} />
                     </>
                 ) : (
                     <>
