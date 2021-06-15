@@ -138,9 +138,9 @@ const StepsExplainer = (props) => {
                 typeSecondary="href"
                 typePrimary="btn"
                 textPrimary={buttonText}
-                textSecondary="Terug"
+                textSecondary="Terug naar overzicht"
                 linkPrimary="#"
-                linkSecondary={props.backLink}
+                linkSecondary="/reservations"
                 callbackPrimary={moveRight}
             />
         </Styles.Section>
