@@ -39,6 +39,20 @@ export const Section = styled.section`
             @media ${device.laptop} {
                 padding: 0 3em 0 3em;
             }
+            &.card-error {
+                padding: 2em;
+                @media ${device.laptop} {
+                    margin-left: 1.5em;
+                    width: 26em;
+                }
+            }
+            &.result-message {
+                padding: 2em;
+                @media ${device.laptop} {
+                    margin-left: 1.5em;
+                    width: 26em;
+                }
+            }
             &:nth-of-type(2) {
                 position: relative;
                 h2 {

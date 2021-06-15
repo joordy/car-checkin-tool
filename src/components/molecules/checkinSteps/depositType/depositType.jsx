@@ -15,7 +15,7 @@ const DepositType = ({ labelText, children }) => {
                 ref={parentRef}
                 style={
                     isOpen
-                        ? { height: `calc(30px + ${parentRef.current.scrollHeight}px)` }
+                        ? { height: `calc(60px + ${parentRef.current.scrollHeight}px)` }
                         : { height: '0px' }
                 }
             >
