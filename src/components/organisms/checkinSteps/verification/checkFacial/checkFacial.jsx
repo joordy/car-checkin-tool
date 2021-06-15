@@ -118,8 +118,8 @@ const CheckFacial = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log(...data)
-                // window.location.href = '/deposit'
+                // console.log(...data)
+                window.location.href = '/verification'
             }
         } else if (index === 1) {
             const { data, error } = await supabase
@@ -129,8 +129,8 @@ const CheckFacial = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log(...data)
-                // window.location.href = '/deposit'
+                // console.log(...data)
+                window.location.href = '/verification'
             }
         } else if (index === 2) {
             const { data, error } = await supabase
@@ -140,8 +140,8 @@ const CheckFacial = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log(...data)
-                // window.location.href = '/deposit'
+                // console.log(...data)
+                window.location.href = '/verification'
             }
         }
     }
