@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     const getData = async () => {
         try {
-            const data = await axios.get(`/api`).then((res) => {
+            const data = await axios.post(`/api`).then((res) => {
                 console.log('response', res)
             })
             console.log(data)
