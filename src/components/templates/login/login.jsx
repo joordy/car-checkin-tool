@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     const getData = async () => {
         try {
-            const res = await fetch('/api')
+            const res = await fetch('/api/reservations')
 
             const data = await res.text()
             console.log(data)

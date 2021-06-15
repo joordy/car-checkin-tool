@@ -9,7 +9,7 @@ module.exports = function (app) {
         }),
     )
     app.use(
-        createProxyMiddleware('/api', {
+        createProxyMiddleware('/api/reservations', {
             target: 'https://us-central1-car-check-in.cloudfunctions.net/app',
             secure: false,
             changeOrigin: true,
