@@ -1,5 +1,5 @@
 // React & Module imports
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import supabase from 'db/supabase.js'
 import * as Styles from './qrCode.styles.js'
@@ -10,30 +10,36 @@ import { StepsExplainer, ShowQRCode } from 'components/organisms/index'
 // React component
 const QRCode = () => {
     const [currentReservation, setCurrentReservation] = useState(null)
+    const [currentUser, setCurrentUser] = useState(null)
+    const [currentKey, setCurrentKey] = useState(false)
     const [loadingData, setLoadingData] = useState(false)
 
+    // Get data about the loged-in user from the server
     const getData = async () => {
         try {
-            const data = await axios.get(`/api/order-details`).then((res) => {
-                if (res.data) {
-                    const index = res.data.carkey
-                    const userID = res.data.user.userID
-                    setCurrentUser(res.data.user)
-                    setCurrentKey(res.data.carkey)
-                    getSpecificReservation(userID, index)
-                }
-            })
+            const data = await axios
+                .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api/order-details`)
+                .then((res) => {
+                    if (res.data) {
+                        const index = res.data.carkey
+                        const userID = res.data.user.userID
+                        setCurrentKey(res.data.carkey)
+                        getSpecificReservation(userID, index)
+                    }
+                })
         } catch (e) {
             console.log(e)
         }
     }
 
+    // Get the reservation & user data from Supabase
     async function getSpecificReservation(userID, index) {
         if (index == 0) {
             const { data, error } = await supabase.from('users').select().eq('userID', userID)
             if (!data) {
                 console.log(error)
             } else {
+                await setCurrentUser(data[0])
                 await setCurrentReservation(data[0].carResOne)
                 await setLoadingData(true)
             }
@@ -42,6 +48,7 @@ const QRCode = () => {
             if (!data) {
                 console.log(error)
             } else {
+                await setCurrentUser(data[0])
                 await setCurrentReservation(data[0].carResTwo)
                 await setLoadingData(true)
             }
@@ -50,12 +57,14 @@ const QRCode = () => {
             if (!data) {
                 console.log(error)
             } else {
+                await setCurrentUser(data[0])
                 await setCurrentReservation(data[0].carResThree)
                 await setLoadingData(true)
             }
         }
     }
 
+    // Get the data when component is mounted
     useEffect(() => {
         getData()
     }, [])
@@ -73,7 +82,11 @@ const QRCode = () => {
                             loading={loadingData}
                             reservation={currentReservation}
                         />
-                        <ShowQRCode title="Reservering 1234" />
+                        <ShowQRCode
+                            reservation={currentReservation}
+                            user={currentUser}
+                            carKey={currentKey}
+                        />
                     </>
                 ) : (
                     <>

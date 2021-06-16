@@ -65,8 +65,6 @@ export const StatusCheck = styled.section`
         margin: 0.25rem 0 1rem 0;
     }
     ul {
-        /* display: flex; */
-        /* justify-content: space-between; */
         list-style-type: none;
         margin: 0 0 1rem 0;
         padding: 0;
@@ -87,7 +85,7 @@ export const StatusCheck = styled.section`
                     align-items: center;
                     position: relative;
                     svg {
-                        width: 80%;
+                        width: 1.25rem;
                         path {
                             stroke: white;
                         }

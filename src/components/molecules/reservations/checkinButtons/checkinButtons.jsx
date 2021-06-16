@@ -32,7 +32,7 @@ const CheckinButtons = (props) => {
             carkey: props.carIndexKey,
         }
 
-        fetch(`/api/order-details`, {
+        fetch(`https://us-central1-car-check-in.cloudfunctions.net/app/api/order-details`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -74,6 +74,8 @@ const CheckinButtons = (props) => {
             return 'Controleer gegevens'
         } else if (!order && !verified && !paid) {
             return 'Inchecken'
+        } else if (!order && !paid) {
+            return 'Controleer  gegevens'
         }
     }
 
@@ -93,7 +95,7 @@ const CheckinButtons = (props) => {
                         </div>
                     )
                 } else {
-                    return <p>Inchecken kan over {days + 1} dagen.</p>
+                    return <p>Inchecken kan over {days - 7} dagen.</p>
                 }
             })()}
         </Styles.Wrapper>

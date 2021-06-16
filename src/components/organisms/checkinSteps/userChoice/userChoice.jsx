@@ -1,7 +1,6 @@
 // React imports
 import { useState } from 'react'
 import supabase from 'db/supabase.js'
-import axios from 'axios'
 import * as Styles from './userChoice.styles.js'
 import { updateDBwithPayMethod, updateDBwithVerifyMethod } from 'db/updateDatabase'
 
@@ -245,10 +244,8 @@ const UserChoice = (props) => {
                         }
                     }
                 } else if (choice === 'now') {
-                    console.log('fix shit now')
                     const moveElement = document.querySelector('.stepsWrapper')
                     moveElement.style.transform = `translateX(-300vw)`
-                    console.log(props.thisUser)
                 }
             }
         }
@@ -256,10 +253,8 @@ const UserChoice = (props) => {
 
     const changeState = (e) => {
         if (window.location.pathname === '/deposit') {
-            // console.log(e.currentTarget.value)
             setSelected(e.currentTarget.value)
         } else if (window.location.pathname === '/verification') {
-            console.log(e.currentTarget.value)
             setSelected(e.currentTarget.value)
         }
     }
@@ -340,12 +335,7 @@ const UserChoice = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log(data)
-                if (window.location.pathname.includes('verification')) {
-                    window.location.href = '/deposit'
-                } else if (window.location.pathname.includes('deposit')) {
-                    window.location.href = '/qr'
-                }
+                redirect()
             }
         } else if (props.carkey === 1) {
             const { data, error } = await supabase
@@ -355,12 +345,7 @@ const UserChoice = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log(data)
-                if (window.location.pathname.includes('verification')) {
-                    window.location.href = '/deposit'
-                } else if (window.location.pathname.includes('deposit')) {
-                    window.location.href = '/qr'
-                }
+                redirect()
             }
         } else if (props.carkey === 2) {
             const { data, error } = await supabase
@@ -370,13 +355,16 @@ const UserChoice = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                console.log(data)
-                if (window.location.pathname.includes('verification')) {
-                    window.location.href = '/deposit'
-                } else if (window.location.pathname.includes('deposit')) {
-                    window.location.href = '/qr'
-                }
+                redirect()
             }
+        }
+    }
+
+    const redirect = () => {
+        if (window.location.pathname.includes('verification')) {
+            window.location.href = '/deposit'
+        } else if (window.location.pathname.includes('deposit')) {
+            window.location.href = '/qr'
         }
     }
 

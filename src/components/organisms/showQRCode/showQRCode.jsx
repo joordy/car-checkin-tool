@@ -1,79 +1,21 @@
 // React imports
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import * as Styles from './showQRCode.styles.js'
-import { Icons } from 'components/atoms/index'
+import supabase from 'db/supabase.js'
+import axios from 'axios'
+import { updateDBwithQRCodeWallet } from 'db/updateDatabase'
+
+// Components
+import { ButtonPrimary } from 'components/atoms/index'
 import { SingleButtonWrapper } from 'components/molecules/index'
-import { data } from 'browserslist'
 
 // React component
-const ShowQRCode = ({ title }) => {
-    const moveRight = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(0)'
-    }
+const ShowQRCode = ({ reservation, user, carKey }) => {
+    // Use states for Apple Wallet Serial Number and if QR code is generated
+    const [walletSerial, setWalletSerial] = useState(false)
+    const [qrCodeGenerated, setqrCodeGenerated] = useState(false)
 
-    const moveLeft = () => {
-        const moveElement = document.querySelector('.stepsWrapper')
-        moveElement.style.transform = 'translateX(-200vw)'
-    }
-
-    const user2 = {
-        firstName: 'Jelly',
-        lastName: 'de Jonger',
-        email: 'soyvvwbcezrullgosg@miucce.com',
-        password: 'Welkom123',
-        phone: '+31 6 12345678',
-        birthDate: '01-01-1997',
-        userID: '2e93f955-0632-493c-801f-3c1870fb6cad',
-        reservations: [
-            {
-                reservationID: '2e93f955-0632-493c-801f-3c1870fb6cad',
-                checkedIn: false,
-                pickUpLocation: 'Amsterdam, Overtoom',
-                pickUpDate: '02-06-2021',
-                pickUpTime: '09:00',
-                handInLocation: 'Amsterdam, Overtoom',
-                handInDate: '05-06-2921',
-                handInTime: '17:00',
-                class: 'A',
-                rentPrice: 600,
-                extraDriver: 0,
-                lowerOwnRisk: false,
-                otherInfo: {
-                    ownRisk: 450,
-                    deposit: 500,
-                    freeKM: 600,
-                    priceExtraKM: 0.3,
-                },
-                orderDetails: false,
-                verification: {
-                    method: 'location',
-                    verified: false,
-                },
-                paidDeposit: {
-                    method: 'location',
-                    paid: false,
-                },
-                wallet: {
-                    choice: Boolean,
-                    paid: Boolean,
-                },
-                qrCode: true,
-                walletSerialNumber: '4eab2de7-05f2-4c70-b229-c8a183d85d03',
-            },
-        ],
-    }
-
-    const [walletSerial, setWalletSerial] = useState('')
-
-    const currentReservation = '2e93f955-0632-493c-801f-3c1870fb6cad'
-    const currentReservationData =
-        user2.reservations[
-            user2.reservations
-                .map((reservation) => reservation.reservationID)
-                .indexOf(currentReservation)
-        ]
-
+    // Destructure the reservation object
     const {
         pickUpLocation,
         handInLocation,
@@ -84,50 +26,104 @@ const ShowQRCode = ({ title }) => {
         reservationID,
         qrCode,
         walletSerialNumber,
-    } = currentReservationData
+    } = reservation
 
-    async function verifyCheckin() {
-        if (currentReservationData && qrCode === true) {
-            setWalletSerial(walletSerialNumber)
-        } else if (currentReservationData && qrCode === false) {
-            const userData = {
-                firstName: user2.firstName,
-                fullName: `${user2.firstName} ${user2.lastName}`,
-                email: user2.email,
-                pickUpLocation: pickUpLocation,
-                handInLocation: handInLocation,
-                pickUpDateTime: `${pickUpDate} ${pickUpTime}`,
-                handInDateTime: `${handInDate} ${handInTime}`,
-                reservationID: reservationID,
+    // Function to update database data (set qrCode to true and set wallet serial number)
+    const updateSpecificUser = async (resID, userID, index, walletSerialNumber) => {
+        const stateOne = reservation.driverOne && !reservation.driverTwo && !reservation.driverThree
+        const stateTwo = reservation.driverOne && reservation.driverTwo && reservation.driverThree
+        const stateThree = reservation.driverOne && reservation.driverTwo && reservation.driverThree
+
+        const updateWithSettings = () => {
+            if (stateOne) {
+                return updateDBwithQRCodeWallet('oneDriver', reservation, walletSerialNumber)
+            } else if (stateTwo) {
+                return updateDBwithQRCodeWallet('twoDrivers', reservation, walletSerialNumber)
+            } else if (stateThree) {
+                return updateDBwithQRCodeWallet('threeDrivers', reservation, walletSerialNumber)
             }
+        }
 
-            createCheckin(userData).then((data) => {
-                if (data && data.status === '200') {
-                    currentReservationData.qrCode = true
-                    currentReservationData.walletSerialNumber = data.serialNumber
-                    setWalletSerial(data.serialNumber)
-                } else {
-                    console.error('Kan pas niet aanmaken')
-                    console.log(data.errors)
-                }
-            })
+        if (index === 0) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResOne: updateWithSettings() })
+                .eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 1) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResTwo: updateWithSettings() })
+                .eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
+        } else if (index === 2) {
+            const { data, error } = await supabase
+                .from('users')
+                .update({ carResThree: updateWithSettings() })
+                .eq('userID', user.userID)
+            if (!data) {
+                console.log(error)
+            } else {
+                console.log(data)
+            }
         }
     }
 
-    async function createCheckin(data) {
-        const response = await fetch(`/api/create-checkin`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        return response.json()
+    // Create wallet pass & QR code
+    async function verifyCheckin() {
+        // Check if QR code was generates & set the wallet serial
+        if (qrCode) {
+            setWalletSerial(walletSerialNumber)
+        } else {
+            const userData = {
+                firstName: user.firstName,
+                fullName: `${user.firstName} ${user.lastName}`,
+                email: user.email,
+                pickUpLocation: pickUpLocation,
+                handInLocation: handInLocation,
+                pickUpDateTime: `${pickUpDate} ${pickUpTime.slice(0, -3)}`,
+                handInDateTime: `${handInDate} ${handInTime.slice(0, -3)}`,
+                reservationID: reservationID,
+            }
+            // Post data to the back-end to create wallet pass & send confirmation email
+            axios
+                .post(
+                    `https://us-central1-car-check-in.cloudfunctions.net/app/api/create-checkin`,
+                    userData,
+                )
+                .then((res) => {
+                    console.log(res.data)
+                    if (res.data && res.data.status === '200') {
+                        addPassData(res.data.serialNumber)
+                    } else {
+                        console.error('Kan pas niet aanmaken')
+                        console.log(res.data.errors)
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
     }
 
-    useEffect(() => {
+    // Set wallet serial number and update database data
+    async function addPassData(walletSerialNumber) {
+        setWalletSerial(walletSerialNumber)
+        await updateSpecificUser(reservationID, user.userID, carKey, walletSerialNumber)
+    }
+
+    // When "create QR code"-button is pressed: verifyCheckin, show QRcode and remove button
+    function makeQRCode(event) {
         verifyCheckin()
-    }, [])
+        setqrCodeGenerated(true)
+        event.target.remove()
+    }
 
     return (
         <Styles.Section>
@@ -139,36 +135,47 @@ const ShowQRCode = ({ title }) => {
                 <section>
                     <div>
                         <h3>Ophaallocatie</h3>
-                        <p>Overtoom</p>
+                        <p>{pickUpLocation}</p>
                     </div>
                     <div>
                         <h3>Afleverlocatie</h3>
-                        <p>Overtoom</p>
+                        <p>{handInLocation}</p>
                     </div>
                     <div>
                         <h3>Ophaaldatum</h3>
-                        <p>16 juni 2021 16:00</p>
+                        <p>
+                            {pickUpDate} {pickUpTime.slice(0, -3)}
+                        </p>
                     </div>
                     <div>
                         <h3>Afleverdatum</h3>
-                        <p>18 juni 2021 11:00</p>
+                        <p>
+                            {handInDate} {handInTime.slice(0, -3)}
+                        </p>
                     </div>
                 </section>
-                <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reservationID}`}
-                    alt="qr code met reserveringsinformatie"
-                />
-                <a
-                    href={`/card/${walletSerial}`}
-                    target="_blank"
-                    id="wallet"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="https://support.apple.com/library/content/dam/edam/applecare/images/nl_NL/iOS/add-to-apple-wallet-logo.png"
-                        alt="Voeg toe aan Apple Wallet"
-                    />
-                </a>
+                <ButtonPrimary type="btn" text="QR code openen" _callback={makeQRCode} />
+                {qrCodeGenerated ? (
+                    <>
+                        <img
+                            src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${reservationID}`}
+                            alt="qr code met reserveringsinformatie"
+                        />
+                        <a
+                            href={`/card/${walletSerial}`}
+                            target="_blank"
+                            id="wallet"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src="https://support.apple.com/library/content/dam/edam/applecare/images/nl_NL/iOS/add-to-apple-wallet-logo.png"
+                                alt="Voeg toe aan Apple Wallet"
+                            />
+                        </a>
+                    </>
+                ) : (
+                    <> </>
+                )}
             </article>
 
             <SingleButtonWrapper type="href" text="Terug naar account" link="/reservations" />
