@@ -1,130 +1,263 @@
 export const updateDBwithPayMethod = (loggedinUser, driversCount, thisReservation, userChoice) => {
-    switch (driversCount) {
-        case 'oneDriver':
-            return {
-                class: thisReservation.class,
-                carImage: thisReservation.carImage,
-                checkedIn: thisReservation.checkedIn,
-                driverOne: {
-                    role: thisReservation.driverOne.role,
-                    driver: thisReservation.driverOne.driver,
-                    method: thisReservation.driverOne.method,
-                    verified: thisReservation.driverOne.verified,
-                },
-                otherInfo: {
-                    freeKM: thisReservation.otherInfo.freeKM,
-                    deposit: thisReservation.otherInfo.deposit,
-                    ownRisk: thisReservation.otherInfo.ownRisk,
-                    priceExtraKM: thisReservation.otherInfo.priceExtraKM,
-                },
-                rentPrice: thisReservation.rentPrice,
-                handInDate: thisReservation.handInDate,
-                handInTime: thisReservation.handInTime,
-                pickUpDate: thisReservation.pickUpDate,
-                pickUpTime: thisReservation.pickUpTime,
-                extraDriver: thisReservation.extraDriver,
-                paidDeposit: {
-                    paid: thisReservation.paidDeposit.paid,
-                    method: userChoice,
-                },
-                lowerOwnRisk: thisReservation.lowerOwnRisk,
-                orderDetails: thisReservation.orderDetails,
-                reservationID: thisReservation.reservationID,
-                handInLocation: thisReservation.handInLocation,
-                pickUpLocation: thisReservation.pickUpLocation,
-                walletSerialNumber: thisReservation.walletSerialNumber,
-                verificationProcess: thisReservation.verificationProcess,
-                qrCode: thisReservation.qrCode,
+    switch (userChoice) {
+        case 'location':
+            switch (driversCount) {
+                case 'oneDriver':
+                    return {
+                        class: thisReservation.class,
+                        carImage: thisReservation.carImage,
+                        checkedIn: thisReservation.checkedIn,
+                        driverOne: {
+                            role: thisReservation.driverOne.role,
+                            driver: thisReservation.driverOne.driver,
+                            method: thisReservation.driverOne.method,
+                            verified: thisReservation.driverOne.verified,
+                        },
+                        otherInfo: {
+                            freeKM: thisReservation.otherInfo.freeKM,
+                            deposit: thisReservation.otherInfo.deposit,
+                            ownRisk: thisReservation.otherInfo.ownRisk,
+                            priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                        },
+                        rentPrice: thisReservation.rentPrice,
+                        handInDate: thisReservation.handInDate,
+                        handInTime: thisReservation.handInTime,
+                        pickUpDate: thisReservation.pickUpDate,
+                        pickUpTime: thisReservation.pickUpTime,
+                        extraDriver: thisReservation.extraDriver,
+                        paidDeposit: {
+                            paid: true,
+                            method: userChoice,
+                        },
+                        lowerOwnRisk: thisReservation.lowerOwnRisk,
+                        orderDetails: thisReservation.orderDetails,
+                        reservationID: thisReservation.reservationID,
+                        handInLocation: thisReservation.handInLocation,
+                        pickUpLocation: thisReservation.pickUpLocation,
+                        walletSerialNumber: thisReservation.walletSerialNumber,
+                        verificationProcess: thisReservation.verificationProcess,
+                        qrCode: thisReservation.qrCode,
+                    }
+                case 'twoDrivers':
+                    return {
+                        class: thisReservation.class,
+                        carImage: thisReservation.carImage,
+                        checkedIn: thisReservation.checkedIn,
+                        driverOne: {
+                            role: thisReservation.driverOne.role,
+                            driver: thisReservation.driverOne.driver,
+                            method: thisReservation.driverOne.method,
+                            verified: thisReservation.driverOne.verified,
+                        },
+                        driverTwo: {
+                            role: thisReservation.driverTwo.role,
+                            driver: thisReservation.driverTwo.driver,
+                            method: thisReservation.driverTwo.method,
+                            verified: thisReservation.driverTwo.verified,
+                        },
+                        otherInfo: {
+                            freeKM: thisReservation.otherInfo.freeKM,
+                            deposit: thisReservation.otherInfo.deposit,
+                            ownRisk: thisReservation.otherInfo.ownRisk,
+                            priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                        },
+                        rentPrice: thisReservation.rentPrice,
+                        handInDate: thisReservation.handInDate,
+                        handInTime: thisReservation.handInTime,
+                        pickUpDate: thisReservation.pickUpDate,
+                        pickUpTime: thisReservation.pickUpTime,
+                        extraDriver: thisReservation.extraDriver,
+                        paidDeposit: {
+                            paid: true,
+                            method: userChoice,
+                        },
+                        lowerOwnRisk: thisReservation.lowerOwnRisk,
+                        orderDetails: thisReservation.orderDetails,
+                        reservationID: thisReservation.reservationID,
+                        handInLocation: thisReservation.handInLocation,
+                        pickUpLocation: thisReservation.pickUpLocation,
+                        walletSerialNumber: thisReservation.walletSerialNumber,
+                        verificationProcess: thisReservation.verificationProcess,
+                        qrCode: thisReservation.qrCode,
+                    }
+                case 'threeDrivers':
+                    return {
+                        class: thisReservation.class,
+                        carImage: thisReservation.carImage,
+                        checkedIn: thisReservation.checkedIn,
+                        driverOne: {
+                            role: thisReservation.driverOne.role,
+                            driver: thisReservation.driverOne.driver,
+                            method: thisReservation.driverOne.method,
+                            verified: thisReservation.driverOne.verified,
+                        },
+                        driverTwo: {
+                            role: thisReservation.driverTwo.role,
+                            driver: thisReservation.driverTwo.driver,
+                            method: thisReservation.driverTwo.method,
+                            verified: thisReservation.driverTwo.verified,
+                        },
+                        driverThree: {
+                            role: thisReservation.driverThree.role,
+                            driver: thisReservation.driverThree.driver,
+                            method: thisReservation.driverThree.method,
+                            verified: thisReservation.driverThree.verified,
+                        },
+                        otherInfo: {
+                            freeKM: thisReservation.otherInfo.freeKM,
+                            deposit: thisReservation.otherInfo.deposit,
+                            ownRisk: thisReservation.otherInfo.ownRisk,
+                            priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                        },
+                        rentPrice: thisReservation.rentPrice,
+                        handInDate: thisReservation.handInDate,
+                        handInTime: thisReservation.handInTime,
+                        pickUpDate: thisReservation.pickUpDate,
+                        pickUpTime: thisReservation.pickUpTime,
+                        extraDriver: thisReservation.extraDriver,
+                        paidDeposit: {
+                            paid: true,
+                            method: userChoice,
+                        },
+                        lowerOwnRisk: thisReservation.lowerOwnRisk,
+                        orderDetails: thisReservation.orderDetails,
+                        reservationID: thisReservation.reservationID,
+                        handInLocation: thisReservation.handInLocation,
+                        pickUpLocation: thisReservation.pickUpLocation,
+                        walletSerialNumber: thisReservation.walletSerialNumber,
+                        verificationProcess: thisReservation.verificationProcess,
+                        qrCode: thisReservation.qrCode,
+                    }
             }
-        case 'twoDrivers':
-            return {
-                class: thisReservation.class,
-                carImage: thisReservation.carImage,
-                checkedIn: thisReservation.checkedIn,
-                driverOne: {
-                    role: thisReservation.driverOne.role,
-                    driver: thisReservation.driverOne.driver,
-                    method: thisReservation.driverOne.method,
-                    verified: thisReservation.driverOne.verified,
-                },
-                driverTwo: {
-                    role: thisReservation.driverTwo.role,
-                    driver: thisReservation.driverTwo.driver,
-                    method: thisReservation.driverTwo.method,
-                    verified: thisReservation.driverTwo.verified,
-                },
-                otherInfo: {
-                    freeKM: thisReservation.otherInfo.freeKM,
-                    deposit: thisReservation.otherInfo.deposit,
-                    ownRisk: thisReservation.otherInfo.ownRisk,
-                    priceExtraKM: thisReservation.otherInfo.priceExtraKM,
-                },
-                rentPrice: thisReservation.rentPrice,
-                handInDate: thisReservation.handInDate,
-                handInTime: thisReservation.handInTime,
-                pickUpDate: thisReservation.pickUpDate,
-                pickUpTime: thisReservation.pickUpTime,
-                extraDriver: thisReservation.extraDriver,
-                paidDeposit: {
-                    paid: thisReservation.paidDeposit.paid,
-                    method: userChoice,
-                },
-                lowerOwnRisk: thisReservation.lowerOwnRisk,
-                orderDetails: thisReservation.orderDetails,
-                reservationID: thisReservation.reservationID,
-                handInLocation: thisReservation.handInLocation,
-                pickUpLocation: thisReservation.pickUpLocation,
-                walletSerialNumber: thisReservation.walletSerialNumber,
-                verificationProcess: thisReservation.verificationProcess,
-                qrCode: thisReservation.qrCode,
-            }
-        case 'threeDrivers':
-            return {
-                class: thisReservation.class,
-                carImage: thisReservation.carImage,
-                checkedIn: thisReservation.checkedIn,
-                driverOne: {
-                    role: thisReservation.driverOne.role,
-                    driver: thisReservation.driverOne.driver,
-                    method: thisReservation.driverOne.method,
-                    verified: thisReservation.driverOne.verified,
-                },
-                driverTwo: {
-                    role: thisReservation.driverTwo.role,
-                    driver: thisReservation.driverTwo.driver,
-                    method: thisReservation.driverTwo.method,
-                    verified: thisReservation.driverTwo.verified,
-                },
-                driverThree: {
-                    role: thisReservation.driverThree.role,
-                    driver: thisReservation.driverThree.driver,
-                    method: thisReservation.driverThree.method,
-                    verified: thisReservation.driverThree.verified,
-                },
-                otherInfo: {
-                    freeKM: thisReservation.otherInfo.freeKM,
-                    deposit: thisReservation.otherInfo.deposit,
-                    ownRisk: thisReservation.otherInfo.ownRisk,
-                    priceExtraKM: thisReservation.otherInfo.priceExtraKM,
-                },
-                rentPrice: thisReservation.rentPrice,
-                handInDate: thisReservation.handInDate,
-                handInTime: thisReservation.handInTime,
-                pickUpDate: thisReservation.pickUpDate,
-                pickUpTime: thisReservation.pickUpTime,
-                extraDriver: thisReservation.extraDriver,
-                paidDeposit: {
-                    paid: thisReservation.paidDeposit.paid,
-                    method: userChoice,
-                },
-                lowerOwnRisk: thisReservation.lowerOwnRisk,
-                orderDetails: thisReservation.orderDetails,
-                reservationID: thisReservation.reservationID,
-                handInLocation: thisReservation.handInLocation,
-                pickUpLocation: thisReservation.pickUpLocation,
-                walletSerialNumber: thisReservation.walletSerialNumber,
-                verificationProcess: thisReservation.verificationProcess,
-                qrCode: thisReservation.qrCode,
+
+        case 'skip':
+            switch (driversCount) {
+                case 'oneDriver':
+                    return {
+                        class: thisReservation.class,
+                        carImage: thisReservation.carImage,
+                        checkedIn: thisReservation.checkedIn,
+                        driverOne: {
+                            role: thisReservation.driverOne.role,
+                            driver: thisReservation.driverOne.driver,
+                            method: thisReservation.driverOne.method,
+                            verified: thisReservation.driverOne.verified,
+                        },
+                        otherInfo: {
+                            freeKM: thisReservation.otherInfo.freeKM,
+                            deposit: thisReservation.otherInfo.deposit,
+                            ownRisk: thisReservation.otherInfo.ownRisk,
+                            priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                        },
+                        rentPrice: thisReservation.rentPrice,
+                        handInDate: thisReservation.handInDate,
+                        handInTime: thisReservation.handInTime,
+                        pickUpDate: thisReservation.pickUpDate,
+                        pickUpTime: thisReservation.pickUpTime,
+                        extraDriver: thisReservation.extraDriver,
+                        paidDeposit: {
+                            paid: thisReservation.paidDeposit.paid,
+                            method: userChoice,
+                        },
+                        lowerOwnRisk: thisReservation.lowerOwnRisk,
+                        orderDetails: thisReservation.orderDetails,
+                        reservationID: thisReservation.reservationID,
+                        handInLocation: thisReservation.handInLocation,
+                        pickUpLocation: thisReservation.pickUpLocation,
+                        walletSerialNumber: thisReservation.walletSerialNumber,
+                        verificationProcess: thisReservation.verificationProcess,
+                        qrCode: thisReservation.qrCode,
+                    }
+                case 'twoDrivers':
+                    return {
+                        class: thisReservation.class,
+                        carImage: thisReservation.carImage,
+                        checkedIn: thisReservation.checkedIn,
+                        driverOne: {
+                            role: thisReservation.driverOne.role,
+                            driver: thisReservation.driverOne.driver,
+                            method: thisReservation.driverOne.method,
+                            verified: thisReservation.driverOne.verified,
+                        },
+                        driverTwo: {
+                            role: thisReservation.driverTwo.role,
+                            driver: thisReservation.driverTwo.driver,
+                            method: thisReservation.driverTwo.method,
+                            verified: thisReservation.driverTwo.verified,
+                        },
+                        otherInfo: {
+                            freeKM: thisReservation.otherInfo.freeKM,
+                            deposit: thisReservation.otherInfo.deposit,
+                            ownRisk: thisReservation.otherInfo.ownRisk,
+                            priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                        },
+                        rentPrice: thisReservation.rentPrice,
+                        handInDate: thisReservation.handInDate,
+                        handInTime: thisReservation.handInTime,
+                        pickUpDate: thisReservation.pickUpDate,
+                        pickUpTime: thisReservation.pickUpTime,
+                        extraDriver: thisReservation.extraDriver,
+                        paidDeposit: {
+                            paid: thisReservation.paidDeposit.paid,
+                            method: userChoice,
+                        },
+                        lowerOwnRisk: thisReservation.lowerOwnRisk,
+                        orderDetails: thisReservation.orderDetails,
+                        reservationID: thisReservation.reservationID,
+                        handInLocation: thisReservation.handInLocation,
+                        pickUpLocation: thisReservation.pickUpLocation,
+                        walletSerialNumber: thisReservation.walletSerialNumber,
+                        verificationProcess: thisReservation.verificationProcess,
+                        qrCode: thisReservation.qrCode,
+                    }
+                case 'threeDrivers':
+                    return {
+                        class: thisReservation.class,
+                        carImage: thisReservation.carImage,
+                        checkedIn: thisReservation.checkedIn,
+                        driverOne: {
+                            role: thisReservation.driverOne.role,
+                            driver: thisReservation.driverOne.driver,
+                            method: thisReservation.driverOne.method,
+                            verified: thisReservation.driverOne.verified,
+                        },
+                        driverTwo: {
+                            role: thisReservation.driverTwo.role,
+                            driver: thisReservation.driverTwo.driver,
+                            method: thisReservation.driverTwo.method,
+                            verified: thisReservation.driverTwo.verified,
+                        },
+                        driverThree: {
+                            role: thisReservation.driverThree.role,
+                            driver: thisReservation.driverThree.driver,
+                            method: thisReservation.driverThree.method,
+                            verified: thisReservation.driverThree.verified,
+                        },
+                        otherInfo: {
+                            freeKM: thisReservation.otherInfo.freeKM,
+                            deposit: thisReservation.otherInfo.deposit,
+                            ownRisk: thisReservation.otherInfo.ownRisk,
+                            priceExtraKM: thisReservation.otherInfo.priceExtraKM,
+                        },
+                        rentPrice: thisReservation.rentPrice,
+                        handInDate: thisReservation.handInDate,
+                        handInTime: thisReservation.handInTime,
+                        pickUpDate: thisReservation.pickUpDate,
+                        pickUpTime: thisReservation.pickUpTime,
+                        extraDriver: thisReservation.extraDriver,
+                        paidDeposit: {
+                            paid: thisReservation.paidDeposit.paid,
+                            method: userChoice,
+                        },
+                        lowerOwnRisk: thisReservation.lowerOwnRisk,
+                        orderDetails: thisReservation.orderDetails,
+                        reservationID: thisReservation.reservationID,
+                        handInLocation: thisReservation.handInLocation,
+                        pickUpLocation: thisReservation.pickUpLocation,
+                        walletSerialNumber: thisReservation.walletSerialNumber,
+                        verificationProcess: thisReservation.verificationProcess,
+                        qrCode: thisReservation.qrCode,
+                    }
             }
     }
 }
@@ -147,7 +280,7 @@ export const updateDBwithVerifyMethod = (
                 case 'oneDriver':
                     return {
                         class: thisReservation.class,
-                        carImage: thisReservation.Image,
+                        carImage: thisReservation.carImage,
                         checkedIn: thisReservation.checkedIn,
                         driverOne: {
                             role: thisReservation.driverOne.role,
@@ -185,7 +318,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -227,7 +360,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -272,7 +405,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -320,7 +453,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -368,7 +501,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverThree') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -420,7 +553,7 @@ export const updateDBwithVerifyMethod = (
                 case 'oneDriver':
                     return {
                         class: thisReservation.class,
-                        carImage: thisReservation.Image,
+                        carImage: thisReservation.carImage,
                         checkedIn: thisReservation.checkedIn,
                         driverOne: {
                             role: thisReservation.driverOne.role,
@@ -458,7 +591,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -500,7 +633,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -545,7 +678,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -593,7 +726,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -641,7 +774,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverThree') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -966,7 +1099,7 @@ export const updateDBwithDriverOne = (
         case 'oneDriver':
             return {
                 class: thisReservation.class,
-                carImage: thisReservation.Image,
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -1004,7 +1137,7 @@ export const updateDBwithDriverOne = (
             if (driverObj === 'driverOne') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1046,7 +1179,7 @@ export const updateDBwithDriverOne = (
             } else if (driverObj === 'driverTwo') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1091,7 +1224,7 @@ export const updateDBwithDriverOne = (
             if (driverObj === 'driverOne') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1139,7 +1272,7 @@ export const updateDBwithDriverOne = (
             } else if (driverObj === 'driverTwo') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1187,7 +1320,7 @@ export const updateDBwithDriverOne = (
             } else if (driverObj === 'driverThree') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,

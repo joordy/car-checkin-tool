@@ -7,7 +7,6 @@ import * as Styles from './reservationCard.styles.js'
 // Components
 import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
-import { verifiedDriver } from 'constants/actions/index.js'
 
 // React Component
 const ReservationCard = (props) => {
@@ -17,7 +16,7 @@ const ReservationCard = (props) => {
 
     const getData = async () => {
         try {
-            const data = await axios
+            await axios
                 .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations`)
                 .then((res) => {
                     if (res.data) {
@@ -91,6 +90,55 @@ const ReservationCard = (props) => {
         }
     }
 
+    function whoIsVerified() {
+        // Create an array with drivers that have skipped verification
+        const skipedDrivers = []
+        // Create an array with all drivers
+        const drivers = Object.keys(reservation).filter((key) => key.includes('driver'))
+        // Check if driver was not verified and if method = skip
+        drivers.forEach((driver) => {
+            if (reservation[driver].method === 'skip' && !reservation[driver].verified) {
+                skipedDrivers.push(reservation[driver].driver)
+            }
+        })
+        if (skipedDrivers.length === 0) {
+            return (
+                <>
+                    <div className="wrapper">
+                        <div>
+                            <Icons type="userCheck" />
+                        </div>
+                        <p>Verificatie rijbewijs</p>
+                    </div>
+                </>
+            )
+        } else if (skipedDrivers.length === 1) {
+            return (
+                <>
+                    <div className="wrapper incomplete">
+                        <div>
+                            <Icons type="userCheck" />
+                        </div>
+                        <p>Verificatie rijbewijs</p>
+                        <p>Bestuurder &quot;{skipedDrivers[0]}&quot; ontbreekt</p>
+                    </div>
+                </>
+            )
+        } else if (skipedDrivers.length > 1) {
+            return (
+                <>
+                    <div className="wrapper incomplete">
+                        <div>
+                            <Icons type="userCheck" />
+                        </div>
+                        <p>Verificatie rijbewijs</p>
+                        <p>Bestuurders {skipedDrivers.join(', ')} ontbreken</p>
+                    </div>
+                </>
+            )
+        }
+    }
+
     return (
         <>
             {loadingData ? (
@@ -151,14 +199,14 @@ const ReservationCard = (props) => {
                                                         <div>
                                                             <Icons type="data" />
                                                         </div>
-                                                        <p>Controle Gegevens</p>
+                                                        <p>Controle gegevens</p>
                                                     </div>
                                                 ) : (
                                                     <div className="wrapper">
                                                         <div>
                                                             <Icons type="data" />
                                                         </div>
-                                                        <p>Controle Gegevens</p>
+                                                        <p>Controle gegevens</p>
                                                     </div>
                                                 )}
                                             </li>
@@ -171,12 +219,7 @@ const ReservationCard = (props) => {
                                                         <p>Verificatie rijbewijs</p>
                                                     </div>
                                                 ) : (
-                                                    <div className="wrapper">
-                                                        <div>
-                                                            <Icons type="userCheck" />
-                                                        </div>
-                                                        <p>Verificatie rijbewijs</p>
-                                                    </div>
+                                                    whoIsVerified()
                                                 )}
                                             </li>
                                             <li>

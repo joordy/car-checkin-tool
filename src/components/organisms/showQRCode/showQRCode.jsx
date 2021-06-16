@@ -89,8 +89,8 @@ const ShowQRCode = ({ reservation, user, carKey }) => {
                 email: user.email,
                 pickUpLocation: pickUpLocation,
                 handInLocation: handInLocation,
-                pickUpDateTime: `${pickUpDate} ${pickUpTime.slice(0, -3)}`,
-                handInDateTime: `${handInDate} ${handInTime.slice(0, -3)}`,
+                pickUpDateTime: `${pickUpDate} ${pickUpTime}`,
+                handInDateTime: `${handInDate} ${handInTime}`,
                 reservationID: reservationID,
             }
             // Post data to the back-end to create wallet pass & send confirmation email

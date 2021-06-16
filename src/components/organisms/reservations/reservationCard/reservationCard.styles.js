@@ -73,6 +73,7 @@ export const StatusCheck = styled.section`
             width: 100%;
             div.wrapper {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 > div {
                     width: 2.5rem;
@@ -111,6 +112,23 @@ export const StatusCheck = styled.section`
                 }
                 p {
                     color: ${colors.secondary};
+                }
+            }
+            div.incomplete {
+                > div {
+                    background-color: ${colors.warning};
+                }
+                p {
+                    &:first-of-type {
+                        color: ${colors.warning};
+                    }
+                    &:nth-of-type(2) {
+                        width: 100%;
+                        text-align: left;
+                        padding: 0 1em 0 3.5em;
+                        margin: -0.8em 0 1em 0;
+                        color: ${colors.secondaryText};
+                    }
                 }
             }
         }

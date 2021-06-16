@@ -3,15 +3,17 @@ import { useState } from 'react'
 import axios from 'axios'
 import * as Styles from './loginDesktop.styles.js'
 import supabase from 'db/supabase.js'
+
+// Component imports
 import {
     TextInput,
     PasswordInput,
     Label,
     InlineButton,
-    ButtonSecondary,
     FormButtonPrimaryLarge,
 } from 'components/atoms/index.js'
 import { LoginError } from 'components/molecules/index'
+import { Icons } from 'components/atoms/index'
 
 // React component
 const LoginDesktop = () => {
@@ -23,12 +25,16 @@ const LoginDesktop = () => {
     const logoImgSrc = 'https://svgshare.com/i/XWd.svg'
 
     const postData = async (loggedInUser) => {
-        const res = await axios
+        await axios
             .post(
                 'https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations',
                 loggedInUser,
             )
-            .then((res) => console.log(res))
+            .then((res) => {
+                setTimeout(() => {
+                    window.location.href = '/reservations'
+                }, 100)
+            })
     }
 
     const readDB = async (email) => {
@@ -49,11 +55,14 @@ const LoginDesktop = () => {
         event.preventDefault()
         email = event.target.email.value
         await readDB(email)
-        if (loggedIn) {
-            window.location.replace('/reservations')
-        } else {
+        if (!loggedIn) {
             setShowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
         }
+        // if (loggedIn) {
+        //     window.location.replace('/reservations')
+        // } else {
+        //     setShowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
+        // }
     }
 
     return (
@@ -61,9 +70,42 @@ const LoginDesktop = () => {
             <Styles.LoginDesktop>
                 <header>
                     <section>
-                        <img src={logoImgSrc} alt="Logo" />
-                        <h1>Gemakkelijk online inchecken</h1>
-                        <p>En een overzicht van jouw reserveringen bij Europcar</p>
+                        <div>
+                            <img src={logoImgSrc} alt="Logo" />
+                            <h1>Gemakkelijk online inchecken</h1>
+                            <p>En een overzicht van jouw reserveringen bij Europcar</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <Icons type="users" width="1.8em" height="1.8em" />
+                                    <div>
+                                        <p>Niet meer in de rij staan</p>
+                                        <p>Je haalt je auto snel op bij de Express balie</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Icons type="forward" width="1.8em" height="1.8em" />
+                                    <div>
+                                        <p>Het is zo gedaan</p>
+                                        <p>
+                                            Bevestig je reservering & identiteit en regel de borg.
+                                            Klaar binnen 5 minuten.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Icons type="lock" width="1.7em" height="1.7em" />
+                                    <div>
+                                        <p>Het is veilig</p>
+                                        <p>
+                                            We beveiligen je data en doen niets zonder jouw
+                                            toestemming.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </section>
                 </header>
                 <div>
@@ -74,7 +116,7 @@ const LoginDesktop = () => {
                         Reserveren
                     </a>
                     {showWrongEmailText && <LoginError />}
-                    <form action="/reservations" onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <ul className="inputs">
                             <li>
                                 <Label text="E-mailadres" forId="email" />

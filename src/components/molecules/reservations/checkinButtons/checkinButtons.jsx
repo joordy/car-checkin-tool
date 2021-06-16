@@ -43,19 +43,22 @@ const CheckinButtons = (props) => {
         let order = res.orderDetails
         let verified = res.verificationProcess
         let paid = res.paidDeposit.paid
-        if (order && !verified && !paid) {
-            window.location.href = '/verification'
-        } else if (order && verified && !paid) {
-            window.location.href = '/deposit'
-        } else if (order && verified && paid) {
-            window.location.href = '/qr'
-        } else if (order && !verified && paid) {
-            window.location.href = '/verification'
-        } else if (!order && !verified && paid) {
-            window.location.href = '/order-details'
-        } else if (!order && !verified && !paid) {
-            window.location.href = '/order-details'
-        }
+        setTimeout(() => {
+            console.log('go to page bla')
+            if (order && !verified && !paid) {
+                window.location.href = '/verification'
+            } else if (order && verified && !paid) {
+                window.location.href = '/deposit'
+            } else if (order && verified && paid) {
+                window.location.href = '/qr'
+            } else if (order && !verified && paid) {
+                window.location.href = '/verification'
+            } else if (!order && !verified && paid) {
+                window.location.href = '/order-details'
+            } else if (!order && !verified && !paid) {
+                window.location.href = '/order-details'
+            }
+        }, 150)
     }
 
     const stepsChecker = (res) => {

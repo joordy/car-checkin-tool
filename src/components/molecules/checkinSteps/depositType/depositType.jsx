@@ -1,7 +1,6 @@
 // React imports
 import React, { useState, useRef } from 'react'
 import * as Styles from './depositType.styles.js'
-import { Icons } from 'components/atoms/index.js'
 
 // React component
 const DepositType = ({ labelText, children }) => {

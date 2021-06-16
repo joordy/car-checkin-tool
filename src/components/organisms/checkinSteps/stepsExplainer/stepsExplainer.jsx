@@ -19,6 +19,7 @@ const StepsExplainer = (props) => {
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
+    // Get user data from back-end
     const getData = async () => {
         try {
             const data = await axios
@@ -37,6 +38,7 @@ const StepsExplainer = (props) => {
         }
     }
 
+    // Set default content
     let title = 'Inchecken in slechts 3 stappen'
     let buttonText = 'Volgende'
     let time
@@ -44,6 +46,7 @@ const StepsExplainer = (props) => {
     let step2 = false
     let step3 = false
 
+    // Fetch current reservation data from Supabase
     async function getSpecificReservation(userID, index) {
         if (index == 0) {
             const { data, error } = await supabase.from('users').select().eq('userID', userID)
@@ -72,15 +75,21 @@ const StepsExplainer = (props) => {
         }
     }
 
+    // Fetch data when component is mounted
     useEffect(() => {
         getData()
     }, [])
 
+    // If data has finished loading > Change content based on completed steps
     if (loadingData) {
         step1 = currentReservation.orderDetails
         step2 = currentReservation.verificationProcess
+        const driverVerification = currentReservation.driverOne.method
         const payMethod = currentReservation.paidDeposit.method
         step3 = currentReservation.paidDeposit.paid
+
+        console.log(currentReservation)
+        console.log(step1, step2, step3, driverVerification, payMethod)
 
         if (!step1 && !step2 && !step3) {
             title = 'Inchecken in 3 stappen'
@@ -89,18 +98,30 @@ const StepsExplainer = (props) => {
                 <p className="time">Dit proces neemt ongeveer 5 minuten van jouw tijd in beslag.</p>
             )
         } else if (step1 && !step2 && !step3) {
-            title = 'Gelukt! Je kunt verder naar stap 2'
-            buttonText = 'Start verificatie'
-        } else if (step1 && step2 && !step3 && !payMethod) {
+            title = 'Gelukt! Je kunt verder'
+            buttonText = 'Verder'
+        } else if (
+            (step1 && step2 && !step3) ||
+            (step1 && driverVerification == 'skip' && !step3) ||
+            (step1 && driverVerification == 'location' && !step3)
+        ) {
             title = 'Gelukt! Je bent bijna klaar'
-            buttonText = 'Regel borg'
-        } else if (step1 && step2 && step3) {
+            buttonText = 'Verder'
+        } else if (
+            (step1 && step2 && step3) ||
+            (step1 && step2 && payMethod == 'skip') ||
+            (step1 && step2 && payMethod == 'location') ||
+            (step1 && driverVerification == 'skip' && payMethod == 'skip') ||
+            (step1 && driverVerification == 'location' && payMethod == 'location') ||
+            (step1 && driverVerification == 'skip' && step3) ||
+            (step1 && driverVerification == 'location' && step3)
+        ) {
             title = 'Geregeld! Ontvang nu je QR-code'
             buttonText = 'Afronden'
         } else if (step1 && !step2 && step3) {
             title = 'Ga verder met de verificatie'
             buttonText = 'Doorgaan'
-        } else if (step1 && step2 && !step3 && payMethod) {
+        } else if (step1 && step2 && !step3) {
             title = 'Bijna klaar! Regel nu de borg '
             buttonText = 'Doorgaan'
         }

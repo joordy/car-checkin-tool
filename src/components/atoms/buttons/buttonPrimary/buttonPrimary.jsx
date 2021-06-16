@@ -13,6 +13,7 @@ const ButtonPrimary = ({
     disabled,
     buttonType,
 }) => {
+    // Return component based on the requested type of button
     switch (type) {
         case 'btn':
             return (

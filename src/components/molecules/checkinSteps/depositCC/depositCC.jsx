@@ -42,6 +42,8 @@ const DepositCC = ({ labelText, children }) => {
             })
     }, [])
 
+    // Set the preffered styling for the Stripe payment frame
+    // Hide the postal code and use a similar Google font
     const cardStyle = {
         hidePostalCode: true,
         iconStyle: 'solid',
@@ -104,7 +106,6 @@ const DepositCC = ({ labelText, children }) => {
 
             {error && (
                 <Warnings type="failed" classes="card-error" role="alert">
-                    {/*<p>{error}</p>*/}
                     <p>We kunnen je betalingswijze niet verifiëren. Probeer het opnieuw.</p>
                 </Warnings>
             )}

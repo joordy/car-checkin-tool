@@ -335,7 +335,9 @@ const UserChoice = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                redirect()
+                setTimeout(() => {
+                    redirect()
+                }, 100)
             }
         } else if (props.carkey === 1) {
             const { data, error } = await supabase
@@ -345,7 +347,9 @@ const UserChoice = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                redirect()
+                setTimeout(() => {
+                    redirect()
+                }, 100)
             }
         } else if (props.carkey === 2) {
             const { data, error } = await supabase
@@ -355,14 +359,84 @@ const UserChoice = (props) => {
             if (!data) {
                 console.log(error)
             } else {
-                redirect()
+                setTimeout(() => {
+                    redirect()
+                }, 100)
             }
         }
     }
 
-    const redirect = () => {
+    console.log(props.reservation)
+    console.log(props)
+    const redirect = async () => {
         if (window.location.pathname.includes('verification')) {
-            window.location.href = '/deposit'
+            window.location.href = '/verification'
+            // if (props.carkey === 0) {
+            //     const { data, error } = await supabase
+            //         .from('users')
+            //         .select()
+            //         .eq('userID', props.loggedinUser.userID)
+            //     if (!data) {
+            //         console.log(error)
+            //     } else {
+            //         const driverOne = data[0].carResOne.driverOne
+            //         const driverTwo = data[0].carResOne.driverTwo
+            //         const driverThree = data[0].carResOne.driverThree
+            //         console.log('test test ', data[0].carResOne)
+            //         if (driverOne.method === 'location' || driverOne.method === 'skip') {
+            //             console.log('methode is defined')
+            //             if (driverTwo.method === '' || driverTwo.method === 'skip') {
+            //                 window.location.href = '/verification'
+            //             } else if (driverTwo.method === '' || driverTwo.method === 'skip') {
+            //                 window.location.href = '/verification'
+            //             } else {
+            //                 window.location.href = '/deposit'
+            //             }
+            //         } else if (driverTwo.method === 'location' || driverTwo.method === 'skip') {
+            //             console.log('methode 2 is defined')
+            //         } else if (driverThree.method === 'location' || driverThree.method === 'skip') {
+            //             console.log('methode 3 is defined')
+            //         }
+            //     }
+            // } else if (props.carkey === 1) {
+            //     const { data, error } = await supabase
+            //         .from('users')
+            //         .select()
+            //         .eq('userID', props.loggedinUser.userID)
+            //     if (!data) {
+            //         console.log(error)
+            //     } else {
+            //         console.log('test test ', data[0].carResTwo)
+            //     }
+            // } else if (props.carkey === 3) {
+            //     const { data, error } = await supabase
+            //         .from('users')
+            //         .select()
+            //         .eq('userID', props.loggedinUser.userID)
+            //     if (!data) {
+            //         console.log(error)
+            //     } else {
+            //         console.log('test test ', data[0].carResThree)
+            //     }
+            // }
+            // console.log(index)
+
+            // console.log('props reserv', props.reservation)
+
+            // //window.location.href = '/deposit'
+            // // Create an array with drivers that have skipped verification
+            // const skippedDrivers = []
+            // // Create an array with all drivers
+            // const drivers = Object.keys(props.reservation).filter((key) => key.includes('driver'))
+            // // Check if driver was not verified and if method = skip
+            // drivers.forEach((driver) => {
+            //     console.log('selected', selected)
+            //     console.log(props.reservation[driver])
+            //     if (props.reservation[driver].method === '') {
+            //         skippedDrivers.push(props.reservation[driver].driver)
+            //     }
+            // })
+            // console.log(skippedDrivers)
         } else if (window.location.pathname.includes('deposit')) {
             window.location.href = '/qr'
         }
