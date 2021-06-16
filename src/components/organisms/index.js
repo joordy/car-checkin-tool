@@ -5,6 +5,8 @@ export { default as LoginDesktop } from './loginSteps/loginDesktop/loginDesktop'
 
 // User reservations
 export { default as ReservationCard } from './reservations/reservationCard/reservationCard'
+export { default as ReservationSidebar } from './reservations/reservationSidebar/reservationSidebar'
+export { default as ReservationCardDesktop } from './reservations/reservationCardDesktop/reservationCardDesktop'
 export { default as ReservationHeader } from './reservations/reservationHeader/reservationHeader'
 export { default as EmptyReservation } from './reservations/emptyReservation/emptyReservation.jsx'
 

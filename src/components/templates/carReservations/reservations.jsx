@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import * as Styles from './reservations.styles.js'
+import Media from 'react-media'
+import { device } from 'styles/devices'
+import { ReservationSidebar, ReservationCardDesktop } from 'components/organisms/index'
 
 // Components
 import { ReservationCard, ReservationHeader, EmptyReservation } from 'components/organisms/index'
@@ -33,26 +36,67 @@ const Reservations = () => {
         <>
             {loadingData ? (
                 <>
-                    <ReservationHeader user={{ firstName: currentUser.firstName }} />
-                    <Styles.Main>
-                        {allReservations.length > 1 ? (
+                    <Media
+                        queries={{
+                            small: device.mobile,
+                            large: device.tablet,
+                        }}
+                    >
+                        {(matches) => (
                             <>
-                                <h2>Mijn Reserveringen</h2>
-                                {allReservations.map((item, index) => {
-                                    return (
-                                        <ReservationCard
-                                            key={item.reservationID}
-                                            data={item}
-                                            reservationKey={index}
-                                            user={currentUser}
+                                {matches.small && (
+                                    <>
+                                        <ReservationHeader
+                                            user={{ firstName: currentUser.firstName }}
                                         />
-                                    )
-                                })}
+                                        <Styles.Main>
+                                            {allReservations.length > 1 ? (
+                                                <>
+                                                    <h2>Mijn Reserveringen</h2>
+                                                    {allReservations.map((item, index) => {
+                                                        return (
+                                                            <ReservationCard
+                                                                key={item.reservationID}
+                                                                data={item}
+                                                                reservationKey={index}
+                                                                user={currentUser}
+                                                            />
+                                                        )
+                                                    })}
+                                                </>
+                                            ) : (
+                                                <EmptyReservation />
+                                            )}
+                                        </Styles.Main>
+                                    </>
+                                )}
+                                {matches.large && (
+                                    <>
+                                        <ReservationSidebar user={currentUser} />{' '}
+                                        {allReservations.length > 1 ? (
+                                            <>
+                                                <Styles.MainDesktop>
+                                                    <h2>Mijn Reserveringen</h2>
+                                                    {allReservations.map((item, index) => {
+                                                        return (
+                                                            <ReservationCardDesktop
+                                                                key={item.reservationID}
+                                                                data={item}
+                                                                reservationKey={index}
+                                                                user={currentUser}
+                                                            />
+                                                        )
+                                                    })}
+                                                </Styles.MainDesktop>
+                                            </>
+                                        ) : (
+                                            <EmptyReservation />
+                                        )}
+                                    </>
+                                )}
                             </>
-                        ) : (
-                            <EmptyReservation />
                         )}
-                    </Styles.Main>
+                    </Media>
                 </>
             ) : (
                 <>
