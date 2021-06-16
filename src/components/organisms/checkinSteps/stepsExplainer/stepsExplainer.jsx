@@ -19,6 +19,7 @@ const StepsExplainer = (props) => {
         moveElement.style.transform = 'translateX(-100vw)'
     }
 
+    // Get user data from back-end
     const getData = async () => {
         try {
             const data = await axios
@@ -37,6 +38,7 @@ const StepsExplainer = (props) => {
         }
     }
 
+    // Set default content
     let title = 'Inchecken in slechts 3 stappen'
     let buttonText = 'Volgende'
     let time
@@ -44,6 +46,7 @@ const StepsExplainer = (props) => {
     let step2 = false
     let step3 = false
 
+    // Fetch current reservation data from Supabase
     async function getSpecificReservation(userID, index) {
         if (index == 0) {
             const { data, error } = await supabase.from('users').select().eq('userID', userID)
@@ -72,10 +75,12 @@ const StepsExplainer = (props) => {
         }
     }
 
+    // Fetch data when component is mounted
     useEffect(() => {
         getData()
     }, [])
 
+    // If data has finished loading > Change content based on completed steps
     if (loadingData) {
         step1 = currentReservation.orderDetails
         step2 = currentReservation.verificationProcess
