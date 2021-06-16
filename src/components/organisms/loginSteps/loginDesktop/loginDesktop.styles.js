@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-import * as colors from 'styles/colors'
-import { device } from 'styles/devices'
 
 export const LoginDesktop = styled.section`
     ul {
@@ -18,6 +16,24 @@ export const LoginDesktop = styled.section`
             width: calc(100% - 12em);
             height: calc(100% - 8em);
             background: linear-gradient(to top, rgba(0, 133, 0, 0.6), rgba(159, 206, 25, 0.6));
+            display: flex;
+            justify-content: space-between;
+            div:last-of-type {
+                padding: 0 8em 0 0;
+                ul li {
+                    display: flex;
+                    span {
+                        margin: 1em;
+                    }
+                    p {
+                        font-size: 16px;
+                        &:first-child {
+                            font-weight: bold;
+                            padding: 0.2em 0;
+                        }
+                    }
+                }
+            }
         }
 
         img {
