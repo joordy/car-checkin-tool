@@ -7,7 +7,6 @@ import * as Styles from './reservationCard.styles.js'
 // Components
 import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
-import { verifiedDriver } from 'constants/actions/index.js'
 
 // React Component
 const ReservationCard = (props) => {
@@ -17,7 +16,7 @@ const ReservationCard = (props) => {
 
     const getData = async () => {
         try {
-            const data = await axios
+            await axios
                 .get(`https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations`)
                 .then((res) => {
                     if (res.data) {

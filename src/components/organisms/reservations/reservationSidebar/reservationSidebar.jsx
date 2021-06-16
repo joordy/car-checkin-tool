@@ -1,6 +1,8 @@
 // React imports
 import React from 'react'
 import * as Styles from './reservationSidebar.styles.js'
+
+// Component imports
 import { LogoGreen } from 'components/atoms/index'
 import { Icons } from 'components/atoms/index'
 

@@ -3,12 +3,13 @@ import { useState } from 'react'
 import axios from 'axios'
 import * as Styles from './loginDesktop.styles.js'
 import supabase from 'db/supabase.js'
+
+// Component imports
 import {
     TextInput,
     PasswordInput,
     Label,
     InlineButton,
-    ButtonSecondary,
     FormButtonPrimaryLarge,
 } from 'components/atoms/index.js'
 import { LoginError } from 'components/molecules/index'
@@ -23,7 +24,7 @@ const LoginDesktop = () => {
     const logoImgSrc = 'https://svgshare.com/i/XWd.svg'
 
     const postData = async (loggedInUser) => {
-        const res = await axios
+        await axios
             .post(
                 'https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations',
                 loggedInUser,
