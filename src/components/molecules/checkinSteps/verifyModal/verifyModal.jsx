@@ -13,6 +13,7 @@ const VerifyModal = ({ message, open, children, onClose, buttonText }) => {
         console.log(btn)
     }
 
+    // Return the correct message based on type (success or fail)
     switch (message) {
         case 'success':
             hideElem()

@@ -4,6 +4,7 @@ import { Icons } from 'components/atoms/index'
 
 // Component
 const DriverListItem = ({ type, name, subText }) => {
+    // Return component based on requested type (verified, location or skiped)
     switch (type) {
         case 'verified':
             return (

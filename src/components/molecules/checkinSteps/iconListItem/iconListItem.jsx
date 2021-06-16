@@ -4,6 +4,7 @@ import { Icons } from 'components/atoms/index'
 
 // Component
 const IconListItem = ({ iconName, opacity, title, text, completed }) => {
+    // Return component based on requested icon
     switch (iconName) {
         case 'UserCheckIcon':
             return (

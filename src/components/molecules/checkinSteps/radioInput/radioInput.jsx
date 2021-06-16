@@ -1,11 +1,11 @@
 // Imports
 import * as Styles from './radioInput.styles.js'
-import { useState } from 'react'
 
 // Component
 const RadioInput = ({ checked, title, text, id, value, name, changeState }) => {
     let checkedInput
 
+    // If input needs to be checked (default)
     if (checked) {
         checkedInput = (
             <input
@@ -23,7 +23,6 @@ const RadioInput = ({ checked, title, text, id, value, name, changeState }) => {
         )
     }
 
-    // console.log(changeState)
     return (
         <Styles.Label htmlFor={value}>
             {checkedInput}
