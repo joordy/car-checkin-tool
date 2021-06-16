@@ -53,10 +53,10 @@ To add a checked-in reservation to a user's Apple Wallet, we use [Passslot](http
 
 For the usage of the database, we chose [Supabase](https://supabase.io/). This is a very easy to set up database, which a very nice and easy documentation. Therefore this database seemed really easy to use, and we chose to use this for our project.
 
+For this project we needed to store the users and their reservations, with all of the associated information:
+
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;"><strong>Dataset</strong></summary>
-
-For this project we needed to store the users and their reservations, with all of the associated information:
 
 ```js
 const user = {
@@ -191,12 +191,20 @@ const user = {
 
 ## 🖥 **Tech-stack**
 
+### **Front-end**
+
 The application is built in [React.js](https://reactjs.org/). This is a component based framework, where we can easily work in together.
 For every feature or adjustment, we worked in branches and made pull requests of every small change or feature add-on. Every pull request must be reviewed by at least 1 of the other team members before it is able to merge onto the `development` branch.
 
-We also used a method called [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/). By using this, we split up every bit of code in `atoms`, `molecules`, `organisms` and `templates`. By doing this we can easily re-use components, and we have a clear overview of the components by size.
+We also used a method of component based programming. The components can then be made in various ways. We have used the [Atomic Webdesign](https://bradfrost.com/blog/post/atomic-web-design/) method for this. By using this, we split up every bit of code in `atoms`, `molecules`, `organisms` and `templates`. By doing it this way, we can reuse the components, avoiding repetition, and program DRY in this way.
 
 We also use [`prettier`](https://prettier.io/) as code formatter, which also uses [`eslint`](https://eslint.org/) to lint the code. This will save a lot of discussion within code reviews, because it creates the same layout for the code on every save the creator makes.
+
+### **Backend**
+
+We wrote the backend in an external repository. This is built using Firebase Cloud Functions, and we can contact the backend with the help of an API fetch.
+
+The repository can be viewed [here: Car Checkin Tool Backend](https://github.com/joordy/car-checkin-tool-backend)
 
 ## ⚙️ **Installation**
 
