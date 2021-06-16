@@ -1,13 +1,13 @@
 // React imports
 import React from 'react'
 import * as Styles from './singleButtonWrapper.styles.js'
-import { ButtonPrimary } from 'components/atoms/index'
+import { ButtonSecondary } from 'components/atoms/index'
 
 // React component
 const SingleButtonWrapper = ({ type, text, link, callback }) => {
     return (
         <Styles.BtnWrapper>
-            <ButtonPrimary type={type} text={text} linkTo={link} _callback={callback} />
+            <ButtonSecondary type={type} text={text} linkTo={link} _callback={callback} />
         </Styles.BtnWrapper>
     )
 }
