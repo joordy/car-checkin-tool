@@ -51,6 +51,8 @@ To assure the reserve deposit on a creditcard, we use [Stripe API](https://strip
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Passslot</summary>
 
+We use the [Passslot API](https://www.passslot.com/developer/api/resources) to create Apple Wallet passes that users can store inside the Wallet app on their iPhone. This allows users to access a reservations QR code, even when there is no internet connection available. We use an external API for this, because creating your own Apple Wallet Pass requires you to get certified as an Apple Developer and have a dedicated Pass server that generates Wallet Pass Certificates.
+
 To add a checked-in reservation to a user's Apple Wallet, we use [Passslot](https://www.passslot.com/developer/api/resources).
 
 </details>
