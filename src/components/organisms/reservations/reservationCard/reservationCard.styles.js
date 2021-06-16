@@ -85,7 +85,7 @@ export const StatusCheck = styled.section`
                     align-items: center;
                     position: relative;
                     svg {
-                        width: 80%;
+                        width: 1.25rem;
                         path {
                             stroke: white;
                         }

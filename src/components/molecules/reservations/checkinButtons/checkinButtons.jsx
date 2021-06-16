@@ -74,6 +74,8 @@ const CheckinButtons = (props) => {
             return 'Controleer gegevens'
         } else if (!order && !verified && !paid) {
             return 'Inchecken'
+        } else if (!order && !paid) {
+            return 'Controleer  gegevens'
         }
     }
 
