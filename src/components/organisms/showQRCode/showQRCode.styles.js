@@ -88,5 +88,8 @@ export const Section = styled.section`
                 margin: 0 auto 1em auto;
             }
         }
+        button {
+            margin: 3em auto 0 auto;
+        }
     }
 `

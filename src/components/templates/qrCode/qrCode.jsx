@@ -14,6 +14,7 @@ const QRCode = () => {
     const [currentKey, setCurrentKey] = useState(false)
     const [loadingData, setLoadingData] = useState(false)
 
+    // Get data about the loged-in user from the server
     const getData = async () => {
         try {
             const data = await axios
@@ -22,7 +23,6 @@ const QRCode = () => {
                     if (res.data) {
                         const index = res.data.carkey
                         const userID = res.data.user.userID
-                        //setCurrentUser(res.data.user)
                         setCurrentKey(res.data.carkey)
                         getSpecificReservation(userID, index)
                     }
@@ -32,6 +32,7 @@ const QRCode = () => {
         }
     }
 
+    // Get the reservation & user data from Supabase
     async function getSpecificReservation(userID, index) {
         if (index == 0) {
             const { data, error } = await supabase.from('users').select().eq('userID', userID)
@@ -63,6 +64,7 @@ const QRCode = () => {
         }
     }
 
+    // Get the data when component is mounted
     useEffect(() => {
         getData()
     }, [])
