@@ -3,6 +3,7 @@ import * as Styles from './buttonSecondary.styles.js'
 
 // Component
 const ButtonSecondary = ({ type, text, linkTo, width, _callback, height }) => {
+    // Return component based on the requested type of button
     switch (type) {
         case 'btn':
             return (
