@@ -280,7 +280,7 @@ export const updateDBwithVerifyMethod = (
                 case 'oneDriver':
                     return {
                         class: thisReservation.class,
-                        carImage: thisReservation.Image,
+                        carImage: thisReservation.carImage,
                         checkedIn: thisReservation.checkedIn,
                         driverOne: {
                             role: thisReservation.driverOne.role,
@@ -318,7 +318,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -360,7 +360,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -405,7 +405,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -453,7 +453,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -501,7 +501,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverThree') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -553,7 +553,7 @@ export const updateDBwithVerifyMethod = (
                 case 'oneDriver':
                     return {
                         class: thisReservation.class,
-                        carImage: thisReservation.Image,
+                        carImage: thisReservation.carImage,
                         checkedIn: thisReservation.checkedIn,
                         driverOne: {
                             role: thisReservation.driverOne.role,
@@ -591,7 +591,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -633,7 +633,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -678,7 +678,7 @@ export const updateDBwithVerifyMethod = (
                     if (driverObj === 'driverOne') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -726,7 +726,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverTwo') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -774,7 +774,7 @@ export const updateDBwithVerifyMethod = (
                     } else if (driverObj === 'driverThree') {
                         return {
                             class: thisReservation.class,
-                            carImage: thisReservation.Image,
+                            carImage: thisReservation.carImage,
                             checkedIn: thisReservation.checkedIn,
                             driverOne: {
                                 role: thisReservation.driverOne.role,
@@ -1099,7 +1099,7 @@ export const updateDBwithDriverOne = (
         case 'oneDriver':
             return {
                 class: thisReservation.class,
-                carImage: thisReservation.Image,
+                carImage: thisReservation.carImage,
                 checkedIn: thisReservation.checkedIn,
                 driverOne: {
                     role: thisReservation.driverOne.role,
@@ -1137,7 +1137,7 @@ export const updateDBwithDriverOne = (
             if (driverObj === 'driverOne') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1179,7 +1179,7 @@ export const updateDBwithDriverOne = (
             } else if (driverObj === 'driverTwo') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1224,7 +1224,7 @@ export const updateDBwithDriverOne = (
             if (driverObj === 'driverOne') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1272,7 +1272,7 @@ export const updateDBwithDriverOne = (
             } else if (driverObj === 'driverTwo') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
@@ -1320,7 +1320,7 @@ export const updateDBwithDriverOne = (
             } else if (driverObj === 'driverThree') {
                 return {
                     class: thisReservation.class,
-                    carImage: thisReservation.Image,
+                    carImage: thisReservation.carImage,
                     checkedIn: thisReservation.checkedIn,
                     driverOne: {
                         role: thisReservation.driverOne.role,
