@@ -13,6 +13,7 @@ import {
     FormButtonPrimaryLarge,
 } from 'components/atoms/index.js'
 import { LoginError } from 'components/molecules/index'
+import { Icons } from 'components/atoms/index'
 
 // React component
 const LoginDesktop = () => {
@@ -62,9 +63,42 @@ const LoginDesktop = () => {
             <Styles.LoginDesktop>
                 <header>
                     <section>
-                        <img src={logoImgSrc} alt="Logo" />
-                        <h1>Gemakkelijk online inchecken</h1>
-                        <p>En een overzicht van jouw reserveringen bij Europcar</p>
+                        <div>
+                            <img src={logoImgSrc} alt="Logo" />
+                            <h1>Gemakkelijk online inchecken</h1>
+                            <p>En een overzicht van jouw reserveringen bij Europcar</p>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>
+                                    <Icons type="users" width="1.8em" height="1.8em" />
+                                    <div>
+                                        <p>Niet meer in de rij staan</p>
+                                        <p>Je haalt je auto snel op bij de Express balie</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Icons type="forward" width="1.8em" height="1.8em" />
+                                    <div>
+                                        <p>Het is zo gedaan</p>
+                                        <p>
+                                            Bevestig je reservering & identiteit en regel de borg.
+                                            Klaar binnen 5 minuten.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Icons type="lock" width="1.7em" height="1.7em" />
+                                    <div>
+                                        <p>Het is veilig</p>
+                                        <p>
+                                            We beveiligen je data en doen niets zonder jouw
+                                            toestemming.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </section>
                 </header>
                 <div>
