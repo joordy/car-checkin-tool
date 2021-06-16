@@ -12,3 +12,4 @@ export { default as ButtonPrimary } from './buttons/buttonPrimary/buttonPrimary.
 export { default as ButtonSecondary } from './buttons/buttonSecondary/buttonSecondary.jsx'
 export { default as ButtonTertiary } from './buttons/buttonTertiary/buttonTertiary.jsx'
 export { default as Warnings } from './warnings/warnings.jsx'
+export { default as LogoGreen } from './logos/logoGreen.jsx'

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Location = styled.ul`
     margin: 0 0 0 0.5rem;
@@ -25,6 +26,17 @@ export const Location = styled.ul`
                 display: grid;
                 place-items: center;
             }
+        }
+    }
+
+    @media ${device.laptop} {
+        h4 {
+            font-size: 1.1em;
+            width: 100%;
+        }
+        h5 {
+            margin: 0.5em 0;
+            font-size: 1em;
         }
     }
 `

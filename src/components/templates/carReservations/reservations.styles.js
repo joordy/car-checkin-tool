@@ -8,3 +8,13 @@ export const Main = styled.main`
         margin-bottom: 1rem;
     }
 `
+
+export const MainDesktop = styled.section`
+    margin-left: calc(10vw + 12em);
+    padding: 4em 6em;
+    background-color: whitesmoke;
+    height: calc(100vh - 8em);
+    h2 {
+        margin-bottom: 3em;
+    }
+`

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import * as colors from 'styles/colors'
+import { device } from 'styles/devices'
 
 export const Wrapper = styled.section`
     margin-top: 0.25rem;

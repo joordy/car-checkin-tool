@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react'
 import supabase from 'db/supabase.js'
 import axios from 'axios'
-import * as Styles from './reservationCard.styles.js'
+import * as Styles from './reservationCardDesktop.styles.js'
 
 // Components
 import { Icons } from 'components/atoms/index'
 import { CheckinButtons, DealerLocations } from 'components/molecules/index'
 
 // React Component
-const ReservationCard = (props) => {
+const ReservationCardDesktop = (props) => {
     const [reservation, setReservation] = useState(null)
     const [loadingData, setLoadingData] = useState(false)
     const [showConditionalText, setShowConditionalText] = useState(false)
@@ -69,6 +69,7 @@ const ReservationCard = (props) => {
             res.verificationProcess === true ||
             res.paidDeposit.paid === true
         ) {
+            console.log('yeey')
             setShowConditionalText(true)
         }
     }
@@ -90,108 +91,34 @@ const ReservationCard = (props) => {
         }
     }
 
-    function whoIsVerified() {
-        // Create an array with drivers that have skipped verification
-        const skipedDrivers = []
-        // Create an array with all drivers
-        const drivers = Object.keys(reservation).filter((key) => key.includes('driver'))
-        // Check if driver was not verified and if method = skip
-        drivers.forEach((driver) => {
-            if (reservation[driver].method === 'skip' && !reservation[driver].verified) {
-                skipedDrivers.push(reservation[driver].driver)
-            }
-        })
-        if (skipedDrivers.length === 0) {
-            return (
-                <>
-                    <div className="wrapper">
-                        <div>
-                            <Icons type="userCheck" />
-                        </div>
-                        <p>Verificatie rijbewijs</p>
-                    </div>
-                </>
-            )
-        } else if (skipedDrivers.length === 1) {
-            return (
-                <>
-                    <div className="wrapper incomplete">
-                        <div>
-                            <Icons type="userCheck" />
-                        </div>
-                        <p>Verificatie rijbewijs</p>
-                        <p>Bestuurder &quot;{skipedDrivers[0]}&quot; ontbreekt</p>
-                    </div>
-                </>
-            )
-        } else if (skipedDrivers.length > 1) {
-            return (
-                <>
-                    <div className="wrapper incomplete">
-                        <div>
-                            <Icons type="userCheck" />
-                        </div>
-                        <p>Verificatie rijbewijs</p>
-                        <p>Bestuurders {skipedDrivers.join(', ')} ontbreken</p>
-                    </div>
-                </>
-            )
-        }
-    }
-
     return (
         <>
             {loadingData ? (
                 <>
                     <Styles.Card>
-                        <img src={reservation.carImage} alt="Car image" />
-                        <h3>{reservation.class}</h3>
                         <article>
-                            <>
-                                <span>
-                                    <svg
-                                        width="14"
-                                        height="57"
-                                        viewBox="0 0 14 57"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <ellipse
-                                            cx="7.16413"
-                                            cy="6"
-                                            rx="6.83284"
-                                            ry="6"
-                                            fill="#CCCCD6"
-                                        />
-                                        <ellipse
-                                            cx="7.16413"
-                                            cy="51"
-                                            rx="6.83284"
-                                            ry="6"
-                                            fill="#CCCCD6"
-                                        />
-                                        <line
-                                            x1="7.66406"
-                                            y1="14"
-                                            x2="7.66406"
-                                            y2="43"
-                                            stroke="#CCCCD6"
-                                        />
-                                    </svg>
-                                </span>
-
+                            <div>
+                                <img src={reservation.carImage} alt="Car image" />
+                                <h3>{reservation.class}</h3>
                                 <DealerLocations {...reservation} />
-                            </>
-
+                                {!showConditionalText && (
+                                    <CheckinButtons
+                                        reservation={reservation}
+                                        carIndexKey={props.reservationKey}
+                                        user={props.user}
+                                    />
+                                )}
+                            </div>
                             {showConditionalText && (
                                 <>
                                     <Styles.StatusCheck>
-                                        <h4>Online Check-In</h4>
-                                        <span></span>
-                                        <p>
-                                            <span>{calcSteps(reservation)}</span> van de{' '}
-                                            <span>3</span> stappen voltooid
-                                        </p>
+                                        <div>
+                                            <h4>Online Check-In</h4>
+                                            <p>
+                                                <span>{calcSteps(reservation)}</span> van de{' '}
+                                                <span>3</span> stappen voltooid
+                                            </p>
+                                        </div>
                                         <ul>
                                             <li>
                                                 {reservation.orderDetails ? (
@@ -199,14 +126,14 @@ const ReservationCard = (props) => {
                                                         <div>
                                                             <Icons type="data" />
                                                         </div>
-                                                        <p>Controle gegevens</p>
+                                                        <p>Controle Gegevens</p>
                                                     </div>
                                                 ) : (
                                                     <div className="wrapper">
                                                         <div>
                                                             <Icons type="data" />
                                                         </div>
-                                                        <p>Controle gegevens</p>
+                                                        <p>Controle Gegevens</p>
                                                     </div>
                                                 )}
                                             </li>
@@ -219,7 +146,12 @@ const ReservationCard = (props) => {
                                                         <p>Verificatie rijbewijs</p>
                                                     </div>
                                                 ) : (
-                                                    whoIsVerified()
+                                                    <div className="wrapper">
+                                                        <div>
+                                                            <Icons type="userCheck" />
+                                                        </div>
+                                                        <p>Verificatie rijbewijs</p>
+                                                    </div>
                                                 )}
                                             </li>
                                             <li>
@@ -239,15 +171,17 @@ const ReservationCard = (props) => {
                                                     </div>
                                                 )}
                                             </li>
+                                            <li>
+                                                <CheckinButtons
+                                                    reservation={reservation}
+                                                    carIndexKey={props.reservationKey}
+                                                    user={props.user}
+                                                />
+                                            </li>
                                         </ul>
                                     </Styles.StatusCheck>
                                 </>
                             )}
-                            <CheckinButtons
-                                reservation={reservation}
-                                carIndexKey={props.reservationKey}
-                                user={props.user}
-                            />
                         </article>
                     </Styles.Card>
                 </>
@@ -260,4 +194,4 @@ const ReservationCard = (props) => {
     )
 }
 
-export default ReservationCard
+export default ReservationCardDesktop

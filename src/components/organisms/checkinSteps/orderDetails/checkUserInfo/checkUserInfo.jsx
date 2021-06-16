@@ -1,10 +1,12 @@
 // React imports
 import React, { useState } from 'react'
 import * as Styles from './checkUserInfo.styles.js'
-import { Icons, EditButton, CancelButton, Label, TextInput } from 'components/atoms/index.js'
-import { VerificationButtons, SaveButton, SavedMessage } from 'components/molecules/index'
 import supabase from 'db/supabase.js'
 import colors from 'styles/colors.js'
+
+// Component imports
+import { Icons, EditButton, CancelButton, Label, TextInput } from 'components/atoms/index.js'
+import { VerificationButtons, SaveButton, SavedMessage } from 'components/molecules/index'
 
 // React component
 const CheckUserInfo = (props) => {
