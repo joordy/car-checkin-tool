@@ -8,6 +8,12 @@ We, [Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/l
 
 You can visit the project [here](https://car-checkin-tool.netlify.app/)
 
+## 🗒 **Project board**
+
+For this project we made use of an Project board. We've worked with a automated KANBAN method
+
+You can see the project board: [here](https://github.com/joordy/car-checkin-tool/projects)
+
 ## 📄 **Debrief**
 
 A reservation is, most of the time, made well ahead of the rental date. Until now, the user always has to check-in physically at the location of the rental, which easily costs about 15 minutes per user.
