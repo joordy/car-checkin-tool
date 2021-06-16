@@ -23,12 +23,16 @@ const LoginDesktop = () => {
     const logoImgSrc = 'https://svgshare.com/i/XWd.svg'
 
     const postData = async (loggedInUser) => {
-        const res = await axios
+        await axios
             .post(
                 'https://us-central1-car-check-in.cloudfunctions.net/app/api/reservations',
                 loggedInUser,
             )
-            .then((res) => console.log(res))
+            .then((res) => {
+                setTimeout(() => {
+                    window.location.href = '/reservations'
+                }, 100)
+            })
     }
 
     const readDB = async (email) => {
@@ -49,11 +53,14 @@ const LoginDesktop = () => {
         event.preventDefault()
         email = event.target.email.value
         await readDB(email)
-        if (loggedIn) {
-            window.location.replace('/reservations')
-        } else {
+        if (!loggedIn) {
             setShowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
         }
+        // if (loggedIn) {
+        //     window.location.replace('/reservations')
+        // } else {
+        //     setShowWrongEmailText((showWrongEmailText) => !showWrongEmailText)
+        // }
     }
 
     return (
@@ -74,7 +81,7 @@ const LoginDesktop = () => {
                         Reserveren
                     </a>
                     {showWrongEmailText && <LoginError />}
-                    <form action="/reservations" onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <ul className="inputs">
                             <li>
                                 <Label text="E-mailadres" forId="email" />

@@ -40,13 +40,13 @@ const CheckDrivers = (props) => {
                     await updateSpecificUser(
                         props.carkey,
                         props.loggedinUser.userID,
-                        data[1].carResOne,
+                        data[0].carResTwo,
                     )
                 } else if (props.carkey === 2) {
                     await updateSpecificUser(
                         props.carkey,
                         props.loggedinUser.userID,
-                        data[2].carResOne,
+                        data[0].carResThree,
                     )
                 }
 
@@ -101,6 +101,7 @@ const CheckDrivers = (props) => {
     }
 
     const getAllDrivers = (reservationData) => {
+        console.log('reservationData', reservationData)
         let arr = []
 
         if (reservationData) {
