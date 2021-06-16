@@ -89,7 +89,7 @@ const CheckFacial = (props) => {
                 )
             } else if (stateTwo) {
                 return updateDBwithDriverOne(
-                    'oneDriver',
+                    'twoDrivers',
                     props.reservation,
                     currentUserDB,
                     'now',
