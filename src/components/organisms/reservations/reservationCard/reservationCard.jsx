@@ -70,7 +70,6 @@ const ReservationCard = (props) => {
             res.verificationProcess === true ||
             res.paidDeposit.paid === true
         ) {
-            console.log('yeey')
             setShowConditionalText(true)
         }
     }
