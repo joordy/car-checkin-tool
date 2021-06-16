@@ -90,6 +90,55 @@ const ReservationCard = (props) => {
         }
     }
 
+    function whoIsVerified() {
+        // Create an array with drivers that have skipped verification
+        const skipedDrivers = []
+        // Create an array with all drivers
+        const drivers = Object.keys(reservation).filter((key) => key.includes('driver'))
+        // Check if driver was not verified and if method = skip
+        drivers.forEach((driver) => {
+            if (reservation[driver].method === 'skip' && !reservation[driver].verified) {
+                skipedDrivers.push(reservation[driver].driver)
+            }
+        })
+        if (skipedDrivers.length === 0) {
+            return (
+                <>
+                    <div className="wrapper">
+                        <div>
+                            <Icons type="userCheck" />
+                        </div>
+                        <p>Verificatie rijbewijs</p>
+                    </div>
+                </>
+            )
+        } else if (skipedDrivers.length === 1) {
+            return (
+                <>
+                    <div className="wrapper incomplete">
+                        <div>
+                            <Icons type="userCheck" />
+                        </div>
+                        <p>Verificatie rijbewijs</p>
+                        <p>Bestuurder &quot;{skipedDrivers[0]}&quot; ontbreekt</p>
+                    </div>
+                </>
+            )
+        } else if (skipedDrivers.length > 1) {
+            return (
+                <>
+                    <div className="wrapper incomplete">
+                        <div>
+                            <Icons type="userCheck" />
+                        </div>
+                        <p>Verificatie rijbewijs</p>
+                        <p>Bestuurders {skipedDrivers.join(', ')} ontbreken</p>
+                    </div>
+                </>
+            )
+        }
+    }
+
     return (
         <>
             {loadingData ? (
@@ -150,14 +199,14 @@ const ReservationCard = (props) => {
                                                         <div>
                                                             <Icons type="data" />
                                                         </div>
-                                                        <p>Controle Gegevens</p>
+                                                        <p>Controle gegevens</p>
                                                     </div>
                                                 ) : (
                                                     <div className="wrapper">
                                                         <div>
                                                             <Icons type="data" />
                                                         </div>
-                                                        <p>Controle Gegevens</p>
+                                                        <p>Controle gegevens</p>
                                                     </div>
                                                 )}
                                             </li>
@@ -170,12 +219,7 @@ const ReservationCard = (props) => {
                                                         <p>Verificatie rijbewijs</p>
                                                     </div>
                                                 ) : (
-                                                    <div className="wrapper">
-                                                        <div>
-                                                            <Icons type="userCheck" />
-                                                        </div>
-                                                        <p>Verificatie rijbewijs</p>
-                                                    </div>
+                                                    whoIsVerified()
                                                 )}
                                             </li>
                                             <li>
