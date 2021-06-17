@@ -17,8 +17,8 @@ You can visit the project [here](https://car-checkin-tool.netlify.app/)
 ### **Product Biography**
 
 -   [Jordy Fronik](https://www.notion.so/jorrr/Procesboek-Meesterproef-Europcar-63c5be026a9147839d773bcdd7d2da25)
--   [Lars Ruijs](https://www.notion.so/Productbiografie-Meesterproef-Minor-Web-Design-Development-a809ccf1f04342d482f56117d62eca49)
--   [Guus Maij](https://www.notion.so/Meesterproef-Europcar-516fb6640bf84fb99472497a0b213b26)
+-   [Lars Ruijs](https://www.notion.so/Meesterproef-Europcar-516fb6640bf84fb99472497a0b213b26)
+-   [Guus Maij](https://www.notion.so/Productbiografie-Meesterproef-Minor-Web-Design-Development-a809ccf1f04342d482f56117d62eca49)
 
 ### **Online Portfolio Page**
 
