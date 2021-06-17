@@ -2,6 +2,9 @@
 import React from 'react'
 import * as Styles from './reservationHeader.styles.js'
 
+// Components
+import { Icons } from 'components/atoms/index'
+
 // React component
 const ReservationHeader = (props) => {
     const user = props.user
@@ -15,7 +18,7 @@ const ReservationHeader = (props) => {
                     inchecken.
                 </p>
                 <div>
-                    <div></div>
+                    <Icons type="user" width="26px" height="26px" stroke="white" />
                 </div>
             </Styles.Header>
         </>
