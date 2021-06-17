@@ -95,15 +95,6 @@ const DepositCC = ({ labelText, children }) => {
     }
     return (
         <Styles.DepositForm onSubmit={handleSubmit}>
-            <fieldset>
-                <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-                <button disabled={processing || disabled || succeeded} id="submit">
-                    <span id="button-text">
-                        {processing ? <div className="spinner" id="spinner"></div> : 'Betaal'}
-                    </span>
-                </button>
-            </fieldset>
-
             {error && (
                 <Warnings type="failed" classes="card-error" role="alert">
                     <p>We kunnen je betalingswijze niet verifiëren. Probeer het opnieuw.</p>
@@ -116,6 +107,15 @@ const DepositCC = ({ labelText, children }) => {
             >
                 <p>Borg succesvol gereserveerd! Druk op “Volgende” om verder te gaan.</p>
             </Warnings>
+
+            <fieldset>
+                <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+                <button disabled={processing || disabled || succeeded} id="submit">
+                    <span id="button-text">
+                        {processing ? <div className="spinner" id="spinner"></div> : 'Betaal'}
+                    </span>
+                </button>
+            </fieldset>
         </Styles.DepositForm>
     )
 }
