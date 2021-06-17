@@ -35,7 +35,6 @@ export const Section = styled.section`
     main {
         margin: 0 0 10rem 0;
         article {
-            margin-bottom: 2rem;
             @media ${device.laptop} {
                 padding: 0 3em 0 3em;
             }
