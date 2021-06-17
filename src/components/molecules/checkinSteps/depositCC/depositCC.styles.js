@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import * as colors from 'styles/colors'
 
 export const DepositForm = styled.form`
-    padding-bottom: 5rem;
     width: 100%;
     fieldset {
         border: none;
