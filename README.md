@@ -8,6 +8,26 @@ We, [Jordy Fronik](https://github.com/joordy), [Lars Ruijs](https://github.com/l
 
 You can visit the project [here](https://car-checkin-tool.netlify.app/)
 
+## **Documentation**
+
+### **Design Rationale**
+
+-   [Design Rationale](https://github.com/joordy/car-checkin-tool/blob/main/docs/design_rationale.meesterproef.pdf)
+
+### **Product Biography**
+
+-   [Jordy Fronik](https://www.notion.so/jorrr/Procesboek-Meesterproef-Europcar-63c5be026a9147839d773bcdd7d2da25)
+-   [Lars Ruijs](https://www.notion.so/Productbiografie-Meesterproef-Minor-Web-Design-Development-a809ccf1f04342d482f56117d62eca49)
+-   [Guus Maij](https://www.notion.so/Meesterproef-Europcar-516fb6640bf84fb99472497a0b213b26)
+
+### **Online Portfolio Page**
+
+-   [Car Checkin Tool — Portfolio page](https://www.notion.so/Meesterproef-Europcar-check-in-tool-7c64551490e34622a7b4cc9683ec0023)
+
+### **Figma prototype**
+
+-   [Figma Prototype of check-in tool](https://www.figma.com/file/KBpiUOTlQfiSAp8Urj5T1w/Car-Check-In-tool-%E2%80%94-Europcar-Meesterproef?node-id=0%3A1)
+
 ## 🗒 **Project board**
 
 For this project we made use of an Project board. We've worked with a automated KANBAN method
