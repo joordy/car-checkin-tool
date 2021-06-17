@@ -18,6 +18,22 @@ export const Header = styled.header`
         height: 3rem;
         top: 0;
         right: 0;
+        span::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: green;
+            z-index: -1;
+        }
+
+        span {
+            > svg {
+                padding: 0.75em;
+            }
+        }
+
         div {
             width: 100%;
             height: 100%;
